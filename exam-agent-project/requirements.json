@@ -1,0 +1,30 @@
+{
+  "course": "Scientific Management",
+  "exam_name": "Midterm Exam",
+  "language": "English",
+  "target_duration_minutes": 75,
+  "question_mix": {
+    "short_answer": 6,
+    "concept_comparison": 2,
+    "application": 2,
+    "essay": 1
+  },
+  "coverage_weights": {
+    "work_and_work_systems": 25,
+    "scientific_management": 20,
+    "problem_solving_and_ideation": 25,
+    "innovation_frameworks": 15,
+    "motion_study_and_therbligs": 15
+  },
+  "difficulty": {
+    "easy": 25,
+    "medium": 50,
+    "hard": 25
+  },
+  "notes": [
+    "Use multiple question types.",
+    "Reflect actual lecture materials up to the midterm.",
+    "Require application and critical discussion, not only memorization."
+  ]
+}
+

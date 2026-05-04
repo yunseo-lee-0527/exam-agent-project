@@ -1,0 +1,415 @@
+
+
+--- Page 1 ---
+What is work? (M1.1)
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+What Is Work? Why Definition Matters
+• “Work” feels obvious in daily life
+• Engineering and design require a definition of “work” that 
+supports:
+– Analysis
+– Measurement
+– Redesign
+• Different disciplines emphasize different aspects of work
+• Different perspectives function like different zoom lenses:
+– At different angles
+– From micro actions to full socio-technical systems
+
+--- Page 3 ---
+What Is Work? Why Definition Matters
+• Levels of describing work:
+– Action / motion (e.g., reach, click)
+– Task (e.g., assemble a part, enter an order)
+– Process (interrelated activities transforming input to output)
+– Work system (organized socio-technical system in which processes 
+occur)
+
+--- Page 4 ---
+Economic Perspective on Work
+• Labor = core input to production
+• Productivity = output per input
+• Explains:
+– Living standards
+– Long-run economic growth
+
+--- Page 5 ---
+Economic Perspective on Work
+• Limitations of narrow economic view:
+– Work ≠ only paid employment
+– Unpaid work matters:
+• Care work
+• Household work
+• Coordination work
+• OECD “third-person criterion”:
+– If someone else could be paid to do it, it qualifies as work
+– Enables inclusion of operationally relevant unpaid work
+
+--- Page 6 ---
+Sociological Perspective on Work
+• Work is embedded in:
+– Division of labor
+– Institutions
+• Roles
+• Rules
+• Authority
+• Norms
+• Durkheim:
+– Specialization (division of labor) is not only technical
+– It reshapes social coordination and interdependence
+
+
+--- Page 7 ---
+Sociological Perspective on Work
+• Implication for work system design:
+– Technology changes:
+• How tasks are performed, and, also
+• Who decides
+• Who coordinates
+• Who is responsible
+• How performance is judged
+
+--- Page 8 ---
+Psychological Perspective on Work
+• Distinction:
+– Outcomes (e.g., sales)
+– Performance (goal-relevant behaviors)
+• Performance:
+– Observable behaviors
+– Measurable in terms of contribution
+– More controllable than outcomes via system design
+
+--- Page 9 ---
+Psychological Perspective on Work
+• Job design research:
+– Autonomy
+– Feedback
+– Task meaning
+→ Influence motivation, job satisfaction, engagement, and 
+performance
+
+--- Page 10 ---
+Psychological Perspective on Work
+• Autonomy in Job Design
+– Definition: Degree of freedom and discretion in how work is performed
+– Key questions
+• Can the worker decide methods or sequence?
+• Can they control pacing?
+– Example
+• Low: strict step-by-step instructions
+• High: choice of tools, sequence, approach
+– Psychological impact
+• Increases responsibility and intrinsic motivation
+– Work design implication
+• Provide structured guidance
+• Allow intelligent judgment where appropriate
+
+--- Page 11 ---
+Psychological Perspective on Work
+• Feedback in Job Design
+– Definition: Clear information about performance effectiveness
+– Types
+• From the job (e.g., machine/error display)
+• From others (e.g., supervisor/customer)
+– Example
+• Low: no visibility into quality
+• High: real-time performance dashboard
+– Psychological impact
+• Reduces uncertainty
+• Supports learning and motivation
+– Work design implication
+• Ensure information visibility and clear performance signals
+
+--- Page 12 ---
+Psychological Perspective on Work
+• Task Meaning in Job Design
+– Meaningfulness arises from
+• Task significance (impact on others)
+• Task identity (completing a whole task)
+• Skill variety
+– Definition: Perceived importance and value of the task
+– Example
+• Low: repetitive fragment with no context
+• High: understanding contribution to final outcome
+– Psychological impact
+• Increases intrinsic motivation and persistence
+• Reduces burnout
+– Work design implication
+• Design tasks so workers:
+– See outcomes
+– Understand impact
+– Perform coherent (not overly fragmented) work
+
+--- Page 13 ---
+Psychological Perspective on Work
+• Implication for work system design:
+– Work redesign is not only about speed
+– Also about:
+• Information
+• Responsibility
+• Feedback
+• Meaning
+
+--- Page 14 ---
+Human Factors / Ergonomics Perspective
+• Work = human–system interaction
+• Goals (IEA):
+– Improve human well-being
+– Improve overall system performance
+
+--- Page 15 ---
+Human Factors / Ergonomics Perspective
+• Balanced Socio-Technical Design (ISO 6385)
+– Balanced approach = joint optimization of:
+• Human requirements
+– Physical and cognitive limits
+– Fatigue, workload, learning
+• Social/organizational requirements
+– Roles and responsibilities
+– Authority and coordination
+– Incentives and communication
+• Technical requirements
+– Tools, machines, software
+– Process flow and standards
+– Layout and automation
+– Key principle:
+• Do not optimize one dimension (e.g., speed) at the expense of others
+• System performance emerges from interaction among all three
+
+
+--- Page 16 ---
+Human Factors / Ergonomics Perspective
+• Key message:
+– Improvement ≠ squeezing people
+– Improvement = reducing unnecessary load and variability
+– Enhancing:
+• Safety
+• Quality
+• Experience
+
+--- Page 17 ---
+Human Factors / Ergonomics Perspective
+• What Is “Unnecessary Load”?
+– Load types
+• Physical load (force, posture, repetition)
+• Cognitive load (memory, attention, decision effort)
+• Emotional load (stress, conflict)
+– Unnecessary load = strain that does not create value
+– Examples:
+• Searching for tools
+• Re-entering data
+• Monitoring poorly designed displays
+• Remembering information that could be visible
+– Goal:
+• Remove avoidable strain
+• Preserve effort that contributes to value
+
+--- Page 18 ---
+Reducing load: zooming in on map image (1)
+Command, language input
+
+--- Page 19 ---
+Reducing load: zooming in on map image (2)
+Command, via a pull-down menu
+
+--- Page 20 ---
+Reducing load: zooming in on map image (3)
+Direct Manipulation
+
+--- Page 21 ---
+Reducing load: zooming in on map image (4)
+Embodied interaction
+
+--- Page 22 ---
+Human Factors / Ergonomics Perspective
+• What Is “Unnecessary Variability”?
+– Variability is natural in work systems
+• Demand changes
+• Task complexity varies
+• Human performance fluctuates
+– Necessary variability
+• Expert judgment adapting to context
+• Customization for customer needs
+– Unnecessary variability
+• Inconsistent methods due to lack of standards
+• Errors from ambiguous instructions
+• Quality fluctuation from unstable processes
+• Delays from unclear roles
+– Goal:
+• Reduce non-value-adding variability
+
+--- Page 23 ---
+Operations / Quality Perspective
+• Work as transformation process:
+– Inputs → structured activities → outputs
+• ISO process concept:
+– Interrelated activities
+– Transform inputs into outputs
+• Enables analysis of:
+– Bottlenecks
+– Waiting
+– Variability
+– Capacity
+• Focus:
+– System-level performance
+
+--- Page 24 ---
+Information Systems Perspective
+• Common mistake:
+– Treating “system” as just IT
+• Work system thinking:
+– Proper unit of analysis = work system
+– Includes:
+• People
+• Processes
+• Information
+• Technology
+• Customers
+Alter’s work system framework
+
+--- Page 25 ---
+Information Systems Perspective
+• Why IT projects fail:
+– Software works
+– But:
+• Roles
+• Procedures
+• Incentives
+• Training
+• Metrics
+→ Not redesigned
+
+--- Page 26 ---
+User (Worker) Experience Perspective
+• Definition of user experience (widely used in HCI/UX):
+– “User experience is a person’s perceptions and responses resulting 
+from the use and/or anticipated use of a product, system, or service 
+(ISO 9241-210).”
+– “User experience is the totality of the internal effects experienced by a 
+user as a result of interacting with a product, system, or service 
+(Hassenzahl)”
+
+--- Page 27 ---
+User (Worker) Experience Perspective
+• Core Components of User Experience (UX)
+– UX is often described as a mix of pragmatic and experiential 
+dimensions (Hassenzahl’s pragmatic vs. hedonic UX model):
+• Utility (Functionality)
+– Does it provide the capabilities users need to achieve goals?
+• Usability (Ease of Use)
+– How easily and reliably can users accomplish tasks?
+• Affects (Emotions & Feelings)
+– Emotional responses during/after use (e.g., trust, frustration, 
+enjoyment)
+• Meaningfulness (Hedonic / Reflective Value)
+– Personal significance and longer-term value (e.g., identity, 
+attachment)
+
+--- Page 28 ---
+User (Worker) Experience Perspective
+• Meaningfulness
+
+
+--- Page 29 ---
+User (Worker) Experience Perspective
+• User Experience: Work as Lived Interaction
+– Work is not only what is done, but how it is experienced
+– UX treats work as goal-directed activity situated in a work domain 
+(context)
+– Users engage in sensory, cognitive, and physical actions
+– Work includes employment, learning, coordination, and even play 
+(when play is goal-directed)
+
+--- Page 30 ---
+User (Worker) Experience Perspective
+• Work Practice, Activity, and Domain
+– Work practice → How people actually perform work
+• Routines, conventions, skills, decision patterns
+– Work activity → Sensory, cognitive, and physical actions
+– Work domain → Broader context
+• Constraints
+• Workflows
+• Collaboration structures
+• Tools and rules
+
+--- Page 31 ---
+User (Worker) Experience Perspective
+• Interface and Interaction (Core Definitions)
+– A system is an interaction space, not just an artifact
+– Interface
+• The boundary through which users perceive and act on the system
+• Includes displays (what users see) and controls (what users 
+manipulate)
+• Can be physical or digital
+– Interaction
+• The dynamic exchange between user and system over time
+• User actions → system responses
+• Perception → decision → action → feedback (a control loop)
+Interface = boundary
+Interaction = exchange across the boundary
+
+--- Page 32 ---
+User (Worker) Experience Perspective
+• Human-machine interaction
+
+
+--- Page 33 ---
+User (Worker) Experience Perspective
+• Interaction Design as Coupling Architecture
+– Interaction design determines how components connect in practice.
+It structures:
+• Information access (visibility of system state)
+• Task sequencing (workflow logic)
+• Control design and input mappings
+• Feedback loops (confirmation, progress, quality signals)
+• Error detection and recovery
+• Authority and decision allocation
+Interface defines the boundary.
+Interaction defines the exchange.
+Interaction design defines how work is enacted through that exchange.
+
+--- Page 34 ---
+Integrated Definition of Work
+• Working definition for this course:
+– “Work is goal-directed activity in which humans and/or machines use 
+resources (information, technology, materials, energy, time, space) to 
+carry out tasks and processes through structured interactions 
+mediated by interfaces, within social and organizational structures, 
+producing valuable outputs (products, services, decisions, knowledge, 
+experiences) for stakeholders.”
+
+--- Page 35 ---
+Integrated Definition of Work
+• Work = goal-directed activity
+• Performed by:
+– Humans and/or machines
+• Embedded in social and organizational structures
+– Roles and responsibilities
+– Norms and rules
+– Authority and coordination
+– Division of labor
+• Enacted through interactions
+– Structured exchanges between agents
+• Mediated by interfaces
+– Human–machine, human–human, or machine–machine boundaries
+• Using resources:
+– Information ·  Technology ·  Materials ·  Energy ·  Time ·  Space
+• To carry out tasks and processes
+• Producing valuable outputs:
+– Products ·  Services ·  Decisions ·  Knowledge ·  Experiences
+• For stakeholders
+
+--- Page 36 ---
+Mini-Summary
+• Work can be understood at multiple levels:
+– Behavior
+– Task
+– Process
+– Work system
+• Across disciplines, a common conclusion:
+– Work is organized activity
+– It produces value
+– It operates through socio-technical arrangements

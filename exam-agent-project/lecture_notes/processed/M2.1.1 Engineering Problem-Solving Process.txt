@@ -1,0 +1,211 @@
+
+
+--- Page 1 ---
+Engineering Problem Solving Process
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+Engineering Problem Solving Process
+• Engineering problem solving provides a systematic way to 
+generate and implement improvements
+• It is especially useful when improving work methods, products, 
+services, or systems
+• Rather than jumping to one idea, engineers examine multiple 
+alternatives and select the best one
+• The process is iterative, evidence-based, and improvement-
+oriented
+
+--- Page 3 ---
+Why a Structured Process Is Needed
+• Real-world engineering problems rarely have one obvious 
+answer
+• It is usually impossible to consider all conceivable alternatives 
+at once
+• A structured process helps narrow the search space and make 
+rational choices
+• The current method is also an alternative and should be 
+evaluated against other possibilities
+• Even an ideal future concept can serve as a useful reference 
+point during solution search
+
+--- Page 4 ---
+Five-Step Engineering Problem Solving Process (DASSI)
+• Define the problem
+• Analyze the problem, including data collection
+• Search for possible alternatives
+• Select the best alternative through comparison
+• Implement the solution and follow up
+
+--- Page 5 ---
+
+
+--- Page 6 ---
+Step 1: Define the Problem
+• A well-defined problem is already half solved
+• Problem definition clarifies what is wrong, for whom, and 
+under what conditions
+• The key question is not merely “What can we improve?” but 
+“What is the actual problem?”
+• Poorly defined problems often lead to wasted effort and weak 
+solutions
+• A vague problem statement should be turned into a specific 
+and actionable one
+
+--- Page 7 ---
+Why Problem Definition Matters So Much
+• Good alternatives are often discovered already in the definition or 
+analysis stage
+• A problem must be real, meaningful, and worth solving
+• There is no perfect work method; almost every system contains 
+room for improvement
+• Improvement opportunities may emerge because of changes in:
+– Quality requirements
+– Quantity or demand
+– Raw materials
+– Equipment
+– Time constraints
+– Organizational support
+
+--- Page 8 ---
+Step 2: Analyze the Problem
+• Problem analysis requires careful observation and data 
+collection
+• The goal is to understand causes, constraints, and current 
+performance
+• Analysis should distinguish symptoms from root causes
+• Data makes the improvement effort more objective and 
+credible
+• Without analysis, solution ideas are more likely to be based 
+on assumptions
+
+--- Page 9 ---
+Step 3: Search for Alternatives
+• Engineers should generate multiple alternatives before 
+selecting one
+• At least three alternatives should be explored whenever 
+possible
+• The existing method should be treated as one alternative
+• A highly idealized or future-oriented concept may be another
+• Additional alternatives can be generated through 
+brainstorming and related ideation methods
+
+--- Page 10 ---
+Compare Alternatives and Select the Best One
+• Alternatives should be evaluated using explicit criteria
+• Typical criteria include:
+– Effectiveness
+– Cost
+– Feasibility
+– Safety
+– Time
+– Compatibility with organizational conditions
+• The goal is not to choose the most interesting idea, but the 
+most appropriate one
+• Selection should be evidence-based rather than intuition-
+driven
+
+--- Page 11 ---
+Step 5: Implement and Follow Up
+• Improvement does not create value until it is implemented
+• Follow-up is necessary to confirm whether the solution 
+actually works in practice
+• Implementation often reveals new issues not visible during 
+analysis
+• Continuous monitoring helps stabilize the improved system
+• A solution is not complete until it is sustained
+
+--- Page 12 ---
+Related Improvement Cycles
+• The engineering problem-solving process is conceptually 
+similar to other improvement frameworks
+• Examples include:
+– PDSA: Plan–Do–Study–Act
+– PDCA: Plan–Do–Check–Act
+– DMAIC: Define–Measure–Analyze–Improve–Control
+• All of these frameworks emphasize structured improvement, 
+evidence, and iteration
+• The naming differs, but the core logic is highly similar
+
+--- Page 13 ---
+
+
+--- Page 14 ---
+
+
+--- Page 15 ---
+Key Principle: A Problem Well Defined Is Half Solved
+• “A problem well defined is half solved already”
+• “A problem identified is half solved already”
+• These statements emphasize the value of disciplined thinking 
+before action
+• Many failed improvements originate from weak diagnosis 
+rather than weak creativity
+• Better understanding usually leads to better solutions
+
+--- Page 16 ---
+Why Good Ideas Often Fail
+• Many good ideas are never adopted
+• Technical merit alone does not guarantee implementation
+• Resistance to change is one of the biggest barriers to 
+improvement
+• In practice, an organization may reject useful ideas for social 
+or emotional reasons
+• Engineering improvement therefore involves both technical 
+and human challenges
+
+--- Page 17 ---
+Resistance to Change: Why It Happens
+• People tend to prefer familiar methods and routines
+• A new idea may be interpreted as criticism of the current 
+method
+• People may resist ideas proposed by others, especially 
+outsiders
+• Fear is often involved:
+– Fear of failure
+– Fear of loss of status
+– Fear of disruption
+– Fear of embarrassment
+• Past frustration may also matter if earlier good suggestions 
+were ignored
+
+--- Page 18 ---
+How to Reduce Resistance to Change
+• Reduce fear by communicating clearly and respectfully
+• Build teamwork around the improvement effort
+• Involve the people affected by the change
+• Create trust before demanding adoption
+• People are more likely to accept change when they feel 
+respected and included
+• Implementation is easier when improvement is seen as 
+shared progress rather than imposed criticism
+
+--- Page 19 ---
+Other Barriers to Adoption
+• Even beyond psychological resistance, practical barriers can 
+block implementation
+• Important considerations include:
+– Risk factors
+– Training needs
+– Initial trial and startup issues
+– Maintenance and repair issues
+– Timing
+– Safety
+– Company policy
+• A technically good solution may still fail if these realities are 
+ignored
+
+--- Page 20 ---
+Final Takeaways
+• Engineering problem solving is systematic rather than 
+accidental
+• Good improvement begins with clear problem definition and 
+careful analysis
+• Multiple alternatives should be generated and compared
+• Implementation and follow-up are essential parts of the 
+process
+• Human factors, especially resistance to change, must be 
+managed along with technical factors
+• Effective improvement requires both sound logic and 
+organizational sensitivity

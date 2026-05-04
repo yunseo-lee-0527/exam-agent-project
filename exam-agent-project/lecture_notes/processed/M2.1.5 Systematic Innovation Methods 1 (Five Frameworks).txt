@@ -1,0 +1,1694 @@
+
+
+--- Page 1 ---
+Five methods of innovation
+(2026년 1월)
+박우진
+삶향상기술연구실
+서울대학교 산업공학과
+
+
+--- Page 2 ---
+Questions
+• What are the major approaches to innovation?
+• What innovations are most likely to be commercially 
+successful?
+
+
+--- Page 3 ---
+What are the major approaches to innovation?
+
+--- Page 4 ---
+Five frameworks (innovation methods)
+• Addition framework
+• Subtraction framework
+• Alternate means framework
+• Combination framework
+• Transposition framework
+
+--- Page 5 ---
+Addition framework
+• “Modify an existing product by adding a feature to it”
+• Faster than creating a totally new product 
+
+--- Page 6 ---
+Addition framework
+• Addition for utility
+
+
+--- Page 7 ---
+Addition framework
+• Addition for aesthetics
+
+
+--- Page 8 ---
+Addition framework
+• Addition for ergonomics
+
+
+--- Page 9 ---
+Addition framework
+• Addition for safety
+
+
+--- Page 10 ---
+Addition framework
+• Addition for safety
+
+
+--- Page 11 ---
+Addition framework (generative AI)
+• ChatGPT (OpenAI) – enhancing usability and safety
+– Built on GPT models with added alignment and safety features 
+through RLHF (Reinforcement Learning with Human Feedback).
+– Improves user-friendliness by better understanding user intentions.
+– Reduces harmful or malicious outputs, ensuring safer interactions.
+– Features an ergonomic conversational interface with guided 
+instructions for broader usability.
+AI-powered
+
+--- Page 12 ---
+
+
+--- Page 13 ---
+
+
+--- Page 14 ---
+Addition framework (generative AI)
+• Midjourney (AI image generator) – enhancing output quality 
+and user control
+– Continuously adds new features to refine generated images
+– Version 6 introduced higher coherence, improved quality, and a 
+personalization system for nuanced styling
+– Interface includes upscaling and variant generation tools for better 
+aesthetic refinement
+AI-powered
+
+--- Page 15 ---
+Midjourney
+
+
+--- Page 16 ---
+Addition framework (generative AI)
+• Adobe Photoshop with Firefly generative fill – simplifying 
+image editing
+– Integrates Firefly generative AI as a new generative fill feature
+– Allows users to add or remove image content by typing text prompts
+– Enables designers to modify images with natural language (e.g. “add a 
+tree in the background”)
+– Enhances usability by eliminating manual steps and providing intuitive 
+control
+AI-empowered
+
+--- Page 17 ---
+Adobe Firefly: Family of New Creative Generative AI Models
+• https://www.youtube.com/watch?v=DvBRj--sUMU
+
+
+--- Page 18 ---
+Addition framework (generative AI)
+• https://www.youtube.com/watch?v=EHmjGwNK36M&ab_cha
+nnel=AI-PoweredBusiness
+AI-empowered
+
+--- Page 19 ---
+Addition framework (generative AI)
+AI-empowered
+
+--- Page 20 ---
+Addition framework (generative AI)
+AI-empowered
+
+--- Page 21 ---
+Addition framework (generative AI)
+
+
+--- Page 22 ---
+Addition framework (generative AI)
+• Gemini 2.5 Flash Image (Nano Banana)
+
+
+--- Page 23 ---
+Addition framework (generative AI)
+• Gemini 2.5 Flash Image (Nano Banana)
+– (2025년 8월 공개) Gemini 2.5 Flash Image는 이미지 생성·편집을
+강화한 최신 멀티모달 모델
+– 낮은 지연·비용을 유지하면서 품질/창의적 제어를 크게 개선했고, 
+합성·캐릭터 일관성·자연어 기반 정밀 편집을 지원
+– 세계 지식 기반 생성 + 내장 안전장치로 맥락에 맞는 사실적 결과를
+빠르고 저렴하게 제공하는 콘텐츠 제작 혁신 사례.
+
+--- Page 24 ---
+Addition framework (AI in finance)
+• AI를 활용해 새로운 기능이나 서비스를 추가
+기존 금융
+서비스 AI 기능
+
+--- Page 25 ---
+Addition framework (AI in finance)
+Bank of America – 가상금융비서 “Erica” (1/2)
+• 2018년, BoA는 모바일 앱에 AI 기반 챗봇 Erica 도입
+• 자연어 처리 및 예측 분석 활용
+– 잔액 조회, 이체, 청구서 납부 지원
+– Merrill Lynch 투자계좌 연계로 주식매매 및 포트폴리오 조회 가능
+• 고객 질의에 음성 또는 문자로 응답
+– 계좌정보 및 거래내역 실시간 분석 후 답변
+• 은행 내 AI 팀이 모델 개발
+– 모바일 앱에 통합되어 24시간 운영
+– 사용자 질의를 통해 지속 학습
+• 결과
+– 지점·콜센터 방문 없이 앱에서 즉시 업무 처리 가능
+– 사용자 편의성 향상
+– 출시 이후 4,200만 명 이상 사용, 누적 20억 건 이상 문의 처리
+– 현재 하루 약 200만 건의 상담 처리
+– 디지털 채널 이용률 증가, 콜센터 부담 감소 → 비용 절감 효과
+
+--- Page 26 ---
+Addition framework (AI in finance)
+Bank of America – 가상금융비서 “Erica” (2/2)
+• https://newsroom.bankofamerica.com/content/newsroom/pr
+ess-releases/2024/04/bofa-s-erica-surpasses-2-billion-
+interactions--helping-42-millio.html
+
+
+--- Page 27 ---
+Addition framework (AI in finance)
+캐나다 로열뱅크(RBC) – NOMI 디지털 어시스턴트 (1/2)
+• 2017년, RBC는 모바일앱에 AI 기반 개인금융 비서 NOMI 도입
+• 주요 기능
+– 거래 데이터 분석 기반 개인 맞춤형 인사이트 제공
+– 자동 저축 기능 (NOMI Find & Save)
+– 예산 관리 기능 (NOMI Budget)
+– 챗봇 서비스 (Ask NOMI)
+• Personetics의 AI 플랫폼 기반으로 개발
+– 앱 내 원터치로 활성화, 별도 설정 불필요
+• Addition 관점에서의 혁신
+– 기존에는 직접 가계부 작성 또는 상담사 이용 필요
+– NOMI 도입으로 자동화된 부가 서비스 제공 가능
+
+--- Page 28 ---
+Addition framework (AI in finance)
+캐나다 로열뱅크(RBC) – NOMI 디지털 어시스턴트 (2/2)
+• AI 기술
+– 딥러닝 기반 입출금 패턴 분석
+– “이중청구 의심”, “커피지출 알림” 등 40여 종의 개인화 인사이트 생성
+• 데이터 활용
+– 고객 동의 하에 내부 거래·잔액 데이터만 사용 (외부 금융정보 미사용)
+• 개발 및 운영
+– 사전 구축 모델 통합 후 파일럿 테스트 진행
+– 사용자 피드백 반영하여 알고리즘 지속 개선
+– NOMI 메뉴 추가 형태로 앱 내 통합
+– 디지털제품팀이 성능 모니터링 및 인사이트 시나리오 정기 추가
+• 주요 성과
+– 도입 5개월 만에 모바일앱 이용률 20% 증가, 평균 세션시간 6% 증가
+– 1억 건 이상 인사이트 조회, 누적 11억 건 이상 인사이트 제공
+– NOMI Insights 사용자 99% 이상 기능 유지
+– 월 aktiv 이용자 약 110만 명 (2020년 1분기 기준)
+– 자동저축 활성화 사용자 약 25만 명, 월 평균 $225 저축 (일반 사용자 대비 2배)
+– NOMI Forecast 기능으로 “최우수 AI 활용 고객경험” 수상
+
+--- Page 29 ---
+Addition framework (AI in finance)
+• https://thefinancialbrand.com/news/banking-
+technology/nomi-rbc-mobile-banking-app-personalization-
+chatbot-98374
+
+
+--- Page 30 ---
+Addition framework (AI in finance)
+OCBC은행(싱가포르) – 주택대출 챗봇 “Emma” (1/2)
+• 2018년, OCBC 웹사이트에 AI 챗봇 Emma 도입
+• Addition 관점의 혁신
+– 기존: 대출 문의 시 지점 방문 또는 전화상담 필요
+– Emma 도입으로 온라인에 새로운 상담 창구 마련
+• 주요 기능
+– 자연어 처리(NLP)를 통해 고객 질문 이해
+– 내장된 TDSR 계산기로 “내 소득으로 대출 가능액” 등 자동 응답
+• 데이터 및 개발
+– 대출 상품 정보, Q&A 시나리오, 규정 기반 지식 구성
+– AI 스타트업(센스포스 등)과 협력, 6개월간 상담 로그 학습
+– 대출 전문가가 답변 정확도 검증 및 보강
+
+--- Page 31 ---
+Addition framework (AI in finance)
+OCBC은행(싱가포르) – 주택대출 챗봇 “Emma” (2/2)
+• 서비스 구축
+– 웹페이지에 챗봇 인터페이스 설치
+– 사용자 질문에 맥락 기반 대화 제공
+– 필요시 대출 신청 링크 제공 또는 상담사 연결 안내
+• 운영 방식
+– 24시간 작동
+– 새로운 FAQ는 지식베이스에 업데이트
+– 미해결 질문은 수집 후 모델 재훈련
+• 성과 및 효과
+– 도입 3개월간 약 2만 건 상담, 10%가 실제 대출 신청으로 전환
+→ 약 S$1,000만(약 85억 원) 대출 유도
+– 사용자 90%가 상담에 만족 응답
+– 1년간 누적 S$7천만 이상의 주택대출 유치
+– Emma가 사전 상담을 통해 고객 니즈를 파악
+→ 상담사는 검증된 잠재고객과 효율적 거래 성사
+• https://chatbotsmagazine.com/chatbot-emma-facilitates-10-000-000-in-loan-
+applications-in-3-months-4282b5df52fb
+
+--- Page 32 ---
+Addition framework (AI in finance)
+캐피탈원(Capital One) – 텍스트 기반 비서 “Eno” (1/2)
+• 2017년, Capital One은 AI 챗봇 Eno 도입
+• Addition 관점의 혁신
+– 기존: 인터넷뱅킹 메뉴 조작 필요
+– Eno 도입으로 문자·채팅·이메일 기반 대화형 서비스 채널 추가
+• 주요 기능
+– 자연어 이해 기반 대화 인터페이스
+– 계좌잔액 조회, 거래내역 확인, 청구서 금액 안내
+– 이모지 활용 이상거래 탐지 및 사용자 친화적 대화 제공
+• 데이터 및 개발
+– 고객 거래내역, 카드결제 정보, FAQ 등 사용
+– 자사 데이터 사이언티스트가 챗봇 엔진 구축 및 지속 학습
+
+--- Page 33 ---
+Addition framework (AI in finance)
+캐피탈원(Capital One) – 텍스트 기반 비서 “Eno” (2/2)
+• 서비스 구축
+– 모바일앱, 웹브라우저 확장, SMS 등 다양한 채널에서 접근 가능
+– 백엔드 AI와 은행 시스템 연계
+• 운영 및 관리
+– 이해 못한 문의는 수집해 답변범위 확대
+– 보안상 민감 정보는 처리 제외
+– 실시간 사기 알림, 지출패턴 통보, 잔액·한도 조회, 송금, 결제 기능 제공
+• 성과
+– 출시 1년 내 수백만 건의 대화 처리
+– 2019년 기준
+• 8억 건의 거래 모니터링
+• 5억 달러 이상 사기 시도 탐지·차단
+• 월 11만 건의 이중결제 오류 발견
+– 콜센터 문의 감소 및 실시간 고객보호 강화에 기여
+• https://chatbotsmagazine.com/chatbot-emma-facilitates-10-000-000-in-loan-
+applications
+
+--- Page 34 ---
+Addition framework (AI in finance)
+HSBC – 휴머노이드 로봇 “Pepper” 도입 (1/2)
+• 2018년, HSBC는 감정인식 AI를 탑재한 로봇 Pepper를 주요
+지점에 배치 (뉴욕, 마이애미, 베벌리힐스 등)
+• Addition 관점의 혁신
+– 지점에 AI 기반 대면 서비스 요소 추가
+– 고객맞이, 간단한 안내 등 직원 역할 일부 대체 및 보완
+• 기술적 특징
+– MIT 출신 기업 Affectiva의 감정인식 AI 사용
+– Pepper의 카메라로 고객 표정·어조 분석 → 감정 상태 파악
+– 상황에 맞는 상호작용 (유머, 진지한 응대 등)
+• 데이터 및 지식 구성
+– 수만 장의 얼굴 이미지 및 음성 데이터로 감정 AI 훈련
+– HSBC의 상품정보 및 FAQ 내장
+
+--- Page 35 ---
+Addition framework (AI in finance)
+HSBC – 휴머노이드 로봇 “Pepper” 도입 (2/2)
+• 서비스 구현
+– 지점 입구에서 고객에게 다가가 계좌 개설 안내, 카드 혜택 설명
+– 필요시 직원 연결 기능 포함
+• 운영 및 관리
+– 지점 직원이 소프트웨어 주기적 업데이트
+– 고객 질문 로그 수집 → 답변 범위 지속 확장
+• 성과 및 효과
+– “춤추고 농담하는 로봇”으로 주목
+– 방문객 증가 및 젊은층의 관심 유도 → 브랜드 친밀도 향상
+– 정량 지표는 미공개
+– 직원들이 더 가치 있는 업무에 집중할 수 있는 환경 조성
+• https://www.youtube.com/watch?v=norC0ekdoLQ
+
+--- Page 36 ---
+Exercise 1 (addition framework)
+• Choose an existing AI-empowered product and brainstorm a 
+new feature that would improve its usability, safety, or 
+aesthetic results. Describe the feature and how it enhances 
+the user experience or output.
+AI-powered
+
+--- Page 37 ---
+Exercise 2 (addition framework)
+• Choose an existing non-AI product and brainstorm a new 
+generative AI feature that would improve its usability, safety, 
+or aesthetic results. Describe the feature and how it enhances 
+the user experience or output.
+AI-empowered
+
+--- Page 38 ---
+Subtraction framework
+• “Reduce the number of technical features and the amount of 
+material used in the product”
+• Many of add-on features are barely used by the customers
+• Many customers find a product too complex to use
+
+--- Page 39 ---
+Subtraction framework
+• Create a simple product
+
+
+--- Page 40 ---
+Subtraction framework
+• Create a simple process
+
+
+--- Page 41 ---
+Subtraction framework
+• Create a simple and cheap product
+
+
+--- Page 42 ---
+Subtraction framework
+• Create a minimal size product
+
+
+--- Page 43 ---
+Subtraction framework
+• Create a minimal size product
+
+
+--- Page 44 ---
+Subtraction framework
+
+
+--- Page 45 ---
+Subtraction framework (generative AI)
+• DeepSeek – applying the subtraction framework in generative 
+AI
+– Simplifies models to enhance efficiency and accessibility
+– Model distillation: uses a large "teacher" model to train a smaller, 
+efficient student model, reducing computational costs
+– Cost-effective training: developed the R1 model for $5.6 million, far 
+lower than GPT-4’s $100+ million cost
+– Efficient resource utilization: optimizes AI development without 
+requiring massive financial investments
+– Exemplifies the subtraction framework by eliminating complexity and 
+resource demands, making AI more accessible
+
+--- Page 46 ---
+Knowledge distillation
+
+
+--- Page 47 ---
+Mixture of experts
+
+
+--- Page 48 ---
+
+
+--- Page 49 ---
+Subtraction framework (generative AI)
+• Meta's Llama 2 7B – A small yet powerful open-source model
+– A downsized large language model with only 7 billion parameters, 
+compared to GPT-4’s 1+ trillion
+– Uses efficient training techniques to maximize performance while 
+minimizing size
+– Can be run on consumer GPUs, reducing dependency on expensive AI 
+cloud infrastructure
+– Makes AI more accessible to researchers and developers
+
+--- Page 50 ---
+Subtraction framework (generative AI)
+• https://www.the-sun.com/money/13349781/wendys-drive-thru-
+artificial-intelligence-robots-wait-times/
+
+
+--- Page 51 ---
+Subtraction framework (generative AI)
+• (2025년 하반기 시범) 런던의 한 NHS 트러스트가 AI로 환자
+퇴원 요약서 자동 생성 도구를 도입
+– https://www.theguardian.com/technology/2025/aug/16/nhs-to-trial-
+ai-tool-that-speeds-up-hospital-discharges
+• 진단명·검사결과 등 의료기록을 추출해 요약문을 자동
+작성하여 의료진의 수작업 문서 부담을 대폭 감소
+• 그 결과 퇴원 절차 가속·병상 회전율 향상, 의료진은 환자
+케어에 더 집중 가능
+• 반복 행정업무를 AI로 대체해 프로세스를 단순화하고 업무
+효율·병원 운영을 개선
+
+--- Page 52 ---
+Subtraction framework (generative AI)
+
+
+--- Page 53 ---
+Subtraction framework (generative AI)
+• Software development automation – simplifying coding with 
+generative AI
+– Assists in automating coding tasks, reducing manual effort
+– Enables rapid prototyping and accelerates development cycles
+– Supports complex problem-solving with AI-generated code 
+suggestions
+– Streamlines development, allowing developers to focus on higher-
+level design and functionality
+
+--- Page 54 ---
+Subtraction framework (generative AI)
+• AI-powered content creation tools – simplifying video 
+production
+– Startups like Faceless.video and AutoShorts.ai automate content 
+creation for YouTube and TikTok
+– Generate scripts, voiceovers, background tracks, and formatted videos 
+for monetization
+– Reduce manual effort, allowing creators to focus on strategy and 
+creativity
+– Streamline workflow, eliminating technical complexities in video 
+production
+
+--- Page 55 ---
+Subtraction framework (generative AI)
+• https://faceless.video/
+
+
+--- Page 56 ---
+Subtraction framework (generative AI)
+• https://faceless.video/
+
+
+--- Page 57 ---
+Subtraction framework (AI in finance)
+• AI로 불필요한 절차나 비용을 제거
+
+--- Page 58 ---
+Subtraction framework (AI in finance)
+JP모건 체이스 – “COIN” 계약서 분석 AI로 업무시간 제거 (1/2)
+• 2017년, JP모건은 머신러닝 기반 COIN (Contract Intelligence) 도입
+• Subtraction 관점의 혁신
+– 변호사가 수작업으로 검토하던 계약서 분석 업무 제거
+– 연간 36만 시간에 달하는 단순 반복 업무 절감
+• AI 기술 및 개발
+– 자체 개발한 딥러닝 기반 NLP 모델
+– JP모건의 프라이빗 클라우드 Gaia에서 구동
+– 12,000건 이상의 신디케이트 대출 계약서를 학습
+– 150개 이상의 조항·필드 자동 추출
+• 데이터 및 훈련
+– 과거 계약서 + 법무팀 요약/해석 자료 활용
+– 문서 OCR, 조항 태깅, 어구 매칭 등 적용
+– 인간 변호사 수준의 정확도 달성 후 배포
+
+--- Page 59 ---
+Subtraction framework (AI in finance)
+JP모건 체이스 – “COIN” 계약서 분석 AI로 업무시간 제거 (2/2)
+• 서비스 및 운영
+– 대출 계약 관리 시스템과 API 연계
+– 계약서 업로드 시 자동으로 핵심 조항 추출 및 DB 입력
+– 24시간 실시간 작동, 지속적 학습 확대 중 (파생상품 등)
+• 운영 관리 방식
+– 법무부서 + IT부서 협업
+– 샘플링 검토 및 정확도 모니터링
+– 정기적 모델 개선
+• 주요 성과
+– 연간 수백만 달러 인건비 절감
+– 계약 체결 이후 사후처리 속도 향상
+– 문서 해석 오류 감소 → 대출 서류 처리오류 감소
+– 현재 파생상품 계약, 신탁문서 등으로 활용 확대 중
+• https://www.bestpractice.ai/ai-case-study-best-
+practice/jpmorgan_reduced_lawyers'_hours_by_360%2C000_annually_by_automating
+_loan_agreement_analysis_with_machine_learning_software_coin#:~:text=Project%20
+Overview
+
+--- Page 60 ---
+Subtraction framework (AI in finance)
+BNY멜론 – 운영 프로세스 자동화로 수작업 제거 (1/2)
+• 2016~17년, 220여 개의 소프트웨어 로봇(bot) 배치
+• Subtraction 관점의 혁신
+– 지루하고 반복적인 백오피스 수작업 제거
+– 외부 감사자료 준비, 결제요청 서식 교정, 거래 오류 수정 등 자동화
+• 사용 기술
+– 규칙기반 RPA + 머신러닝 모듈 일부 결합
+– 예: 결제 데이터 오류 정정 봇 → 과거 오류 패턴 학습해 자동 수정
+• 데이터 및 개발
+– 내부 금융거래 로그, 포맷 교정 규칙, 감사 요청 이력 활용
+– 업무담당자 + IT팀 협업으로 업무별 봇 설계
+
+--- Page 61 ---
+Subtraction framework (AI in finance)
+BNY멜론 – 운영 프로세스 자동화로 수작업 제거 (2/2)
+• 서비스 구축
+– 기존 시스템에 RPA 스크립트 연결
+– AI 필요한 단계에 ML 엔진 삽입
+• 운영 및 관리
+– RPA Center 운영 → 220개 봇 실시간 모니터링
+– 예외 상황 발생 시 직원 개입 프로세스 마련
+• 주요 성과
+– 해외송금 포맷오류 교정 봇 → 연간 $30만 절감
+– 외부 감사 제출 시간 → 6~10일 → 24시간으로 단축
+– 결제오류 추적 봇 → 거래처리 지연 30% 감소
+– 직원이 보다 부가가치 높은 업무에 집중 가능
+– 인적 오류 감소
+– 연 30만 시간 이상 직원 노동 절약 (다수 프로세스 기준)
+– 고객 응답속도 및 정확도 향상
+• https://www.reuters.com/article/technology/bny-mellon-advances-artificial-
+intelligence-tech-across-operations-
+idUSKBN186253/#:~:text=The%20bank%20estimates%20that%20its,mistakes%20and%
+20accelerating%20payments%20processing
+
+--- Page 62 ---
+Subtraction framework (AI in finance)
+• 댄스케은행(Danske Bank) – 머신러닝으로 오탐지 제거 (1/2)
+– 2018년, 기존 사기거래 탐지 시스템을 딥러닝 기반으로 전면 개편
+– Subtraction 관점의 혁신
+• 기존: 사기 알람의 99.5%가 오탐지(false positive)
+• AI 도입으로 오탐지 60% 이상 제거, 불필요한 조사 업무 대폭 감소
+– 사용 기술
+• 딥러닝 기반 이상탐지 모델
+• 챔피언-챌린저 방식으로 모델 성능 경쟁 및 개선
+• Teradata 컨설팅 협업
+– 데이터 및 학습
+• 과거 거래 2억 건 이상 학습
+• 사기 사례 포함, 거래금액, 시간, IP , 기기, 위치, 행동 등 10만+ 변수
+활용
+• 지도학습 + 비지도학습 병행
+
+--- Page 63 ---
+Subtraction framework (AI in finance)
+• 댄스케은행(Danske Bank) – 머신러닝으로 오탐지 제거 (2/2)
+– 시스템 구축
+• 실시간 거래 모니터링 시스템에 AI엔진 통합
+• 각 거래를 다중 모델로 스코어링 → 위험도 높은 거래만 조사팀에 알림
+– 운영 및 피드백
+• 조사인력이 “진짜 사기 의심” 건에 집중
+• 조사 결과를 모델에 다시 피드백 → 지속적 성능 향상
+– 성과
+• 오탐지 알람 60% 감소, 최대 80%까지 기대
+• 실제 사기 탐지율 50% 향상
+• 기존 하루 1,200건 알람 중 99.5%가 무의미 → AI가 필터링
+• AML 컴플라이언스 인력의 생산성 향상
+• 조사관 직무 만족도 증가
+• 고객의 정상 결제 차단 감소 → 사용자 경험 개선
+– https://ai.business/case-studies/enhancing-fraud-detection-through-ai-a-danske-bank-
+journey/#:~:text=Danske%20Bank%2C%20a%20Nordic%20universal,innovative%20analy
+tic%20techniques%2C%20including%20AI
+
+--- Page 64 ---
+Subtraction framework (AI in finance)
+WeBank (중국) – 지점과 인력의 제거 (완전 디지털 뱅킹) (1/2)
+• 2014년, 텐센트가 설립한 지점 없는 디지털 전용은행
+• 직원의 56%가 IT 인력, 전통 은행 구조에서 과감히 벗어남
+• Subtraction 관점의 혁신
+– 지점망, 대면서비스, 콜센터, 대규모 인력 → 전면 제거
+– 운영비용 및 인건비 최소화
+• AI 기반 기술 활용
+– 챗봇·음성봇 → 고객문의 98% 자동 처리
+– 얼굴인식 AI → eKYC 및 비대면 계좌 개설
+– AI 신용평가 → 대출 심사 자동화
+• 데이터 기반 운영
+– 위챗/텐센트 생태계의 방대한 소셜·결제·거래 데이터 활용
+– 실시간 AI 학습 기반
+
+--- Page 65 ---
+Subtraction framework (AI in finance)
+WeBank (중국) – 지점과 인력의 제거 (완전 디지털 뱅킹) (2/2)
+• 자체 시스템 구축
+– 핵심 시스템 모두 독자 개발 (ABCD: AI, Blockchain, Cloud, Data)
+– 영역별 최적화된 AI 알고리즘 적용
+• 100% 디지털 서비스
+– 모바일/인터넷 기반 전 과정 처리 (계좌, 대출, 고객지원 등)
+– 콜센터 없음, 상담사 개입 최소
+• 성과
+– 3억4천만 명 개인 + 280만 중소기업 고객 확보
+– 계좌 1개당 연간 IT운영비: RMB 2.2위안(약 40센트)
+→ 전통 은행 대비 1/10 수준
+– 3-1-0 대출 모델: 3분 신청, 1초 승인, 0명 개입
+– 80% 이상 비은행 고객층 포용 + 연체율 통제
+– AI 챗봇: 누적 6.4억 건 신원인증/문의 자동 처리
+• 의의
+– 비용요소 혁신적으로 제거한 금융모델
+– 초저비용으로 대중에게 금융서비스 확장
+• https://twimbit.com/insights/webank-digital-platform
+
+--- Page 66 ---
+Subtraction framework (AI in finance)
+HSBC – Voice ID로 보안질문 절차 제거 (1/2)
+• 2016년, AI 음성인증(Voice ID) 기술을 전화뱅킹에 도입
+• Subtraction 관점의 혁신
+– 기존: 이름, 비밀문답, 최근거래 등 45초 이상 소요
+– Voice ID 도입 후 통화 시작 수 초 내 신원 확인 가능
+– 장황한 보안질문 절차 제거
+• 기술 개요
+– 딥러닝 기반 스피커 인증 모델
+– 고객 음성의 100+ 물리적 특징(발음, 성도 길이 등) 비교
+• 데이터 및 구축
+– 100만 명 이상 고객 음성 샘플 등록 (30초 녹음)
+– “My voice is my password” 음성으로 인증
+– 콜센터 IVR 시스템과 연동
+
+--- Page 67 ---
+Subtraction framework (AI in finance)
+HSBC – Voice ID로 보안질문 절차 제거 (2/2)
+• 운영 및 관리
+– 인증 실패 시 기존 보안질문 절차로 전환
+– 사기범 음성 데이터 축적 → 사기 탐지 AI로 확장
+• 주요 성과
+– 200만 명 이상이 Voice ID 적극 사용 (2020 기준)
+– 2016~2019년: 보이스피싱 29,000건 탐지, 약 £3.95억(약 6천억 원) 보호
+– 2019년 alone: 사기 시도 17,000건 차단 (전년 대비 2배 증가)
+– 주당 16,000명 신규 등록 → 고객 편의성 체감
+– 통화 처리시간 평균 15% 단축 (내부 추산)
+• 고객 반응
+– "내 목소리만으로 바로 업무 볼 수 있어 편리하다" (Guardian 인터뷰)
+– 고객 만족도 상승
+• 확산
+– HSBC는 해당 기술을 다른 국가·지역으로 확대 적용 중
+• https://www.finextra.com/newsarticle/35462/hsbc-sings-the-praises-of-voice-
+id#:~:text=VoiceID%2C%20which%20was%20introduced%20by,speedy%20access%20to
+%20telephone%20banking
+
+--- Page 68 ---
+Exercise 1 (subtraction framework)
+Identify a current AI product or process that feels overly complex 
+or resource-heavy. Brainstorm how you could redesign it in a 
+simplified form – either by removing features, using fewer 
+resources, or streamlining the user flow – while still achieving 
+the core goal. Describe your simplified AI product and its 
+benefits.
+AI-powered
+
+--- Page 69 ---
+Exercise 2 (subtraction framework)
+Identify a current non-AI product or process that feels overly 
+complex or resource-heavy. Brainstorm how you could redesign 
+it in a simplified form by utilizing generative AI—either by 
+automating tasks, reducing steps, or enhancing efficiency. 
+Describe your AI-enhanced solution and its benefits.
+AI-empowered
+
+--- Page 70 ---
+Alternate means framework
+• “Utilize an alternate means of attaining the goal.”
+
+
+--- Page 71 ---
+Alternate means framework
+
+
+--- Page 72 ---
+Alternate means framework
+
+
+--- Page 73 ---
+Alternate means framework
+
+
+--- Page 74 ---
+Alternate means framework
+
+
+--- Page 75 ---
+Alternate means framework (generative AI)
+• Replacing stock photos and graphic design software with AI
+– Ｏld method: designers searched stock photo websites (e.g., 
+Shutterstock, Getty Images) or manually created visuals in Photoshop
+– AI-powered solution: tools like DALL· E, Midjourney, and Stable 
+Diffusion generate unique images instantly
+– Impact: reduces costs, eliminates licensing issues, and allows 
+marketing teams, content creators, and game developers to create 
+custom visuals on demand
+
+--- Page 76 ---
+Alternate means framework (generative AI)
+• Runway ML – AI green screen (background removal)
+– Traditional method required green screens or manual rotoscoping to 
+remove backgrounds in video editing
+– AI-powered background remover automatically detects foreground 
+subjects using machine learning (semantic segmentation)
+– Eliminates the need for special equipment or tedious manual work
+– Makes background removal accessible to casual users, transforming a 
+highly technical task into a simple one
+• https://www.youtube.com/shorts/9tgRKAUaiRA
+
+--- Page 77 ---
+Alternate means framework (generative AI)
+• AI-powered drug discovery – alternate means of developing 
+medicine
+– Traditional drug discovery relied on time-consuming trial-and-error 
+processes in labs
+– Generative AI models predict protein structures and simulate drug 
+interactions, accelerating research
+– Reduces development time from years to months and lowers research 
+costs
+– DeepMind’s AlphaFold mapped millions of protein structures, 
+revolutionizing drug design
+
+--- Page 78 ---
+Alternate means framework (generative AI)
+• Natural language understanding in robots
+– Robots can process human speech and text more accurately, 
+eliminating the need for complex commands.
+– Instead of using predefined instructions, users can simply talk to 
+robots naturally.
+– Example: A warehouse robot can understand "Bring me the blue box 
+on the second shelf" instead of needing a coded input.
+
+--- Page 79 ---
+Alternate means framework (generative AI)
+• Amazon Astro
+– https://www.youtube.com/watch?v=sj1t3msy8dc
+
+
+--- Page 80 ---
+Alternate means framework (generative AI)
+• Amazon Astro
+– https://www.youtube.com/watch?v=sj1t3msy8dc
+
+
+--- Page 81 ---
+Alternate means framework (generative AI)
+
+
+--- Page 82 ---
+Alternate means framework (generative AI)
+• Genie 3(DeepMind, 2025년 8월)
+– Genie 3(DeepMind, 2025년 8월)는 텍스트 설명만으로 실시간 3D 
+가상 세계를 생성·구동하는 월드 모델
+• https://www.youtube.com/watch?v=-E_sFFi3YeA
+– 프롬프트로 지형/날씨 등을 지정하면 720p· 24FPS 영상으로
+렌더링하고 사용자가 탐험하며 상호작용 가능
+– Genie 1· 2가 환경 자동생성 중심이었다면, Genie 3는 실시간
+상호작용과 몰입형 시뮬레이션까지 확장
+– 일관성·현실감이 개선되어 생성된 세계가 몇 분간 물리적으로
+자연스럽게 유지될 수 있음
+– 사람이 제작하던 시뮬레이션을 AI로 자동화하는 Alternate Means 
+혁신으로, 게임/로봇/교육에서 시간·비용 절감과 콘텐츠 다양화
+기대
+
+--- Page 83 ---
+Alternate means framework (AI in finance)
+• AI를 활용해 기존과 다른 방식으로 문제를 해결한 사례
+
+--- Page 84 ---
+Alternate means framework (AI in finance)
+업스타트(Upstart) – 대안신용평가로 대출심사 혁신 (1/2)
+• 기존 FICO 점수 대신 AI 기반 머신러닝 모델로 대출 심사
+• Alternate Means 관점의 혁신
+– 학력, 직업, 현금흐름 등 비전통적 데이터 활용
+– 과거에 대출 거절되던 고객도 승인 가능성 확대
+• AI 기술 및 모델
+– 수천 개 변수를 고려하는 심층신경망 머신러닝 모델
+– 교육 수준, 전공, 직장, 거주지, 소득/지출 패턴 등 학습
+• 데이터 확보 및 훈련
+– 신청자가 제공한 정보 + 실제 상환 결과 데이터 결합
+– 수십만 건의 과거 대출 데이터를 통해 예측력 향상
+– 인종·연령 편향 제거를 위해 정교한 튜닝
+
+--- Page 85 ---
+Alternate means framework (AI in finance)
+업스타트(Upstart) – 대안신용평가로 대출심사 혁신 (2/2)
+• 서비스 구조
+– 온라인 신청 플랫폼 통해 수 초 내 AI 심사결과 제공
+– Upstart 제휴 은행이 자동으로 승인 및 금리 결정
+• 운영 방식
+– 전체 대출의 75% 이상 완전 자동 승인
+– 모델은 월 단위로 재훈련, CFPB 등에 성과 보고
+• 주요 성과
+– 27% 더 높은 승인율, 16% 더 낮은 평균금리
+– Near-prime 고객 대상 100% 더 많은 승인, 평균금리 7%p 인하
+– 연체율/손실률도 전통 기준과 유사하게 관리
+– 2023년 기준, 100만 건 이상 대출 실행
+– 포용성과 건전성을 동시에 확보한 성공 사례
+• https://www.nutter.com/trending-newsroom-publications-cfpb-blog-
+updates-first-no-action-letter-
+results#:~:text=27,loans%3B%20Improved%20access%20occurred
+
+--- Page 86 ---
+Alternate means framework (AI in finance)
+앤트그룹(Ant Group) – ‘3-1-0’ 초고속 대출 (MYbank) (1/2)
+• “3분 신청, 1초 승인, 0 인력개입” 완전 자동화 SME 대출 모델
+• Alternate Means 관점의 혁신
+– 지점 방문, 인간 심사 없는 새로운 대출 방식 제시
+• 사용 기술
+– 빅데이터 분석, 머신러닝 기반 신용평가, 그래프 네트워크 분석
+• 데이터 활용
+– 온라인 매출, 공급망 거래, 세금, 공공요금 등 10만 개 이상 변수
+– 알리바바 생태계 데이터 + 공공·소셜미디어 평판 데이터 통합
+• 모델 개발
+– 3,000여 개 대출 심사 규칙 설계
+– 담보·보증 없이 소기업 상환능력 예측 가능
+– 인간 심사역 수준의 판단력 확보
+
+--- Page 87 ---
+Alternate means framework (AI in finance)
+앤트그룹(Ant Group) – ‘3-1-0’ 초고속 대출 (MYbank) (2/2)
+• 서비스 구조
+– MYbank 앱/웹에서 몇 가지 정보 입력 → 1초 내 승인 결과 제공
+– 1500위안 ~ 5백만 위안 규모 대출을 실시간 실행
+– 100% 온라인, 24시간 가동
+– 신청의 8.7%가 심야시간(밤 11시~새벽 4시) 처리
+• 운영 및 관리
+– AI 모델 정확도 및 포트폴리오 건전성 실시간 모니터링
+– 리스크팀이 모델 파라미터 조정
+• 성과
+– 2,900만 개 중소사업자 자금 공급 (2020년까지)
+– 80%가 은행대출 경험 없는 영세업체
+– 대출 승인 평균 소요시간: 3분 이내
+– 금융 접근성 획기적 개선 + 상업적 지속가능성 입증
+• 평가
+– 세계은행 IFC: “AI와 빅데이터로 소기업 금융공급의 패러다임 전환”
+• https://twimbit.com/insights/bridge-the-gender-finance-gap-as-easy-as-3-1-0-for-
+mybank
+
+--- Page 88 ---
+Alternate means framework (AI in finance)
+베터먼트(Betterment) – 로보어드바이저를 통한 자산관리 (1/2)
+• 2010년 출범, 순수 디지털 로보어드바이저
+• Alternate Means 관점의 혁신
+– 전통적 인간 재무상담 없이 소프트웨어만으로 투자자문 제공
+– 수수료 0.25%, 접근성 대폭 향상 (vs. 기존 1% 내외)
+• AI/기술 구성
+– 현대 포트폴리오 이론 기반 최적화 알고리즘
+– 목표 기반 자문엔진
+– 머신러닝 기반 개인화 자문 (재무행태 분석)
+• 데이터 활용 및 모델 개발
+– 위험성향 설문, 계좌잔고, 입출금 패턴, 시장지수 등
+– 몬테카를로 시뮬레이션으로 전략 검증
+– 절세 전략(세금손실 상계), 현금분석 등에 머신러닝 적용
+
+--- Page 89 ---
+Alternate means framework (AI in finance)
+베터먼트(Betterment) – 로보어드바이저를 통한 자산관리 (2/2)
+• 서비스 구조 및 운영
+– 웹/모바일앱 기반
+– 목표 설정 → 필요한 저축액·자산배분 제안
+– ETF 기반 포트폴리오 자동 운용
+– 자동 리밸런싱, 현금흐름 모니터링, 자동 조언
+– 알고리즘 성능 모니터링 및 시장 대응 조정
+• 성과 (2024년 중반 기준)
+– AUM 500억 달러 이상, 고객계정 90만 개
+– 세계 최대 독립 로보어드바이저로 성장
+– $1부터 투자 가능 → 젊은 소액 투자자 유입
+• 한계 및 확장 전략
+– 자동화의 한계 → 경쟁 심화, 성장률 둔화
+– 서비스 확장: Betterment Checking, 암호화폐 투자 등
+• 의의
+– “소프트웨어가 투자조언 제공”이라는 새로운 패러다임 제시
+– 업계 전반에 하이브리드 자문(사람+로보) 방향 촉진
+• https://en.wikipedia.org/wiki/Betterment_(company)
+
+--- Page 90 ---
+Alternate means framework (AI in finance)
+내트웨스트(NatWest) – 셀피 인증을 통한 비대면 계좌개설 (1/2)
+• 영국 최초, 셀피 기반 신원확인으로 모바일 계좌개설 도입
+• Alternate Means 관점의 혁신
+– 지점 방문 없이 AI 얼굴인식으로 신원 확인
+– 기존 대면 확인 방식의 대안 제시
+• 사용 기술
+– HooYu사의 얼굴인식 + 신분증 진위확인 AI
+– 실시간 생체 인지(liveness) 판별 기능 포함
+• 데이터 및 학습
+– 셀피 사진/영상 + 정부발행 신분증 이미지
+– 수만 건의 얼굴· ID 매칭 데이터로 학습 → 오차율 최소화
+• 서비스 구축 방식
+– 앱에서 신분증 촬영 + 셀피 동영상 업로드
+– 백엔드 AI가 수 초 내 신원 확인 결과 제공
+
+--- Page 91 ---
+Alternate means framework (AI in finance)
+내트웨스트(NatWest) – 셀피 인증을 통한 비대면 계좌개설 (2/2)
+• 운영 및 관리
+– 일치 시 즉시 계좌 개설
+– 불일치 시에만 직원 수동 확인
+– 위조 ID 사례 반영해 모델 지속 개선
+• 성과
+– 도입 후 가입 시간 수일 → 수 분으로 단축
+– 계좌 신청 완료율 상승 (우편 이탈 고객 감소)
+– 도입 1년 내 7만 명 이상이 셀피로 계좌 개설
+• 팬데믹 기간 효과
+– 지점 방문 어려운 상황에서 수만 건 비대면 계좌 처리
+• 의의
+– “지점 직원 확인 → 고객 스스로 모바일 인증” 전환
+– 직원당 처리 건수 증가 → 비용 절감
+– 사용자 경험 개선
+– 이후 영국 내 업계 표준 변화 촉진
+• https://www.natwest.com/premier-banking/insights/unlock-your-banking-with-a-
+selfie.html
+
+--- Page 92 ---
+Alternate means framework (AI in finance)
+JP모건 – LOXM AI 트레이더 (주식거래 체결방식 혁신) (1/2)
+• 2017년, JP모건이 AI 기반 주식거래 알고리즘 LOXM 개발
+• Alternate Means 관점의 혁신
+– 인간 딜러 및 기존 룰기반 알고리즘을 AI가 대체
+– 과거 수십억 건의 거래 데이터를 학습
+• 사용 기술
+– 강화학습 + 패턴인식 기반 주문 분할 알고리즘
+• 데이터 및 학습 과정
+– 수년치 글로벌 주식 거래 데이터: 거래규모, 유동성, 호가 움직임 등
+– 유럽 주식시장 시뮬레이션 반복 학습
+– AI가 시장충격 최소화 전략 습득
+• 시스템 구현
+– 전자거래 플랫폼에 통합
+– 대량주문 입력 시, 시장 상황을 분석하여 최적의 주문 분할 전략 실행
+– 예: 일정 시간 동안 평균가로 분할 매수 등
+
+--- Page 93 ---
+Alternate means framework (AI in finance)
+JP모건 – LOXM AI 트레이더 (주식거래 체결방식 혁신) (2/2)
+• 운영 및 확장
+– 초기엔 인간 트레이더가 AI 판단을 모니터링
+– 성능 입증 후, 미국·아시아 시장까지 확대 적용
+• 성과
+– 기존 대비 평균 10~15bp 유리한 체결가격 확보
+– 대량 매도 시 시장충격 현저히 감소
+– 수작업 및 기존 알고리즘 대비 우수한 체결성과 확보
+• 의의 및 향후 계획
+– 인간이 불가능한 초단위 의사결정 + 방대한 사례 분석
+– 고객별 맞춤형 주문집행 전략으로 진화 예정
+– 거래 비용 절감 + 고객 만족도 향상
+• 업계 영향
+– LOXM은 “AI 딜러”로 불리며 업계 표준에 도전
+– 경쟁 금융기관들도 유사 AI 트레이딩 알고리즘 개발 착수
+• https://www.businessinsider.com/jpmorgan-takes-ai-use-to-the-next-level-2017-
+8#:~:text=The%20bank%20has%20been%20testing,in%20trials%2C%20according%20to
+%20JPMorgan
+
+--- Page 94 ---
+Alternate means framework (AI in finance)
+핑안보험(Ping An) – AI 자동차보험 청구 (1/2)
+• 컴퓨터비전 기반 AI 손해사정 시스템 도입
+• Alternate Means 관점의 혁신
+– 인간 손해사정인 현장 방문 → 사진 기반 AI 평가로 대체
+– 고객이 차량 사고 사진을 앱으로 제출 → 수초 내 보상 결정
+• 사용 기술
+– 합성곱신경망(CNN) 기반 객체인식 모델
+– 수백만 건 사고 사진 + 정비내역 + 부품 가격 데이터로 학습
+– 손상 부위별 패턴 학습 → 찌그러짐, 긁힘 인식
+• 서비스 구축 방식
+– 사고 접수 앱에 사진 3~4장 업로드
+– 서버 AI가 사고 심각도 판단 → 수리비 산정 + 보상 승인
+– 경미한 사고는 즉시 보험금 지급, 복잡한 경우만 조사관 이관
+
+--- Page 95 ---
+Alternate means framework (AI in finance)
+핑안보험(Ping An) – AI 자동차보험 청구 (2/2)
+• 운영 결과
+– 전체 자동차 보험청구의 60% 이상을 5분 이내 처리
+– 간단한 사고는 3초 내 승인
+– 예: 2017년 고객, 사고 후 몇 초 만에 약 6만 원 입금 경험
+• 성과
+– 평균 청구 처리 시간: 5일 → 30분 이내로 단축
+– 청구 관리 비용 40% 이상 절감
+– 고객 만족도 상승 → 보험 청구에 대한 부정적 인식 변화
+• 의의
+– 사람이 직접 방문하거나 보고서 검토하던 방식 → AI 이미지 판독으로 전환
+– 신속·공정·저렴한 보험금 산정 실현
+• 업계 파급력
+– 핑안 사례 이후 다수 보험사들이 유사 AI 시스템 도입
+– 보험금 청구 프로세스의 디지털 전환 가속화
+• https://www.hankyung.com/article/2019111986641
+
+--- Page 96 ---
+Exercise (alternate means framework)
+Think of a common task or product in any domain that is 
+currently done with traditional methods (human labor or older 
+technology). Envision a generative AI solution that could achieve 
+the same goal in a completely different way. Outline how the AI 
+approach works and why it might be advantageous.
+
+--- Page 97 ---
+Combination framework
+• “Identify a need first, then combine different technologies to 
+create a new product that satisfies the need.”
+• This framework requires scanning a large number of available 
+technologies.
+
+--- Page 98 ---
+Combination framework
+
+
+--- Page 99 ---
+Combination framework
+Kindle = magnetic writing pad + electronics based storage
+
+
+--- Page 100 ---
+Combination framework
+• Automated soap dispenser = soap dispenser + sensor 
+technology
+
+
+--- Page 101 ---
+Combination framework
+On-line auction = traditional auction process + internet
+
+
+--- Page 102 ---
+Combination framework
+• iPod = digital storage technology + “Walkman” + LCD screen
+
+
+--- Page 103 ---
+Combination framework
+• iPhone = multi-use smartphone + multi-touch screen
+• iPhone = previous smartphone’s features (camera, portable 
+media device, internet client, email, web browser, Wi-Fi, 3G 
+connectivity) + better ergonomics + application store
+
+
+--- Page 104 ---
+Combination framework
+
+
+--- Page 105 ---
+Combination framework
+• Jackery Solar Mars Bot (CES2026)
+– 스스로 움직이며 충전하는 모바일 태양광 발전 로봇
+– 햇빛 감지 시 날개형 태양광 패널 전개, 5kWh 배터리로 기기 충전
+– 사용자를 자동 따라다니며 전기 공급, 일몰 때 스스로 충전 도크
+복귀
+– Combination – 이동 로봇 + 신재생에너지 결합, 야외 전력공급 새
+패러다임
+
+--- Page 106 ---
+Combination framework (generative AI)
+• Generative AI + Blockchain – personalized fashion with NFTs
+– Application: fashion brand Mmerch integrates generative AI with 
+blockchain technology
+– Innovation: AI generates unique hoodie designs, each linked to an NFT 
+for authenticity and exclusivity
+– Impact: 
+• offers personalized, verifiable, and collectible fashion
+• blends digital art with physical apparel
+• enhances consumer engagement through blockchain-backed 
+uniqueness
+– https://www.voguebusiness.com/story/technology/the-web3-fashion-
+brand-combining-generative-ai-nfts-and-on-demand-manufacturing
+
+--- Page 107 ---
+Combination framework (generative AI)
+• Generative AI + Augmented Reality (AR) – AI-driven beauty 
+consultations
+– Application: companies like Amorepacific integrate generative AI with 
+AR for interactive beauty consultations
+– Innovation: AI-powered chatbots provide personalized skincare and 
+makeup advice, using AR to simulate product application in real-time
+– Impact: 
+• enhances customer experience with tailored beauty solutions
+• enables virtual try-ons, increasing engagement and satisfaction
+• helps brands personalize recommendations and boost sales
+
+--- Page 108 ---
+Combination framework (generative AI)
+
+
+--- Page 109 ---
+Combination framework (generative AI)
+• Descript – AI-powered audio and video editing
+– Combines speech processing AI with traditional editing, creating a 
+text-based editing workflow
+– AI transcription converts audio into text, allowing users to edit 
+audio/video by editing the transcript
+– Overdub feature uses generative AI to synthesize speech, letting users 
+insert new words in the speaker’s voice
+– Simplifies media editing—removing mistakes or adding new audio is as 
+easy as editing a Word document
+– Makes podcast and video editing more accessible and efficient than 
+ever before
+– https://www.descript.com/
+
+--- Page 110 ---
+Combination framework (generative AI)
+
+
+--- Page 111 ---
+Combination framework (generative AI)
+• Automating industrial manufacturing with LLMs and simulation validation 
+(generative AI + simulation)
+– Challenge: machine tending tasks take time to program, despite being well 
+understood
+– Solution: using GPT-4 to generate programs for these tasks, ensuring efficiency
+– Problem: generative AI can be unpredictable, making validation crucial
+– Approach: 
+• NVIDIA Omniverse provides scene annotations to ground AI-generated 
+programs
+• Programs are tested in simulation using READY Robotics ForgeOS before 
+deployment
+• Validated programs are seamlessly transferred to physical robot workcells
+– Impact: ensures safe, reliable automation while reducing programming time
+– https://www.youtube.com/watch?v=2TLWsTHeilY
+
+--- Page 112 ---
+Combination framework (generative AI)
+• Generative AI + Robotics – The emergence of physical AI
+– Combination: generative AI and robotics are merging to create physical AI, enabling 
+robots to autonomously perform complex tasks
+– Key technologies: 
+• Multimodal LLMs help robots perceive, understand, and plan actions
+• Reinforcement learning from physics feedback teaches robots skills in virtual 
+environments
+• NVIDIA Omniverse serves as a training ground, where robots refine their abilities 
+before real-world deployment
+– Learning process: 
+• Robots simulate actions in a physics-based world, performing millions of trials
+• Learned behaviors transfer from simulation to real-world applications
+– Infrastructure: 
+• NVIDIA AI supercomputers train physical AI models
+• NVIDIA Jetson robotic processors run these models on real robots
+• Omniverse simulation platform accelerates training and adaptation
+– Impact: robotics powered by generative AI will revolutionize industries, enabling 
+autonomous machines that learn, adapt, and operate in dynamic real-world 
+environments
+
+--- Page 113 ---
+Combination framework (generative AI)
+• Generative AI + Robotics – The emergence of physical AI
+– https://www.youtube.com/watch?v=AYSfcgVv9-U
+
+--- Page 114 ---
+Combination framework (generative AI)
+• Nvidia Jetson Thor (August 2025)
+
+
+--- Page 115 ---
+Combination framework (generative AI)
+• Nvidia Jetson Thor (August 2025)
+– Nvidia Jetson Thor는 최신 GPU와 생성형 AI를 결합한 로봇용 엣지
+컴퓨팅 플랫폼
+– 로봇이 카메라/센서 입력을 실시간 분석·추론해 즉각 행동하며, 
+공장·물류 로봇의 자율성을 강화
+– 클라우드 없이 온디바이스 연산으로 통신 지연을 줄여 ms 단위
+실시간 대응 요구를 충족
+– Blackwell GPU + 생성 AI 모델 융합으로 로봇에 고도 패턴
+인식·추론을 부여한 Combination 혁신으로, 제조/물류/농업 등에서
+지능형 자율 로봇 확산을 가속
+
+--- Page 116 ---
+Combination framework (AI in finance)
+모건스탠리 – “Next Best Action” AI와 인간 재무상담 결합 (1/2)
+• Combination 관점의 혁신
+– AI 추천 + 인간 재무상담사의 전문성 결합
+– 고객 맞춤 제안을 AI가 분석, 상담사가 신뢰 기반으로 전달
+• 사용 기술
+– 머신러닝 기반 추천 알고리즘
+– 자연어 처리(NLP)로 뉴스·리서치 큐레이션
+• 데이터 기반
+– 수백만 건 거래내역
+– 고액자산가 포트폴리오 변화
+– 실시간 마켓 데이터 → 데이터 레이크 구축
+• 개발 및 시스템 구축
+– 2015년부터 시범운영
+– 상담사 CRM 화면에 “Next Best Action” 탭 추가
+– 고객별 상위 3~5개 맞춤 제안 실시간 표시
+• 예: “기술주 비중 높음 → 조정 권유”, “현금 유휴 → 채권 제안”
+
+--- Page 117 ---
+Combination framework (AI in finance)
+모건스탠리 – “Next Best Action” AI와 인간 재무상담 결합 (2/2)
+• 운영 구조
+– 상담사, AI 제안 참고 → 고객과 통화/이메일 조언
+– 고객 반응 피드백을 AI가 학습 → 추천 정확도 향상
+– AI는 도우미, 의사소통은 사람 담당
+• 성과 및 효과
+– 고객 접점 빈도 증가 → 맞춤 연락 빈도 월 2~3회로 확대
+– 상담사 수수료수입 평균 5~10% 증가
+– 고객당 접촉건수 증가 → 이탈율 감소
+– 자산 순유입액, 업계 경쟁사 대비 3년 연속 우위
+• 평가 및 의의
+– MIT Sloan: “AI 통합 수준 업계 최고”
+– 기술이 효율·정확도 향상, 사람은 관계관리·신뢰 확보
+– “기술 + 인간 하이브리드 서비스” 모범 사례
+– 현재 다수 자산관리사가 유사 시스템 도입 중
+• https://sloanreview.mit.edu/article/the-pursuit-of-ai-driven-wealth-
+management/#:~:text=For%20over%2010%20years%2C%20Morgan,a%20particular%20
+client%2C%20in%202017
+
+--- Page 118 ---
+Combination framework (AI in finance)
+마스터카드 & Worldpay – AI와 기존 사기방지 시스템 결합 (1/2)
+• Combination 관점의 혁신 사례
+– 기존 룰 기반 시스템 + Brighterion의 AI 머신러닝 엔진 통합
+– 룰엔진의 명확성과 AI의 유연함 결합 → 정확도와 효율성 향상
+• 시스템 구조
+– AI가 우선 거래 위험도 점수화
+– 명백한 사기는 즉시 차단
+– 애매한 경우 룰엔진 or 추가 인증으로 이관
+• 사용 기술
+– Brighterion AI (머신러닝 기반 의사결정엔진)
+– 거래당 수천 개의 데이터포인트 실시간 분석
+• 데이터 구성
+– Worldpay: 과거 수십억 건 거래 기록
+– Mastercard: 글로벌 사기 패턴 학습 데이터
+• 개발 및 훈련
+– 과거 데이터로 2개월 내 AI 모델 훈련 및 파일럿 진행
+– 빠른 도입에도 즉각적 성능 개선 확인
+
+--- Page 119 ---
+Combination framework (AI in finance)
+마스터카드 & Worldpay – AI와 기존 사기방지 시스템 결합 (2/2)
+• 성과
+– 오탐지(정상거래 오인 차단) 95% 감소 (20분의 1 수준)
+– 사기 탐지율 3배 증가
+– 연간 5천만 달러 이상 부정사용 방지 (미국 내)
+– Mastercard 전체: 3년간 550억 달러 상당 사기 차단 (2017~2019년)
+• 운영 및 효과
+– 현재도 Worldpay 실시간 승인 시스템에서 AI+룰엔진 병행
+– 신규 사기 유형 지속 학습 → 성능 고도화
+• 고객 및 가맹점 반응
+– 거짓거절 감소 → 매출 증가
+– 소비자 경험 개선
+• 결합 방식의 의의
+– 기존 시스템을 폐기하지 않고 AI와 통합
+– 단계적·보완적 도입으로 안정성과 성과 모두 확보
+– 금융범죄 방지에 있어 AI 결합의 성공 모델
+• https://b2b.mastercard.com/news-and-insights/blog/ai-powered-decision-
+management-key-for-global-credit-card-
+security/#:~:text=Our%20customer%20Worldpay%2C%20the%20largest,alone
+
+--- Page 120 ---
+Combination framework (AI in finance)
+BNY멜론 – 사람+AI 협업 컴플라이언스 (1/2)
+• AML(자금세탁방지)·제재 필터링 업무에 AI 도입
+• Combination 관점의 혁신
+– AI가 1차 필터링, 인간이 최종 판단
+– 업무 부담 경감 + 탐지 정확도 향상
+• 기존 방식 문제점
+– 매일 수천 건의 SWIFT 알람 발생
+– 대부분이 “잠재적 일치” → 전부 직원이 수작업 조사
+• AI 도입 방식
+– 2019년 머신러닝 모델 도입
+– 알람 중 70% 자동 ‘무해’ 판정, 30%만 분석가에게 전달
+– 사람은 고위험 사례에 집중 가능
+
+--- Page 121 ---
+Combination framework (AI in finance)
+BNY멜론 – 사람+AI 협업 컴플라이언스 (2/2)
+• 성과
+– AI 도입 후 60~70% 제재 알람 자동 해결
+– 연간 17만 시간의 조사 인력 시간 절감
+– 탐지 정확도 향상: 
+• 예: 철자를 교묘히 바꾼 제재 대상도 AI가 포착
+• 운영 구조 및 목표
+– 현재는 인간 + AI 협업 구조
+– 향후 90% 이상 자동화 목표로 시스템 고도화 중
+• 의의
+– 사람과 AI의 결합이 표준 모델로 부상
+– AML/컴플라이언스 분야의 미래지향적 협업 사례
+
+--- Page 122 ---
+Combination framework (AI in finance)
+AXA손해보험 – AI와 인간 손해사정의 결합 (1/2)
+• 보험금 청구 프로세스에 AI 분류엔진 도입
+• Combination 관점의 운영 모델
+– 간단한 청구는 AI 자동처리
+– 복잡하거나 애매한 청구는 인간 전문가가 담당
+• 시스템 구조
+– 건강보험 청구서 → AI가 보장항목 여부 분석
+– 소액·단순 청구는 수초 내 자동 승인
+– 고액·애매한 청구는 “인간 검토 필요”로 플래그 처리
+• 처리 흐름
+– 전체 청구 중 약 75%는 AI가 즉시 처리
+– 25%는 손해사정인에게 전달
+
+--- Page 123 ---
+Combination framework (AI in finance)
+AXA손해보험 – AI와 인간 손해사정의 결합 (2/2)
+• 성과
+– 평균 청구처리 시간: 48시간 → 2시간 이내 단축
+– 연간 수십만 시간 인력 업무 절감
+– 손해사정인 생산성 향상 → 복잡 사례에 집중 가능
+• 운영상의 장점
+– 고객은 거의 실시간 심사 경험
+– AI의 한계를 인간이 보완 → 리스크 관리 가능
+• 의의
+– AI와 사람의 장점을 살린 하이브리드 심사 프로세스
+– 보험업계에서 확산 중인 선진 운영 모델
+
+--- Page 124 ---
+Combination framework (AI in finance)
+Discover + Google Cloud – 컨택센터 AI 결합 (1/2)
+• 2024년, Discover가 Google Cloud의 GenAI 플랫폼 도입 발표
+• Combination 관점의 협업 모델
+– 상담은 사람이 담당
+– 정보 탐색·요약은 AI가 실시간 지원
+• 시스템 기능
+– 상담원이 고객 문의에 맞는 문서를 검색하면
+– AI가 해당 문서 요약 or 필요한 부분 바로 추출 제공
+• 기존 방식과 차별점
+– 과거: 상담원이 여러 매뉴얼을 일일이 확인
+– 현재: AI가 수천 문서 즉시 분석 → 요점 제공
+
+--- Page 125 ---
+Combination framework (AI in finance)
+Discover + Google Cloud – 컨택센터 AI 결합 (2/2)
+• 운영 효과
+– 통화 평균 처리 시간 단축 예상
+– 정확한 답변률 향상 기대
+• 고객 응대 품질 개선
+– 빠르고 정확한 응답 제공 → 고객 만족도 제고
+– 상담사는 AI의 지원으로 더 나은 서비스 제공 가능
+• 의의
+– GenAI + 상담사의 협업 모델
+– AI를 백단에 배치하여 인간 중심의 대응력을 강화
+– 고객서비스의 속도와 정확도를 동시에 향상
+
+--- Page 126 ---
+Exercise (combination framework)
+Think of two or more distinct technologies (they could be 
+various generative AI capabilities or generative AI + another 
+domain like IoT, AR/VR, blockchain, etc.). Imagine a product that 
+combines these technologies to offer something new and useful. 
+Describe how the combination works together and why it is 
+valuable.
+
+--- Page 127 ---
+Transposition framework
+• “Understand attributes of one product and apply them to 
+another product.”
+• This method requires understanding which of the many 
+attributes in a product are appreciated by the customer and 
+can be applied to another product to create the same effect.
+• This method requires the innovator to go deeper into the 
+customer psychology.
+
+--- Page 128 ---
+Transposition framework
+• Using internet based games for teaching marketing strategy
+
+
+--- Page 129 ---
+Transposition framework
+• Kindle: transposition of paper book reading to a computer 
+screen
+
+
+--- Page 130 ---
+Transposition framework
+• iPod = new “Walkman”
+
+
+--- Page 131 ---
+Transposition framework
+• Indoor swimming pool
+
+
+--- Page 132 ---
+Transposition framework
+• Matrix organization structure
+
+
+--- Page 133 ---
+Transposition framework
+• QR (Quick Response) code
+
+
+--- Page 134 ---
+Transposition framework (generative AI) 
+• Generative AI + Gaming – dynamic NPC interactions
+– Traditional NPCs: follow scripted dialogue trees written by game writers
+– AI-powered NPCs: use advanced language models to generate on-the-fly, 
+lore-consistent responses
+– Innovation: 
+• Transposes conversational AI from customer service chatbots into 
+video game worlds
+• NPCs can react dynamically to player actions and unique questions
+• Creates immersive, evolving storylines beyond pre-written scripts
+– Impact: 
+• Enhances player immersion by making characters feel more alive
+• Enables interactive storytelling where NPCs provide unique, 
+unscripted responses
+• Actively shaping next-gen game development with AI-driven 
+narratives
+
+--- Page 135 ---
+Transposition framework (generative AI) 
+• Generative AI + Legal Industry – Harvey AI (Legal GPT Assistant)
+– Traditional method: legal research, contract drafting, and case analysis 
+done manually by junior lawyers and paralegals
+– AI-powered solution: Harvey AI adapts GPT-4 for law firms, trained on 
+legal datasets and firm documents
+– Innovation: 
+• Transforms general-purpose language AI into a specialized legal 
+assistant
+• Drafts contracts, analyzes lease agreements, and performs legal 
+research Q&A
+• Generates first-draft contract clauses, which lawyers can fine-tune
+– Impact: 
+• Significantly speeds up workflow, reducing hours of manual work
+• Increases efficiency and cost savings for law firms
+• Showcases the power of applying AI innovation to a specialized field
+
+--- Page 136 ---
+Transposition framework (generative AI) 
+• AlphaFold – cross-domain analogical transfer of AI to biology
+– Traditional challenge: predicting 3D protein structures was a slow, 
+experimental process requiring years of wet-lab research
+– AI-driven transposition: DeepMind adapted deep learning techniques 
+(originally from tech applications) for biological sciences
+– Innovation: 
+• Treated protein sequences as structured data, allowing AI to predict 
+3D structures with high accuracy
+• Applied AI pattern recognition (from NLP and vision models) to 
+protein folding mechanisms
+– Impact: 
+• Accelerated drug discovery and disease research, solving problems 
+decades faster than traditional methods
+• Demonstrated the power of cross-domain AI applications, showing 
+how machine learning innovations can revolutionize new fields
+
+--- Page 137 ---
+NLP and AlphaFold
+
+
+--- Page 138 ---
+Transposition framework (AI in finance) 
+• 은유와 유추
+
+
+--- Page 139 ---
+Transposition framework (AI in finance) 
+위뱅크 – 기술기업형 은행으로 역할 전환 (1/2)
+• 관점: Transposition (도메인 간 구조 전이)
+• 기존 모델: 전통은행 → 지점 중심 고객 응대
+• 위뱅크 모델: 모바일 기반 고객 주도 모델
+– 고객 스마트폰 속에 은행이 존재
+– AI가 대부분의 서비스 제공
+– 고객 스스로 거래, 챗봇과 상호작용
+• 구조 변화: 
+– 은행이 고객에게 찾아가는 방식으로 전환
+– 고객 1인당 직원 수는 적지만, 고효율 운영 가능
+• 핵심 변화: 
+– 서비스 공간의 재배치
+– 역할 분배 재구성 (AI 조력자 / 고객 중심 활동)
+
+--- Page 140 ---
+Transposition framework (AI in finance) 
+위뱅크 – 기술기업형 은행으로 역할 전환 (2/2)
+• 아마존의 물류 혁신과의 유사성 (은유적 비교)
+• 과거 유통: 매장 중심, 고객이 상품을 찾음
+• 아마존: 
+– AI 기반 예측 시스템 + 자동화 창고
+– 예측 배송(predictive shipping)
+– 상품이 고객에게 먼저 찾아가는 구조
+• 공통점 (WeBank vs. Amazon): 
+– 전통적 공간 기반 → 데이터 기반 선제적 대응으로 전환
+– 고객 주도 모델 → 기업 주도 예측/대응 시스템
+• 의미: 
+– AI 중심의 구조 혁신
+– 도메인 간 유사 구조로의 전이 (Transposition)의 대표 사례
+
+--- Page 141 ---
+Transposition framework (AI in finance) 
+뱅크오브아메리카 – Erica의 Proactive 서비스 전환 (1/2)
+• 관점: Transposition (서비스 주도권의 전이)
+• 기존 모델: 고객 요청 → 은행 대응 (수동적 시스템)
+• 전환된 모델: 
+– AI Erica가 예상 질문 분석 / 이상지출 사전 안내
+– 고객이 물어보기 전에 정보를 제공
+• 주체 변화: 
+– 과거: 고객 능동 / 은행 수동
+– 현재: 은행(AI) 능동 / 고객 수동
+• 핵심 전환: 
+– 서비스 프로세스의 주도권 이동
+– 정보 흐름 방향이 고객 → 은행에서 → 은행 → 고객으로 전환됨
+
+--- Page 142 ---
+Transposition framework (AI in finance) 
+뱅크오브아메리카 – Erica의 Proactive 서비스 전환 (2/2)
+• 유사한 Transposition 사례: Google Nest Thermostat
+• 과거 온도조절 방식: 
+– 사용자가 직접 불편함 감지 → 수동 조절
+• Nest Thermostat 방식: 
+– 사용자 패턴 + 외부 환경 학습 → 선제적 자동 조절
+• Erica와의 유사점: 
+– 사용자 요청 이전에 시스템이 먼저 행동
+– 고객 중심 → 시스템 중심 서비스 모델로 전환
+• 의의: 
+– Erica는 단순한 추가(Addition)가 아니라
+– 서비스 구조의 역할 재배치(Transposition) 사례
+– 예측 기반 AI 서비스가 주도권을 가지는 흐름을 보여줌
+
+--- Page 143 ---
+Transposition framework (AI in finance) 
+개인 → AI → 직원 업무 전환 (셀프서비스) (1/2)
+• 관점: Transposition (업무 주체의 전환)
+• 기존 구조: 직원이 고객 신원확인, 자산관리 등 직접 수행
+• 전환 구조: 고객이 AI 도구를 통해 스스로 처리
+– 예1: NatWest – 셀피 인증을 통한 비대면 계좌개설
+– 예2: (가상) 챈디스은행 – AI 자산관리 앱으로 직접 분석
+• 변화의 본질
+– 은행 직원의 역할을 고객에게 이양
+– Self-service 모델의 확산
+• Transposition의 의의
+– 업무 주체의 재배치 / 재구성
+– 기술을 통해 서비스 제공자 → 수요자 전환
+
+--- Page 144 ---
+Transposition framework (AI in finance) 
+개인 → AI → 직원 업무 전환 (셀프서비스) (2/2)
+• 유사 사례: 맥도날드 무인 키오스크 시스템
+• 과거 방식: 
+– 직원이 주문을 받고 결제 수행
+• 현재 방식: 
+– 고객이 키오스크에서 메뉴 선택, 결제
+• 공통된 변화 포인트
+– 직원 → 고객으로 역할 전환
+– “기술(AI 또는 터치스크린)”을 통한 셀프서비스 전환
+• NatWest 사례의 해석
+– 은행 업무에서도 같은 구조의 전이
+– 직원이 수행하던 인증을 AI 도구로 고객이 직접 실행
+• 결론: 
+– 기술 기반 셀프서비스는 Transposition 혁신의 대표 유형
+– 고객 중심 금융 경험을 실현하는 중요한 흐름
+
+--- Page 145 ---
+Transposition framework (AI in finance) 
+상품개발 역순 전환 – 고객데이터 기반 설계 (1/2)
+• 관점: Transposition (기획 순서의 전환)
+• 기존 방식
+– “상품 먼저 개발 → 고객 모집”
+• 전환된 방식
+– AI 분석 기반 고객 데이터 → 상품 조건 설계
+• 사례: 하나은행
+– AI로 고객 소비패턴 분석
+– 개인별 대출 한도·금리 조건 역산
+– “상품 → 고객”에서 “고객 데이터 → 상품”으로 순서 전환
+• 변화의 본질
+– 공급 중심 → 수요 중심 설계로 전환
+– 상품 개발의 출발점을 고객 데이터로 이동
+
+--- Page 146 ---
+Transposition framework (AI in finance) 
+상품개발 역순 전환 – 고객데이터 기반 설계 (2/2)
+• 유사 사례: 넷플릭스(Netflix)의 콘텐츠 설계 방식
+• 전통 방송사: 
+– 프로그램 제작 → 시청자 확보
+• 넷플릭스 방식: 
+– 시청자 데이터 분석 → 콘텐츠 추천 및 제작
+– 예: 시청 이력, 선호 장르, 시청 시간대 등 기반
+• 공통 구조 (Transposition)
+– “고객이 찾는 콘텐츠/상품”을 먼저 파악하고 역설계
+– 고객 데이터 → 공급 요소 설계로 기획 순서 전환
+• 의의
+– AI 기반 수요 주도 설계는 금융, 콘텐츠, 유통 등
+다양한 산업에서 고객 중심 혁신을 유도하는 핵심 전략
+• https://hit.hanati.co.kr/ko/about/press/view?seq=39
+
+--- Page 147 ---
+Exercise (transposition framework) 
+Take a successful generative AI technique or product from one 
+domain, and imagine applying it in a different domain or industry. 
+Identify what elements would be adapted and how the new 
+context benefits from this innovation. Essentially, “lift and shift” 
+an AI capability to a new field to solve a problem in a novel way.
+
+--- Page 148 ---
+Four steps innovation lifecycle
+
+
+--- Page 149 ---
+Concluding remarks
+• The five innovation frameworks—Addition, Subtraction, 
+Alternate Means, Combination, and Transposition—explain 
+many past and present innovations.
+• These frameworks help analyze and understand how 
+generative AI has led to groundbreaking products and services.
+• Looking ahead, these frameworks can guide the creation of 
+future AI-powered/empowered innovations.
+
+--- Page 150 ---
+What innovations are most likely to be commercially 
+successful?
+
+--- Page 151 ---
+Filling in an obvious and everyday need
+• Products which help save time, increase efficiency and save 
+costs sell.
+• No advertisement is needed.
+
+
+--- Page 152 ---
+Filling an event-driven need
+• Products which fulfill the urgent requirement of the consumer 
+due to a particular event
+
+
+--- Page 153 ---
+Life style factor: fulfilling a hidden need
+• Some products generate demand.
+• Creating such “demand-generating” products requires 
+superior skills in understanding the nonobvious needs of 
+consumers.
+• Such products also require marketing efforts. 
+• Such type of lifestyle products became popular in the 
+beginning primarily due to the prestige factor attached to 
+their ownership and later become mass products as their 
+prices fell down and they became affordable to masses.
+
+--- Page 154 ---
+Life style factor: fulfilling a hidden need
+
+
+--- Page 155 ---
+Life style factor: fulfilling a hidden need
+
+
+--- Page 156 ---
+Life style factor: fulfilling a hidden need
+
+
+--- Page 157 ---
+Market trends
+• Market trends can totally change the demand of consumers.
+Mid 90s to 2000s
+ After mid 2000s
+
+--- Page 158 ---
+Price sensitivity
+
+
+--- Page 159 ---
+Price sensitivity
+
+
+--- Page 160 ---
+Price sensitivity
+
+
+--- Page 161 ---
+Price sensitivity
+• Customer segmentation, customer surveys and price 
+sensitivity are very important tools required to launch a new 
+innovative product or concept.
+
+--- Page 162 ---
+Consider established standards
+• Personal digital assistant (PDA)
+
+
+--- Page 163 ---
+Consider established standards
+• Going against an established standard is very difficult as 
+customers do not have inclination to learn newer processes 
+and technologies.
+
+
+--- Page 164 ---
+Providing ease of use/ergonomics
+
+
+--- Page 165 ---
+Providing ease of use/ergonomics
+
+
+--- Page 166 ---
+Providing ease of use/ergonomics
+
+
+--- Page 167 ---
+Providing ease of use/ergonomics

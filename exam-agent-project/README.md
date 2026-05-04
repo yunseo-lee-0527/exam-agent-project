@@ -25,6 +25,29 @@ exam-agent-project/
   outputs/        # Generated exam, answers, and review files
   report/         # Final PDF report materials
   docs/           # Planning docs, scope summaries, diagrams
+  scripts/        # Utility scripts
+```
+
+## Quick Start
+
+Extract text from PDF lecture materials:
+
+```bash
+python scripts/extract_pdf_text.py
+```
+
+Generate the current exam draft:
+
+```bash
+python src/main.py
+```
+
+Generated files will be written to:
+
+```text
+outputs/exam.md
+outputs/answers.md
+outputs/review.md
 ```
 
 ## Current Plan
@@ -54,3 +77,11 @@ Accepted materials can include:
 - Personal notes
 - Any file specifying the midterm scope
 
+## Current MVP
+
+The current implementation is a deterministic local MVP. It checks that the
+agent workflow, file loading, and output generation work without requiring an
+API key.
+
+Next development step: replace the deterministic `QuestionWriterAgent` with an
+LLM-backed generation provider while keeping the same agent boundaries.

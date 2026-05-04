@@ -1,0 +1,120 @@
+
+
+--- Page 1 ---
+Why work matters? (M1.2)
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+Why Work Matters?
+• Work matters because it shapes:
+– Economic output
+– Human well-being
+– Social organization
+– Long-term societal development
+• Work structures:
+– How value is created and distributed
+– How people coordinate and cooperate
+– How individuals experience meaning, responsibility, and identity
+• Understanding why work matters →
+Understanding why work system design matters
+
+--- Page 3 ---
+Work as the Engine of Economic and Social Development
+• At the macro level, work:
+– Transforms resources into goods and services
+– Drives long-term improvements in living standards
+• Productivity depends on how work is organized:
+– Task structure
+– Role coordination
+– Information flow
+– Standards
+– Feedback systems
+• Key insight:
+– Technology influences productivity, but it is not the whole story
+– Productivity also depends on how work is structured, coordinated, and 
+managed
+– High productivity emerges from well-designed work systems
+
+--- Page 4 ---
+Work as a Determinant of Safety and Stability
+• Poorly designed work systems generate:
+– Injuries
+– Fatigue
+– Cognitive overload
+– Systemic errors
+• Safety and performance are linked
+• Well-designed systems:
+– Reduce unnecessary physical and cognitive load
+– Minimize non-value-adding variability
+– Lower error probability
+– Support sustainable performance
+• Safety and productivity are co-produced by sound work 
+organization
+
+--- Page 5 ---
+Work as Meaning and Human Experience
+• Work shapes:
+– Motivation
+– Satisfaction
+– Engagement
+– Identity
+• Key job characteristics influencing experience:
+– Autonomy
+– Feedback
+– Task significance
+• Work can provide:
+– Responsibility
+– Competence
+– Contribution
+– Social identity
+• Poor design → burnout, disengagement
+Good design → growth, engagement, meaningful contribution
+• Work is not only production — it is human experience
+
+--- Page 6 ---
+Knowledge Work and the AI Frontier
+• Modern value creation increasingly relies on knowledge work
+• Knowledge work is:
+– Less visible
+– More variable
+– More cognitively intensive
+– Harder to measure
+• Performance depends on:
+– Problem framing
+– Information structure
+– Collaboration design
+– Decision authority
+– AI and tool support
+• AI reshapes:
+– Roles
+– Accountability
+– Decision processes
+• Designing hybrid human–AI systems becomes central
+
+--- Page 7 ---
+From Work to Work System Design
+• Across all dimensions:
+– Productivity depends on organization of work
+– Safety depends on structure of work
+– Meaning depends on design of work
+– Knowledge performance depends on information configuration
+• Work outcomes are:
+– Not properties of individuals alone
+– Not properties of technology alone
+– Emergent properties of work systems
+• Conclusion:
+– If work shapes economic, safety, and human outcomes
+– Then work system design becomes a central responsibility
+
+--- Page 8 ---
+Mini-Summary
+• Work matters because it:
+– Drives productivity and living standards
+– Determines safety and system stability
+– Shapes motivation, identity, and well-being
+– Supports knowledge creation and effective decision-making
+• Therefore:
+– Work system design is central to Industrial Engineering and modern 
+organizations

@@ -1,0 +1,707 @@
+
+
+--- Page 1 ---
+1. What is Manufacturing?
+2. Materials in Manufacturing
+3. Manufacturing Processes
+4. Production Systems
+5. Manufacturing Economics
+6. Recent Developments in Manufacturing
+INTRODUCTION AND 
+OVERVIEW OF MANUFACTURING
+
+--- Page 2 ---
+Manufacturing is Important
+ Making things has been an essential human activity 
+since before recorded history
+ Today, the term manufacturing is used for this 
+activity
+ Manufacturing is important to the United States and 
+most other developed and developing nations
+ Technologically
+ Economically
+
+--- Page 3 ---
+Technological Importance
+ Technology - the application of science to provide 
+society and its members with those things that are 
+needed or desired
+ Technology affects our daily lives, directly and 
+indirectly, in many ways
+ Technology provides the products that help our 
+society and its members live better
+
+--- Page 4 ---
+Technological Importance
+ What do these products have in common? 
+ They are all manufactured
+ They would not be available to our society if they 
+could not be manufactured
+ Manufacturing is the essential factor that makes 
+technology possible
+
+--- Page 5 ---
+Economic Importance
+U.S. Economy
+Sector: %GDP
+Agriculture and natural resources 5
+Construction and public utilities 5
+Manufacturing 12
+Service industries* 78
+100
+* includes retail, transportation, banking, 
+communication, education, and government
+
+--- Page 6 ---
+What is Manufacturing?
+ The word manufacture is derived from two Latin 
+words manus (hand) and factus (make); the 
+combination means “made by hand”
+ “Made by hand” described the fabrication methods 
+that were used when the English word 
+“manufacture” was first coined around 1567 A.D. 
+ Most modern manufacturing operations are  
+accomplished by mechanized and automated 
+equipment that is supervised by human workers
+
+--- Page 7 ---
+Manufacturing - Technological 
+ Application of physical and chemical processes to 
+alter the geometry, properties, and/or appearance of 
+a starting material to make parts or products
+
+
+--- Page 8 ---
+Manufacturing - Economic
+ Transformation of materials into items of greater value 
+by one or more processing and/or assembly operations
+
+
+--- Page 9 ---
+Manufacturing Example: 
+Artificial Heart Valve
+Left: Heart valve Right: Starting titanium billet
+
+--- Page 10 ---
+Manufacturing Industries
+ Industry consists of enterprises and organizations that 
+produce or supply goods and services
+ Industries can be classified as:
+1. Primary industries - cultivate and exploit natural 
+resources, e.g., agriculture, mining
+2. Secondary industries - take the outputs of primary 
+industries and convert them into consumer and 
+capital goods 
+3. Tertiary industries - service sector
+
+--- Page 11 ---
+Specific Industries in Each 
+Category
+
+
+--- Page 12 ---
+Manufacturing Industries -
+continued
+ Secondary industries include manufacturing, 
+construction, and electric power generation
+ Manufacturing includes several industries whose 
+products are not covered here; e.g., apparel, 
+beverages, chemicals, and food processing
+ For our purposes, manufacturing means production of 
+hardware
+ Nuts and bolts, forgings, cars, airplanes, digital 
+computers, plastic parts, and ceramic products
+
+--- Page 13 ---
+Manufactured Products
+ Final products divide into two major classes:
+1. Consumer goods - products purchased directly by 
+consumers
+ Cars, clothes, TVs, tennis rackets
+2. Capital goods - those purchased by companies to 
+produce goods and/or provide services
+ Aircraft, computers, communication 
+equipment, medical apparatus, trucks, 
+machine tools, construction equipment
+
+--- Page 14 ---
+Production Quantity Q
+ The quantity of products Q made by a factory has an 
+important influence on the way its people, facilities, and 
+procedures are organized 
+ Annual quantities can be classified into three ranges: 
+Production range Annual Quantity Q
+Low production 1 to 100 units 
+Medium production 100 to 10,000 units
+High production 10,000 to millions of units
+
+--- Page 15 ---
+Product Variety P
+ Product variety P refers to different product types or 
+models produced in the plant
+ Different products have different features 
+ They are intended for different markets
+ Some have more parts than others
+ The number of different product types made each 
+year in a factory can be counted 
+ When the number of product types made in the 
+factory is high, this indicates high product variety
+
+--- Page 16 ---
+P vs Q in Factory Operations
+
+
+--- Page 17 ---
+More About Product Variety
+ Although P is quantitative, it is much less exact than Q 
+because details on how much the designs differ is not 
+captured simply by the number of different designs
+ Soft product variety - small differences between 
+products, e.g., between car models made on the same 
+production line, with many common parts  
+ Hard product variety - products differ substantially, e.g., 
+between a small car and a large truck, with few 
+common parts (if any)
+
+--- Page 18 ---
+Manufacturing Capability
+ A manufacturing plant consists of processes and 
+systems (and people) to transform a certain limited 
+range of materials into products of increased value
+ The three building blocks - materials, processes, and 
+systems - are the subject of modern manufacturing
+ Manufacturing capability includes:
+1. Technological processing capability
+2. Physical product limitations
+3. Production capacity
+
+--- Page 19 ---
+1. Technological Processing 
+Capability
+ The set of available manufacturing processes in the 
+plant (or company)
+ Certain manufacturing processes are suited to certain 
+materials, so by specializing in certain processes, the 
+plant is also specializing in certain materials
+ Includes not only the physical processes, but also the 
+expertise of the plant personnel 
+ A machine shop cannot roll steel
+ A steel mill cannot build cars
+
+--- Page 20 ---
+2. Physical Product Limitations
+ Given a plant with a certain set of processes, there are 
+size and weight limitations on the parts or products that 
+can be made in the plant 
+ Product size and weight affect:
+ Production equipment
+ Material handling equipment
+ Production, material handling equipment, and plant 
+size must be planned for products that lie within a 
+certain size and weight range
+
+--- Page 21 ---
+3. Production Capacity
+ Defined as the maximum quantity that a plant can 
+produce in a given time period (e.g., month or year) 
+under assumed operating conditions
+ Operating conditions refer to number of shifts 
+per week, hours per shift, direct labor manning 
+levels in the plant, and so on
+ Usually measured in terms of output units, e.g., 
+tons of steel or number of cars produced 
+ Also called plant capacity
+
+--- Page 22 ---
+Materials in Manufacturing 
+ Most engineering materials can be classified into one of 
+three basic categories: 
+1. Metals
+2. Ceramics
+3. Polymers
+ Their chemistries are different, and their mechanical and 
+physical properties are different
+ In addition, there is a fourth category:
+4. Composites
+
+--- Page 23 ---
+Classification of 
+engineering 
+materials
+
+--- Page 24 ---
+1. Metals
+ Usually alloys, which are composed of two or more 
+elements, at least one of which is metallic. Two basic 
+groups: 
+1. Ferrous metals - based on iron, comprises about 
+75% of metal tonnage in the world: 
+ Steel and cast iron
+2. Nonferrous metals - all other metallic elements 
+and their alloys: 
+ Aluminum, copper, nickel, silver, tin, etc.
+
+--- Page 25 ---
+2. Ceramics
+ Compounds containing metallic (or semi-metallic) and 
+nonmetallic elements. 
+ Typical nonmetallic elements are oxygen, nitrogen, 
+and carbon
+ For processing, ceramics divide into:
+1. Crystalline ceramics – includes traditional 
+ceramics, such as clay, and modern ceramics, 
+such as alumina (Al2O3)
+2. Glasses – mostly based on silica (SiO2)
+
+
+--- Page 26 ---
+3. Polymers
+ Compound formed of repeating structural units called 
+mers, whose atoms share electrons to form very large 
+molecules. Three categories: 
+1. Thermoplastic polymers - can be subjected to 
+multiple heating and cooling cycles without 
+altering molecular structure
+2. Thermosetting polymers - molecules chemically 
+transform into a rigid structure – cannot reheat 
+3. Elastomers - shows significant elastic behavior
+
+--- Page 27 ---
+4. Composites
+ Material consisting of two or more phases that are 
+processed separately and then bonded together to 
+achieve properties superior to its constituents
+ Phase - homogeneous material, such as grains of 
+identical unit cell structure in a solid metal
+ Usual structure consists of particles or fibers of 
+one phase mixed in a second phase 
+ Properties depend on components, physical 
+shapes of components, and the way they are 
+combined to form the final material
+
+--- Page 28 ---
+Manufacturing Processes:
+Two Basic Types
+1. Processing operations - transform a work material 
+from one state of completion to a more advanced 
+state
+ Operations that change the geometry, properties, 
+or appearance of the starting material
+2. Assembly operations - join two or more components to 
+create a new entity
+
+--- Page 29 ---
+Classification of 
+Manufacturing 
+Processes
+
+--- Page 30 ---
+Processing Operations
+ Alters a material’s shape, physical properties, or 
+appearance in order to add value
+ Three categories of processing operations: 
+1. Shaping operations - alter the geometry of the 
+starting work material 
+2. Property-enhancing operations - improve 
+physical properties without changing shape 
+3. Surface processing operations - clean, treat, 
+coat, or deposit material on surface of work
+
+--- Page 31 ---
+Four Categories of 
+Shaping Processes
+1. Solidification processes - starting material is a heated 
+liquid or semifluid
+2. Particulate processing - starting material consists of 
+powders
+3. Deformation processes - starting material is a ductile 
+solid (commonly metal)
+4. Material removal processes - starting material is a 
+ductile or brittle solid 
+
+--- Page 32 ---
+Solidification Processes
+ Starting material is heated sufficiently to transform it 
+into a liquid or highly plastic state
+ (1) Casting process and (2) casting product
+
+
+--- Page 33 ---
+Solidification Processes
+ Casting:
+ Die casting
+ https://www.youtube.com/watch?v=0oibUY8KU
+QM
+ https://www.youtube.com/watch?v=ThOwfwzes
+s8
+ Sand casting
+ https://www.youtube.com/watch?v=LmjAQGvSr
+F0
+
+
+--- Page 34 ---
+Particulate Processing
+ (1) Starting materials are metal or ceramic powders, 
+which are (2) pressed and (3) sintered 
+
+
+--- Page 35 ---
+Particulate Processing
+ Powdered metal process:
+ https://www.youtube.com/watch?v=DeM7pRVLqb
+k
+ https://www.youtube.com/watch?v=azGg68B-Glk
+
+--- Page 36 ---
+Deformation Processes
+ Starting workpart is shaped by application of forces 
+that exceed the yield strength of the material
+ Examples: (a) forging and (b) extrusion
+
+
+--- Page 37 ---
+Deformation Processes
+ Forging:
+ https://www.youtube.com/watch?v=EKsiT_-swBM
+ https://www.youtube.com/watch?v=jF7G0feKMSA
+ https://www.youtube.com/watch?v=nBspuKqG9S
+w
+ Extrusion:
+ https://www.youtube.com/watch?v=vHkwq_2yY9E
+ https://www.youtube.com/watch?v=Y75IQksBb0M
+
+--- Page 38 ---
+Deformation Processes
+ Sheet metal processes:
+ https://www.youtube.com/watch?v=uz1G3z_puug
+ https://www.youtube.com/watch?v=Rn31IEOKgQ8
+
+--- Page 39 ---
+Material Removal Processes
+ Excess material removed from the starting piece so what 
+remains is the desired geometry 
+ Examples: (a) turning, (b) drilling, and (c) milling  
+
+
+--- Page 40 ---
+Material Removal Processes
+ Turning:
+ https://www.youtube.com/watch?v=8EsAxOnzEms
+ Drilling
+ Milling:
+ https://www.youtube.com/watch?v=dkVs5C1HxSo
+ https://www.youtube.com/watch?v=v2wsZI-jsbo
+
+--- Page 41 ---
+Material Removal Processes
+ Gear manufacturing:
+ https://www.youtube.com/watch?v=J1UOjBLo-2M
+ https://www.youtube.com/watch?v=K785jfrsKQU
+ https://www.tec-science.com/mechanical-power-
+transmission/involute-gear/gear-cutting/
+ Broaching:
+ https://www.youtube.com/watch?v=fPkc7PHLlMM
+
+--- Page 42 ---
+
+
+--- Page 43 ---
+Waste in Shaping Processes
+ It is desirable to minimize waste in part shaping
+ Material removal processes are wasteful in the unit 
+operations, but molding and particulate processing 
+operations waste little material
+ Terminology for minimum waste processes:
+ Net shape processes - little or no waste of the 
+starting material and no machining is required 
+ Near net shape processes - when minimum 
+machining is required
+
+--- Page 44 ---
+Property-Enhancing Processes
+ Processes that improve mechanical or physical 
+properties of work material
+ Examples: 
+ Heat treatment of metals and glasses 
+ Sintering of powdered metals and ceramics
+ Part shape is not altered, except unintentionally
+ Example: unintentional warping of a heat treated 
+part
+
+--- Page 45 ---
+Surface Processing Operations
+ Cleaning - chemical and mechanical processes to 
+remove dirt, oil, and other surface contaminants 
+ Surface treatments - mechanical working such as 
+sand blasting, and physical processes like diffusion
+ Coating and thin film deposition - coating exterior 
+surface of the workpart 
+ Examples:
+ Electroplating
+ Painting
+
+--- Page 46 ---
+Assembly Operations
+ Two or more separate parts are joined to form a new 
+entity
+ Types of assembly operations:
+1. Joining processes – create a permanent joint
+ Welding, brazing, soldering, adhesive bonding
+ https://www.youtube.com/watch?v=GER8xXvFgNI
+2. Mechanical assembly – fastening by mechanical methods 
+ Threaded fasteners (screws, bolts and nuts); press 
+fitting, expansion fits
+ https://www.youtube.com/watch?v=kB6ta-IvFxI
+
+--- Page 47 ---
+Production Machines and 
+Tooling
+ Manufacturing operations are accomplished using 
+machinery and tooling (and people)
+ Types of production machines:
+ Machine tools - power-driven machines used to 
+operate cutting tools previously operated manually
+ Other production equipment:
+ Presses
+ Forge hammers,
+ Plastic injection molding machines
+
+--- Page 48 ---
+Production Systems
+ People, equipment, and procedures used for the 
+materials and processes that constitute a firm's 
+manufacturing operations 
+ A manufacturing firm must have systems and 
+procedures to efficiently accomplish its production
+ Two categories of production systems: 
+ Production facilities
+ Manufacturing support systems
+ People make the systems work
+
+--- Page 49 ---
+Model of the Production System
+
+
+--- Page 50 ---
+Production Facilities
+ The factory, production equipment, and material 
+handling systems
+ Includes the plant layout
+ Equipment usually organized into logical groupings, 
+called manufacturing systems
+ Examples:
+ Automated production line
+ Machine cell consisting of three machine tools
+ Production facilities "touch" the product
+
+--- Page 51 ---
+Facilities vs Product Quantities
+ A company designs its manufacturing systems and 
+organizes its factories to serve the particular mission 
+of each plant
+ Certain types of production facilities are recognized as 
+most appropriate for a given type of manufacturing:
+1. Low production – 1 to 100
+2. Medium production – 100 to 10,000
+3. High production – 10,000 to >1,000,000
+
+--- Page 52 ---
+Low Production
+ Job shop is the term used for this type of  production 
+facility
+ A job shop makes low quantities of specialized and 
+customized products
+ Products are typically complex, e.g., space 
+capsules, prototype aircraft, special machinery 
+ Equipment in a job shop is general purpose
+ Labor force is highly skilled
+ Designed for maximum flexibility
+
+--- Page 53 ---
+Fixed-Position Plant Layout
+
+
+--- Page 54 ---
+Medium Production
+ Two different types of facility, depending on product 
+variety:
+ Batch production
+ Suited to medium and hard product variety
+ Setups required between batches
+ Cellular manufacturing
+ Suited to soft product variety
+ Worker cells organized to process parts without 
+setups between different part styles
+
+--- Page 55 ---
+Process Plant Layout
+
+
+--- Page 56 ---
+Cellular Plant Layout
+
+
+--- Page 57 ---
+High Production
+ Often referred to as mass production
+ High demand for product
+ Manufacturing system dedicated to the 
+production of that product 
+ Two categories of mass production: 
+1. Quantity production
+2. Flow line production
+
+--- Page 58 ---
+Quantity Production 
+ Mass production of single parts on single machine or 
+small numbers of machines 
+ Typically involves standard machines equipped 
+with special tooling
+ Equipment is dedicated full-time to the production 
+of one part or product type 
+ Typical layouts used in quantity production are 
+process layout and cellular layout
+
+--- Page 59 ---
+Flow Line Production
+ Multiple machines or workstations arranged in 
+sequence, as in a production line
+ Product is complex - requires multiple processing 
+and/or assembly operations
+ Work units are physically moved through the 
+sequence to complete the product
+ Workstations and equipment are designed 
+specifically for the product to maximize efficiency
+
+--- Page 60 ---
+Product Plant Layout
+
+
+--- Page 61 ---
+Manufacturing Support Systems
+ A company must organize itself to design the 
+processes and equipment, plan and control 
+production, and satisfy product quality requirements 
+ Accomplished by manufacturing support systems
+ The people and procedures by which a 
+company manages its production operations 
+ Typical departments: 
+ Manufacturing engineering, Production 
+planning and control, Quality control
+
+--- Page 62 ---
+Typical Cost Breakdown for a 
+Manufactured Product
+
+
+--- Page 63 ---
+Recent Developments 
+in Manufacturing
+ Microelectronics
+ Computerization in manufacturing
+ Flexible manufacturing
+ Microfabrication and Nanotechnology
+ Lean production and Six Sigma
+ Globalization and outsourcing
+ Environmentally conscious manufacturing
+
+--- Page 64 ---
+Microelectronics
+ Electronic devices that are fabricated on a 
+microscopic scale: Integrated circuits (ICs)
+ Today’s fabrication technologies permit billions of 
+components to be included in a single IC
+ A large proportion of the products manufactured 
+today are based on microelectronics technology
+ About 2/3 of the products in Table 1.1 are either 
+electronics products or their function and 
+operation depend on electronics
+
+--- Page 65 ---
+Computerization of 
+Manufacturing
+ Direct Numerical Control (DNC) was one of the first 
+applications of computers in manufacturing (1960s)
+ Mainframe computer remotely controlling multiple 
+machine tools
+ Enabled by advances in microelectronics, the cost of 
+computers and data processing has been reduced, 
+leading to the widespread use of personal computers 
+ To control individual production machines
+ To manage the entire enterprise
+
+--- Page 66 ---
+Flexible Manufacturing
+ Although mass production is widely used throughout 
+the world, computerization has enabled the 
+development of  manufacturing systems that can 
+cope with product variety
+ Examples:
+ Cellular manufacturing
+ Mixed-model assembly lines
+ Flexible manufacturing systems
+
+--- Page 67 ---
+Microfabrication and 
+Nanotechnology
+ Microfabrication
+ Processes that make parts and products whose 
+feature sizes are in the micron range (10-6 m)
+ Examples: Ink-jet printing heads, compact disks, 
+microsensors used in automobiles
+ Nanotechnology
+ Materials and products whose feature sizes are in 
+the nanometer range (10-9 m)
+ Examples: Coatings for catalytic converters, flat 
+screen TV monitors
+
+--- Page 68 ---
+Lean Production and Six Sigma
+ Lean production
+ Doing more work with fewer resources, yet 
+achieving higher quality in the final product
+ Underlying objective: elimination of waste in 
+manufacturing
+ Six Sigma
+ Quality-focused program that utilizes worker 
+teams to accomplish projects aimed at improving 
+an organization’s organizational performance
+
+--- Page 69 ---
+Globalization
+ The recognition that we have an international economy 
+in which barriers once established by national 
+boundaries have been reduced
+ This has enabled the freer flow of goods and 
+services, capital, technology, and people among 
+regions and countries
+ Once underdeveloped countries such as China, 
+India, and Mexico have now developed their 
+manufacturing infrastructures and technologies to 
+become important producers in the global economy
+
+--- Page 70 ---
+Outsourcing
+ Use of outside contractors to perform work that was 
+traditionally accomplished in-house
+ Local outsourcing
+ Jobs remain in the U.S.
+ Outsourcing to foreign countries
+ Offshore outsourcing - production in China and 
+other overseas locations
+ Near-shore outsourcing - production in Canada, 
+Mexico, and Central America
+
+--- Page 71 ---
+Environmentally Conscious 
+Manufacturing
+ Determining the most efficient use of materials and 
+natural resources in production, and minimizing the 
+negative consequences on the environment
+ Associated terms: green manufacturing, cleaner 
+production, sustainable manufacturing
+ Basic approaches:
+1. Design products that minimize environmental 
+impact
+2. Design processes that are environmentally 
+friendly

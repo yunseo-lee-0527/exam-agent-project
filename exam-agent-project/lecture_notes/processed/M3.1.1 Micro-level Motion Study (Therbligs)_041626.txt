@@ -1,0 +1,316 @@
+
+
+--- Page 1 ---
+Micro-level Motion Study (Therbligs)
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+What is Motion Study?
+• Motion study aims to find the preferred method of doing 
+work 
+• Focuses on eliminating unnecessary motions 
+• Improves efficiency and reduces fatigue
+
+--- Page 3 ---
+Two Levels of Motion Study
+• Motion study can be approached at two levels: 
+– Micro-level analysis 
+– Process-level analysis 
+• Today’s focus: Micro-level analysis
+
+--- Page 4 ---
+What is Micro-Level Analysis?
+• Focuses on human body movements 
+• Breaks work into smallest motion units 
+• Useful for repetitive manual tasks 
+• Enables precise improvement
+
+--- Page 5 ---
+Micro Motion Study
+• Technique for analyzing detailed human motions 
+• Often uses video or observation 
+• Based on Therbligs 
+• Helps identify inefficiencies
+
+--- Page 6 ---
+Therbligs – Basic Motion Elements
+• Developed by Gilbreth 
+• 17 basic motion elements 
+• Used to describe all manual work
+
+--- Page 7 ---
+
+
+--- Page 8 ---
+
+
+--- Page 9 ---
+Therbligs (Basic Motion Elements)
+• RE (Reach)
+– Also called Transport Empty (TE)
+– Motion performed with an empty hand 
+– From the start of movement to arrival/stop 
+– Example: Reaching for a pen
+Fitts’ law
+
+--- Page 10 ---
+Therbligs (Basic Motion Elements)
+• G (Grasp)
+– Motion of closing the hand to take control of an object 
+– From initial contact to full control 
+– Influenced by: 
+• Type of object 
+• Shape and weight 
+– Example: Grasping a pen 
+– Improvement ideas:
+• Contact grasp (without lifting) 
+• Use of vacuum, magnets, conveyors 
+• Modify surface material (e.g., sponge) 
+• Utilize pre-positioning (PP)
+
+--- Page 11 ---
+Therbligs (Basic Motion Elements)
+• M (Move)
+– Moving an object while holding it 
+– The time required is affected by: 
+• Distance 
+• Weight 
+• Type of movement 
+– Example: Moving a pen to the paper 
+– Improvement ideas:
+• Mechanization 
+• Elimination of unnecessary movement 
+• Reduction of distance and weight 
+• Elimination of abrupt changes in direction 
+• Allowing sufficient tolerance at the stopping point 
+
+--- Page 12 ---
+Therbligs (Basic Motion Elements)
+• RL (Release)
+– The motion of releasing an object that has been grasped 
+– Occurs in a very short moment 
+– Improvement ideas:
+• Releasing during movement 
+• Mechanization
+
+--- Page 13 ---
+Therbligs (Basic Motion Elements)
+• S (Search)
+– An eye or hand motion used to locate an object 
+– From the beginning of hesitation to the stopping point 
+– Improvement ideas:
+• Use of color coding 
+• Labels 
+• Better lighting 
+
+--- Page 14 ---
+Therbligs (Basic Motion Elements)
+• SL (Select)
+– The motion of choosing one item from several alternatives 
+– Sometimes S (Search) and SL (Select) occur simultaneously 
+– Examples: 
+• Selecting one pencil from a pencil case 
+• Selecting one drill bit from a set of bits 
+– Improvement ideas:
+• Separate items by type 
+• Increase compatibility or standardization
+
+--- Page 15 ---
+Therbligs (Basic Motion Elements)
+• P (Position)
+– The motion of placing or orienting an object into the correct position 
+– Includes aligning, turning, or fitting into place 
+– Examples: 
+• Positioning a key or a nail 
+• Inserting a subway ticket (in older systems) 
+– Improvement ideas:
+• Eliminate unnecessary positioning 
+• Use chamfers (a slanted edge that replaces a sharp corner) or 
+guides to make positioning easier
+
+
+--- Page 16 ---
+Therbligs (Basic Motion Elements)
+• PP (Pre-Position)
+– Placing an object in a predetermined location to facilitate the next 
+positioning (P) motion 
+– Makes subsequent actions faster and easier 
+– Example: 
+• Using a pen holder 
+– Improvement ideas:
+• Use devices such as a spring tool holder (spring balancer)
+• Arrange tools in fixed, accessible locations
+
+
+--- Page 17 ---
+Therbligs (Basic Motion Elements)
+• A (Assemble)
+– The motion of joining two or more parts together 
+– From the moment the parts come into contact
+to the completion of assembly 
+– Example: 
+• Assembling a pen cap with a pen
+• DA (Disassemble)
+– The reverse motion of assembly 
+– Involves separating previously joined parts
+
+--- Page 18 ---
+Therbligs (Basic Motion Elements)
+• AD (Avoidable Delay)
+– Delay or interruption that can be controlled by the worker 
+– Often caused by personal or behavioral factors 
+– Examples: 
+• Coughing 
+• Personal habits
+
+--- Page 19 ---
+Therbligs (Basic Motion Elements)
+• UD (Unavoidable Delay)
+– Delay or interruption beyond the worker’s control 
+– Caused by external factors 
+– Examples: 
+• Delay in material supply 
+• Machine waiting time 
+– Improvement ideas:
+• Improve the process or system 
+• Address issues at the workflow level rather than the individual 
+level 
+
+--- Page 20 ---
+Therbligs (Basic Motion Elements)
+• U (Use)
+– The motion of using a tool 
+– Involves performing work with equipment 
+– Improvement ideas:
+• Use jigs and fixtures 
+• Use powered tools 
+• Improve tool design
+
+--- Page 21 ---
+Therbligs (Basic Motion Elements)
+• H (Hold)
+– Maintaining an object in position after grasping 
+– Occurs when one hand holds while the other performs a task 
+– Example: 
+• Holding a bolt while tightening a nut 
+– Improvement ideas:
+• Use tools or fixtures 
+• Use both hands effectively 
+• Utilize friction or support mechanisms
+
+--- Page 22 ---
+Therbligs (Basic Motion Elements)
+• PL (Plan)
+– Mental activity involved in deciding the next action
+• I (Inspect)
+– Checking or verifying the quality or condition
+• R (Rest)
+– Recovery from fatigue 
+– Necessary for maintaining performance and safety
+
+--- Page 23 ---
+Productive vs Non-Productive Motions
+*Goal: eliminate or reduce waste
+
+
+--- Page 24 ---
+Principles of Motion Economy
+• Minimize the number and distance of motions
+• Use both hands simultaneously and symmetrically 
+• Perform finger motions from outside toward the body for 
+better accuracy and strength 
+• Use smooth and continuous motions
+• Design motions that can be easily learned and habitual
+• Minimize control motions (e.g., carrying a cup of coffee 
+carefully) 
+• Reduce eye fatigue
+• Use different parts of the body alternately to avoid fatigue
+
+--- Page 25 ---
+Example – Task Improvement
+
+--- Page 26 ---
+Example – Task Improvement Using Therbligs
+• Task: Charging a smartphone 
+• Objective: Analyze and improve the task using Therbligs 
+• Focus: 
+– Identify non-productive motions 
+– Redesign the task to improve efficiency
+
+--- Page 27 ---
+Task Scenario (Before Improvement)
+• A user plugs in a smartphone to charge 
+• Charging cable is placed on the desk 
+• Multiple cables may be present 
+• Connector requires precise alignment
+
+--- Page 28 ---
+Therblig Analysis (Before)
+• S (Search): Look for charging cable 
+• SE (Select): Choose correct cable 
+• RE (Reach): Reach for cable 
+• G (Grasp): Pick up cable 
+• M (Move): Move cable toward phone 
+• P (Position): Align connector 
+• I (Inspect): Check orientation 
+• Repeat P + I if misaligned 
+• RL (Release): Release cable 
+
+--- Page 29 ---
+Problems Identified
+• Presence of non-productive motions: 
+– Search (S), Select (SE) 
+– Position (P), Inspect (I) 
+• Repeated alignment attempts 
+• High precision required 
+• Increased cognitive load
+
+--- Page 30 ---
+Improvement Idea
+• Introduce magnetic charging system (e.g., MagSafe) 
+• Use fixed cable location 
+• Enable automatic alignment
+
+
+--- Page 31 ---
+Therblig Analysis (After Improvement)
+• RE (Reach) 
+• G (Grasp) 
+• M (Move) 
+• RL (Release) 
+*Position and Inspect are eliminated
+
+--- Page 32 ---
+Before vs After Comparison
+
+
+--- Page 33 ---
+Key Insight
+• Good design eliminates non-productive motions 
+• Focus on: 
+– Removing unnecessary steps 
+– Simplifying interaction 
+• Design can replace human effort
+
+--- Page 34 ---
+Design Principles Applied
+• Eliminate Search → fixed location 
+• Eliminate Select → standardization 
+• Reduce Position → magnetic guidance 
+• Reduce Inspect → automatic feedback
+
+--- Page 35 ---
+Takeaway
+• Therbligs provide a powerful tool for task analysis 
+• Even simple daily tasks can be improved 
+• Motion study is highly relevant to modern product design 
+
+--- Page 36 ---
+Key Takeaway
+• Micro-level analysis focuses on human motion 
+• Therbligs provide a structured framework 
+• Foundation for improving manual work
+
+--- Page 37 ---

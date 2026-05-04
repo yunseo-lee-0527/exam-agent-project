@@ -1,0 +1,373 @@
+
+
+--- Page 1 ---
+Anatomy and Taxonomy of Work Systems (M1.5)
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+Anatomy and Taxonomy of Work Systems
+• Understanding work systems requires two complementary 
+lenses:
+– Anatomy — What every work system contains
+– Taxonomy — How systems differ structurally
+
+--- Page 3 ---
+Anatomy of Work Systems
+• Every work system contains:
+– Purpose / value proposition
+– Outputs (products, services, decisions, knowledge, experiences)
+– Customers / stakeholders
+– Processes and task structure
+– Participants / roles (human and/or machine)
+– Technology and tools
+– Information and rules
+– Environment and infrastructure
+• Performance is an emergent property of interaction among these 
+elements.
+• This anatomy applies to factories, hospitals, AI systems, digital 
+platforms, and even games.
+
+--- Page 4 ---
+Example: Smartphone Game as a Work System
+• Work system analysis:
+– Purpose → Entertainment, engagement, challenge
+– Outputs → Experience, progression, ranking
+– Participants → Player + software agent
+– Processes → Gameplay loops, reward systems
+– Technology → Smartphone + game engine
+– Information → Rules, scores, feedback
+– Environment → Physical + digital interface
+
+--- Page 5 ---
+Why Taxonomy Matters
+• A useful taxonomy distinguishes work systems in ways that 
+guide analysis and design.
+It helps reveal meaningful differences in:
+– Coordination structure
+– Information flow
+– Variability patterns
+– Performance metrics
+– Suitable improvement methods
+
+--- Page 6 ---
+Why Taxonomy Matters
+• Three complementary taxonomies characterize work systems 
+along different dimensions:
+– A three-axis structure-based taxonomy
+– A two-axis complexity-based taxonomy
+– An operation-based work system taxonomy (Professor Jinwoo Park)
+• Each taxonomy reveals a different facet of work systems.
+
+--- Page 7 ---
+Structure-based Taxonomy
+• A three-axis framework that classifies systems along:
+– Volume–variety structure
+• Unit / Small-Batch Production 
+• Mass Production
+• Continuous Process Production
+– Automation and agency
+• Manual Systems
+• Mechanized Systems
+• Automated Systems
+• Agentic (AI-Augmented) Systems
+– Temporality
+• Continuous / Repetitive Systems
+• Project-Based Systems
+Focus: How the system is structurally organized
+
+--- Page 8 ---
+Structure-based Taxonomy
+• Axis 1: Volume–Variety Structure
+– Unit / Small-Batch Production (Woodward, 1965)
+• Low volume, high customization
+• Skilled labor, flexible routing
+• Decentralized decision-making
+• High variability
+• Examples: construction, custom equipment
+• Improvement focus → flexibility, expertise coordination
+
+--- Page 9 ---
+Structure-based Taxonomy
+• Axis 1: Volume–Variety Structure
+– Mass Production
+• High volume, low variety
+• Sequential workflow
+• Standardized tasks
+• Mechanization
+• Examples: automotive assembly
+• Improvement focus → throughput, variability reduction
+
+--- Page 10 ---
+Structure-based Taxonomy
+• Axis 1: Volume–Variety Structure
+– Continuous Process Production
+• Extremely high volume
+• Continuous material flow
+• Heavy capital investment
+• Centralized control
+• Examples: oil refining, power plants
+• Improvement focus → stability, uptime, control systems
+
+--- Page 11 ---
+Structure-based Taxonomy
+• Axis 2: Automation Level and Agency
+– Manual Systems
+• Humans sense, decide, act
+• Tools assist only
+• Human-centered control loops
+• Safety mainly ergonomic
+
+--- Page 12 ---
+Structure-based Taxonomy
+• Axis 2: Automation Level and Agency
+– Mechanized Systems
+• Machines amplify effort
+• Humans retain decision authority
+• Task–tool alignment critical
+
+--- Page 13 ---
+Structure-based Taxonomy
+• Axis 2: Automation Level and Agency
+– Automated Systems
+• Machines execute control logic
+• Humans supervise
+• Monitoring replaces execution
+• Interface design critical
+
+--- Page 14 ---
+Structure-based Taxonomy
+• Axis 2: Automation Level and Agency
+– Agentic (AI-Augmented) Systems
+• Systems adapt or generate
+• Authority partially distributed
+• Governance and accountability central
+• Opaque reasoning risks
+
+--- Page 15 ---
+Structure-based Taxonomy
+• Axis 3: Temporality
+– Continuous / Repetitive Systems
+• Ongoing operation
+• Stable architecture
+• Flow optimization
+• Examples: manufacturing, hospitals
+• Tools → Lean, statistical process control (SPC), capacity and flow 
+balancing
+
+--- Page 16 ---
+Structure-based Taxonomy
+• Axis 3: Temporality
+– Project-Based Systems
+• Temporary organization
+• Unique deliverable
+• Defined start and end
+• Milestone-driven coordination
+• Examples: construction, software development
+• Tools → PERT/CPM, risk management, agile methods
+
+--- Page 17 ---
+Structure-based Taxonomy
+• Classification Examples:
+– Automotive assembly → High-volume, automated, repetitive
+– Custom engineering → Low-volume, human-driven, project-based
+– Digital banking → High-volume, automated/agentic, ongoing service
+– Smartphone game platform → High-volume, automated, ongoing 
+service (episodic engagement)
+
+--- Page 18 ---
+Complexity-based Taxonomy
+• A two-axis framework that classifies systems along:
+– Interaction complexity
+• Low to high
+– Work domain complexity
+• Low to high
+Focus: How cognitively and operationally complex the system is
+
+--- Page 19 ---
+Complexity-based Taxonomy
+• Axis 1: Interaction Complexity
+– How demanding the interaction is for the user.
+– Includes:
+• Number of interaction steps
+• Cognitive load
+• Decision density
+• Error consequences
+• Multitasking requirements
+• Information integration demands
+– High interaction complexity → Requires strong interface design and 
+feedback structure.
+
+--- Page 20 ---
+Complexity-based Taxonomy
+• Axis 2: Work Domain Complexity
+– How complex the underlying work domain is.
+– Includes:
+• Technical knowledge required
+• Regulatory constraints
+• Interdependencies
+• Organizational coordination
+• Risk and uncertainty
+– High domain complexity → Requires deep domain modeling and 
+decision support.
+
+--- Page 21 ---
+Complexity-based Taxonomy
+
+
+--- Page 22 ---
+Operation-based Taxonomy
+• Classifies work systems based on dominant operational 
+characteristics
+• Focuses on how work is actually performed in real-world 
+settings
+• Complements:
+– Structure-based taxonomy (system configuration)
+– Complexity-based taxonomy (cognitive & domain difficulty)
+• Particularly useful for:
+– Industrial engineering analysis
+– Productivity improvement
+– Work measurement and system design
+• Bridges theory and practice in work system classification
+
+--- Page 23 ---
+Operation-based Taxonomy
+• Simple Work Systems
+– Tasks require minimal prior training or expertise
+– High repeatability and low variability
+– Easily analyzed using:
+• Time study
+• Motion study
+– Human labor is the primary resource
+– Examples:
+• Manual material handling
+• Basic assembly tasks
+• Repetitive service tasks
+
+
+--- Page 24 ---
+Operation-based Taxonomy
+• Machine-Based Work Systems
+– Work involves operation of powered equipment
+– Clear distinction between:
+• Human time
+• Machine time
+– Performance depends on:
+• Human–machine coordination
+• Interface usability
+– Key issues:
+• Utilization
+• Idle time
+• Operator workload
+– Examples:
+• CNC machine operation
+• Excavator driving
+• Data entry systems
+
+
+--- Page 25 ---
+Operation-based Taxonomy
+• Flow Production Systems
+– Organized as sequential and interdependent processes
+– High throughput and standardization
+– Requires:
+• Line balancing
+• Synchronization of tasks
+– Strong coupling between workstations
+– Vulnerable to bottlenecks
+– Examples:
+• Assembly lines
+• Mass manufacturing systems
+
+
+--- Page 26 ---
+Operation-based Taxonomy
+• Batch Production Systems
+– Work is processed in groups or batches
+– Balances:
+• Efficiency (scale)
+• Flexibility (variety)
+– Key challenges:
+• Setup time
+• Scheduling
+• Queue management
+– Not fully continuous, but not purely discrete either
+– Examples:
+• Passenger transport by aircraft
+• Freight transportation (per truckload)
+• Book publishing
+• Live entertainment (theater/auditorium)
+• Laundry services
+
+
+--- Page 27 ---
+Operation-based Taxonomy
+• Project-Based Work Systems
+– Produces unique, one-off outputs
+– Defined by:
+• Clear start and end
+• Milestones and deadlines
+– High uncertainty and coordination complexity
+– Requires:
+• Planning tools (e.g., Gantt, PERT/CPM)
+– Often involves multidisciplinary teams
+– Examples:
+• Shipbuilding
+• Aircraft development
+• Large-scale engineering projects
+
+--- Page 28 ---
+Operation-based Taxonomy
+• Logistics Work Systems
+– Focus on movement of materials and information
+– Integrates:
+• Transportation
+• Inventory
+• Information systems
+– Strong dependence on:
+• Network coordination
+• Timing and synchronization
+– Increasingly data-driven and automated
+– Examples:
+• Supply chain systems
+• Distribution centers
+• Warehouse operations
+
+--- Page 29 ---
+Operation-based Taxonomy
+• Knowledge and Service Work Systems
+– Based on expert knowledge and human judgment
+– High variability and low predictability
+– Output quality is often:
+• Difficult to measure objectively
+– Requires:
+• Communication
+• Decision-making
+• Customer interaction
+– Examples:
+• Healthcare (doctors)
+• Legal services
+• Education
+• Software development
+
+--- Page 30 ---
+Integrating Work System Taxonomies
+• Work systems can be understood through three 
+complementary taxonomies
+– Structure-based taxonomy: How is the system organized?
+– Complexity-based taxonomy: How difficult is the system to operate?
+– Operation-based taxonomy: What kind of work is being performed?
+• These taxonomies are not competing, but mutually 
+reinforcing
+• Each taxonomy reveals a different facet of the same work 
+system
+• A complete understanding of a work system requires all three 
+perspectives
+
+--- Page 31 ---
+Mini-Summary
+• Anatomy defines universal components
+• Taxonomy differentiates structural types
+• These lenses enable principled work system redesign across 
+industrial, service, digital, and AI domains

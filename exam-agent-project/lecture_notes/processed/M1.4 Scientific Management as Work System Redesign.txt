@@ -1,0 +1,330 @@
+
+
+--- Page 1 ---
+Scientific Management as Work System Redesign 
+(M1.4)
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+Scientific Management as Work System Redesign
+• Emerged at the intersection of industrial transformation and 
+the Scientific Revolution
+• Extended scientific reasoning into organized human work
+• Positioned management as a “true science” (Taylor, 1911)
+• Core idea: Work itself can be systematically analyzed and 
+redesigned
+
+--- Page 3 ---
+The Scientific Spirit: From Enlightenment to Industry
+• Scientific Revolution established:
+– Systematic observation
+– Precise measurement
+– Quantification of variation
+– Predictive control
+• Machinery became scientific; human work remained rule-of-
+thumb
+• Taylor applied scientific method to factory work (Taylor, 1911)
+
+--- Page 4 ---
+Science?
+
+
+--- Page 5 ---
+The Rise of Measurement and Standardization
+Royal Observatory Greenwich 
+(time standardization)
+British Yard / standardized length 
+measures 
+(measurement standardization)
+
+--- Page 6 ---
+Frederick W. Taylor: Engineer and System Reformer
+
+
+--- Page 7 ---
+Frederick W. Taylor: Engineer and System Reformer
+• Began as machinist apprentice → Chief engineer
+• Observed:
+– No standardized methods
+– Tacit worker knowledge
+– Informal supervision
+– Output restriction
+• Diagnosed inefficiency as systemic disorder
+• Treated work as decomposable, measurable, optimizable
+
+--- Page 8 ---
+Soldiering and System Misalignment
+• Natural soldiering: conserving effort
+• Systematic soldiering: deliberate output restriction (Taylor, 
+1911)
+• Causes:
+– Worker mistrust
+– Fear of wage cuts
+– Lack of objective standards
+• Root problem: flawed work organization
+
+--- Page 9 ---
+The Four Principles of Scientific Management
+1. Develop a science for each element of work
+– Time study, standardization, tool optimization
+2. Scientifically select and train workers
+3. Promote cooperation through aligned incentives
+4. Divide planning and execution responsibilities
+→ Systematic redesign of organizational structure
+
+--- Page 10 ---
+Cutting Tool Experiments
+• Conducted controlled experiments on:
+– Tool materials
+– Cutting speeds
+– Feed rates
+• Derived mathematical machining relationships (Taylor, 1907)
+• Demonstrated experimental engineering applied to 
+production
+
+--- Page 11 ---
+Taylor's tool life equation
+
+
+--- Page 12 ---
+The Pig Iron Case (Bethlehem Steel, 1899)
+• Initial condition (Taylor, 1911):
+– Workers manually loaded pig iron (≈92 lbs each)
+– Average output ≈ 12.5 tons per worker per day
+– Paid day wages
+– No standardized method
+– Worker self-pacing
+• Taylor’s intervention:
+– Scientifically selected a “first-class worker” (“Schmidt” case)
+– Designed strict work–rest cycles
+– Supervisors instructed exact timing
+– Introduced differential piece-rate system
+• Reported result (Taylor, 1911):
+– Output increased to ≈ 47–48 tons per day
+– Wage increased ≈ 60%
+– Fewer workers needed
+
+--- Page 13 ---
+The Pig Iron Case (Bethlehem Steel, 1899)
+• Key System Changes
+– Task pacing externally structured
+– Rest scientifically scheduled
+– Incentives aligned with target output
+– Planning separated from execution
+– Work transformed from self-directed → system-directed
+
+--- Page 14 ---
+The Shovel Studies
+• Problem:
+Different materials (coal, ore, coke) required different loads.
+Workers used identical shovel sizes.
+• Taylor’s experiment:
+– Determined optimal shovel load ≈ 21 pounds per scoop
+– Designed different shovel sizes for different materials
+– Standardized tools
+– Centralized tool storage and issuance
+• Impact:
+– Reduced fatigue
+– Increased output
+– Reduced unnecessary motion
+– Improved control over variability
+
+--- Page 15 ---
+The Ball Bearing Inspection Study
+• Context
+– Bicycle ball bearing factory
+– Inspection of tiny steel balls
+– Task required:
+• Sustained visual concentration
+• High precision
+• Continuous sorting and classification
+– Workforce: ~120 young female inspectors
+– Workday: 10.5 hours (plus Saturday half-day)
+– Paid by day wages
+
+--- Page 16 ---
+The Ball Bearing Inspection Study
+• Taylor concluded:
+– The job required intense attention
+– Fatigue reduced accuracy
+– Workers were present 10.5 hours
+– But effective productive work ≈ 8 hours
+• He recognized:
+Long hours ≠ High productivity
+Cognitive fatigue limits performance
+• This is one of the earliest industrial recognitions of cognitive 
+load
+
+--- Page 17 ---
+The Ball Bearing Inspection Study
+• Taylor introduced:
+– Reduced working hours (10.5 → ~8.5 hours)
+– Scheduled rest periods
+– Careful worker selection
+– Increased wages (≈ 80–100% increase)
+– Performance-based incentives
+• He removed workers who could not maintain standards.
+• System changes:
+– Fatigue management
+– Scientific rest structuring
+– Output measurement
+– Incentive alignment
+
+--- Page 18 ---
+The Ball Bearing Inspection Study
+• According to Taylor:
+– Workforce reduced: ~120 → ~35 inspectors
+– Output increased dramatically
+(Taylor reports increase from approx. 5 million to 17 million inspected 
+units)
+– Accuracy improved (~2/3 improvement in precision)
+– Wages increased substantially
+– Two paid holidays per month introduced
+• Taylor emphasized:
+Higher productivity AND higher wages AND shorter hours
+• This was presented as a win–win system redesign.
+
+--- Page 19 ---
+The Ball Bearing Inspection Study
+• Historical importance:
+– Unlike the pig iron case, this was not heavy labor.
+– It was:
+• Cognitive work
+• Attention-intensive
+• Precision-based
+– Key contribution:
+• Early recognition of fatigue as a system variable
+• Early integration of:
+– Physiology
+– Psychology
+– Productivity
+• Precursor to modern:
+– Human factors
+– Ergonomics
+– Cognitive workload management
+
+--- Page 20 ---
+The Gilbreths and Motion Study
+• Extended time study into motion study
+• Introduced:
+– Micromotion analysis
+– Process charts
+– “Therbligs” (Gilbreth & Gilbreth, 1917)
+• Bricklaying experiments dramatically improved efficiency
+• Emphasized fatigue reduction and motion economy
+• Foundations of modern ergonomics
+
+--- Page 21 ---
+The Gilbreths and Motion Study
+
+
+--- Page 22 ---
+Therbligs
+
+
+--- Page 23 ---
+Bricklaying Revolution (Efficiency via Redesign)
+• Gilbreth improved bricklaying by redesigning the work 
+method + workstation
+• Key changes:
+– Adjusted scaffold height
+– Positioned bricks at waist level
+– Reduced bending
+– Eliminated unnecessary motions
+• Reported productivity gain: ~120 bricks/hour → 300+ 
+bricks/hour
+• Teaching point: productivity gains often come from motion 
+elimination, not “working harder”
+
+--- Page 24 ---
+Household & Kitchen Work as Work Systems
+• Lillian Gilbreth applied work design principles to household 
+work
+• Contributions:
+– Studied kitchen workflows
+– Analyzed reach distances and storage placement
+– Influenced efficiency-focused kitchen layout thinking
+• Often linked to ideas later called the “kitchen work triangle”
+(stove–sink–refrigerator)
+• Also associated with practical improvements (e.g., can opener 
+design, pedal bins, shelf layout concepts)
+
+--- Page 25 ---
+Household & Kitchen Work as Work Systems
+• The “kitchen work triangle”
+
+
+--- Page 26 ---
+Lillian Gilbreth: Major Historical Significance
+• Earned a PhD in psychology (Brown University, 1915)
+– Dissertation: The Psychology of Management
+• Widely recognized as a pioneer in:
+– Industrial psychology
+– Human-centered engineering
+– Early women leaders in engineering/management history
+• Often referred to as “The First Lady of Engineering”
+
+--- Page 27 ---
+Psychology + Engineering Integration
+• Taylor emphasized efficiency and structure
+• Lillian pushed scientific management toward human-centered 
+concerns:
+– Worker satisfaction
+– Fatigue reduction
+– Motivation
+– Psychological experience of work
+• Key message: redesigning work isn’t only speed/throughput—it's 
+also:
+– Information
+– Feedback
+– Responsibility
+– Human capability limits and well-being
+
+--- Page 28 ---
+Cultural Impact: Cheaper by the Dozen
+• The Gilbreths had 12 children
+• Family story popularized via Cheaper by the Dozen (written by 
+their children)
+• Shows motion-study “efficiency thinking” applied to everyday 
+life
+
+--- Page 29 ---
+Cultural Impact: Cheaper by the Dozen
+
+
+--- Page 30 ---
+Scientific Management as Work System Engineering
+• Redesigned system components:
+– Tasks → standardized sequences
+– Participants → scientific selection
+– Tools → optimized design
+– Information → centralized planning
+– Feedback → measurement systems
+– Incentives → performance-based pay
+– Authority → planning vs. execution
+→ Early structured work system engineering
+
+--- Page 31 ---
+Critiques and Evolution
+• Critiques:
+– Deskilling, reduced autonomy (Braverman, 1974)
+• Sociotechnical theory:
+– Joint optimization of social and technical systems
+– Emphasis on autonomy and adaptability
+• Modern design integrates:
+– Measurement
+– Ergonomics
+– Sociotechnical balance
+
+--- Page 32 ---
+Mini-Summary
+• Scientific management:
+– Applied scientific method to work
+– Formalized time study and standardization
+– Introduced planning structures and feedback control
+– Extended by Gilbreths’ motion study
+– Initiated systematic work system engineering
+– Powerful yet incomplete → evolved into sociotechnical and ergonomic 
+design

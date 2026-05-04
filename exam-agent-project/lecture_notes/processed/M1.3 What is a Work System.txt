@@ -1,0 +1,161 @@
+
+
+--- Page 1 ---
+What is a work system? (M1.3)
+Woojin Park
+Life Enhancing Technology Laboratory
+SNU Department of Industrial Engineering
+
+--- Page 2 ---
+What Is a Work System?
+• To understand work system design, we must first understand:
+– What a system is in engineering terms
+– Why systems thinking differs from component thinking
+• Systems thinking focuses on interaction, not isolated parts.
+
+--- Page 3 ---
+What Is a System?
+• A system is:
+– A bounded, goal-oriented set of interrelated elements
+– That transforms inputs into outputs
+– Through structured interaction
+– While maintaining dynamic internal states
+• Five key characteristics:
+1. Purpose — Exists to achieve an objective
+2. Boundary — Distinguishes system from environment
+3. Inputs/Outputs — Transforms resources into results
+4. Interdependence — Elements influence one another
+5. State & Feedback — Internal conditions evolve over time
+• Work systems are open systems:
+– Exchange information, materials, and energy with environment
+
+--- Page 4 ---
+Systems Perspective: Emergence
+• From a systems perspective:
+– Performance is not located in a single part
+– It emerges from structured interaction
+• Emergence means:
+– Outcomes arise from how elements work together
+– Not from any single component alone
+• This concept is foundational for understanding work systems.
+
+--- Page 5 ---
+From Systems to Work Systems
+• Major Work System Frameworks
+– Alter’s Work System Framework
+– SEIPS Model
+– ISO 6385 Ergonomics Framework
+
+--- Page 6 ---
+Alter’s Work System Framework (Managerial Lens)
+• Core elements:
+– Customers
+– Products/services
+– Processes and activities
+– Participants
+– Information
+– Technologies
+– Environment
+– Infrastructure
+– Strategy
+• Core insight:
+– Systems should not be analyzed as just IT
+– Technology is only one component of a broader work system
+
+
+--- Page 7 ---
+SEIPS Model (Human Factors Lens)
+• SEIPS = Systems Engineering Initiative for Patient Safety
+• Core components:
+– Person(s)
+– Tasks
+– Tools/technology
+– Physical environment
+– Organizational conditions
+• These influence:
+– Processes
+– Outcomes (safety, quality, well-being)
+• Contribution:
+– Explicit link between system design and safety
+– Emphasizes interaction and variability
+
+--- Page 8 ---
+SEIPS Model (Human Factors Lens)
+
+
+--- Page 9 ---
+ISO 6385 (Normative Ergonomic Lens)
+• Focus:
+– Balanced work system design considering:
+• Human capabilities
+• Technical requirements
+• Organizational structure
+• Contribution:
+– Performance and well-being must be jointly optimized
+– Formalizes socio-technical balance
+
+--- Page 10 ---
+Convergence and Emergence
+• Across frameworks, common components include:
+– Participants
+– Tasks/processes
+– Tools/technology
+– Information
+– Organizational/environmental context
+– Outputs/customers
+• Shared assumption:
+– System performance is emergent
+• Examples:
+– Productivity → task coordination
+– Safety → demand-capability alignment
+– Quality → stable interactions
+– Motivation → task structure & feedback
+• Improvement requires systemic redesign.
+
+--- Page 11 ---
+Integrated Definition of Work System
+• A work system is an open socio-technical system
+• Humans and/or machines perform interdependent processes
+• Using resources to produce value-generating outputs
+
+--- Page 12 ---
+Industrial Engineering
+
+
+--- Page 13 ---
+Distinguishing Features of Work Systems
+• Work systems are:
+– Socio-technical — Human and technical elements interact
+– Value-oriented — Outputs matter to stakeholders
+– Organizationally embedded — Roles, rules, and authority shape 
+behavior
+
+--- Page 14 ---
+Scientific Management in System Terms
+• Scientific management can be reinterpreted as:
+– An early attempt at work system redesign
+• Taylor aimed to:
+– Reduce variability
+– Standardize methods
+– Clarify roles
+– Separate planning and execution
+– Establish measurement and feedback
+• System interpretation:
+– Control internal state
+– Stabilize performance through structured interaction
+• Scientific management = early work system engineering
+
+--- Page 15 ---
+Mini-Summary
+• A work system is:
+– An open socio-technical system
+– Organized around purposeful activity
+– Designed to create value
+• Performance emerges from interaction among:
+– People
+– Tasks
+– Tools
+– Information
+– Organizational context
+• Systems thinking shifts focus from isolated components to 
+structured interaction and feedback
