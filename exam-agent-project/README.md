@@ -77,11 +77,49 @@ Accepted materials can include:
 - Personal notes
 - Any file specifying the midterm scope
 
-## Current MVP
+## Providers
 
-The current implementation is a deterministic local MVP. It checks that the
-agent workflow, file loading, and output generation work without requiring an
-API key.
+The pipeline supports two providers, swapped at the boundary by
+`src/providers.py`. Agent boundaries do not move when switching.
 
-Next development step: replace the deterministic `QuestionWriterAgent` with an
-LLM-backed generation provider while keeping the same agent boundaries.
+### Deterministic (default, no API key)
+
+Uses a static question/answer bank for offline runs and CI. Round-robin
+across topic clusters, with prompt-level dedup so no two questions
+share text.
+
+```bash
+python src/main.py
+# or explicitly
+python src/main.py --provider deterministic
+```
+
+### Gemini (Vertex AI, follows M5.3.1.1)
+
+Uses `gemini-2.5-pro` for the planner, `gemini-2.5-flash` for question
+and answer writers, and `gemini-2.5-flash-lite` for both judges.
+
+```bash
+pip install google-genai
+gcloud auth application-default login   # local; in Colab use auth.authenticate_user()
+export GCP_PROJECT_ID=<your-project-id>
+export GCP_LOCATION=us-central1         # optional, default us-central1
+python src/main.py --provider gemini
+```
+
+`EXAM_AGENT_PROVIDER=gemini` is honored as a fallback when the
+`--provider` flag is omitted. If a single Gemini call fails, that one
+call falls back to the deterministic provider so the pipeline keeps
+running and the failure is logged.
+
+## Evaluation
+
+Run the offline harness from M5.3.4 (golden set + LLM Judge + simulation):
+
+```bash
+python src/evaluation.py --simulate-trials 3
+# Gemini-backed
+python src/evaluation.py --provider gemini --simulate-trials 3
+```
+
+Output: `outputs/evaluation_report.json`.

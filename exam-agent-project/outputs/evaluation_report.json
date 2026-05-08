@@ -1,0 +1,274 @@
+{
+  "provider": "DeterministicProvider",
+  "generated_questions": 11,
+  "refinement_iterations": 1,
+  "pilot_test": {
+    "passed": 5,
+    "total": 5,
+    "accuracy": 1.0,
+    "details": [
+      {
+        "test_id": "G1",
+        "topic": "Scientific Management",
+        "matched_keywords": [
+          "taylor",
+          "principle"
+        ],
+        "expected_keywords": [
+          "taylor",
+          "principle"
+        ],
+        "passed": true
+      },
+      {
+        "test_id": "G2",
+        "topic": "Problem Solving and Ideation",
+        "matched_keywords": [
+          "dassi",
+          "define",
+          "implement"
+        ],
+        "expected_keywords": [
+          "dassi",
+          "define",
+          "implement"
+        ],
+        "passed": true
+      },
+      {
+        "test_id": "G3",
+        "topic": "Five Innovation Frameworks",
+        "matched_keywords": [
+          "addition",
+          "subtraction",
+          "alternate",
+          "combination",
+          "transposition"
+        ],
+        "expected_keywords": [
+          "addition",
+          "subtraction",
+          "alternate",
+          "combination",
+          "transposition"
+        ],
+        "passed": true
+      },
+      {
+        "test_id": "G4",
+        "topic": "Motion Study and Therbligs",
+        "matched_keywords": [
+          "therblig",
+          "motion"
+        ],
+        "expected_keywords": [
+          "therblig",
+          "motion"
+        ],
+        "passed": true
+      },
+      {
+        "test_id": "G5",
+        "topic": "Work and Work Systems",
+        "matched_keywords": [
+          "work system",
+          "process",
+          "task"
+        ],
+        "expected_keywords": [
+          "work system",
+          "process",
+          "task"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "llm_judge": {
+    "questions": {
+      "avg_total": 18.727272727272727,
+      "verdict_mix": {
+        "GOOD": 11
+      },
+      "items": [
+        {
+          "target_id": "Q1",
+          "total": 19,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q2",
+          "total": 17,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q3",
+          "total": 17,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q4",
+          "total": 17,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q5",
+          "total": 17,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q6",
+          "total": 19,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q7",
+          "total": 20,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q8",
+          "total": 20,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q9",
+          "total": 20,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q10",
+          "total": 20,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "Q11",
+          "total": 20,
+          "verdict": "GOOD"
+        }
+      ]
+    },
+    "answers": {
+      "avg_total": 17.636363636363637,
+      "verdict_mix": {
+        "GOOD": 10,
+        "ACCEPTABLE": 1
+      },
+      "items": [
+        {
+          "target_id": "A1",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A2",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A3",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A4",
+          "total": 14,
+          "verdict": "ACCEPTABLE"
+        },
+        {
+          "target_id": "A5",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A6",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A7",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A8",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A9",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A10",
+          "total": 18,
+          "verdict": "GOOD"
+        },
+        {
+          "target_id": "A11",
+          "total": 18,
+          "verdict": "GOOD"
+        }
+      ]
+    }
+  },
+  "simulation": {
+    "trials": 2,
+    "avg_seconds": 0.06479907035827637,
+    "estimated_exams_per_minute": 925.9392097488106,
+    "estimated_cost_per_exam_usd": 0.0
+  },
+  "golden_cases": [
+    {
+      "test_id": "G1",
+      "topic": "Scientific Management",
+      "expected_keywords": [
+        "taylor",
+        "principle"
+      ],
+      "description": "A short-answer question on Taylor's four principles must surface the canonical four."
+    },
+    {
+      "test_id": "G2",
+      "topic": "Problem Solving and Ideation",
+      "expected_keywords": [
+        "dassi",
+        "define",
+        "implement"
+      ],
+      "description": "A DASSI question must reference the five-step structure."
+    },
+    {
+      "test_id": "G3",
+      "topic": "Five Innovation Frameworks",
+      "expected_keywords": [
+        "addition",
+        "subtraction",
+        "alternate",
+        "combination",
+        "transposition"
+      ],
+      "description": "An innovation-frameworks question should mention all five frameworks."
+    },
+    {
+      "test_id": "G4",
+      "topic": "Motion Study and Therbligs",
+      "expected_keywords": [
+        "therblig",
+        "motion"
+      ],
+      "description": "A motion-study question must reference Therbligs."
+    },
+    {
+      "test_id": "G5",
+      "topic": "Work and Work Systems",
+      "expected_keywords": [
+        "work system",
+        "process",
+        "task"
+      ],
+      "description": "A work-systems question should surface multi-level vocabulary."
+    }
+  ]
+}
