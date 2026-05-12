@@ -1,0 +1,24 @@
+{
+  "provider": "ConfiguredDeterministicProvider",
+  "quality": "draft",
+  "strict_provider": false,
+  "usage": {
+    "calls": 0,
+    "estimated_input_tokens": 0,
+    "estimated_output_tokens": 0,
+    "estimated_cost_usd": 0.0,
+    "by_model": {},
+    "records": [],
+    "note": "Deterministic provider uses local static generation and makes no billable model calls."
+  },
+  "static_estimates": {
+    "lecture_note_tokens": 34123,
+    "question_prompt_tokens": 265,
+    "answer_tokens": 727,
+    "note": "Static estimates use len(text)//4 and complement provider usage records."
+  },
+  "chunk_index": {
+    "chunks": 89,
+    "estimated_tokens": 34053
+  }
+}

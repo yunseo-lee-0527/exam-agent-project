@@ -82,7 +82,9 @@ flowchart TD
 
 ## Data Flow
 
-1. `lecture_notes/raw/` → `scripts/extract_pdf_text.py` → `lecture_notes/processed/*.txt`.
+1. `lecture_notes/raw/` → `scripts/ingest_materials.py` → `lecture_notes/processed/*.txt`.
+   The ingestion router supports PDF, TXT/MD, DOCX, and PPTX, and flags
+   images/scanned materials for OCR and audio/video files for transcription.
 2. `LectureNoteCollectorAgent` validates & registers in `outputs/processed_notes_db.json`.
 3. `CoveragePlannerAgent` emits a JSON plan from notes + `requirements.json`.
 4. Four question-writer specialists run in parallel; the combiner renumbers.
@@ -113,8 +115,10 @@ flowchart TD
    scored over the freshly generated draft, aggregated by verdict mix
    and average rubric total.
 3. **Simulation** — runs the pipeline N times to measure
-   `avg_seconds`, `exams/min`, and a placeholder cost slot to be filled
-   when the LLM provider is wired.
+   `avg_seconds`, `exams/min`, and links to `outputs/cost_report.json`
+   for token and cost estimates.
+4. **Structural checks** — flags duplicate prompts, source-reference gaps,
+   and likely out-of-scope questions.
 
 Run with:
 
@@ -126,19 +130,23 @@ Output: `outputs/evaluation_report.json`.
 
 ## Provider Hook
 
-Two providers ship with the project, selected at runtime via
-`--provider {deterministic,gemini}` or `EXAM_AGENT_PROVIDER=...`.
+Providers are selected at runtime via
+`--provider {deterministic,gemini,openai,anthropic}` or
+`EXAM_AGENT_PROVIDER=...`. Role-level model selection is controlled by
+`model_policy.json` and the `--quality {draft,final}` flag.
 
 | Provider | Where | Models | Use |
 | --- | --- | --- | --- |
-| `DeterministicProvider` | `src/agents.py` | none | Local fallback. Static bank with prompt-level dedup. Runs without a GCP key. |
-| `GeminiProvider` | `src/providers.py` | `gemini-2.5-pro` (planner), `gemini-2.5-flash` (writers), `gemini-2.5-flash-lite` (judges) — per M5.3.1.1 cost guidance | Vertex AI mode. Auth via `gcloud auth application-default login` locally or `auth.authenticate_user()` in Colab. |
+| `ConfiguredDeterministicProvider` | `src/providers.py` | none | Local fallback. Static bank with prompt-level dedup. Runs without a GCP key. |
+| `GeminiProvider` | `src/providers.py` | from `model_policy.json` | Vertex AI mode. Auth via `gcloud auth application-default login` locally or `auth.authenticate_user()` in Colab. |
+| `openai` / `anthropic` | reserved provider hooks | premium final models | Extension point for final-generation providers such as GPT or Claude. |
 
 Both providers expose the same five methods — `plan`, `write_questions`,
 `pool_questions`, `write_answer`, `judge_question`, `judge_answer` —
 so agent boundaries do not move when the provider is swapped. Per-call
-errors in `GeminiProvider` fall back to `DeterministicProvider` so a
-transient API failure does not abort the pipeline.
+errors in `GeminiProvider` fall back to deterministic mode during development
+unless `--strict-provider` is set. Strict mode is recommended for final exam
+generation so provider failures are not hidden.
 
 ### Switching providers
 
@@ -150,8 +158,19 @@ python src/main.py
 pip install google-genai
 gcloud auth application-default login
 export GCP_PROJECT_ID=<your-project-id>
-python src/main.py --provider gemini
+python src/main.py --provider gemini --quality draft
+python src/main.py --provider gemini --quality final --strict-provider
 ```
+
+## Token and Cost Tracking
+
+Each run writes:
+
+- `outputs/chunk_index.json` — chunk-level lecture-note token estimates.
+- `outputs/cost_report.json` — provider usage records, role/model calls,
+  static token estimates, and estimated cost.
+- `outputs/run_trace.json` — APD task execution trace.
+- `outputs/human_review_checklist.md` — final human review checklist.
 
 ## Human-in-the-Loop Points
 

@@ -1,0 +1,3 @@
+agent_materials_processed/
+__pycache__/
+*.py[cod]

@@ -20,7 +20,7 @@ from agents import (
     QuestionJudgeAgent,
 )
 from main import run_pipeline
-from providers import make_provider
+from providers import load_model_policy, make_provider
 
 
 # ---------------------------------------------------------------------------
@@ -97,15 +97,47 @@ def pilot_test(questions: list[Question]) -> dict[str, Any]:
     }
 
 
+def structural_tests(questions: list[Question], notes: dict[str, str]) -> dict[str, Any]:
+    prompts = [q.prompt.strip().lower() for q in questions]
+    duplicates = sorted({p for p in prompts if prompts.count(p) > 1})
+    note_text = "\n".join(notes.values()).lower()
+    out_of_scope_flags: list[dict[str, Any]] = []
+    for q in questions:
+        topic_terms = [term for term in q.topic.lower().split() if len(term) > 3]
+        answer_terms = [term for term in q.answer.lower().split()[:30] if len(term) > 6]
+        matched = [term for term in topic_terms + answer_terms if term in note_text]
+        if not matched:
+            out_of_scope_flags.append({"question": q.number, "topic": q.topic, "prompt": q.prompt})
+
+    source_gaps = [
+        {"question": q.number, "topic": q.topic}
+        for q in questions
+        if not q.source_refs and q.kind in {"Application", "Essay", "Concept Comparison"}
+    ]
+    return {
+        "duplicate_prompt_count": len(duplicates),
+        "duplicates": duplicates,
+        "out_of_scope_flag_count": len(out_of_scope_flags),
+        "out_of_scope_flags": out_of_scope_flags,
+        "source_gap_count": len(source_gaps),
+        "source_gaps": source_gaps,
+        "passed": not duplicates and not out_of_scope_flags,
+    }
+
+
 # ---------------------------------------------------------------------------
 # LLM Judge harness (M5.3.4 — JUDGE_*_PROMPT pattern)
 # ---------------------------------------------------------------------------
 
 
 def judge_run(
-    questions: list[Question], notes: dict[str, str], provider_name: str | None = None
+    questions: list[Question],
+    notes: dict[str, str],
+    provider_name: str | None = None,
+    model_policy: dict[str, Any] | None = None,
+    strict_provider: bool = False,
 ) -> dict[str, Any]:
-    provider = make_provider(provider_name)
+    provider = make_provider(provider_name, model_policy=model_policy, strict=strict_provider)
     q_judge = QuestionJudgeAgent(provider)
     a_judge = AnswerJudgeAgent(provider)
     q_verdicts = q_judge.run({"questions": questions, "notes": notes})
@@ -140,6 +172,9 @@ def simulate_throughput(
     outputs_dir: Path,
     n_trials: int = 3,
     provider_name: str | None = None,
+    model_policy_path: Path | None = None,
+    quality: str = "draft",
+    strict_provider: bool = False,
 ) -> dict[str, Any]:
     durations: list[float] = []
     for _ in range(n_trials):
@@ -152,6 +187,9 @@ def simulate_throughput(
             notes_db_path=None,
             max_refine_iterations=1,
             provider_name=provider_name,
+            model_policy_path=model_policy_path,
+            quality=quality,
+            strict_provider=strict_provider,
         )
         durations.append(time.time() - start)
     avg = sum(durations) / max(1, len(durations))
@@ -159,7 +197,8 @@ def simulate_throughput(
         "trials": n_trials,
         "avg_seconds": avg,
         "estimated_exams_per_minute": 60 / avg if avg > 0 else float("inf"),
-        "estimated_cost_per_exam_usd": 0.0,  # placeholder until LLM provider is wired
+        "estimated_cost_per_exam_usd": 0.0,
+        "cost_note": "See outputs/cost_report.json for provider usage and static token estimates.",
     }
 
 
@@ -175,9 +214,12 @@ def main() -> None:
     parser.add_argument("--outputs-dir", default="outputs")
     parser.add_argument("--report", default="outputs/evaluation_report.json")
     parser.add_argument("--simulate-trials", type=int, default=3)
+    parser.add_argument("--model-policy", default="model_policy.json")
+    parser.add_argument("--quality", choices=["draft", "final"], default="draft")
+    parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
         "--provider",
-        choices=["deterministic", "gemini"],
+        choices=["deterministic", "gemini", "openai", "anthropic"],
         default=None,
         help="LLM provider. Falls back to EXAM_AGENT_PROVIDER env var, then 'deterministic'.",
     )
@@ -187,6 +229,8 @@ def main() -> None:
     processed_dir = root / args.processed_dir
     requirements_path = root / args.requirements
     outputs_dir = root / args.outputs_dir
+    model_policy_path = root / args.model_policy
+    model_policy = load_model_policy(model_policy_path, quality=args.quality)
 
     state = run_pipeline(
         processed_dir=processed_dir,
@@ -195,13 +239,23 @@ def main() -> None:
         notes_db_path=None,
         max_refine_iterations=2,
         provider_name=args.provider,
+        model_policy_path=model_policy_path,
+        quality=args.quality,
+        strict_provider=args.strict_provider,
     )
 
     notes = state["collection"]["notes"]
     questions_payload: list[Question] = _reload_questions(outputs_dir)
     pilot = pilot_test(questions_payload) if questions_payload else {"note": "no questions to score"}
+    structural = structural_tests(questions_payload, notes) if questions_payload else {"note": "no questions to structurally test"}
     judge = (
-        judge_run(questions_payload, notes, provider_name=args.provider)
+        judge_run(
+            questions_payload,
+            notes,
+            provider_name=args.provider,
+            model_policy=model_policy,
+            strict_provider=args.strict_provider,
+        )
         if questions_payload
         else {"note": "no questions to judge"}
     )
@@ -211,15 +265,23 @@ def main() -> None:
         outputs_dir,
         n_trials=args.simulate_trials,
         provider_name=args.provider,
+        model_policy_path=model_policy_path,
+        quality=args.quality,
+        strict_provider=args.strict_provider,
     )
 
     report = {
         "provider": state["provider"],
         "generated_questions": state["question_count"],
         "refinement_iterations": len(state["history"]),
+        "quality": args.quality,
+        "strict_provider": args.strict_provider,
         "pilot_test": pilot,
+        "structural_tests": structural,
         "llm_judge": judge,
         "simulation": sim,
+        "usage_summary": state.get("usage_summary", {}),
+        "static_cost_inputs": state.get("static_cost_inputs", {}),
         "golden_cases": [asdict(c) for c in GOLDEN_CASES],
     }
     report_path = root / args.report
@@ -227,6 +289,7 @@ def main() -> None:
     report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote evaluation report to {report_path}")
     print(f"Pilot accuracy: {pilot.get('accuracy', 0):.0%}")
+    print(f"Structural tests: {'PASS' if structural.get('passed') else 'CHECK'}")
     print(f"Question judge avg: {judge.get('questions', {}).get('avg_total', 0):.1f}")
     print(f"Answer judge avg:   {judge.get('answers', {}).get('avg_total', 0):.1f}")
     print(f"Avg seconds/exam:   {sim['avg_seconds']:.2f}")

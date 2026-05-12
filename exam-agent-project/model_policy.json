@@ -1,0 +1,38 @@
+{
+  "quality_profiles": {
+    "draft": {
+      "planner": "gemini-2.5-pro",
+      "writer": "gemini-2.5-flash",
+      "answer_writer": "gemini-2.5-flash",
+      "judge": "gemini-2.5-flash-lite",
+      "final_rewriter": "gemini-2.5-flash"
+    },
+    "final": {
+      "planner": "gemini-2.5-pro",
+      "writer": "gemini-2.5-pro",
+      "answer_writer": "gemini-2.5-pro",
+      "judge": "gemini-2.5-flash",
+      "final_rewriter": "premium"
+    }
+  },
+  "fallback_provider": "deterministic",
+  "price_per_1m_tokens_usd": {
+    "gemini-2.5-flash-lite": {
+      "input": 0.1,
+      "output": 0.4
+    },
+    "gemini-2.5-flash": {
+      "input": 0.15,
+      "output": 0.6
+    },
+    "gemini-2.5-pro": {
+      "input": 1.25,
+      "output": 10.0
+    },
+    "premium": {
+      "input": 15.0,
+      "output": 75.0
+    }
+  }
+}
+

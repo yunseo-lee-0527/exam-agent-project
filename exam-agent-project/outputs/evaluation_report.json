@@ -1,7 +1,9 @@
 {
-  "provider": "DeterministicProvider",
+  "provider": "ConfiguredDeterministicProvider",
   "generated_questions": 11,
   "refinement_iterations": 1,
+  "quality": "draft",
+  "strict_provider": false,
   "pilot_test": {
     "passed": 5,
     "total": 5,
@@ -83,6 +85,36 @@
         "passed": true
       }
     ]
+  },
+  "structural_tests": {
+    "duplicate_prompt_count": 0,
+    "duplicates": [],
+    "out_of_scope_flag_count": 0,
+    "out_of_scope_flags": [],
+    "source_gap_count": 5,
+    "source_gaps": [
+      {
+        "question": 7,
+        "topic": "Work and Work Systems"
+      },
+      {
+        "question": 8,
+        "topic": "Problem Solving and Ideation"
+      },
+      {
+        "question": 9,
+        "topic": "Work and Work Systems"
+      },
+      {
+        "question": 10,
+        "topic": "Problem Solving and Ideation"
+      },
+      {
+        "question": 11,
+        "topic": "Work and Work Systems"
+      }
+    ],
+    "passed": true
   },
   "llm_judge": {
     "questions": {
@@ -215,9 +247,25 @@
   },
   "simulation": {
     "trials": 2,
-    "avg_seconds": 0.06479907035827637,
-    "estimated_exams_per_minute": 925.9392097488106,
-    "estimated_cost_per_exam_usd": 0.0
+    "avg_seconds": 0.07176196575164795,
+    "estimated_exams_per_minute": 836.0974977698705,
+    "estimated_cost_per_exam_usd": 0.0,
+    "cost_note": "See outputs/cost_report.json for provider usage and static token estimates."
+  },
+  "usage_summary": {
+    "calls": 0,
+    "estimated_input_tokens": 0,
+    "estimated_output_tokens": 0,
+    "estimated_cost_usd": 0.0,
+    "by_model": {},
+    "records": [],
+    "note": "Deterministic provider uses local static generation and makes no billable model calls."
+  },
+  "static_cost_inputs": {
+    "lecture_note_tokens": 34123,
+    "question_prompt_tokens": 265,
+    "answer_tokens": 727,
+    "note": "Static estimates use len(text)//4 and complement provider usage records."
   },
   "golden_cases": [
     {

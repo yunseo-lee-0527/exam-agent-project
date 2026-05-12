@@ -17,15 +17,41 @@ from __future__ import annotations
 import json
 import os
 import re
+from pathlib import Path
 from typing import Any
 
 from agents import DeterministicProvider, Question, Topic, parse_json_block, search_lecture_notes
+from costing import UsageTracker
 
 
-# Models per M5.3.1.1 cost guidance.
-PLANNER_MODEL = "gemini-2.5-pro"
-WRITER_MODEL = "gemini-2.5-flash"
-JUDGE_MODEL = "gemini-2.5-flash-lite"
+DEFAULT_MODEL_POLICY = {
+    "quality_profiles": {
+        "draft": {
+            "planner": "gemini-2.5-pro",
+            "writer": "gemini-2.5-flash",
+            "answer_writer": "gemini-2.5-flash",
+            "judge": "gemini-2.5-flash-lite",
+            "final_rewriter": "gemini-2.5-flash",
+        }
+    },
+    "price_per_1m_tokens_usd": {},
+}
+
+
+def load_model_policy(path: str | Path | None, quality: str = "draft") -> dict[str, Any]:
+    if path:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+    else:
+        data = DEFAULT_MODEL_POLICY
+    profiles = data.get("quality_profiles", {})
+    if quality not in profiles:
+        raise ValueError(f"Unknown quality profile: {quality}. Available: {', '.join(profiles)}")
+    return {
+        "quality": quality,
+        "models": profiles[quality],
+        "price_per_1m_tokens_usd": data.get("price_per_1m_tokens_usd", {}),
+        "fallback_provider": data.get("fallback_provider", "deterministic"),
+    }
 
 
 class GeminiProvider:
@@ -41,6 +67,8 @@ class GeminiProvider:
         project_id: str | None = None,
         location: str | None = None,
         fallback: DeterministicProvider | None = None,
+        model_policy: dict[str, Any] | None = None,
+        strict: bool = False,
     ):
         try:
             from google import genai  # type: ignore
@@ -71,23 +99,40 @@ class GeminiProvider:
             http_options=HttpOptions(api_version="v1"),
         )
         self.fallback = fallback or DeterministicProvider()
+        self.model_policy = model_policy or load_model_policy(None)
+        self.strict = strict
+        self.usage = UsageTracker(self.model_policy.get("price_per_1m_tokens_usd", {}))
 
     # ------------------------------------------------------------------
     # Helpers
     # ------------------------------------------------------------------
 
-    def _generate(self, model: str, prompt: str, system: str | None = None) -> str:
+    def _model(self, role: str) -> str:
+        return self.model_policy.get("models", {}).get(role, DEFAULT_MODEL_POLICY["quality_profiles"]["draft"].get(role, "gemini-2.5-flash"))
+
+    def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
         config = None
         if system:
             config = self._types.GenerateContentConfig(system_instruction=system)
         response = self.client.models.generate_content(
             model=model, contents=prompt, config=config
         )
-        return (response.text or "").strip()
+        text = (response.text or "").strip()
+        self.usage.record(stage, model, (system or "") + "\n" + prompt, text)
+        return text
 
-    def _generate_json(self, model: str, prompt: str, system: str | None = None) -> dict[str, Any]:
-        raw = self._generate(model, prompt, system)
+    def _generate_json(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_json") -> dict[str, Any]:
+        raw = self._generate(model, prompt, system, stage=stage)
         return parse_json_block(raw) or {}
+
+    def _fallback_or_raise(self, exc: Exception, method: str, fallback_call):
+        if self.strict:
+            raise RuntimeError(f"GeminiProvider.{method} failed in strict mode: {exc}") from exc
+        print(f"[GeminiProvider.{method}] fallback: {exc}")
+        return fallback_call()
+
+    def get_usage_summary(self) -> dict[str, Any]:
+        return self.usage.summary()
 
     @staticmethod
     def _retrieval_context(notes: dict[str, str], keywords: list[str], limit: int = 3) -> tuple[str, list[str]]:
@@ -120,7 +165,7 @@ class GeminiProvider:
             "Return the JSON plan."
         )
         try:
-            plan = self._generate_json(PLANNER_MODEL, prompt, system)
+            plan = self._generate_json(self._model("planner"), prompt, system, stage="planner")
             if not plan.get("topics"):
                 raise ValueError("planner returned no topics")
             # Coerce weights to ints, sum-normalize if drifted slightly.
@@ -130,8 +175,7 @@ class GeminiProvider:
                 t.setdefault("source_files", [])
             return plan
         except Exception as exc:
-            print(f"[GeminiProvider.plan] fallback: {exc}")
-            return self.fallback.plan(requirements, notes)
+            return self._fallback_or_raise(exc, "plan", lambda: self.fallback.plan(requirements, notes))
 
     def write_questions(
         self, kind: str, topic: Topic, count: int, notes: dict[str, str]
@@ -151,7 +195,7 @@ class GeminiProvider:
             "Return: [{\"topic\":..., \"prompt\":..., \"answer\":...}, ...]"
         )
         try:
-            raw = self._generate(WRITER_MODEL, prompt, system)
+            raw = self._generate(self._model("writer"), prompt, system, stage=f"question_writer:{kind}")
             cleaned = raw.replace("```json", "").replace("```", "").strip()
             data = json.loads(cleaned) if cleaned.startswith("[") else None
             if not data:
@@ -171,8 +215,11 @@ class GeminiProvider:
                 raise ValueError("no questions returned")
             return results
         except Exception as exc:
-            print(f"[GeminiProvider.write_questions] fallback ({kind}/{topic.title}): {exc}")
-            return self.fallback.write_questions(kind, topic, count, notes)
+            return self._fallback_or_raise(
+                exc,
+                "write_questions",
+                lambda: self.fallback.write_questions(kind, topic, count, notes),
+            )
 
     def pool_questions(
         self, kind: str, topic: Topic, notes: dict[str, str]
@@ -197,17 +244,18 @@ class GeminiProvider:
             "Return JSON only."
         )
         try:
-            data = self._generate_json(WRITER_MODEL, prompt, system)
+            data = self._generate_json(self._model("answer_writer"), prompt, system, stage="answer_writer")
             answer = str(data.get("answer", "")).strip()
             refs = data.get("source_refs") or sources
             if not answer:
                 raise ValueError("empty answer")
             return {"answer": answer, "source_refs": list(refs)}
         except Exception as exc:
-            print(f"[GeminiProvider.write_answer] fallback Q{question.number}: {exc}")
-            base = self.fallback.write_answer(question, notes)
-            base["source_refs"] = base.get("source_refs") or sources
-            return base
+            return self._fallback_or_raise(
+                exc,
+                "write_answer",
+                lambda: self._fallback_answer(question, notes, sources),
+            )
 
     def judge_question(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
         system = (
@@ -227,12 +275,11 @@ class GeminiProvider:
             f"Lecture context:\n{ctx or '(no direct hits)'}"
         )
         try:
-            data = self._generate_json(JUDGE_MODEL, prompt, system)
+            data = self._generate_json(self._model("judge"), prompt, system, stage="question_judge")
             self._normalize_verdict(data, prefix="Q", number=question.number)
             return data
         except Exception as exc:
-            print(f"[GeminiProvider.judge_question] fallback Q{question.number}: {exc}")
-            return self.fallback.judge_question(question, notes)
+            return self._fallback_or_raise(exc, "judge_question", lambda: self.fallback.judge_question(question, notes))
 
     def judge_answer(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
         system = (
@@ -250,12 +297,11 @@ class GeminiProvider:
             f"Lecture context:\n{ctx or '(no direct hits)'}"
         )
         try:
-            data = self._generate_json(JUDGE_MODEL, prompt, system)
+            data = self._generate_json(self._model("judge"), prompt, system, stage="answer_judge")
             self._normalize_verdict(data, prefix="A", number=question.number)
             return data
         except Exception as exc:
-            print(f"[GeminiProvider.judge_answer] fallback A{question.number}: {exc}")
-            return self.fallback.judge_answer(question, notes)
+            return self._fallback_or_raise(exc, "judge_answer", lambda: self.fallback.judge_answer(question, notes))
 
     @staticmethod
     def _normalize_verdict(data: dict[str, Any], prefix: str, number: int) -> None:
@@ -278,7 +324,34 @@ class GeminiProvider:
         data.setdefault("suggestion", "")
 
 
-def make_provider(name: str | None = None) -> Any:
+    def _fallback_answer(self, question: Question, notes: dict[str, str], sources: list[str]) -> dict[str, Any]:
+        base = self.fallback.write_answer(question, notes)
+        base["source_refs"] = base.get("source_refs") or sources
+        return base
+
+
+class ConfiguredDeterministicProvider(DeterministicProvider):
+    def __init__(self, model_policy: dict[str, Any] | None = None):
+        super().__init__()
+        self.model_policy = model_policy or load_model_policy(None)
+
+    def get_usage_summary(self) -> dict[str, Any]:
+        return {
+            "calls": 0,
+            "estimated_input_tokens": 0,
+            "estimated_output_tokens": 0,
+            "estimated_cost_usd": 0.0,
+            "by_model": {},
+            "records": [],
+            "note": "Deterministic provider uses local static generation and makes no billable model calls.",
+        }
+
+
+def make_provider(
+    name: str | None = None,
+    model_policy: dict[str, Any] | None = None,
+    strict: bool = False,
+) -> Any:
     """Factory honoring CLI flag + env var.
 
     name precedence: explicit > EXAM_AGENT_PROVIDER env > 'deterministic'.
@@ -286,7 +359,18 @@ def make_provider(name: str | None = None) -> Any:
 
     chosen = (name or os.environ.get("EXAM_AGENT_PROVIDER") or "deterministic").lower()
     if chosen == "gemini":
-        return GeminiProvider()
+        try:
+            return GeminiProvider(model_policy=model_policy, strict=strict)
+        except Exception as exc:
+            if strict:
+                raise
+            print(f"[make_provider] Gemini unavailable; using deterministic fallback: {exc}")
+            return ConfiguredDeterministicProvider(model_policy=model_policy)
     if chosen == "deterministic":
-        return DeterministicProvider()
-    raise ValueError(f"Unknown provider: {chosen}. Use 'deterministic' or 'gemini'.")
+        return ConfiguredDeterministicProvider(model_policy=model_policy)
+    if chosen in {"openai", "anthropic"}:
+        raise NotImplementedError(
+            f"Provider '{chosen}' is reserved for the premium final-generation hook. "
+            "Add the provider client and API key before selecting it."
+        )
+    raise ValueError(f"Unknown provider: {chosen}. Use deterministic, gemini, openai, or anthropic.")

@@ -1,0 +1,40 @@
+[
+  {
+    "task": "Task 0",
+    "agent": "Lecture Note Collector",
+    "status": "completed"
+  },
+  {
+    "task": "Task 1",
+    "agent": "Coverage Planner",
+    "status": "completed"
+  },
+  {
+    "task": "Task 2",
+    "agent": "Question Writer fan-out",
+    "status": "completed",
+    "questions": 11
+  },
+  {
+    "task": "Task 3",
+    "agent": "Answer Writer",
+    "status": "completed"
+  },
+  {
+    "task": "Task 4c",
+    "agent": "Coverage Audit",
+    "status": "completed",
+    "notes": 1
+  },
+  {
+    "task": "Task 5",
+    "agent": "Refinement Coordinator",
+    "status": "completed",
+    "iterations": 1
+  },
+  {
+    "task": "Task 6",
+    "agent": "Formatter",
+    "status": "completed"
+  }
+]
