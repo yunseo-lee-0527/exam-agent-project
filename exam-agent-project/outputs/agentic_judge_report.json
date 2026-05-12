@@ -1,0 +1,612 @@
+{
+  "final_verdict": "PASS",
+  "summary": {
+    "targets": 12,
+    "pass": 12,
+    "revise": 0,
+    "fail": 0
+  },
+  "target_decisions": {
+    "EXAM": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q1": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q10": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q11": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q2": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q3": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q4": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q5": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q6": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q7": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q8": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    },
+    "Q9": {
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": []
+    }
+  },
+  "findings": [
+    {
+      "target_id": "EXAM",
+      "judge": "Coverage Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "target_coverage={'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}",
+        "actual_coverage={'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}",
+        "total_points=100"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt",
+        "matched_terms=work, system, define, task, process, levels"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=taylor, scientific, management, work, method, four"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
+        "matched_terms=dassi, five, engineering, problem-solving, process, step"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
+        "matched_terms=innovation, frameworks, subtraction, combination, five, addition"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=therbligs, therblig, motion, gilbreth, work, examples"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, system, performance, emergent, property, three"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=soldiering, taylor, scientific, management, natural, systematic"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=dassi, method, brainstorming, compare, disciplined, engineering"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
+        "matched_terms=dassi, redesign, innovation, reduce, student, time"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.1 What is Work_Revised 260312.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=therbligs, worker, assembling, small, parts, across"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt, M2.1.1 Engineering Problem-Solving Process.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=scientific, management, redesign, taylor, dassi, early"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "EXAM",
+      "judge": "Difficulty Balance Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "target_difficulty={'easy': 25, 'medium': 50, 'hard': 25}",
+        "actual_difficulty={'easy': 25, 'medium': 50, 'hard': 25, 'unspecified': 0}"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Short Answer; difficulty=easy",
+        "learning_objective=Check whether students can distinguish nested levels of work analysis."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Short Answer; difficulty=easy",
+        "learning_objective=Check recall of Taylor's canonical scientific management principles."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Short Answer; difficulty=easy",
+        "learning_objective=Check recall and sequencing of the DASSI process."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Short Answer; difficulty=easy",
+        "learning_objective=Check whether students can identify the systematic innovation methods from lecture."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Short Answer; difficulty=easy",
+        "learning_objective=Check whether students understand micro-level motion analysis."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Short Answer; difficulty=medium",
+        "learning_objective=Check system-level reasoning rather than isolated task reasoning."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Concept Comparison; difficulty=hard",
+        "learning_objective=Check whether students can explain Taylor's diagnosis of inefficiency."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Concept Comparison; difficulty=medium",
+        "learning_objective=Check whether students can place ideation tools inside a structured problem-solving process."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Application; difficulty=medium",
+        "learning_objective=Check whether students can use innovation frameworks as a problem-solving tool, not only recite them."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Application; difficulty=hard",
+        "learning_objective=Check whether students can move from motion diagnosis to work-system redesign."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Pedagogical Quality Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "kind=Essay; difficulty=medium",
+        "learning_objective=Check synthesis across scientific management, work systems, and disciplined problem solving."
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=66",
+        "rubric_items=2"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=56",
+        "rubric_items=2"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=53",
+        "rubric_items=2"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=56",
+        "rubric_items=2"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=53",
+        "rubric_items=3"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=58",
+        "rubric_items=3"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=72",
+        "rubric_items=3"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=69",
+        "rubric_items=4"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=74",
+        "rubric_items=4"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=69",
+        "rubric_items=4"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=113",
+        "rubric_items=5"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=16"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=17"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=20"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=18"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=19"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=19"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=17"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=17"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=33"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=41"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=33"
+      ],
+      "revision_instruction": ""
+    }
+  ],
+  "trace": [
+    {
+      "task": "Task 4d",
+      "agent": "Coverage Judge",
+      "findings": 1,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4e",
+      "agent": "Source Grounding Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4f",
+      "agent": "Difficulty Balance Judge",
+      "findings": 1,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4g",
+      "agent": "Pedagogical Quality Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4h",
+      "agent": "Answer Rubric Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4i",
+      "agent": "Red-Team Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4j",
+      "agent": "Judge Aggregator",
+      "final_verdict": "PASS"
+    }
+  ]
+}

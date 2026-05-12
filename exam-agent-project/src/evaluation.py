@@ -298,6 +298,7 @@ def main() -> None:
         "pilot_test": pilot,
         "structural_tests": structural,
         "llm_judge": judge,
+        "agentic_judge": state.get("agentic_judge_report", {}),
         "simulation": sim,
         "usage_summary": state.get("usage_summary", {}),
         "static_cost_inputs": state.get("static_cost_inputs", {}),

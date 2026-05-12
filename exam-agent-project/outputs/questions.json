@@ -133,7 +133,7 @@
     "source_refs": [
       "M1.4 Scientific Management as Work System Redesign.txt"
     ],
-    "difficulty": "medium",
+    "difficulty": "hard",
     "learning_objective": "Check whether students can explain Taylor's diagnosis of inefficiency.",
     "rubric": [
       "3 points for natural soldiering.",
@@ -179,7 +179,7 @@
       "M2.1.1 Engineering Problem-Solving Process.txt",
       "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
     ],
-    "difficulty": "hard",
+    "difficulty": "medium",
     "learning_objective": "Check whether students can use innovation frameworks as a problem-solving tool, not only recite them.",
     "rubric": [
       "3 points for framing the problem with DASSI.",
@@ -229,7 +229,7 @@
       "M2.1.1 Engineering Problem-Solving Process.txt",
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
-    "difficulty": "hard",
+    "difficulty": "medium",
     "learning_objective": "Check synthesis across scientific management, work systems, and disciplined problem solving.",
     "rubric": [
       "4 points for Taylor's principles and cases.",

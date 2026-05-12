@@ -51,6 +51,16 @@ the quality-control loop too permissive.
    - `outputs/answers.md` now includes learning objectives, grading rubrics,
      coverage contribution, and lecture source references for each question.
 
+7. Added an agentic judge system.
+   - `CoverageJudgeAgent`, `SourceGroundingJudgeAgent`,
+     `DifficultyBalanceJudgeAgent`, `PedagogicalQualityJudgeAgent`,
+     `AnswerRubricJudgeAgent`, `RedTeamJudgeAgent`, and
+     `JudgeAggregatorAgent` now evaluate generated exams from distinct
+     perspectives.
+   - The system writes `outputs/agentic_judge_report.json`.
+   - The report includes PASS / REVISE / FAIL decisions, evidence, failed
+     checks, and revision instructions.
+
 ## Current Evidence
 
 After the change:
@@ -62,6 +72,9 @@ After the change:
 - `outputs/coverage_matrix.json` shows exact coverage alignment.
 - `outputs/source_grounding_report.json` shows all 11 questions grounded in
   existing lecture files.
+- `outputs/agentic_judge_report.json` gives the current draft a final `PASS`
+  verdict across coverage, source grounding, difficulty, pedagogy, answer
+  rubric, and red-team checks.
 
 ## Remaining Limitations
 

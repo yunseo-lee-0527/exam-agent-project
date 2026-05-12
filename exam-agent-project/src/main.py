@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from agents import (
+    AgenticJudgeSystemAgent,
     AnswerJudgeAgent,
     AnswerWriterAgent,
     ApplicationWriterAgent,
@@ -212,6 +213,7 @@ def render_human_review_checklist(
         "- [ ] Remove duplicate or overly similar questions.",
         "- [ ] Verify point allocation and expected duration.",
         "- [ ] Check language, grammar, and professor style.",
+        "- [ ] Review outputs/agentic_judge_report.json and address every REVISE or FAIL target.",
         "",
         "## Model Answers",
         "",
@@ -413,6 +415,25 @@ def run_pipeline(
     source_grounding_report = build_source_grounding_report(questions, notes)
     state["coverage_matrix"] = coverage_matrix
     state["source_grounding_report"] = source_grounding_report
+    agentic_judge = AgenticJudgeSystemAgent()
+    agentic_judge_report = agentic_judge.run(
+        {
+            "questions": questions,
+            "notes": notes,
+            "requirements": requirements,
+        }
+    )
+    state["agentic_judge_report"] = agentic_judge_report
+    state["run_trace"].append(
+        {
+            "task": agentic_judge.task_id,
+            "agent": agentic_judge.name,
+            "status": "completed",
+            "final_verdict": agentic_judge_report["final_verdict"],
+            "non_pass_targets": agentic_judge_report["summary"].get("revise", 0)
+            + agentic_judge_report["summary"].get("fail", 0),
+        }
+    )
 
     # --- Task 6: Formatter ---
     formatter = FormatterAgent()
@@ -442,6 +463,10 @@ def run_pipeline(
     (outputs_dir / "coverage_matrix.json").write_text(json.dumps(coverage_matrix, indent=2, ensure_ascii=False), encoding="utf-8")
     (outputs_dir / "source_grounding_report.json").write_text(
         json.dumps(source_grounding_report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    (outputs_dir / "agentic_judge_report.json").write_text(
+        json.dumps(agentic_judge_report, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
     (outputs_dir / "chunk_index.json").write_text(json.dumps(chunk_index, indent=2, ensure_ascii=False), encoding="utf-8")

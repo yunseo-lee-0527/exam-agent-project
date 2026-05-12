@@ -15,6 +15,7 @@ Use this before submitting the final generated exam.
 - [ ] Remove duplicate or overly similar questions.
 - [ ] Verify point allocation and expected duration.
 - [ ] Check language, grammar, and professor style.
+- [ ] Review outputs/agentic_judge_report.json and address every REVISE or FAIL target.
 
 ## Model Answers
 
