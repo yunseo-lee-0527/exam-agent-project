@@ -5,6 +5,11 @@ basic refinement. The goal is to make evaluation more agentic than a single
 LLM-as-judge score: each judge checks a different risk, records evidence, and
 returns a structured PASS / SOFT_FAIL / HARD_FAIL finding.
 
+The judge layer is now connected to a closed revision loop. If the aggregator
+returns `REVISE` or `FAIL` for a specific question, the pipeline collects the
+revision instructions, regenerates or repairs the affected question/answer, and
+runs the judge system again up to the configured iteration limit.
+
 ## Judge Agents
 
 The system is implemented in `src/agents.py`.
@@ -25,6 +30,10 @@ The system is implemented in `src/agents.py`.
 Each run writes:
 
 - `outputs/agentic_judge_report.json`
+- `outputs/chunk_grounding_report.json`
+- `outputs/residual_risk_report.json`
+- `outputs/critical_discussion.md`
+- `outputs/human_review_notes_template.json`
 
 The report includes:
 
@@ -34,6 +43,9 @@ The report includes:
 - evidence from each judge
 - revision instructions for generator or human reviewer
 - judge execution trace
+- judge-loop history
+- chunk-level lecture evidence
+- residual risks for critical discussion
 
 Example report shape:
 
@@ -72,6 +84,8 @@ The current deterministic draft passes the agentic judge system:
 - coverage: exact 25 / 20 / 25 / 15 / 15 topic contribution
 - difficulty: exact 25 / 50 / 25 easy/medium/hard contribution
 - source grounding: all 11 questions have valid lecture-source references
+- chunk grounding: all 11 questions have at least one supporting lecture chunk
+- agentic judge loop: completed in 1 iteration with no non-pass targets
 
 The system is still intended as a quality-control layer. The final submission
 should be regenerated with a real LLM provider in strict mode, then reviewed by

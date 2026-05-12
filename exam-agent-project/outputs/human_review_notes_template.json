@@ -1,0 +1,107 @@
+{
+  "reviewer": "",
+  "review_date": "",
+  "scale": "approve | revise | reject",
+  "overall_notes": "",
+  "items": [
+    {
+      "question": 1,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 2,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 3,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 4,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 5,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 6,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 7,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 8,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 9,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 10,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    },
+    {
+      "question": 11,
+      "decision": "",
+      "scope_ok": null,
+      "difficulty_ok": null,
+      "source_grounding_ok": null,
+      "rubric_ok": null,
+      "comments": ""
+    }
+  ]
+}

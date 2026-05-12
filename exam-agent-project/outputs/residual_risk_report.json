@@ -1,0 +1,37 @@
+{
+  "risk_count": 5,
+  "risks": [
+    {
+      "risk": "deterministic_provider",
+      "severity": "high",
+      "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
+      "mitigation": "Run the final pipeline with --provider gemini --quality final --strict-provider and preserve cost_report.json as evidence."
+    },
+    {
+      "risk": "blueprint_dependency",
+      "severity": "medium",
+      "evidence": "exam_blueprint.json controls the current exam draft.",
+      "mitigation": "Frame it as an instructor-approved blueprint or generate a fresh blueprint from the planner before final submission."
+    },
+    {
+      "risk": "provider_fallback_hidden",
+      "severity": "medium",
+      "evidence": "Strict provider mode is off, so live provider failures can fall back during development.",
+      "mitigation": "Use --strict-provider for final generation."
+    },
+    {
+      "risk": "self_evaluation_bias",
+      "severity": "medium",
+      "evidence": "The same system family generates and judges the exam.",
+      "mitigation": "Add human_review_notes.json and compare human findings against agentic_judge_report.json."
+    },
+    {
+      "risk": "chunk_grounding_is_not_entailment",
+      "severity": "low",
+      "evidence": "Chunk grounding verifies lexical support, not full semantic entailment.",
+      "mitigation": "Upgrade SourceGroundingJudgeAgent to compare answer claims against cited chunks with a live LLM judge."
+    }
+  ],
+  "agentic_judge_final_verdict": "PASS",
+  "chunk_grounding_passed": true
+}

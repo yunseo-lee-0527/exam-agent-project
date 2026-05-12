@@ -61,6 +61,25 @@ the quality-control loop too permissive.
    - The report includes PASS / REVISE / FAIL decisions, evidence, failed
      checks, and revision instructions.
 
+8. Closed the judge-to-revision loop.
+   - `AgenticJudgeSystemAgent` now runs after the first refinement loop.
+   - If a question receives `REVISE` or `FAIL`, the pipeline collects the
+     judge revision instructions, regenerates/repairs the affected item, and
+     reruns the judge system.
+   - The loop history is stored in `evaluation_report.json` and
+     `run_trace.json`.
+
+9. Added chunk-level grounding and residual-risk artifacts.
+   - `outputs/chunk_grounding_report.json` links each question to supporting
+     lecture chunks.
+   - `outputs/residual_risk_report.json` records known limitations such as
+     deterministic-provider reliance, blueprint dependency, and
+     self-evaluation bias.
+   - `outputs/critical_discussion.md` converts those risks into report-ready
+     discussion notes.
+   - `outputs/human_review_notes_template.json` gives the team a structured
+     way to capture human review.
+
 ## Current Evidence
 
 After the change:
@@ -75,6 +94,10 @@ After the change:
 - `outputs/agentic_judge_report.json` gives the current draft a final `PASS`
   verdict across coverage, source grounding, difficulty, pedagogy, answer
   rubric, and red-team checks.
+- `outputs/chunk_grounding_report.json` supports all 11 questions with lecture
+  chunks.
+- `outputs/residual_risk_report.json` explicitly records 5 remaining risks for
+  the final critical discussion.
 
 ## Remaining Limitations
 

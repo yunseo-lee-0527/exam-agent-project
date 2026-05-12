@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -89,6 +90,19 @@ def _points_for(kind: str, total: int = 100, mix: dict[str, int] | None = None) 
 
 
 def build_chunk_index(notes: dict[str, str], max_chars: int = 1800) -> list[dict[str, Any]]:
+    return [
+        {
+            "chunk_id": chunk["chunk_id"],
+            "source_file": chunk["source_file"],
+            "text_preview": chunk["text"][:320],
+            "char_count": len(chunk["text"]),
+            "token_estimate": estimate_tokens(chunk["text"]),
+        }
+        for chunk in build_note_chunks(notes, max_chars=max_chars)
+    ]
+
+
+def build_note_chunks(notes: dict[str, str], max_chars: int = 1800) -> list[dict[str, Any]]:
     chunks: list[dict[str, Any]] = []
     for filename, body in notes.items():
         paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
@@ -102,9 +116,7 @@ def build_chunk_index(notes: dict[str, str], max_chars: int = 1800) -> list[dict
                     {
                         "chunk_id": f"{Path(filename).stem}_{chunk_n:03d}",
                         "source_file": filename,
-                        "text_preview": text[:320],
-                        "char_count": len(text),
-                        "token_estimate": estimate_tokens(text),
+                        "text": text,
                     }
                 )
                 chunk_n += 1
@@ -118,9 +130,7 @@ def build_chunk_index(notes: dict[str, str], max_chars: int = 1800) -> list[dict
                 {
                     "chunk_id": f"{Path(filename).stem}_{chunk_n:03d}",
                     "source_file": filename,
-                    "text_preview": text[:320],
-                    "char_count": len(text),
-                    "token_estimate": estimate_tokens(text),
+                    "text": text,
                 }
             )
     return chunks
@@ -189,6 +199,154 @@ def build_source_grounding_report(questions: list[Question], notes: dict[str, st
     }
 
 
+GROUNDING_STOPWORDS = {
+    "what",
+    "from",
+    "give",
+    "using",
+    "with",
+    "where",
+    "does",
+    "each",
+    "them",
+    "this",
+    "that",
+    "your",
+    "answer",
+    "explain",
+    "state",
+    "list",
+    "name",
+    "cover",
+    "must",
+    "should",
+    "wants",
+    "without",
+    "question",
+    "lecture",
+    "problem",
+}
+
+
+def signal_terms(text: str, limit: int = 24) -> list[str]:
+    terms: list[str] = []
+    for word in re.findall(r"[A-Za-z][A-Za-z-]{3,}", text):
+        term = word.lower()
+        if term in GROUNDING_STOPWORDS or term in terms:
+            continue
+        terms.append(term)
+        if len(terms) >= limit:
+            break
+    return terms
+
+
+def build_chunk_grounding_report(questions: list[Question], notes: dict[str, str]) -> dict[str, Any]:
+    chunks = build_note_chunks(notes)
+    items: list[dict[str, Any]] = []
+    supported_count = 0
+    for q in questions:
+        terms = signal_terms(q.prompt + " " + q.answer)
+        candidates = [chunk for chunk in chunks if chunk["source_file"] in q.source_refs] or chunks
+        scored: list[dict[str, Any]] = []
+        for chunk in candidates:
+            text_lc = chunk["text"].lower()
+            matched = [term for term in terms if term in text_lc]
+            if not matched:
+                continue
+            scored.append(
+                {
+                    "chunk_id": chunk["chunk_id"],
+                    "source_file": chunk["source_file"],
+                    "matched_terms": matched[:8],
+                    "support_score": len(matched),
+                    "text_preview": chunk["text"][:260].replace("\n", " "),
+                }
+            )
+        scored.sort(key=lambda item: item["support_score"], reverse=True)
+        top_chunks = scored[:3]
+        supported = bool(top_chunks)
+        if supported:
+            supported_count += 1
+        items.append(
+            {
+                "question": q.number,
+                "topic": q.topic,
+                "source_refs": q.source_refs,
+                "signal_terms": terms[:12],
+                "support_chunks": top_chunks,
+                "supported": supported,
+            }
+        )
+    return {
+        "supported_questions": supported_count,
+        "total_questions": len(questions),
+        "unsupported_questions": [item for item in items if not item["supported"]],
+        "passed": supported_count == len(questions),
+        "items": items,
+    }
+
+
+def build_residual_risk_report(
+    provider_name: str,
+    strict_provider: bool,
+    blueprint: dict[str, Any] | None,
+    agentic_judge_report: dict[str, Any],
+    chunk_grounding_report: dict[str, Any],
+) -> dict[str, Any]:
+    risks: list[dict[str, Any]] = []
+    if provider_name == "ConfiguredDeterministicProvider":
+        risks.append(
+            {
+                "risk": "deterministic_provider",
+                "severity": "high",
+                "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
+                "mitigation": "Run the final pipeline with --provider gemini --quality final --strict-provider and preserve cost_report.json as evidence.",
+            }
+        )
+    if blueprint:
+        risks.append(
+            {
+                "risk": "blueprint_dependency",
+                "severity": "medium",
+                "evidence": "exam_blueprint.json controls the current exam draft.",
+                "mitigation": "Frame it as an instructor-approved blueprint or generate a fresh blueprint from the planner before final submission.",
+            }
+        )
+    if not strict_provider:
+        risks.append(
+            {
+                "risk": "provider_fallback_hidden",
+                "severity": "medium",
+                "evidence": "Strict provider mode is off, so live provider failures can fall back during development.",
+                "mitigation": "Use --strict-provider for final generation.",
+            }
+        )
+    if agentic_judge_report.get("final_verdict") == "PASS":
+        risks.append(
+            {
+                "risk": "self_evaluation_bias",
+                "severity": "medium",
+                "evidence": "The same system family generates and judges the exam.",
+                "mitigation": "Add human_review_notes.json and compare human findings against agentic_judge_report.json.",
+            }
+        )
+    if chunk_grounding_report.get("passed"):
+        risks.append(
+            {
+                "risk": "chunk_grounding_is_not_entailment",
+                "severity": "low",
+                "evidence": "Chunk grounding verifies lexical support, not full semantic entailment.",
+                "mitigation": "Upgrade SourceGroundingJudgeAgent to compare answer claims against cited chunks with a live LLM judge.",
+            }
+        )
+    return {
+        "risk_count": len(risks),
+        "risks": risks,
+        "agentic_judge_final_verdict": agentic_judge_report.get("final_verdict"),
+        "chunk_grounding_passed": chunk_grounding_report.get("passed"),
+    }
+
+
 def render_human_review_checklist(
     requirements: dict[str, Any],
     questions: list[Question],
@@ -214,6 +372,7 @@ def render_human_review_checklist(
         "- [ ] Verify point allocation and expected duration.",
         "- [ ] Check language, grammar, and professor style.",
         "- [ ] Review outputs/agentic_judge_report.json and address every REVISE or FAIL target.",
+        "- [ ] Record final human decisions in outputs/human_review_notes_template.json.",
         "",
         "## Model Answers",
         "",
@@ -238,12 +397,74 @@ def render_human_review_checklist(
     return "\n".join(lines)
 
 
+def human_review_template(questions: list[Question]) -> dict[str, Any]:
+    return {
+        "reviewer": "",
+        "review_date": "",
+        "scale": "approve | revise | reject",
+        "overall_notes": "",
+        "items": [
+            {
+                "question": q.number,
+                "decision": "",
+                "scope_ok": None,
+                "difficulty_ok": None,
+                "source_grounding_ok": None,
+                "rubric_ok": None,
+                "comments": "",
+            }
+            for q in questions
+        ],
+    }
+
+
+def render_critical_discussion(
+    residual_risk_report: dict[str, Any],
+    agentic_judge_report: dict[str, Any],
+    chunk_grounding_report: dict[str, Any],
+) -> str:
+    lines = [
+        "# Critical Discussion",
+        "",
+        "This file summarizes the main limitations that remain after the current implementation.",
+        "",
+        "## Current Evidence",
+        "",
+        f"- Agentic judge final verdict: `{agentic_judge_report.get('final_verdict', 'UNKNOWN')}`.",
+        f"- Chunk-level grounding passed: `{chunk_grounding_report.get('passed', False)}`.",
+        f"- Supported questions: {chunk_grounding_report.get('supported_questions', 0)} / {chunk_grounding_report.get('total_questions', 0)}.",
+        "",
+        "## Residual Risks",
+        "",
+    ]
+    for risk in residual_risk_report.get("risks", []):
+        lines += [
+            f"### {risk['risk']}",
+            "",
+            f"- Severity: {risk['severity']}",
+            f"- Evidence: {risk['evidence']}",
+            f"- Mitigation: {risk['mitigation']}",
+            "",
+        ]
+    lines += [
+        "## Discussion",
+        "",
+        "The system now has a closed quality-control layer, but final submission should not claim full autonomy.",
+        "The strongest defensible claim is that the system automates generation, checking, evidence collection, and revision support, while preserving a final human gate for scope and fairness.",
+        "",
+        "The most important next validation step is to run the final pipeline with a live LLM provider in strict mode and compare the generated exam with human reviewer notes.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def run_pipeline(
     processed_dir: Path,
     requirements_path: Path,
     outputs_dir: Path,
     notes_db_path: Path | None = None,
     max_refine_iterations: int = 2,
+    max_agentic_judge_iterations: int = 2,
     provider_name: str | None = None,
     model_policy_path: Path | None = None,
     blueprint_path: Path | None = None,
@@ -411,18 +632,59 @@ def run_pipeline(
     state["run_trace"].append({"task": coordinator.task_id, "agent": coordinator.name, "status": "completed", "iterations": len(refined["history"])})
     questions = refined["questions"]
     state["history"] = refined["history"]
-    coverage_matrix = build_coverage_matrix(requirements, questions)
-    source_grounding_report = build_source_grounding_report(questions, notes)
-    state["coverage_matrix"] = coverage_matrix
-    state["source_grounding_report"] = source_grounding_report
+
+    # --- Task 5b: Agentic judge closed-loop revision ---
     agentic_judge = AgenticJudgeSystemAgent()
-    agentic_judge_report = agentic_judge.run(
-        {
-            "questions": questions,
-            "notes": notes,
-            "requirements": requirements,
+    agentic_judge_history: list[dict[str, Any]] = []
+    agentic_judge_report: dict[str, Any] = {}
+    for iteration in range(1, max_agentic_judge_iterations + 1):
+        agentic_judge_report = agentic_judge.run(
+            {
+                "questions": questions,
+                "notes": notes,
+                "requirements": requirements,
+            }
+        )
+        decisions = agentic_judge_report.get("target_decisions", {})
+        non_pass = {
+            target: decision
+            for target, decision in decisions.items()
+            if decision.get("final_verdict") != "PASS"
         }
-    )
+        agentic_judge_history.append(
+            {
+                "iteration": iteration,
+                "final_verdict": agentic_judge_report.get("final_verdict"),
+                "non_pass_targets": sorted(non_pass),
+            }
+        )
+        if not non_pass:
+            break
+
+        revised_any = False
+        for target, decision in non_pass.items():
+            if not target.startswith("Q"):
+                continue
+            try:
+                idx = int(target[1:]) - 1
+            except ValueError:
+                continue
+            if not (0 <= idx < len(questions)):
+                continue
+            instruction = " ".join(decision.get("revision_instructions", []))
+            failed_checks = " ".join(decision.get("failed_checks", []))
+            if any(key in failed_checks for key in ["rubric", "model_answer", "source"]):
+                questions[idx] = regen_answer(questions[idx], instruction, notes)
+            else:
+                questions[idx] = regen_question(questions[idx], instruction, notes)
+                questions[idx] = regen_answer(questions[idx], instruction, notes)
+            revised_any = True
+
+        if not revised_any:
+            break
+        questions = answer_writer.run({"questions": questions, "notes": notes})
+
+    state["agentic_judge_history"] = agentic_judge_history
     state["agentic_judge_report"] = agentic_judge_report
     state["run_trace"].append(
         {
@@ -430,10 +692,26 @@ def run_pipeline(
             "agent": agentic_judge.name,
             "status": "completed",
             "final_verdict": agentic_judge_report["final_verdict"],
+            "iterations": len(agentic_judge_history),
             "non_pass_targets": agentic_judge_report["summary"].get("revise", 0)
             + agentic_judge_report["summary"].get("fail", 0),
         }
     )
+
+    coverage_matrix = build_coverage_matrix(requirements, questions)
+    source_grounding_report = build_source_grounding_report(questions, notes)
+    chunk_grounding_report = build_chunk_grounding_report(questions, notes)
+    residual_risk_report = build_residual_risk_report(
+        provider_name=state["provider"],
+        strict_provider=strict_provider,
+        blueprint=blueprint,
+        agentic_judge_report=agentic_judge_report,
+        chunk_grounding_report=chunk_grounding_report,
+    )
+    state["coverage_matrix"] = coverage_matrix
+    state["source_grounding_report"] = source_grounding_report
+    state["chunk_grounding_report"] = chunk_grounding_report
+    state["residual_risk_report"] = residual_risk_report
 
     # --- Task 6: Formatter ---
     formatter = FormatterAgent()
@@ -469,6 +747,18 @@ def run_pipeline(
         json.dumps(agentic_judge_report, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
+    (outputs_dir / "chunk_grounding_report.json").write_text(
+        json.dumps(chunk_grounding_report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    (outputs_dir / "residual_risk_report.json").write_text(
+        json.dumps(residual_risk_report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    (outputs_dir / "human_review_notes_template.json").write_text(
+        json.dumps(human_review_template(questions), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
     (outputs_dir / "chunk_index.json").write_text(json.dumps(chunk_index, indent=2, ensure_ascii=False), encoding="utf-8")
     (outputs_dir / "run_trace.json").write_text(json.dumps(state["run_trace"], indent=2, ensure_ascii=False), encoding="utf-8")
     (outputs_dir / "cost_report.json").write_text(
@@ -490,6 +780,10 @@ def run_pipeline(
         render_human_review_checklist(requirements, questions, coverage_notes, usage_summary),
         encoding="utf-8",
     )
+    (outputs_dir / "critical_discussion.md").write_text(
+        render_critical_discussion(residual_risk_report, agentic_judge_report, chunk_grounding_report),
+        encoding="utf-8",
+    )
 
     state["status"] = "COMPLETED"
     state["question_count"] = len(questions)
@@ -506,6 +800,7 @@ def main() -> None:
     parser.add_argument("--outputs-dir", default="outputs")
     parser.add_argument("--notes-db", default="outputs/processed_notes_db.json")
     parser.add_argument("--max-refine", type=int, default=2)
+    parser.add_argument("--max-agentic-judge-refine", type=int, default=2)
     parser.add_argument("--model-policy", default="model_policy.json")
     parser.add_argument("--blueprint", default="exam_blueprint.json")
     parser.add_argument("--quality", choices=["draft", "final"], default="draft")
@@ -525,6 +820,7 @@ def main() -> None:
         outputs_dir=root / args.outputs_dir,
         notes_db_path=root / args.notes_db,
         max_refine_iterations=args.max_refine,
+        max_agentic_judge_iterations=args.max_agentic_judge_refine,
         provider_name=args.provider,
         model_policy_path=root / args.model_policy,
         blueprint_path=root / args.blueprint,

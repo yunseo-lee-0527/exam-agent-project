@@ -16,6 +16,7 @@ Use this before submitting the final generated exam.
 - [ ] Verify point allocation and expected duration.
 - [ ] Check language, grammar, and professor style.
 - [ ] Review outputs/agentic_judge_report.json and address every REVISE or FAIL target.
+- [ ] Record final human decisions in outputs/human_review_notes_template.json.
 
 ## Model Answers
 
