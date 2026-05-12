@@ -1,0 +1,116 @@
+{
+  "grounded_questions": 11,
+  "total_questions": 11,
+  "ungrounded_questions": [],
+  "passed": true,
+  "items": [
+    {
+      "question": 1,
+      "topic": "Work and Work Systems",
+      "source_refs": [
+        "M1.1 What is Work_Revised 260312.txt",
+        "M1.3 What is a Work System.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 2,
+      "topic": "Scientific Management",
+      "source_refs": [
+        "M1.4 Scientific Management as Work System Redesign.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 3,
+      "topic": "Problem Solving and Ideation",
+      "source_refs": [
+        "M2.1.1 Engineering Problem-Solving Process.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 4,
+      "topic": "Five Innovation Frameworks",
+      "source_refs": [
+        "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 5,
+      "topic": "Motion Study and Therbligs",
+      "source_refs": [
+        "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 6,
+      "topic": "Work and Work Systems",
+      "source_refs": [
+        "M1.3 What is a Work System.txt",
+        "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 7,
+      "topic": "Scientific Management",
+      "source_refs": [
+        "M1.4 Scientific Management as Work System Redesign.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 8,
+      "topic": "Problem Solving and Ideation",
+      "source_refs": [
+        "M2.1.1 Engineering Problem-Solving Process.txt",
+        "M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
+        "M2.1.3 Solution Generation (Brainstorming).txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 9,
+      "topic": "Five Innovation Frameworks",
+      "source_refs": [
+        "M2.1.1 Engineering Problem-Solving Process.txt",
+        "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 10,
+      "topic": "Motion Study and Therbligs",
+      "source_refs": [
+        "M1.1 What is Work_Revised 260312.txt",
+        "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    },
+    {
+      "question": 11,
+      "topic": "Scientific Management",
+      "source_refs": [
+        "M1.3 What is a Work System.txt",
+        "M1.4 Scientific Management as Work System Redesign.txt",
+        "M2.1.1 Engineering Problem-Solving Process.txt",
+        "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+      ],
+      "missing_refs": [],
+      "grounded": true
+    }
+  ]
+}

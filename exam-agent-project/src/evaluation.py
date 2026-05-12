@@ -10,7 +10,7 @@ import argparse
 import json
 import random
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 from typing import Any
 
@@ -19,7 +19,7 @@ from agents import (
     Question,
     QuestionJudgeAgent,
 )
-from main import run_pipeline
+from main import build_coverage_matrix, run_pipeline
 from providers import load_model_policy, make_provider
 
 
@@ -97,7 +97,11 @@ def pilot_test(questions: list[Question]) -> dict[str, Any]:
     }
 
 
-def structural_tests(questions: list[Question], notes: dict[str, str]) -> dict[str, Any]:
+def structural_tests(
+    questions: list[Question],
+    notes: dict[str, str],
+    requirements: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     prompts = [q.prompt.strip().lower() for q in questions]
     duplicates = sorted({p for p in prompts if prompts.count(p) > 1})
     note_text = "\n".join(notes.values()).lower()
@@ -109,11 +113,14 @@ def structural_tests(questions: list[Question], notes: dict[str, str]) -> dict[s
         if not matched:
             out_of_scope_flags.append({"question": q.number, "topic": q.topic, "prompt": q.prompt})
 
-    source_gaps = [
-        {"question": q.number, "topic": q.topic}
+    source_gaps = [{"question": q.number, "topic": q.topic} for q in questions if not q.source_refs]
+    invalid_source_refs = [
+        {"question": q.number, "missing_refs": [ref for ref in q.source_refs if ref not in notes]}
         for q in questions
-        if not q.source_refs and q.kind in {"Application", "Essay", "Concept Comparison"}
+        if any(ref not in notes for ref in q.source_refs)
     ]
+    coverage_matrix = build_coverage_matrix(requirements or {}, questions) if requirements else {}
+    coverage_failed = bool(coverage_matrix) and not coverage_matrix.get("passed", False)
     return {
         "duplicate_prompt_count": len(duplicates),
         "duplicates": duplicates,
@@ -121,7 +128,10 @@ def structural_tests(questions: list[Question], notes: dict[str, str]) -> dict[s
         "out_of_scope_flags": out_of_scope_flags,
         "source_gap_count": len(source_gaps),
         "source_gaps": source_gaps,
-        "passed": not duplicates and not out_of_scope_flags,
+        "invalid_source_ref_count": len(invalid_source_refs),
+        "invalid_source_refs": invalid_source_refs,
+        "coverage_matrix": coverage_matrix,
+        "passed": not duplicates and not out_of_scope_flags and not source_gaps and not invalid_source_refs and not coverage_failed,
     }
 
 
@@ -173,6 +183,7 @@ def simulate_throughput(
     n_trials: int = 3,
     provider_name: str | None = None,
     model_policy_path: Path | None = None,
+    blueprint_path: Path | None = None,
     quality: str = "draft",
     strict_provider: bool = False,
 ) -> dict[str, Any]:
@@ -188,6 +199,7 @@ def simulate_throughput(
             max_refine_iterations=1,
             provider_name=provider_name,
             model_policy_path=model_policy_path,
+            blueprint_path=blueprint_path,
             quality=quality,
             strict_provider=strict_provider,
         )
@@ -215,6 +227,7 @@ def main() -> None:
     parser.add_argument("--report", default="outputs/evaluation_report.json")
     parser.add_argument("--simulate-trials", type=int, default=3)
     parser.add_argument("--model-policy", default="model_policy.json")
+    parser.add_argument("--blueprint", default="exam_blueprint.json")
     parser.add_argument("--quality", choices=["draft", "final"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
@@ -240,6 +253,7 @@ def main() -> None:
         max_refine_iterations=2,
         provider_name=args.provider,
         model_policy_path=model_policy_path,
+        blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,
     )
@@ -247,7 +261,11 @@ def main() -> None:
     notes = state["collection"]["notes"]
     questions_payload: list[Question] = _reload_questions(outputs_dir)
     pilot = pilot_test(questions_payload) if questions_payload else {"note": "no questions to score"}
-    structural = structural_tests(questions_payload, notes) if questions_payload else {"note": "no questions to structurally test"}
+    structural = (
+        structural_tests(questions_payload, notes, state.get("requirements"))
+        if questions_payload
+        else {"note": "no questions to structurally test"}
+    )
     judge = (
         judge_run(
             questions_payload,
@@ -266,6 +284,7 @@ def main() -> None:
         n_trials=args.simulate_trials,
         provider_name=args.provider,
         model_policy_path=model_policy_path,
+        blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,
     )
@@ -300,6 +319,12 @@ def _reload_questions(outputs_dir: Path) -> list[Question]:
 
     Avoids re-running generation just for evaluation.
     """
+
+    questions_json = outputs_dir / "questions.json"
+    if questions_json.exists():
+        raw_items = json.loads(questions_json.read_text(encoding="utf-8"))
+        allowed = {field.name for field in fields(Question)}
+        return [Question(**{k: v for k, v in item.items() if k in allowed}) for item in raw_items]
 
     exam_path = outputs_dir / "exam.md"
     ans_path = outputs_dir / "answers.md"

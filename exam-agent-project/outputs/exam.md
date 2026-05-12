@@ -12,64 +12,64 @@ Duration: 75 minutes
 
 Topic: Work and Work Systems
 
-Define work, task, process, and work system. Explain how these levels differ.
+Define work, task, process, and work system. Explain how the four levels differ from one another.
 
 ## Q2. Short Answer (5 points)
 
-Topic: Problem Solving and Ideation
+Topic: Scientific Management
 
-What are the five steps of the DASSI engineering problem-solving process?
+List Taylor's four principles of scientific management and state the managerial logic behind them in one sentence.
 
 ## Q3. Short Answer (5 points)
 
-Topic: Scientific Management
+Topic: Problem Solving and Ideation
 
-List Taylor's four principles of scientific management.
+What are the five steps of the DASSI engineering problem-solving process? Give one phrase describing the purpose of each step.
 
 ## Q4. Short Answer (5 points)
 
 Topic: Five Innovation Frameworks
 
-Name the five innovation frameworks introduced in the lecture.
+Name the five innovation frameworks from the lecture and give a one-line meaning for any two of them.
 
 ## Q5. Short Answer (5 points)
 
 Topic: Motion Study and Therbligs
 
-What are Therbligs, and why are they useful in motion study?
+What are Therbligs? Give three examples of Therblig motions and explain why this vocabulary is useful for motion study.
 
 ## Q6. Short Answer (5 points)
 
 Topic: Work and Work Systems
 
-Why is performance described as an emergent property of a work system rather than a property of any single component?
+Why is performance described as an emergent property of a work system? Answer using at least three work-system components.
 
 ## Q7. Concept Comparison (10 points)
 
-Topic: Work and Work Systems
+Topic: Scientific Management
 
-Compare Alter's work system view with a narrow technology-centered view of improvement.
+Compare natural soldiering and systematic soldiering in Taylor's theory. Why does the distinction matter for scientific management?
 
 ## Q8. Concept Comparison (10 points)
 
 Topic: Problem Solving and Ideation
 
-Compare DASSI with the PDCA improvement cycle, identifying one structural similarity and one difference.
+Compare DASSI, the KJ Method, and brainstorming. Where does each fit in a disciplined engineering problem-solving process?
 
 ## Q9. Application (15 points)
 
-Topic: Work and Work Systems
+Topic: Five Innovation Frameworks
 
-Analyze a familiar service such as a coffee shop using Alter's work system framework, identifying at least four components and one emergent performance issue.
+A university library wants to reduce student waiting time for study rooms without building more rooms. Use DASSI briefly to frame the problem, then propose two redesign ideas using two different innovation frameworks.
 
 ## Q10. Application (15 points)
 
-Topic: Problem Solving and Ideation
+Topic: Motion Study and Therbligs
 
-A hospital outpatient clinic has long waiting times and frustrated staff. Apply DASSI to outline an improvement project.
+A worker assembling small kits repeatedly searches for parts, reaches across the bench, positions items by hand, inspects the kit, and repacks defective kits. Identify likely Therbligs and propose a redesign that improves both motion efficiency and the surrounding work system.
 
 ## Q11. Essay (20 points)
 
-Topic: Work and Work Systems
+Topic: Scientific Management
 
-Argue why work-system thinking is necessary in addition to task analysis when redesigning modern operations such as a hospital, platform, or AI-enabled service.
+Discuss scientific management as an early form of work-system redesign. Your answer must cover Taylor, the Gilbreths, benefits, limitations, and how a modern manager should adapt the approach using work-system thinking and DASSI.

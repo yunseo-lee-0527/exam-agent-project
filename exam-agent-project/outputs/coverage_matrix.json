@@ -1,0 +1,26 @@
+{
+  "target_weights": {
+    "work_and_work_systems": 25,
+    "scientific_management": 20,
+    "problem_solving_and_ideation": 25,
+    "innovation_frameworks": 15,
+    "motion_study_and_therbligs": 15
+  },
+  "actual_contribution": {
+    "work_and_work_systems": 25,
+    "scientific_management": 20,
+    "problem_solving_and_ideation": 25,
+    "innovation_frameworks": 15,
+    "motion_study_and_therbligs": 15
+  },
+  "deltas": {
+    "work_and_work_systems": 0,
+    "scientific_management": 0,
+    "problem_solving_and_ideation": 0,
+    "innovation_frameworks": 0,
+    "motion_study_and_therbligs": 0
+  },
+  "missing_topics": [],
+  "total_contribution": 100,
+  "passed": true
+}

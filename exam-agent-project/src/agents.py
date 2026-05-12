@@ -54,6 +54,10 @@ class Question:
     points: int
     answer: str = ""
     source_refs: list[str] = field(default_factory=list)
+    difficulty: str = ""
+    learning_objective: str = ""
+    rubric: list[str] = field(default_factory=list)
+    coverage_contribution: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass
@@ -195,6 +199,8 @@ class DeterministicProvider:
         return _DETERMINISTIC_BANK.all_for(kind, topic)
 
     def write_answer(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
+        if question.answer and question.source_refs:
+            return {"answer": question.answer, "source_refs": question.source_refs}
         return {
             "answer": _DETERMINISTIC_BANK.answer_for(question),
             "source_refs": [
@@ -226,7 +232,7 @@ class DeterministicProvider:
         }
 
     def judge_answer(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
-        grounded = 5 if question.source_refs else 3
+        grounded = 5 if question.source_refs else 2
         accuracy = 5 if question.answer and len(question.answer.split()) >= 20 else 3
         completeness = 5 if len(question.answer.split()) >= 30 else 3
         concise = 5 if len(question.answer.split()) <= 120 else 3
@@ -614,10 +620,13 @@ class AnswerWriterAgent(BaseAgentWorker):
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
         for q in questions:
+            if q.answer and q.source_refs:
+                q.source_refs = list(dict.fromkeys(q.source_refs))
+                continue
             result = self.provider.write_answer(q, notes)
             if not q.answer:
                 q.answer = result.get("answer", "")
-            q.source_refs = result.get("source_refs", []) or q.source_refs
+            q.source_refs = list(dict.fromkeys(q.source_refs + (result.get("source_refs", []) or [])))
         return questions
 
 
@@ -666,6 +675,7 @@ class CoverageAuditAgent(BaseAgentWorker):
         topics: list[Topic] = payload["topics"]
         questions: list[Question] = payload["questions"]
         target_mix: dict[str, int] = payload.get("target_mix", {})
+        target_weights: dict[str, int] = payload.get("target_weights", {})
         notes: list[str] = []
 
         covered_titles = {q.topic for q in questions}
@@ -676,6 +686,17 @@ class CoverageAuditAgent(BaseAgentWorker):
         total_points = sum(q.points for q in questions)
         if total_points != 100:
             notes.append(f"Point total is {total_points}; consider normalizing to 100.")
+
+        if any(q.coverage_contribution for q in questions):
+            actual_weights: dict[str, int] = {}
+            for q in questions:
+                for key, points in q.coverage_contribution.items():
+                    actual_weights[key] = actual_weights.get(key, 0) + int(points)
+            notes.append(f"Coverage contribution by topic key: {actual_weights}.")
+            for key, expected in target_weights.items():
+                actual = actual_weights.get(key, 0)
+                if actual != int(expected):
+                    notes.append(f"Coverage weight mismatch: {key} got {actual}, expected {expected}.")
 
         kind_counts: dict[str, int] = {}
         for q in questions:
@@ -819,6 +840,15 @@ class FormatterAgent(BaseAgentWorker):
         lines = [f"# Model Answers: {requirements['course']} {requirements['exam_name']}", ""]
         for q in questions:
             lines += [f"## Q{q.number}. {q.kind}", "", q.answer or "(answer pending)", ""]
+            if q.learning_objective:
+                lines += [f"Learning objective: {q.learning_objective}", ""]
+            if q.rubric:
+                lines += ["Rubric:", ""]
+                lines += [f"- {item}" for item in q.rubric]
+                lines.append("")
+            if q.coverage_contribution:
+                coverage = ", ".join(f"{k}: {v}" for k, v in q.coverage_contribution.items())
+                lines += [f"Coverage contribution: {coverage}", ""]
             if q.source_refs:
                 lines += ["Sources: " + ", ".join(q.source_refs), ""]
         return "\n".join(lines)

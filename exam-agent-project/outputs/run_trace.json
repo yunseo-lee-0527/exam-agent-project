@@ -11,7 +11,7 @@
   },
   {
     "task": "Task 2",
-    "agent": "Question Writer fan-out",
+    "agent": "Blueprint Question Writer",
     "status": "completed",
     "questions": 11
   },
@@ -24,7 +24,7 @@
     "task": "Task 4c",
     "agent": "Coverage Audit",
     "status": "completed",
-    "notes": 1
+    "notes": 2
   },
   {
     "task": "Task 5",

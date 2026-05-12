@@ -31,19 +31,20 @@ Use this before submitting the final generated exam.
 ## Generated Questions
 
 - [ ] Q1: Short Answer / Work and Work Systems / 5 points
-- [ ] Q2: Short Answer / Problem Solving and Ideation / 5 points
-- [ ] Q3: Short Answer / Scientific Management / 5 points
+- [ ] Q2: Short Answer / Scientific Management / 5 points
+- [ ] Q3: Short Answer / Problem Solving and Ideation / 5 points
 - [ ] Q4: Short Answer / Five Innovation Frameworks / 5 points
 - [ ] Q5: Short Answer / Motion Study and Therbligs / 5 points
 - [ ] Q6: Short Answer / Work and Work Systems / 5 points
-- [ ] Q7: Concept Comparison / Work and Work Systems / 10 points
+- [ ] Q7: Concept Comparison / Scientific Management / 10 points
 - [ ] Q8: Concept Comparison / Problem Solving and Ideation / 10 points
-- [ ] Q9: Application / Work and Work Systems / 15 points
-- [ ] Q10: Application / Problem Solving and Ideation / 15 points
-- [ ] Q11: Essay / Work and Work Systems / 20 points
+- [ ] Q9: Application / Five Innovation Frameworks / 15 points
+- [ ] Q10: Application / Motion Study and Therbligs / 15 points
+- [ ] Q11: Essay / Scientific Management / 20 points
 
 ## Coverage Audit Notes
 
+- Coverage contribution by topic key: {'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}.
 - Question type mix: {'Short Answer': 6, 'Concept Comparison': 2, 'Application': 2, 'Essay': 1}.
 
 ## Requirements Snapshot

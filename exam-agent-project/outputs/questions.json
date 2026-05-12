@@ -1,0 +1,247 @@
+[
+  {
+    "number": 1,
+    "kind": "Short Answer",
+    "topic": "Work and Work Systems",
+    "prompt": "Define work, task, process, and work system. Explain how the four levels differ from one another.",
+    "points": 5,
+    "answer": "Work is purposeful human activity. A task is a bounded unit of work assigned to a person or role. A process is a sequence of interrelated tasks that transforms inputs into outputs. A work system is the broader socio-technical arrangement of participants, processes, information, technologies, customers, products, environment, infrastructure, and strategy. The levels differ by scope: task-level analysis is local, while work-system analysis explains system-level performance.",
+    "source_refs": [
+      "M1.1 What is Work_Revised 260312.txt",
+      "M1.3 What is a Work System.txt"
+    ],
+    "difficulty": "easy",
+    "learning_objective": "Check whether students can distinguish nested levels of work analysis.",
+    "rubric": [
+      "1 point for each correct definition of work, task, process, and work system.",
+      "1 point for explaining the difference in analytical scope."
+    ],
+    "coverage_contribution": {
+      "work_and_work_systems": 5
+    }
+  },
+  {
+    "number": 2,
+    "kind": "Short Answer",
+    "topic": "Scientific Management",
+    "prompt": "List Taylor's four principles of scientific management and state the managerial logic behind them in one sentence.",
+    "points": 5,
+    "answer": "Taylor's principles are: develop a science for each element of work; scientifically select, train, and develop workers; cooperate with workers so the scientific method is followed; and divide work and responsibility between management and workers. The managerial logic is that productivity should come from systematic design, measurement, standards, training, and coordination rather than informal rule-of-thumb methods.",
+    "source_refs": [
+      "M1.4 Scientific Management as Work System Redesign.txt"
+    ],
+    "difficulty": "easy",
+    "learning_objective": "Check recall of Taylor's canonical scientific management principles.",
+    "rubric": [
+      "4 points for the four principles.",
+      "1 point for connecting the principles to systematic managerial design."
+    ],
+    "coverage_contribution": {
+      "scientific_management": 5
+    }
+  },
+  {
+    "number": 3,
+    "kind": "Short Answer",
+    "topic": "Problem Solving and Ideation",
+    "prompt": "What are the five steps of the DASSI engineering problem-solving process? Give one phrase describing the purpose of each step.",
+    "points": 5,
+    "answer": "DASSI means Define, Analyze, Search, Select, and Implement. Define clarifies the problem and goal. Analyze uses data to understand causes and constraints. Search generates feasible alternatives. Select compares alternatives against criteria such as effectiveness, cost, feasibility, and risk. Implement puts the chosen solution into practice and monitors whether the problem is actually improved.",
+    "source_refs": [
+      "M2.1.1 Engineering Problem-Solving Process.txt"
+    ],
+    "difficulty": "easy",
+    "learning_objective": "Check recall and sequencing of the DASSI process.",
+    "rubric": [
+      "3 points for naming the five steps in order.",
+      "2 points for correctly describing the purpose of the steps."
+    ],
+    "coverage_contribution": {
+      "problem_solving_and_ideation": 5
+    }
+  },
+  {
+    "number": 4,
+    "kind": "Short Answer",
+    "topic": "Five Innovation Frameworks",
+    "prompt": "Name the five innovation frameworks from the lecture and give a one-line meaning for any two of them.",
+    "points": 5,
+    "answer": "The five frameworks are addition, subtraction, alternate means, combination, and transposition. Addition creates value by adding a feature, component, or function. Subtraction creates value by removing a component that adds complexity or cost. Alternate means replaces the way a function is achieved. Combination joins existing elements. Transposition moves a solution pattern from one domain to another.",
+    "source_refs": [
+      "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
+    ],
+    "difficulty": "easy",
+    "learning_objective": "Check whether students can identify the systematic innovation methods from lecture.",
+    "rubric": [
+      "3 points for naming all five frameworks.",
+      "2 points for accurate meanings of two frameworks."
+    ],
+    "coverage_contribution": {
+      "innovation_frameworks": 5
+    }
+  },
+  {
+    "number": 5,
+    "kind": "Short Answer",
+    "topic": "Motion Study and Therbligs",
+    "prompt": "What are Therbligs? Give three examples of Therblig motions and explain why this vocabulary is useful for motion study.",
+    "points": 5,
+    "answer": "Therbligs are basic motion elements used by Frank and Lillian Gilbreth to analyze manual work. Examples include search, find, select, grasp, reach, move, position, assemble, use, inspect, and rest. The vocabulary is useful because it decomposes a task into observable motions, making waste, fatigue, awkward layout, and avoidable searching visible enough to redesign.",
+    "source_refs": [
+      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+    ],
+    "difficulty": "easy",
+    "learning_objective": "Check whether students understand micro-level motion analysis.",
+    "rubric": [
+      "2 points for defining Therbligs as basic motion elements.",
+      "1.5 points for three correct examples.",
+      "1.5 points for explaining their redesign value."
+    ],
+    "coverage_contribution": {
+      "motion_study_and_therbligs": 5
+    }
+  },
+  {
+    "number": 6,
+    "kind": "Short Answer",
+    "topic": "Work and Work Systems",
+    "prompt": "Why is performance described as an emergent property of a work system? Answer using at least three work-system components.",
+    "points": 5,
+    "answer": "Performance is emergent because it arises from interactions among components rather than from one component alone. Participants, processes, technologies, information, customers, environment, infrastructure, and strategy jointly shape outputs. For example, faster technology may not improve service if information is missing, roles are unclear, or customer arrivals exceed process capacity. The system configuration matters more than any isolated improvement.",
+    "source_refs": [
+      "M1.3 What is a Work System.txt",
+      "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
+    ],
+    "difficulty": "medium",
+    "learning_objective": "Check system-level reasoning rather than isolated task reasoning.",
+    "rubric": [
+      "2 points for defining emergence.",
+      "2 points for using at least three work-system components.",
+      "1 point for explaining why isolated optimization can fail."
+    ],
+    "coverage_contribution": {
+      "work_and_work_systems": 5
+    }
+  },
+  {
+    "number": 7,
+    "kind": "Concept Comparison",
+    "topic": "Scientific Management",
+    "prompt": "Compare natural soldiering and systematic soldiering in Taylor's theory. Why does the distinction matter for scientific management?",
+    "points": 10,
+    "answer": "Natural soldiering is the human tendency to conserve effort. Systematic soldiering is deliberate output restriction shaped by group norms, mistrust, fear that higher output will lower piece rates, lack of reliable standards, and weak management systems. The distinction matters because Taylor's solution is not simply to demand harder work. Scientific management redesigns measurement, standards, training, incentives, and planning so that productivity becomes a system property rather than a moral judgment about workers.",
+    "source_refs": [
+      "M1.4 Scientific Management as Work System Redesign.txt"
+    ],
+    "difficulty": "medium",
+    "learning_objective": "Check whether students can explain Taylor's diagnosis of inefficiency.",
+    "rubric": [
+      "3 points for natural soldiering.",
+      "3 points for systematic soldiering.",
+      "4 points for explaining why the distinction supports system redesign."
+    ],
+    "coverage_contribution": {
+      "scientific_management": 10
+    }
+  },
+  {
+    "number": 8,
+    "kind": "Concept Comparison",
+    "topic": "Problem Solving and Ideation",
+    "prompt": "Compare DASSI, the KJ Method, and brainstorming. Where does each fit in a disciplined engineering problem-solving process?",
+    "points": 10,
+    "answer": "DASSI is the overall process: define, analyze, search, select, and implement. The KJ Method is strongest in define and analyze because it organizes facts, observations, and opinions into meaningful clusters when the problem is messy. Brainstorming is strongest in the search step because delayed judgment and quantity-focused idea generation expand the set of alternatives. Used together, KJ clarifies the problem, brainstorming expands solutions, and DASSI disciplines selection and implementation.",
+    "source_refs": [
+      "M2.1.1 Engineering Problem-Solving Process.txt",
+      "M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
+      "M2.1.3 Solution Generation (Brainstorming).txt"
+    ],
+    "difficulty": "medium",
+    "learning_objective": "Check whether students can place ideation tools inside a structured problem-solving process.",
+    "rubric": [
+      "3 points for DASSI as the overall process.",
+      "3 points for KJ Method in problem structuring.",
+      "3 points for brainstorming in solution generation.",
+      "1 point for explaining how they complement each other."
+    ],
+    "coverage_contribution": {
+      "problem_solving_and_ideation": 10
+    }
+  },
+  {
+    "number": 9,
+    "kind": "Application",
+    "topic": "Five Innovation Frameworks",
+    "prompt": "A university library wants to reduce student waiting time for study rooms without building more rooms. Use DASSI briefly to frame the problem, then propose two redesign ideas using two different innovation frameworks.",
+    "points": 15,
+    "answer": "Define the problem as excessive waiting for scarce rooms during peak demand. Analyze booking logs, no-show rates, room sizes, and user types. One subtraction idea is to remove unlimited reservations by shortening default booking blocks or cancelling no-shows automatically. One combination idea is to combine room booking with occupancy sensing and real-time queue information so unused rooms return to the pool quickly. Selection should compare waiting-time impact, fairness, privacy, cost, and ease of implementation.",
+    "source_refs": [
+      "M2.1.1 Engineering Problem-Solving Process.txt",
+      "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
+    ],
+    "difficulty": "hard",
+    "learning_objective": "Check whether students can use innovation frameworks as a problem-solving tool, not only recite them.",
+    "rubric": [
+      "3 points for framing the problem with DASSI.",
+      "4 points for a valid first innovation framework and idea.",
+      "4 points for a valid second framework and idea.",
+      "4 points for evaluation criteria and practical feasibility."
+    ],
+    "coverage_contribution": {
+      "innovation_frameworks": 10,
+      "problem_solving_and_ideation": 5
+    }
+  },
+  {
+    "number": 10,
+    "kind": "Application",
+    "topic": "Motion Study and Therbligs",
+    "prompt": "A worker assembling small kits repeatedly searches for parts, reaches across the bench, positions items by hand, inspects the kit, and repacks defective kits. Identify likely Therbligs and propose a redesign that improves both motion efficiency and the surrounding work system.",
+    "points": 15,
+    "answer": "Likely Therbligs include search, find, select, reach, grasp, move, position, assemble, inspect, and rework-related motions. Motion improvements include fixed part locations, labels or color coding, point-of-use storage, jigs for positioning, and shorter reach distances. Work-system redesign should also change information and process flow: use a visual checklist, upstream quality signal, replenishment rule, and feedback loop so defects and missing parts are prevented rather than repeatedly discovered by the assembler.",
+    "source_refs": [
+      "M1.1 What is Work_Revised 260312.txt",
+      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+    ],
+    "difficulty": "hard",
+    "learning_objective": "Check whether students can move from motion diagnosis to work-system redesign.",
+    "rubric": [
+      "4 points for identifying plausible Therbligs.",
+      "4 points for concrete motion-economy improvements.",
+      "4 points for connecting micro-level motion to process, information, or layout.",
+      "3 points for explaining how the redesign reduces rework or fatigue."
+    ],
+    "coverage_contribution": {
+      "motion_study_and_therbligs": 10,
+      "work_and_work_systems": 5
+    }
+  },
+  {
+    "number": 11,
+    "kind": "Essay",
+    "topic": "Scientific Management",
+    "prompt": "Discuss scientific management as an early form of work-system redesign. Your answer must cover Taylor, the Gilbreths, benefits, limitations, and how a modern manager should adapt the approach using work-system thinking and DASSI.",
+    "points": 20,
+    "answer": "Scientific management treated productivity as a design problem. Taylor attacked rule-of-thumb work through measurement, standards, scientific selection and training, cooperation, incentives, and a clearer split between planning and execution. The Gilbreths extended the logic to motion study and Therbligs, showing that fatigue and waste could be reduced by redesigning motions, tools, and layout. Benefits include explicit standards, teachable methods, and productivity improvement. Limitations include narrow views of motivation, worker control, and over-optimization of isolated tasks. A modern manager should adapt the approach as work-system redesign: define and analyze the problem with DASSI, consider participants, processes, information, technology, customers, and environment, search for alternatives, and select interventions that improve both efficiency and human sustainability.",
+    "source_refs": [
+      "M1.3 What is a Work System.txt",
+      "M1.4 Scientific Management as Work System Redesign.txt",
+      "M2.1.1 Engineering Problem-Solving Process.txt",
+      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+    ],
+    "difficulty": "hard",
+    "learning_objective": "Check synthesis across scientific management, work systems, and disciplined problem solving.",
+    "rubric": [
+      "4 points for Taylor's principles and cases.",
+      "3 points for Gilbreth, motion study, and Therbligs.",
+      "4 points for benefits.",
+      "4 points for limitations and human concerns.",
+      "5 points for modern adaptation using work-system thinking and DASSI."
+    ],
+    "coverage_contribution": {
+      "work_and_work_systems": 10,
+      "scientific_management": 5,
+      "problem_solving_and_ideation": 5
+    }
+  }
+]

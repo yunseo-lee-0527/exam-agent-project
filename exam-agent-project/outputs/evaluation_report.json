@@ -91,34 +91,41 @@
     "duplicates": [],
     "out_of_scope_flag_count": 0,
     "out_of_scope_flags": [],
-    "source_gap_count": 5,
-    "source_gaps": [
-      {
-        "question": 7,
-        "topic": "Work and Work Systems"
+    "source_gap_count": 0,
+    "source_gaps": [],
+    "invalid_source_ref_count": 0,
+    "invalid_source_refs": [],
+    "coverage_matrix": {
+      "target_weights": {
+        "work_and_work_systems": 25,
+        "scientific_management": 20,
+        "problem_solving_and_ideation": 25,
+        "innovation_frameworks": 15,
+        "motion_study_and_therbligs": 15
       },
-      {
-        "question": 8,
-        "topic": "Problem Solving and Ideation"
+      "actual_contribution": {
+        "work_and_work_systems": 25,
+        "scientific_management": 20,
+        "problem_solving_and_ideation": 25,
+        "innovation_frameworks": 15,
+        "motion_study_and_therbligs": 15
       },
-      {
-        "question": 9,
-        "topic": "Work and Work Systems"
+      "deltas": {
+        "work_and_work_systems": 0,
+        "scientific_management": 0,
+        "problem_solving_and_ideation": 0,
+        "innovation_frameworks": 0,
+        "motion_study_and_therbligs": 0
       },
-      {
-        "question": 10,
-        "topic": "Problem Solving and Ideation"
-      },
-      {
-        "question": 11,
-        "topic": "Work and Work Systems"
-      }
-    ],
+      "missing_topics": [],
+      "total_contribution": 100,
+      "passed": true
+    },
     "passed": true
   },
   "llm_judge": {
     "questions": {
-      "avg_total": 18.727272727272727,
+      "avg_total": 19.454545454545453,
       "verdict_mix": {
         "GOOD": 11
       },
@@ -130,22 +137,22 @@
         },
         {
           "target_id": "Q2",
-          "total": 17,
+          "total": 19,
           "verdict": "GOOD"
         },
         {
           "target_id": "Q3",
-          "total": 17,
+          "total": 19,
           "verdict": "GOOD"
         },
         {
           "target_id": "Q4",
-          "total": 17,
+          "total": 19,
           "verdict": "GOOD"
         },
         {
           "target_id": "Q5",
-          "total": 17,
+          "total": 19,
           "verdict": "GOOD"
         },
         {
@@ -181,65 +188,64 @@
       ]
     },
     "answers": {
-      "avg_total": 17.636363636363637,
+      "avg_total": 20.0,
       "verdict_mix": {
-        "GOOD": 10,
-        "ACCEPTABLE": 1
+        "GOOD": 11
       },
       "items": [
         {
           "target_id": "A1",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A2",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A3",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A4",
-          "total": 14,
-          "verdict": "ACCEPTABLE"
+          "total": 20,
+          "verdict": "GOOD"
         },
         {
           "target_id": "A5",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A6",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A7",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A8",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A9",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A10",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         },
         {
           "target_id": "A11",
-          "total": 18,
+          "total": 20,
           "verdict": "GOOD"
         }
       ]
@@ -247,8 +253,8 @@
   },
   "simulation": {
     "trials": 2,
-    "avg_seconds": 0.07176196575164795,
-    "estimated_exams_per_minute": 836.0974977698705,
+    "avg_seconds": 0.1217576265335083,
+    "estimated_exams_per_minute": 492.782273342752,
     "estimated_cost_per_exam_usd": 0.0,
     "cost_note": "See outputs/cost_report.json for provider usage and static token estimates."
   },
@@ -263,8 +269,8 @@
   },
   "static_cost_inputs": {
     "lecture_note_tokens": 34123,
-    "question_prompt_tokens": 265,
-    "answer_tokens": 727,
+    "question_prompt_tokens": 409,
+    "answer_tokens": 1364,
     "note": "Static estimates use len(text)//4 and complement provider usage records."
   },
   "golden_cases": [

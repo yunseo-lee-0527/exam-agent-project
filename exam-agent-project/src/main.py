@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +29,55 @@ from providers import load_model_policy, make_provider
 
 def load_requirements(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_exam_blueprint(path: Path | None) -> dict[str, Any] | None:
+    if not path or not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _resolve_source_refs(refs: list[str], notes: dict[str, str]) -> list[str]:
+    """Resolve exact filenames or module prefixes such as M1.4 to note files."""
+
+    resolved: list[str] = []
+    filenames = list(notes)
+    for ref in refs:
+        if ref in notes:
+            match = ref
+        else:
+            ref_lc = ref.lower()
+            match = next((f for f in filenames if f.lower().startswith(ref_lc)), None)
+            if match is None:
+                match = next((f for f in filenames if ref_lc in f.lower()), ref)
+        if match not in resolved:
+            resolved.append(match)
+    return resolved
+
+
+def questions_from_blueprint(blueprint: dict[str, Any], notes: dict[str, str]) -> list[Question]:
+    questions: list[Question] = []
+    for idx, item in enumerate(blueprint.get("questions", []), start=1):
+        coverage = {str(k): int(v) for k, v in (item.get("coverage_contribution") or {}).items()}
+        questions.append(
+            Question(
+                number=int(item.get("number", idx)),
+                kind=str(item["kind"]),
+                topic=str(item["topic"]),
+                prompt=str(item["prompt"]).strip(),
+                points=int(item["points"]),
+                answer=str(item.get("answer", "")).strip(),
+                source_refs=_resolve_source_refs(list(item.get("source_refs", [])), notes),
+                difficulty=str(item.get("difficulty", "")),
+                learning_objective=str(item.get("learning_objective", "")),
+                rubric=list(item.get("rubric", [])),
+                coverage_contribution=coverage,
+            )
+        )
+    questions.sort(key=lambda q: q.number)
+    for number, q in enumerate(questions, start=1):
+        q.number = number
+    return questions
 
 
 def _points_for(kind: str, total: int = 100, mix: dict[str, int] | None = None) -> int:
@@ -87,6 +137,57 @@ def estimate_static_cost_inputs(notes: dict[str, str], questions: list[Question]
     }
 
 
+def build_coverage_matrix(requirements: dict[str, Any], questions: list[Question]) -> dict[str, Any]:
+    target = {str(k): int(v) for k, v in requirements.get("coverage_weights", {}).items()}
+    actual: dict[str, int] = {}
+    if any(q.coverage_contribution for q in questions):
+        for q in questions:
+            for key, points in q.coverage_contribution.items():
+                actual[key] = actual.get(key, 0) + int(points)
+    else:
+        for q in questions:
+            key = q.topic.lower().replace(" and ", "_").replace(" ", "_")
+            actual[key] = actual.get(key, 0) + q.points
+
+    deltas = {key: actual.get(key, 0) - expected for key, expected in target.items()}
+    missing = [key for key in target if actual.get(key, 0) == 0]
+    return {
+        "target_weights": target,
+        "actual_contribution": actual,
+        "deltas": deltas,
+        "missing_topics": missing,
+        "total_contribution": sum(actual.values()),
+        "passed": sum(actual.values()) == 100 and all(delta == 0 for delta in deltas.values()) and not missing,
+    }
+
+
+def build_source_grounding_report(questions: list[Question], notes: dict[str, str]) -> dict[str, Any]:
+    items: list[dict[str, Any]] = []
+    valid_count = 0
+    for q in questions:
+        refs = list(dict.fromkeys(q.source_refs))
+        missing = [ref for ref in refs if ref not in notes]
+        has_grounding = bool(refs) and not missing
+        if has_grounding:
+            valid_count += 1
+        items.append(
+            {
+                "question": q.number,
+                "topic": q.topic,
+                "source_refs": refs,
+                "missing_refs": missing,
+                "grounded": has_grounding,
+            }
+        )
+    return {
+        "grounded_questions": valid_count,
+        "total_questions": len(questions),
+        "ungrounded_questions": [item for item in items if not item["grounded"]],
+        "passed": valid_count == len(questions),
+        "items": items,
+    }
+
+
 def render_human_review_checklist(
     requirements: dict[str, Any],
     questions: list[Question],
@@ -143,6 +244,7 @@ def run_pipeline(
     max_refine_iterations: int = 2,
     provider_name: str | None = None,
     model_policy_path: Path | None = None,
+    blueprint_path: Path | None = None,
     quality: str = "draft",
     strict_provider: bool = False,
 ) -> dict[str, Any]:
@@ -185,44 +287,68 @@ def run_pipeline(
 
     # --- Task 2: Question writers in parallel ---
     mix = requirements.get("question_mix", {})
-    writers = [
-        ShortAnswerWriterAgent(provider),
-        ComparisonWriterAgent(provider),
-        ApplicationWriterAgent(provider),
-        EssayWriterAgent(provider),
-    ]
-    payloads = [
-        {
-            "topics": topics,
-            "notes": notes,
-            "count": mix.get("short_answer", 6),
-            "points_per_question": _points_for("short_answer"),
-            "start_number": 1,
-        },
-        {
-            "topics": topics,
-            "notes": notes,
-            "count": mix.get("concept_comparison", 2),
-            "points_per_question": _points_for("concept_comparison"),
-            "start_number": 1,
-        },
-        {
-            "topics": topics,
-            "notes": notes,
-            "count": mix.get("application", 2),
-            "points_per_question": _points_for("application"),
-            "start_number": 1,
-        },
-        {
-            "topics": topics,
-            "notes": notes,
-            "count": mix.get("essay", 1),
-            "points_per_question": _points_for("essay"),
-            "start_number": 1,
-        },
-    ]
-    questions: list[Question] = fan_out_question_writers(writers, payloads, max_workers=4)
-    state["run_trace"].append({"task": "Task 2", "agent": "Question Writer fan-out", "status": "completed", "questions": len(questions)})
+    blueprint = load_exam_blueprint(blueprint_path)
+    if blueprint:
+        questions = questions_from_blueprint(blueprint, notes)
+        state["blueprint"] = {
+            "path": str(blueprint_path),
+            "version": blueprint.get("version", "unknown"),
+            "questions": len(questions),
+        }
+        state["run_trace"].append(
+            {
+                "task": "Task 2",
+                "agent": "Blueprint Question Writer",
+                "status": "completed",
+                "questions": len(questions),
+            }
+        )
+    else:
+        writers = [
+            ShortAnswerWriterAgent(provider),
+            ComparisonWriterAgent(provider),
+            ApplicationWriterAgent(provider),
+            EssayWriterAgent(provider),
+        ]
+        payloads = [
+            {
+                "topics": topics,
+                "notes": notes,
+                "count": mix.get("short_answer", 6),
+                "points_per_question": _points_for("short_answer"),
+                "start_number": 1,
+            },
+            {
+                "topics": topics,
+                "notes": notes,
+                "count": mix.get("concept_comparison", 2),
+                "points_per_question": _points_for("concept_comparison"),
+                "start_number": 1,
+            },
+            {
+                "topics": topics,
+                "notes": notes,
+                "count": mix.get("application", 2),
+                "points_per_question": _points_for("application"),
+                "start_number": 1,
+            },
+            {
+                "topics": topics,
+                "notes": notes,
+                "count": mix.get("essay", 1),
+                "points_per_question": _points_for("essay"),
+                "start_number": 1,
+            },
+        ]
+        questions = fan_out_question_writers(writers, payloads, max_workers=4)
+        state["run_trace"].append(
+            {
+                "task": "Task 2",
+                "agent": "Question Writer fan-out",
+                "status": "completed",
+                "questions": len(questions),
+            }
+        )
     state["draft_questions"] = len(questions)
 
     # --- Task 3: Answers (ReAct + retrieval) ---
@@ -237,6 +363,7 @@ def run_pipeline(
             "topics": topics,
             "questions": questions,
             "target_mix": mix,
+            "target_weights": requirements.get("coverage_weights", {}),
         }
     )
     state["run_trace"].append({"task": auditor.task_id, "agent": auditor.name, "status": "completed", "notes": len(coverage_notes)})
@@ -282,6 +409,10 @@ def run_pipeline(
     state["run_trace"].append({"task": coordinator.task_id, "agent": coordinator.name, "status": "completed", "iterations": len(refined["history"])})
     questions = refined["questions"]
     state["history"] = refined["history"]
+    coverage_matrix = build_coverage_matrix(requirements, questions)
+    source_grounding_report = build_source_grounding_report(questions, notes)
+    state["coverage_matrix"] = coverage_matrix
+    state["source_grounding_report"] = source_grounding_report
 
     # --- Task 6: Formatter ---
     formatter = FormatterAgent()
@@ -304,6 +435,15 @@ def run_pipeline(
     (outputs_dir / "exam.md").write_text(rendered["exam_md"], encoding="utf-8")
     (outputs_dir / "answers.md").write_text(rendered["answers_md"], encoding="utf-8")
     (outputs_dir / "review.md").write_text(rendered["review_md"], encoding="utf-8")
+    (outputs_dir / "questions.json").write_text(
+        json.dumps([asdict(q) for q in questions], indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    (outputs_dir / "coverage_matrix.json").write_text(json.dumps(coverage_matrix, indent=2, ensure_ascii=False), encoding="utf-8")
+    (outputs_dir / "source_grounding_report.json").write_text(
+        json.dumps(source_grounding_report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
     (outputs_dir / "chunk_index.json").write_text(json.dumps(chunk_index, indent=2, ensure_ascii=False), encoding="utf-8")
     (outputs_dir / "run_trace.json").write_text(json.dumps(state["run_trace"], indent=2, ensure_ascii=False), encoding="utf-8")
     (outputs_dir / "cost_report.json").write_text(
@@ -342,6 +482,7 @@ def main() -> None:
     parser.add_argument("--notes-db", default="outputs/processed_notes_db.json")
     parser.add_argument("--max-refine", type=int, default=2)
     parser.add_argument("--model-policy", default="model_policy.json")
+    parser.add_argument("--blueprint", default="exam_blueprint.json")
     parser.add_argument("--quality", choices=["draft", "final"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
@@ -361,6 +502,7 @@ def main() -> None:
         max_refine_iterations=args.max_refine,
         provider_name=args.provider,
         model_policy_path=root / args.model_policy,
+        blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,
     )

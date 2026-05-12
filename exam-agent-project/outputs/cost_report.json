@@ -13,8 +13,8 @@
   },
   "static_estimates": {
     "lecture_note_tokens": 34123,
-    "question_prompt_tokens": 265,
-    "answer_tokens": 727,
+    "question_prompt_tokens": 409,
+    "answer_tokens": 1364,
     "note": "Static estimates use len(text)//4 and complement provider usage records."
   },
   "chunk_index": {
