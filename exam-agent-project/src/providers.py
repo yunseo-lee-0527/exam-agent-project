@@ -1,15 +1,15 @@
 """LLM providers. The DeterministicProvider lives in agents.py because
 the local fallback bank is tied to the agent boundaries; this module
-adds the Vertex AI Gemini provider following M5.3.1.1 / M5.3.2 patterns
-without dragging the SDK import into the always-imported agent module.
+adds a Gemini provider following M5.3.1.1 / M5.3.2 patterns without
+dragging the SDK import into the always-imported agent module.
 
-Authentication assumes one of:
-- Colab: `from google.colab import auth; auth.authenticate_user()` was run
-- Local: `gcloud auth application-default login` was run
+Gemini authentication supports two modes:
+- Google AI Studio API key: set GEMINI_API_KEY or GOOGLE_API_KEY.
+- Vertex AI: set GCP_PROJECT_ID and authenticate with
+  `gcloud auth application-default login`.
 
-Required env vars (or constructor args):
-- GCP_PROJECT_ID
-- GCP_LOCATION (default us-central1; lecture also uses 'global')
+If an API key is present, the provider uses the simpler AI Studio path.
+Otherwise it falls back to Vertex AI configuration.
 """
 
 from __future__ import annotations
@@ -98,6 +98,7 @@ class GeminiProvider:
             location=loc,
             http_options=HttpOptions(api_version="v1"),
         )
+        self.auth_mode = "vertex_ai"
         self.fallback = fallback or DeterministicProvider()
         self.model_policy = model_policy or load_model_policy(None)
         self.strict = strict
@@ -132,7 +133,9 @@ class GeminiProvider:
         return fallback_call()
 
     def get_usage_summary(self) -> dict[str, Any]:
-        return self.usage.summary()
+        summary = self.usage.summary()
+        summary["auth_mode"] = getattr(self, "auth_mode", "vertex_ai")
+        return summary
 
     @staticmethod
     def _retrieval_context(notes: dict[str, str], keywords: list[str], limit: int = 3) -> tuple[str, list[str]]:
@@ -330,6 +333,43 @@ class GeminiProvider:
         return base
 
 
+class GeminiApiKeyProvider(GeminiProvider):
+    """Google AI Studio API-key variant of the Gemini provider.
+
+    This avoids the GCP project ID / gcloud setup path. Set either
+    GEMINI_API_KEY or GOOGLE_API_KEY before selecting --provider gemini.
+    """
+
+    def __init__(
+        self,
+        api_key: str | None = None,
+        fallback: DeterministicProvider | None = None,
+        model_policy: dict[str, Any] | None = None,
+        strict: bool = False,
+    ):
+        try:
+            from google import genai  # type: ignore
+        except ImportError as exc:
+            raise RuntimeError(
+                "google-genai SDK not installed. Run: pip install google-genai"
+            ) from exc
+
+        key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        if not key:
+            raise RuntimeError("GEMINI_API_KEY or GOOGLE_API_KEY is required for Gemini API-key mode.")
+
+        self._genai = genai
+        from google.genai import types as genai_types  # type: ignore
+
+        self._types = genai_types
+        self.client = genai.Client(api_key=key)
+        self.auth_mode = "api_key"
+        self.fallback = fallback or DeterministicProvider()
+        self.model_policy = model_policy or load_model_policy(None)
+        self.strict = strict
+        self.usage = UsageTracker(self.model_policy.get("price_per_1m_tokens_usd", {}))
+
+
 class ConfiguredDeterministicProvider(DeterministicProvider):
     def __init__(self, model_policy: dict[str, Any] | None = None):
         super().__init__()
@@ -360,6 +400,8 @@ def make_provider(
     chosen = (name or os.environ.get("EXAM_AGENT_PROVIDER") or "deterministic").lower()
     if chosen == "gemini":
         try:
+            if os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"):
+                return GeminiApiKeyProvider(model_policy=model_policy, strict=strict)
             return GeminiProvider(model_policy=model_policy, strict=strict)
         except Exception as exc:
             if strict:
