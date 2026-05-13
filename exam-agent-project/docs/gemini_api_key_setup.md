@@ -40,10 +40,24 @@ Do not paste the key into GitHub, README files, screenshots, or code.
 
 ## 4. Run The Final Gemini Pipeline
 
+Low-cost final run:
+
+```bat
+python .\src\main.py --provider gemini --quality final_low_cost --strict-provider
+python .\src\evaluation.py --provider gemini --quality final_low_cost --strict-provider --simulate-trials 1
+```
+
+High-quality final run:
+
 ```bat
 python .\src\main.py --provider gemini --quality final --strict-provider
 python .\src\evaluation.py --provider gemini --quality final --strict-provider --simulate-trials 1
 ```
+
+`final` tries higher-quality models such as `gemini-2.5-pro` first. If quota is
+exhausted, the provider now retries lower-cost models such as
+`gemini-2.5-flash` and `gemini-2.5-flash-lite` before failing. If your account
+has no Pro quota, use `final_low_cost` directly.
 
 If `GEMINI_API_KEY` or `GOOGLE_API_KEY` is set, the provider now uses the simple
 Google AI Studio API-key path. If neither key is set, it falls back to the older

@@ -228,7 +228,7 @@ def main() -> None:
     parser.add_argument("--simulate-trials", type=int, default=3)
     parser.add_argument("--model-policy", default="model_policy.json")
     parser.add_argument("--blueprint", default="exam_blueprint.json")
-    parser.add_argument("--quality", choices=["draft", "final"], default="draft")
+    parser.add_argument("--quality", choices=["draft", "final", "final_low_cost"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
         "--provider",

@@ -49,6 +49,7 @@ def load_model_policy(path: str | Path | None, quality: str = "draft") -> dict[s
     return {
         "quality": quality,
         "models": profiles[quality],
+        "model_fallbacks": data.get("model_fallbacks", {}),
         "price_per_1m_tokens_usd": data.get("price_per_1m_tokens_usd", {}),
         "fallback_provider": data.get("fallback_provider", "deterministic"),
     }
@@ -103,6 +104,7 @@ class GeminiProvider:
         self.model_policy = model_policy or load_model_policy(None)
         self.strict = strict
         self.usage = UsageTracker(self.model_policy.get("price_per_1m_tokens_usd", {}))
+        self.model_fallback_events: list[dict[str, str]] = []
 
     # ------------------------------------------------------------------
     # Helpers
@@ -110,6 +112,58 @@ class GeminiProvider:
 
     def _model(self, role: str) -> str:
         return self.model_policy.get("models", {}).get(role, DEFAULT_MODEL_POLICY["quality_profiles"]["draft"].get(role, "gemini-2.5-flash"))
+
+    def _models_for(self, role: str) -> list[str]:
+        primary = self._model(role)
+        configured = self.model_policy.get("model_fallbacks", {}).get(primary, [])
+        if isinstance(configured, str):
+            configured = [configured]
+        defaults = {
+            "gemini-2.5-pro": ["gemini-2.5-flash", "gemini-2.5-flash-lite"],
+            "premium": ["gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite"],
+        }
+        candidates = [primary] + list(configured or defaults.get(primary, []))
+        deduped: list[str] = []
+        for model in candidates:
+            if model and model not in deduped:
+                deduped.append(model)
+        return deduped
+
+    @staticmethod
+    def _is_retryable_model_error(exc: Exception) -> bool:
+        message = str(exc).lower()
+        return any(
+            marker in message
+            for marker in [
+                "429",
+                "resource_exhausted",
+                "quota",
+                "not found",
+                "not supported",
+                "permission_denied",
+            ]
+        )
+
+    def _generate_for_role(self, role: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
+        errors: list[str] = []
+        candidates = self._models_for(role)
+        for model in candidates:
+            try:
+                return self._generate(model, prompt, system, stage=stage)
+            except Exception as exc:
+                errors.append(f"{model}: {exc}")
+                if model != candidates[-1] and self._is_retryable_model_error(exc):
+                    self.model_fallback_events.append(
+                        {
+                            "stage": stage,
+                            "role": role,
+                            "failed_model": model,
+                            "fallback_model": candidates[candidates.index(model) + 1],
+                            "error": str(exc)[:500],
+                        }
+                    )
+                    continue
+                raise RuntimeError("All Gemini model attempts failed: " + " | ".join(errors)) from exc
 
     def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
         config = None
@@ -135,6 +189,7 @@ class GeminiProvider:
     def get_usage_summary(self) -> dict[str, Any]:
         summary = self.usage.summary()
         summary["auth_mode"] = getattr(self, "auth_mode", "vertex_ai")
+        summary["model_fallback_events"] = self.model_fallback_events
         return summary
 
     @staticmethod
@@ -168,7 +223,8 @@ class GeminiProvider:
             "Return the JSON plan."
         )
         try:
-            plan = self._generate_json(self._model("planner"), prompt, system, stage="planner")
+            raw = self._generate_for_role("planner", prompt, system, stage="planner")
+            plan = parse_json_block(raw) or {}
             if not plan.get("topics"):
                 raise ValueError("planner returned no topics")
             # Coerce weights to ints, sum-normalize if drifted slightly.
@@ -198,7 +254,7 @@ class GeminiProvider:
             "Return: [{\"topic\":..., \"prompt\":..., \"answer\":...}, ...]"
         )
         try:
-            raw = self._generate(self._model("writer"), prompt, system, stage=f"question_writer:{kind}")
+            raw = self._generate_for_role("writer", prompt, system, stage=f"question_writer:{kind}")
             cleaned = raw.replace("```json", "").replace("```", "").strip()
             data = json.loads(cleaned) if cleaned.startswith("[") else None
             if not data:
@@ -247,7 +303,8 @@ class GeminiProvider:
             "Return JSON only."
         )
         try:
-            data = self._generate_json(self._model("answer_writer"), prompt, system, stage="answer_writer")
+            raw = self._generate_for_role("answer_writer", prompt, system, stage="answer_writer")
+            data = parse_json_block(raw) or {}
             answer = str(data.get("answer", "")).strip()
             refs = data.get("source_refs") or sources
             if not answer:
@@ -278,7 +335,8 @@ class GeminiProvider:
             f"Lecture context:\n{ctx or '(no direct hits)'}"
         )
         try:
-            data = self._generate_json(self._model("judge"), prompt, system, stage="question_judge")
+            raw = self._generate_for_role("judge", prompt, system, stage="question_judge")
+            data = parse_json_block(raw) or {}
             self._normalize_verdict(data, prefix="Q", number=question.number)
             return data
         except Exception as exc:
@@ -300,7 +358,8 @@ class GeminiProvider:
             f"Lecture context:\n{ctx or '(no direct hits)'}"
         )
         try:
-            data = self._generate_json(self._model("judge"), prompt, system, stage="answer_judge")
+            raw = self._generate_for_role("judge", prompt, system, stage="answer_judge")
+            data = parse_json_block(raw) or {}
             self._normalize_verdict(data, prefix="A", number=question.number)
             return data
         except Exception as exc:
@@ -368,6 +427,7 @@ class GeminiApiKeyProvider(GeminiProvider):
         self.model_policy = model_policy or load_model_policy(None)
         self.strict = strict
         self.usage = UsageTracker(self.model_policy.get("price_per_1m_tokens_usd", {}))
+        self.model_fallback_events: list[dict[str, str]] = []
 
 
 class ConfiguredDeterministicProvider(DeterministicProvider):

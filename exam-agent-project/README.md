@@ -595,3 +595,34 @@ python src/evaluation.py --provider deterministic --quality draft --simulate-tri
 - `outputs/run_trace.json`
 
 `human_review_checklist.md`는 범위 확인, 문항 품질, 답안 정확성, provider/비용 확인, 최종 제출 전 체크 항목을 포함합니다.
+---
+
+## Gemini Cost Modes
+
+The project supports both high-quality and low-cost Gemini runs.
+
+### Low-cost final run
+
+Use this when `gemini-2.5-pro` quota is unavailable or too expensive.
+
+```bash
+python src/main.py --provider gemini --quality final_low_cost --strict-provider
+python src/evaluation.py --provider gemini --quality final_low_cost --strict-provider --simulate-trials 1
+```
+
+### High-quality final run
+
+Use this when the account has quota/billing for higher-quality models.
+
+```bash
+python src/main.py --provider gemini --quality final --strict-provider
+python src/evaluation.py --provider gemini --quality final --strict-provider --simulate-trials 1
+```
+
+`final` tries the higher-quality model first, but the provider now retries
+lower-cost models such as `gemini-2.5-flash` and `gemini-2.5-flash-lite` when a
+retryable quota/model error occurs. `final_low_cost` starts directly with the
+lower-cost models.
+
+For API-key setup without GCP Project ID or `gcloud`, see
+`docs/gemini_api_key_setup.md`.
