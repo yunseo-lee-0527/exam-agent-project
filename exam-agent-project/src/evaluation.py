@@ -183,6 +183,8 @@ def simulate_throughput(
     n_trials: int = 3,
     provider_name: str | None = None,
     model_policy_path: Path | None = None,
+    model_preset: str | None = None,
+    model_overrides: dict[str, str] | None = None,
     blueprint_path: Path | None = None,
     quality: str = "draft",
     strict_provider: bool = False,
@@ -199,6 +201,8 @@ def simulate_throughput(
             max_refine_iterations=1,
             provider_name=provider_name,
             model_policy_path=model_policy_path,
+            model_preset=model_preset,
+            model_overrides=model_overrides,
             blueprint_path=blueprint_path,
             quality=quality,
             strict_provider=strict_provider,
@@ -227,12 +231,18 @@ def main() -> None:
     parser.add_argument("--report", default="outputs/evaluation_report.json")
     parser.add_argument("--simulate-trials", type=int, default=3)
     parser.add_argument("--model-policy", default="model_policy.json")
+    parser.add_argument("--model-preset", default=None, help="Model toggle from model_policy.json, e.g. lecture_flash, gpt, claude_opus.")
+    parser.add_argument("--planner-model", default=None, help="Override planner model for this run.")
+    parser.add_argument("--writer-model", default=None, help="Override question writer model for this run.")
+    parser.add_argument("--answer-model", default=None, help="Override answer writer model for this run.")
+    parser.add_argument("--judge-model", default=None, help="Override judge model for this run.")
+    parser.add_argument("--final-rewriter-model", default=None, help="Override final rewriter model for this run.")
     parser.add_argument("--blueprint", default="exam_blueprint.json")
     parser.add_argument("--quality", choices=["draft", "final", "final_low_cost"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
         "--provider",
-        choices=["deterministic", "gemini", "vertex", "openai", "anthropic"],
+        choices=["deterministic", "gemini", "vertex", "openai", "gpt", "anthropic", "claude"],
         default=None,
         help="LLM provider. Falls back to EXAM_AGENT_PROVIDER env var, then 'deterministic'.",
     )
@@ -243,7 +253,19 @@ def main() -> None:
     requirements_path = root / args.requirements
     outputs_dir = root / args.outputs_dir
     model_policy_path = root / args.model_policy
-    model_policy = load_model_policy(model_policy_path, quality=args.quality)
+    model_overrides = {
+        "planner": args.planner_model,
+        "writer": args.writer_model,
+        "answer_writer": args.answer_model,
+        "judge": args.judge_model,
+        "final_rewriter": args.final_rewriter_model,
+    }
+    model_policy = load_model_policy(
+        model_policy_path,
+        quality=args.quality,
+        model_preset=args.model_preset,
+        model_overrides=model_overrides,
+    )
 
     state = run_pipeline(
         processed_dir=processed_dir,
@@ -253,6 +275,8 @@ def main() -> None:
         max_refine_iterations=2,
         provider_name=args.provider,
         model_policy_path=model_policy_path,
+        model_preset=args.model_preset,
+        model_overrides=model_overrides,
         blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,
@@ -284,6 +308,8 @@ def main() -> None:
         n_trials=args.simulate_trials,
         provider_name=args.provider,
         model_policy_path=model_policy_path,
+        model_preset=args.model_preset,
+        model_overrides=model_overrides,
         blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,
@@ -294,6 +320,8 @@ def main() -> None:
         "generated_questions": state["question_count"],
         "refinement_iterations": len(state["history"]),
         "quality": args.quality,
+        "model_preset": args.model_preset,
+        "models": model_policy.get("models", {}),
         "strict_provider": args.strict_provider,
         "pilot_test": pilot,
         "structural_tests": structural,

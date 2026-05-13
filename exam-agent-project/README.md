@@ -639,6 +639,34 @@ python .\scripts\doctor.py
 
 See `docs/evaluation_criteria_alignment.md` for the professor-facing mapping.
 
+## Model Toggle
+
+The lecture-aligned default is Gemini 2.5 Flash:
+
+```bat
+python .\src\main.py --provider vertex --quality final --model-preset lecture_flash --strict-provider
+```
+
+The same pipeline can also be toggled to GPT or Claude when those API keys are
+available:
+
+```bat
+python -m pip install openai
+set OPENAI_API_KEY=your-key
+python .\src\main.py --provider openai --quality final --model-preset gpt --strict-provider
+
+python -m pip install anthropic
+set ANTHROPIC_API_KEY=your-key
+python .\src\main.py --provider anthropic --quality final --model-preset claude_opus --strict-provider
+```
+
+Supported presets include `lecture_flash`, `cheap`, `balanced`, `pro`, `gpt`,
+`gpt_low_cost`, `claude_opus`, and `claude_sonnet`. Individual roles can also
+be overridden with `--planner-model`, `--writer-model`, `--answer-model`,
+`--judge-model`, and `--final-rewriter-model`.
+
+See `docs/model_toggle_guide.md`.
+
 ### Low-cost final run
 
 Use this when `gemini-2.5-pro` quota is unavailable or too expensive.

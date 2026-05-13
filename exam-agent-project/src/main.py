@@ -763,6 +763,8 @@ def run_pipeline(
     max_agentic_judge_iterations: int = 2,
     provider_name: str | None = None,
     model_policy_path: Path | None = None,
+    model_preset: str | None = None,
+    model_overrides: dict[str, str] | None = None,
     blueprint_path: Path | None = None,
     quality: str = "draft",
     strict_provider: bool = False,
@@ -778,7 +780,12 @@ def run_pipeline(
     state: dict[str, Any] = {"status": "STARTED", "run_trace": []}
     requirements = load_requirements(requirements_path)
     state["requirements"] = requirements
-    model_policy = load_model_policy(model_policy_path, quality=quality)
+    model_policy = load_model_policy(
+        model_policy_path,
+        quality=quality,
+        model_preset=model_preset,
+        model_overrides=model_overrides,
+    )
     state["model_policy"] = model_policy
 
     provider = make_provider(provider_name, model_policy=model_policy, strict=strict_provider)
@@ -1083,6 +1090,8 @@ def run_pipeline(
             {
                 "provider": state["provider"],
                 "quality": quality,
+                "model_preset": model_policy.get("model_preset"),
+                "models": model_policy.get("models", {}),
                 "strict_provider": strict_provider,
                 "usage": usage_summary,
                 "static_estimates": static_cost_inputs,
@@ -1119,12 +1128,22 @@ def main() -> None:
     parser.add_argument("--max-refine", type=int, default=2)
     parser.add_argument("--max-agentic-judge-refine", type=int, default=2)
     parser.add_argument("--model-policy", default="model_policy.json")
+    parser.add_argument(
+        "--model-preset",
+        default=None,
+        help="Optional model toggle from model_policy.json, e.g. lecture_flash, gpt, claude_opus.",
+    )
+    parser.add_argument("--planner-model", default=None, help="Override planner model for this run.")
+    parser.add_argument("--writer-model", default=None, help="Override question writer model for this run.")
+    parser.add_argument("--answer-model", default=None, help="Override answer writer model for this run.")
+    parser.add_argument("--judge-model", default=None, help="Override judge model for this run.")
+    parser.add_argument("--final-rewriter-model", default=None, help="Override final rewriter model for this run.")
     parser.add_argument("--blueprint", default="exam_blueprint.json")
     parser.add_argument("--quality", choices=["draft", "final", "final_low_cost"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
         "--provider",
-        choices=["deterministic", "gemini", "vertex", "openai", "anthropic"],
+        choices=["deterministic", "gemini", "vertex", "openai", "gpt", "anthropic", "claude"],
         default=None,
         help="LLM provider. Falls back to EXAM_AGENT_PROVIDER env var, then 'deterministic'.",
     )
@@ -1140,6 +1159,14 @@ def main() -> None:
         max_agentic_judge_iterations=args.max_agentic_judge_refine,
         provider_name=args.provider,
         model_policy_path=root / args.model_policy,
+        model_preset=args.model_preset,
+        model_overrides={
+            "planner": args.planner_model,
+            "writer": args.writer_model,
+            "answer_writer": args.answer_model,
+            "judge": args.judge_model,
+            "final_rewriter": args.final_rewriter_model,
+        },
         blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,

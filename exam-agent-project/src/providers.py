@@ -28,7 +28,7 @@ from costing import UsageTracker
 DEFAULT_MODEL_POLICY = {
     "quality_profiles": {
         "draft": {
-            "planner": "gemini-2.5-pro",
+            "planner": "gemini-2.5-flash",
             "writer": "gemini-2.5-flash",
             "answer_writer": "gemini-2.5-flash",
             "judge": "gemini-2.5-flash-lite",
@@ -39,7 +39,12 @@ DEFAULT_MODEL_POLICY = {
 }
 
 
-def load_model_policy(path: str | Path | None, quality: str = "draft") -> dict[str, Any]:
+def load_model_policy(
+    path: str | Path | None,
+    quality: str = "draft",
+    model_preset: str | None = None,
+    model_overrides: dict[str, str] | None = None,
+) -> dict[str, Any]:
     if path:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
     else:
@@ -47,9 +52,22 @@ def load_model_policy(path: str | Path | None, quality: str = "draft") -> dict[s
     profiles = data.get("quality_profiles", {})
     if quality not in profiles:
         raise ValueError(f"Unknown quality profile: {quality}. Available: {', '.join(profiles)}")
+    models = dict(profiles[quality])
+    preset_info: dict[str, Any] | None = None
+    if model_preset:
+        presets = data.get("model_presets", {})
+        if model_preset not in presets:
+            raise ValueError(f"Unknown model preset: {model_preset}. Available: {', '.join(presets)}")
+        preset_info = presets[model_preset]
+        models.update(preset_info.get("models", {}))
+    if model_overrides:
+        models.update({role: model for role, model in model_overrides.items() if model})
     return {
         "quality": quality,
-        "models": profiles[quality],
+        "model_preset": model_preset,
+        "model_preset_description": (preset_info or {}).get("description", ""),
+        "models": models,
+        "available_model_presets": sorted(data.get("model_presets", {})),
         "model_fallbacks": data.get("model_fallbacks", {}),
         "price_per_1m_tokens_usd": data.get("price_per_1m_tokens_usd", {}),
         "fallback_provider": data.get("fallback_provider", "deterministic"),
@@ -127,6 +145,14 @@ class GeminiProvider:
     def _model(self, role: str) -> str:
         return self.model_policy.get("models", {}).get(role, DEFAULT_MODEL_POLICY["quality_profiles"]["draft"].get(role, "gemini-2.5-flash"))
 
+    @staticmethod
+    def _strip_provider_prefix(model: str) -> str:
+        if ":" in model:
+            provider, raw_model = model.split(":", 1)
+            if provider in {"gemini", "vertex", "openai", "anthropic", "claude"}:
+                return raw_model
+        return model
+
     def _models_for(self, role: str) -> list[str]:
         primary = self._model(role)
         configured = self.model_policy.get("model_fallbacks", {}).get(primary, [])
@@ -180,6 +206,7 @@ class GeminiProvider:
                 raise RuntimeError("All Gemini model attempts failed: " + " | ".join(errors)) from exc
 
     def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
+        model = self._strip_provider_prefix(model)
         config = None
         if system:
             config = self._types.GenerateContentConfig(system_instruction=system)
@@ -196,8 +223,8 @@ class GeminiProvider:
 
     def _fallback_or_raise(self, exc: Exception, method: str, fallback_call):
         if self.strict:
-            raise RuntimeError(f"GeminiProvider.{method} failed in strict mode: {exc}") from exc
-        print(f"[GeminiProvider.{method}] fallback: {exc}")
+            raise RuntimeError(f"{self.__class__.__name__}.{method} failed in strict mode: {exc}") from exc
+        print(f"[{self.__class__.__name__}.{method}] fallback: {exc}")
         return fallback_call()
 
     def get_usage_summary(self) -> dict[str, Any]:
@@ -457,6 +484,91 @@ class GeminiApiKeyProvider(GeminiProvider):
         self.model_fallback_events: list[dict[str, str]] = []
 
 
+class OpenAIProvider(GeminiProvider):
+    """OpenAI Responses API variant using the same provider interface."""
+
+    def __init__(
+        self,
+        api_key: str | None = None,
+        fallback: DeterministicProvider | None = None,
+        model_policy: dict[str, Any] | None = None,
+        strict: bool = False,
+    ):
+        try:
+            from openai import OpenAI  # type: ignore
+        except ImportError as exc:
+            raise RuntimeError("openai SDK not installed. Run: pip install openai") from exc
+
+        key = api_key or os.environ.get("OPENAI_API_KEY")
+        if not key:
+            raise RuntimeError("OPENAI_API_KEY is required for OpenAI provider mode.")
+
+        self.client = OpenAI(api_key=key)
+        self.auth_mode = "openai_api_key"
+        self.fallback = fallback or DeterministicProvider()
+        self.model_policy = model_policy or load_model_policy(None)
+        self.strict = strict
+        self.usage = UsageTracker(self.model_policy.get("price_per_1m_tokens_usd", {}))
+        self.model_fallback_events: list[dict[str, str]] = []
+
+    def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
+        model = self._strip_provider_prefix(model)
+        response = self.client.responses.create(
+            model=model,
+            instructions=system or "",
+            input=prompt,
+        )
+        text = getattr(response, "output_text", "") or ""
+        text = text.strip()
+        self.usage.record(stage, model, (system or "") + "\n" + prompt, text)
+        return text
+
+
+class AnthropicProvider(GeminiProvider):
+    """Anthropic Messages API variant using the same provider interface."""
+
+    def __init__(
+        self,
+        api_key: str | None = None,
+        fallback: DeterministicProvider | None = None,
+        model_policy: dict[str, Any] | None = None,
+        strict: bool = False,
+    ):
+        try:
+            from anthropic import Anthropic  # type: ignore
+        except ImportError as exc:
+            raise RuntimeError("anthropic SDK not installed. Run: pip install anthropic") from exc
+
+        key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+        if not key:
+            raise RuntimeError("ANTHROPIC_API_KEY is required for Anthropic provider mode.")
+
+        self.client = Anthropic(api_key=key)
+        self.auth_mode = "anthropic_api_key"
+        self.fallback = fallback or DeterministicProvider()
+        self.model_policy = model_policy or load_model_policy(None)
+        self.strict = strict
+        self.usage = UsageTracker(self.model_policy.get("price_per_1m_tokens_usd", {}))
+        self.model_fallback_events: list[dict[str, str]] = []
+
+    def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
+        model = self._strip_provider_prefix(model)
+        response = self.client.messages.create(
+            model=model,
+            max_tokens=2048,
+            system=system or "",
+            messages=[{"role": "user", "content": prompt}],
+        )
+        parts: list[str] = []
+        for block in response.content:
+            text = getattr(block, "text", "")
+            if text:
+                parts.append(text)
+        result = "\n".join(parts).strip()
+        self.usage.record(stage, model, (system or "") + "\n" + prompt, result)
+        return result
+
+
 class ConfiguredDeterministicProvider(DeterministicProvider):
     def __init__(self, model_policy: dict[str, Any] | None = None):
         super().__init__()
@@ -511,9 +623,20 @@ def make_provider(
             return ConfiguredDeterministicProvider(model_policy=model_policy)
     if chosen == "deterministic":
         return ConfiguredDeterministicProvider(model_policy=model_policy)
-    if chosen in {"openai", "anthropic"}:
-        raise NotImplementedError(
-            f"Provider '{chosen}' is reserved for the premium final-generation hook. "
-            "Add the provider client and API key before selecting it."
-        )
-    raise ValueError(f"Unknown provider: {chosen}. Use deterministic, gemini, vertex, openai, or anthropic.")
+    if chosen in {"openai", "gpt"}:
+        try:
+            return OpenAIProvider(model_policy=model_policy, strict=strict)
+        except Exception as exc:
+            if strict:
+                raise
+            print(f"[make_provider] OpenAI unavailable; using deterministic fallback: {exc}")
+            return ConfiguredDeterministicProvider(model_policy=model_policy)
+    if chosen in {"anthropic", "claude"}:
+        try:
+            return AnthropicProvider(model_policy=model_policy, strict=strict)
+        except Exception as exc:
+            if strict:
+                raise
+            print(f"[make_provider] Anthropic unavailable; using deterministic fallback: {exc}")
+            return ConfiguredDeterministicProvider(model_policy=model_policy)
+    raise ValueError(f"Unknown provider: {chosen}. Use deterministic, gemini, vertex, openai, gpt, anthropic, or claude.")

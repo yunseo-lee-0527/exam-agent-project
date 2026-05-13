@@ -2,7 +2,15 @@
   "provider": "ConfiguredDeterministicProvider",
   "generated_questions": 11,
   "refinement_iterations": 1,
-  "quality": "draft",
+  "quality": "final",
+  "model_preset": "lecture_flash",
+  "models": {
+    "planner": "gemini-2.5-flash",
+    "writer": "gemini-2.5-flash",
+    "answer_writer": "gemini-2.5-flash",
+    "judge": "gemini-2.5-flash-lite",
+    "final_rewriter": "gemini-2.5-flash"
+  },
   "strict_provider": false,
   "pilot_test": {
     "passed": 5,
@@ -1694,8 +1702,8 @@
   },
   "simulation": {
     "trials": 1,
-    "avg_seconds": 0.09687590599060059,
-    "estimated_exams_per_minute": 619.3490464576561,
+    "avg_seconds": 0.23765254020690918,
+    "estimated_exams_per_minute": 252.46942426014786,
     "estimated_cost_per_exam_usd": 0.0,
     "cost_note": "See outputs/cost_report.json for provider usage and static token estimates."
   },
