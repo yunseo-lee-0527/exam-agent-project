@@ -599,7 +599,22 @@ python src/evaluation.py --provider deterministic --quality draft --simulate-tri
 
 ## Gemini Cost Modes
 
-The project supports both high-quality and low-cost Gemini runs.
+The project supports both lecture-style Vertex AI runs and API-key runs.
+For the course setup, prefer the Vertex AI / Agent Platform API path:
+
+```bat
+cd /d "C:\Users\iy579\Documents\New project 2\exam-agent-project"
+set GCP_PROJECT_ID=your-project-id
+set GCP_LOCATION=us-central1
+gcloud auth application-default login
+python .\src\main.py --provider vertex --quality final_low_cost --strict-provider
+```
+
+`--provider vertex` forces the same `genai.Client(vertexai=True, project=..., location=...)`
+pattern used in `M5.3.1.1_gpc_setup.ipynb`. See
+`docs/vertex_ai_agent_platform_setup.md`.
+
+The project also supports both high-quality and low-cost Gemini model choices.
 
 ### Low-cost final run
 

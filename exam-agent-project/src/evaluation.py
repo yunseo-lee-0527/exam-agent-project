@@ -232,7 +232,7 @@ def main() -> None:
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
         "--provider",
-        choices=["deterministic", "gemini", "openai", "anthropic"],
+        choices=["deterministic", "gemini", "vertex", "openai", "anthropic"],
         default=None,
         help="LLM provider. Falls back to EXAM_AGENT_PROVIDER env var, then 'deterministic'.",
     )

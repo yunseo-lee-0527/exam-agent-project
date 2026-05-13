@@ -4,12 +4,13 @@ adds a Gemini provider following M5.3.1.1 / M5.3.2 patterns without
 dragging the SDK import into the always-imported agent module.
 
 Gemini authentication supports two modes:
+- Vertex AI / Agent Platform API, matching the lecture notebooks:
+  set GCP_PROJECT_ID or GOOGLE_CLOUD_PROJECT and authenticate with
+  `gcloud auth application-default login` outside Colab.
 - Google AI Studio API key: set GEMINI_API_KEY or GOOGLE_API_KEY.
-- Vertex AI: set GCP_PROJECT_ID and authenticate with
-  `gcloud auth application-default login`.
 
-If an API key is present, the provider uses the simpler AI Studio path.
-Otherwise it falls back to Vertex AI configuration.
+Vertex AI is preferred when a project ID is present or when the provider is
+selected as `vertex`. Set EXAM_AGENT_GEMINI_AUTH=api_key to force API-key mode.
 """
 
 from __future__ import annotations
@@ -85,13 +86,26 @@ class GeminiProvider:
 
         self._types = genai_types
 
-        project = project_id or os.environ.get("GCP_PROJECT_ID")
+        project = (
+            project_id
+            or os.environ.get("GCP_PROJECT_ID")
+            or os.environ.get("GOOGLE_CLOUD_PROJECT")
+            or os.environ.get("PROJECT_ID")
+        )
         if not project:
             raise RuntimeError(
-                "GCP_PROJECT_ID is not set. Either pass project_id= or set the env var.\n"
-                "See M5.3.1.1 §3 for how to find your project ID."
+                "GCP_PROJECT_ID is not set. Set it to the Google Cloud Project ID "
+                "from the lecture's Agent Platform API setup.\n"
+                "Windows cmd example: set GCP_PROJECT_ID=your-project-id\n"
+                "PowerShell example: $env:GCP_PROJECT_ID=\"your-project-id\""
             )
-        loc = location or os.environ.get("GCP_LOCATION", "us-central1")
+        loc = (
+            location
+            or os.environ.get("GCP_LOCATION")
+            or os.environ.get("GOOGLE_CLOUD_LOCATION")
+            or os.environ.get("LOCATION")
+            or "us-central1"
+        )
 
         self.client = genai.Client(
             vertexai=True,
@@ -458,9 +472,23 @@ def make_provider(
     """
 
     chosen = (name or os.environ.get("EXAM_AGENT_PROVIDER") or "deterministic").lower()
-    if chosen == "gemini":
+    if chosen in {"gemini", "vertex", "vertexai", "gemini-vertex"}:
         try:
-            if os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"):
+            auth_mode = os.environ.get("EXAM_AGENT_GEMINI_AUTH", "auto").lower()
+            has_project = bool(
+                os.environ.get("GCP_PROJECT_ID")
+                or os.environ.get("GOOGLE_CLOUD_PROJECT")
+                or os.environ.get("PROJECT_ID")
+            )
+            has_api_key = bool(os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"))
+
+            if chosen in {"vertex", "vertexai", "gemini-vertex"} or auth_mode in {"vertex", "vertex_ai"}:
+                return GeminiProvider(model_policy=model_policy, strict=strict)
+            if auth_mode in {"api_key", "apikey", "ai_studio"}:
+                return GeminiApiKeyProvider(model_policy=model_policy, strict=strict)
+            if has_project:
+                return GeminiProvider(model_policy=model_policy, strict=strict)
+            if has_api_key:
                 return GeminiApiKeyProvider(model_policy=model_policy, strict=strict)
             return GeminiProvider(model_policy=model_policy, strict=strict)
         except Exception as exc:
@@ -475,4 +503,4 @@ def make_provider(
             f"Provider '{chosen}' is reserved for the premium final-generation hook. "
             "Add the provider client and API key before selecting it."
         )
-    raise ValueError(f"Unknown provider: {chosen}. Use deterministic, gemini, openai, or anthropic.")
+    raise ValueError(f"Unknown provider: {chosen}. Use deterministic, gemini, vertex, openai, or anthropic.")
