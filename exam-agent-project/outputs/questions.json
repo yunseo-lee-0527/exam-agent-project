@@ -10,8 +10,12 @@
       "M1.1 What is Work_Revised 260312.txt",
       "M1.3 What is a Work System.txt"
     ],
-    "difficulty": "easy",
+    "difficulty": "Easy",
     "learning_objective": "Check whether students can distinguish nested levels of work analysis.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 4,
+    "exam_intent": "This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
       "1 point for each correct definition of work, task, process, and work system.",
       "1 point for explaining the difference in analytical scope."
@@ -30,8 +34,12 @@
     "source_refs": [
       "M1.4 Scientific Management as Work System Redesign.txt"
     ],
-    "difficulty": "easy",
+    "difficulty": "Easy",
     "learning_objective": "Check recall of Taylor's canonical scientific management principles.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 4,
+    "exam_intent": "This item tests Scientific Management beyond surface recall by requiring a response appropriate to the short answer format.",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
       "4 points for the four principles.",
       "1 point for connecting the principles to systematic managerial design."
@@ -50,8 +58,12 @@
     "source_refs": [
       "M2.1.1 Engineering Problem-Solving Process.txt"
     ],
-    "difficulty": "easy",
+    "difficulty": "Easy",
     "learning_objective": "Check recall and sequencing of the DASSI process.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 4,
+    "exam_intent": "This item tests Problem Solving and Ideation beyond surface recall by requiring a response appropriate to the short answer format.",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
       "3 points for naming the five steps in order.",
       "2 points for correctly describing the purpose of the steps."
@@ -70,8 +82,12 @@
     "source_refs": [
       "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
     ],
-    "difficulty": "easy",
+    "difficulty": "Easy",
     "learning_objective": "Check whether students can identify the systematic innovation methods from lecture.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 4,
+    "exam_intent": "This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the short answer format.",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
       "3 points for naming all five frameworks.",
       "2 points for accurate meanings of two frameworks."
@@ -90,8 +106,12 @@
     "source_refs": [
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
-    "difficulty": "easy",
+    "difficulty": "Easy",
     "learning_objective": "Check whether students understand micro-level motion analysis.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 4,
+    "exam_intent": "This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the short answer format.",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
       "2 points for defining Therbligs as basic motion elements.",
       "1.5 points for three correct examples.",
@@ -112,8 +132,12 @@
       "M1.3 What is a Work System.txt",
       "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
     ],
-    "difficulty": "medium",
+    "difficulty": "Medium",
     "learning_objective": "Check system-level reasoning rather than isolated task reasoning.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 4,
+    "exam_intent": "This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
       "2 points for defining emergence.",
       "2 points for using at least three work-system components.",
@@ -133,8 +157,12 @@
     "source_refs": [
       "M1.4 Scientific Management as Work System Redesign.txt"
     ],
-    "difficulty": "hard",
+    "difficulty": "Hard",
     "learning_objective": "Check whether students can explain Taylor's diagnosis of inefficiency.",
+    "bloom_level": "Analyze",
+    "estimated_time_minutes": 8,
+    "exam_intent": "This item tests Scientific Management beyond surface recall by requiring a response appropriate to the concept comparison format.",
+    "assessed_skill": "concept distinction and structural reasoning",
     "rubric": [
       "3 points for natural soldiering.",
       "3 points for systematic soldiering.",
@@ -156,8 +184,12 @@
       "M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
       "M2.1.3 Solution Generation (Brainstorming).txt"
     ],
-    "difficulty": "medium",
+    "difficulty": "Medium",
     "learning_objective": "Check whether students can place ideation tools inside a structured problem-solving process.",
+    "bloom_level": "Analyze",
+    "estimated_time_minutes": 8,
+    "exam_intent": "This item tests Problem Solving and Ideation beyond surface recall by requiring a response appropriate to the concept comparison format.",
+    "assessed_skill": "concept distinction and structural reasoning",
     "rubric": [
       "3 points for DASSI as the overall process.",
       "3 points for KJ Method in problem structuring.",
@@ -179,8 +211,12 @@
       "M2.1.1 Engineering Problem-Solving Process.txt",
       "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
     ],
-    "difficulty": "medium",
+    "difficulty": "Medium",
     "learning_objective": "Check whether students can use innovation frameworks as a problem-solving tool, not only recite them.",
+    "bloom_level": "Apply/Analyze",
+    "estimated_time_minutes": 11,
+    "exam_intent": "This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the application format.",
+    "assessed_skill": "framework application to a concrete work-system situation",
     "rubric": [
       "3 points for framing the problem with DASSI.",
       "4 points for a valid first innovation framework and idea.",
@@ -203,8 +239,12 @@
       "M1.1 What is Work_Revised 260312.txt",
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
-    "difficulty": "hard",
+    "difficulty": "Hard",
     "learning_objective": "Check whether students can move from motion diagnosis to work-system redesign.",
+    "bloom_level": "Apply/Analyze",
+    "estimated_time_minutes": 12,
+    "exam_intent": "This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the application format.",
+    "assessed_skill": "framework application to a concrete work-system situation",
     "rubric": [
       "4 points for identifying plausible Therbligs.",
       "4 points for concrete motion-economy improvements.",
@@ -229,8 +269,12 @@
       "M2.1.1 Engineering Problem-Solving Process.txt",
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
-    "difficulty": "medium",
+    "difficulty": "Medium",
     "learning_objective": "Check synthesis across scientific management, work systems, and disciplined problem solving.",
+    "bloom_level": "Apply/Analyze",
+    "estimated_time_minutes": 12,
+    "exam_intent": "This item tests Scientific Management beyond surface recall by requiring a response appropriate to the essay format.",
+    "assessed_skill": "framework application to a concrete work-system situation",
     "rubric": [
       "4 points for Taylor's principles and cases.",
       "3 points for Gilbreth, motion study, and Therbligs.",

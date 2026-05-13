@@ -616,6 +616,29 @@ pattern used in `M5.3.1.1_gpc_setup.ipynb`. See
 
 The project also supports both high-quality and low-cost Gemini model choices.
 
+## Evaluation Evidence
+
+The final run now produces instructor-facing evidence for the four evaluation
+criteria:
+
+- `outputs/assessment_validity_report.md`: Bloom level, difficulty, estimated
+  time, learning objective, assessed skill, source references, and rubric for
+  every question.
+- `outputs/human_review_notes_template.json`: structured human review protocol
+  for the final professor/team gate.
+- `outputs/critical_discussion.md`: limitations, LLM-as-judge bias,
+  cost-quality trade-off, and automation boundary.
+- `outputs/agentic_judge_report.json`: specialist judge findings and revision
+  instructions.
+
+Before a final live demo, run the local setup checker:
+
+```bat
+python .\scripts\doctor.py
+```
+
+See `docs/evaluation_criteria_alignment.md` for the professor-facing mapping.
+
 ### Low-cost final run
 
 Use this when `gemini-2.5-pro` quota is unavailable or too expensive.

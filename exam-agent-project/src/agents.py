@@ -56,6 +56,10 @@ class Question:
     source_refs: list[str] = field(default_factory=list)
     difficulty: str = ""
     learning_objective: str = ""
+    bloom_level: str = ""
+    estimated_time_minutes: int = 0
+    exam_intent: str = ""
+    assessed_skill: str = ""
     rubric: list[str] = field(default_factory=list)
     coverage_contribution: dict[str, int] = field(default_factory=dict)
 
@@ -540,6 +544,13 @@ class _BaseQuestionWriter(BaseAgentWorker):
                             prompt=draft["prompt"],
                             points=per_topic_points,
                             answer=draft.get("answer", ""),
+                            difficulty=draft.get("difficulty", ""),
+                            learning_objective=draft.get("learning_objective", ""),
+                            bloom_level=draft.get("bloom_level", ""),
+                            estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
+                            exam_intent=draft.get("exam_intent", ""),
+                            assessed_skill=draft.get("assessed_skill", ""),
+                            rubric=list(draft.get("rubric", [])),
                         )
                     )
                     seen_prompts.add(draft["prompt"])
@@ -1268,6 +1279,9 @@ class FormatterAgent(BaseAgentWorker):
                 f"## Q{q.number}. {q.kind} ({q.points} points)",
                 "",
                 f"Topic: {q.topic}",
+                f"Bloom level: {q.bloom_level or 'TBD'} | Difficulty: {q.difficulty or 'TBD'} | Estimated time: {q.estimated_time_minutes or 'TBD'} min",
+                "",
+                f"Assessed skill: {q.assessed_skill or 'TBD'}",
                 "",
                 q.prompt,
                 "",
@@ -1281,6 +1295,18 @@ class FormatterAgent(BaseAgentWorker):
             lines += [f"## Q{q.number}. {q.kind}", "", q.answer or "(answer pending)", ""]
             if q.learning_objective:
                 lines += [f"Learning objective: {q.learning_objective}", ""]
+            if q.exam_intent:
+                lines += [f"Exam intent: {q.exam_intent}", ""]
+            if q.bloom_level or q.difficulty or q.estimated_time_minutes:
+                lines += [
+                    "Assessment metadata: "
+                    f"Bloom={q.bloom_level or 'TBD'}, "
+                    f"difficulty={q.difficulty or 'TBD'}, "
+                    f"estimated_time={q.estimated_time_minutes or 'TBD'} minutes",
+                    "",
+                ]
+            if q.assessed_skill:
+                lines += [f"Assessed skill: {q.assessed_skill}", ""]
             if q.rubric:
                 lines += ["Rubric:", ""]
                 lines += [f"- {item}" for item in q.rubric]

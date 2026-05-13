@@ -6,6 +6,12 @@ Work is purposeful human activity. A task is a bounded unit of work assigned to 
 
 Learning objective: Check whether students can distinguish nested levels of work analysis.
 
+Exam intent: This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
+
+Assessed skill: concept recall and explanation
+
 Rubric:
 
 - 1 point for each correct definition of work, task, process, and work system.
@@ -20,6 +26,12 @@ Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
 Taylor's principles are: develop a science for each element of work; scientifically select, train, and develop workers; cooperate with workers so the scientific method is followed; and divide work and responsibility between management and workers. The managerial logic is that productivity should come from systematic design, measurement, standards, training, and coordination rather than informal rule-of-thumb methods.
 
 Learning objective: Check recall of Taylor's canonical scientific management principles.
+
+Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
+
+Assessed skill: concept recall and explanation
 
 Rubric:
 
@@ -36,6 +48,12 @@ DASSI means Define, Analyze, Search, Select, and Implement. Define clarifies the
 
 Learning objective: Check recall and sequencing of the DASSI process.
 
+Exam intent: This item tests Problem Solving and Ideation beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
+
+Assessed skill: concept recall and explanation
+
 Rubric:
 
 - 3 points for naming the five steps in order.
@@ -51,6 +69,12 @@ The five frameworks are addition, subtraction, alternate means, combination, and
 
 Learning objective: Check whether students can identify the systematic innovation methods from lecture.
 
+Exam intent: This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
+
+Assessed skill: concept recall and explanation
+
 Rubric:
 
 - 3 points for naming all five frameworks.
@@ -65,6 +89,12 @@ Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 Therbligs are basic motion elements used by Frank and Lillian Gilbreth to analyze manual work. Examples include search, find, select, grasp, reach, move, position, assemble, use, inspect, and rest. The vocabulary is useful because it decomposes a task into observable motions, making waste, fatigue, awkward layout, and avoidable searching visible enough to redesign.
 
 Learning objective: Check whether students understand micro-level motion analysis.
+
+Exam intent: This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
+
+Assessed skill: concept recall and explanation
 
 Rubric:
 
@@ -82,6 +112,12 @@ Performance is emergent because it arises from interactions among components rat
 
 Learning objective: Check system-level reasoning rather than isolated task reasoning.
 
+Exam intent: This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=4 minutes
+
+Assessed skill: concept recall and explanation
+
 Rubric:
 
 - 2 points for defining emergence.
@@ -98,6 +134,12 @@ Natural soldiering is the human tendency to conserve effort. Systematic soldieri
 
 Learning objective: Check whether students can explain Taylor's diagnosis of inefficiency.
 
+Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the concept comparison format.
+
+Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=8 minutes
+
+Assessed skill: concept distinction and structural reasoning
+
 Rubric:
 
 - 3 points for natural soldiering.
@@ -113,6 +155,12 @@ Sources: M1.4 Scientific Management as Work System Redesign.txt
 DASSI is the overall process: define, analyze, search, select, and implement. The KJ Method is strongest in define and analyze because it organizes facts, observations, and opinions into meaningful clusters when the problem is messy. Brainstorming is strongest in the search step because delayed judgment and quantity-focused idea generation expand the set of alternatives. Used together, KJ clarifies the problem, brainstorming expands solutions, and DASSI disciplines selection and implementation.
 
 Learning objective: Check whether students can place ideation tools inside a structured problem-solving process.
+
+Exam intent: This item tests Problem Solving and Ideation beyond surface recall by requiring a response appropriate to the concept comparison format.
+
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=8 minutes
+
+Assessed skill: concept distinction and structural reasoning
 
 Rubric:
 
@@ -131,6 +179,12 @@ Define the problem as excessive waiting for scarce rooms during peak demand. Ana
 
 Learning objective: Check whether students can use innovation frameworks as a problem-solving tool, not only recite them.
 
+Exam intent: This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the application format.
+
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=11 minutes
+
+Assessed skill: framework application to a concrete work-system situation
+
 Rubric:
 
 - 3 points for framing the problem with DASSI.
@@ -148,6 +202,12 @@ Likely Therbligs include search, find, select, reach, grasp, move, position, ass
 
 Learning objective: Check whether students can move from motion diagnosis to work-system redesign.
 
+Exam intent: This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the application format.
+
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Hard, estimated_time=12 minutes
+
+Assessed skill: framework application to a concrete work-system situation
+
 Rubric:
 
 - 4 points for identifying plausible Therbligs.
@@ -164,6 +224,12 @@ Sources: M1.1 What is Work_Revised 260312.txt, M3.1.1 Micro-level Motion Study (
 Scientific management treated productivity as a design problem. Taylor attacked rule-of-thumb work through measurement, standards, scientific selection and training, cooperation, incentives, and a clearer split between planning and execution. The Gilbreths extended the logic to motion study and Therbligs, showing that fatigue and waste could be reduced by redesigning motions, tools, and layout. Benefits include explicit standards, teachable methods, and productivity improvement. Limitations include narrow views of motivation, worker control, and over-optimization of isolated tasks. A modern manager should adapt the approach as work-system redesign: define and analyze the problem with DASSI, consider participants, processes, information, technology, customers, and environment, search for alternatives, and select interventions that improve both efficiency and human sustainability.
 
 Learning objective: Check synthesis across scientific management, work systems, and disciplined problem solving.
+
+Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the essay format.
+
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=12 minutes
+
+Assessed skill: framework application to a concrete work-system situation
 
 Rubric:
 

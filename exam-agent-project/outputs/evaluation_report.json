@@ -1662,7 +1662,7 @@
         "risk": "deterministic_provider",
         "severity": "high",
         "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
-        "mitigation": "Run the final pipeline with --provider gemini --quality final --strict-provider and preserve cost_report.json as evidence."
+        "mitigation": "Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider or --provider vertex --quality final --strict-provider, then preserve cost_report.json as evidence."
       },
       {
         "risk": "blueprint_dependency",
@@ -1693,9 +1693,9 @@
     "chunk_grounding_passed": true
   },
   "simulation": {
-    "trials": 2,
-    "avg_seconds": 0.09411942958831787,
-    "estimated_exams_per_minute": 637.487926376545,
+    "trials": 1,
+    "avg_seconds": 0.09687590599060059,
+    "estimated_exams_per_minute": 619.3490464576561,
     "estimated_cost_per_exam_usd": 0.0,
     "cost_note": "See outputs/cost_report.json for provider usage and static token estimates."
   },

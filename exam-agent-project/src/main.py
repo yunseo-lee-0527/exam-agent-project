@@ -72,6 +72,10 @@ def questions_from_blueprint(blueprint: dict[str, Any], notes: dict[str, str]) -
                 source_refs=_resolve_source_refs(list(item.get("source_refs", [])), notes),
                 difficulty=str(item.get("difficulty", "")),
                 learning_objective=str(item.get("learning_objective", "")),
+                bloom_level=str(item.get("bloom_level", "")),
+                estimated_time_minutes=int(item.get("estimated_time_minutes", 0) or 0),
+                exam_intent=str(item.get("exam_intent", "")),
+                assessed_skill=str(item.get("assessed_skill", "")),
                 rubric=list(item.get("rubric", [])),
                 coverage_contribution=coverage,
             )
@@ -170,6 +174,258 @@ def build_coverage_matrix(requirements: dict[str, Any], questions: list[Question
         "total_contribution": sum(actual.values()),
         "passed": sum(actual.values()) == 100 and all(delta == 0 for delta in deltas.values()) and not missing,
     }
+
+
+def _infer_bloom_level(q: Question) -> str:
+    prompt_lc = q.prompt.lower()
+    kind_lc = q.kind.lower()
+    if "application" in kind_lc or any(word in prompt_lc for word in ["apply", "diagnose", "propose", "redesign"]):
+        return "Apply/Analyze"
+    if "essay" in kind_lc or any(word in prompt_lc for word in ["evaluate", "critique", "justify", "argue"]):
+        return "Evaluate/Create"
+    if "comparison" in kind_lc or any(word in prompt_lc for word in ["compare", "distinguish", "contrast"]):
+        return "Analyze"
+    return "Remember/Understand"
+
+
+def _infer_difficulty(q: Question) -> str:
+    if q.points >= 20 or q.bloom_level in {"Evaluate/Create"}:
+        return "High"
+    if q.points >= 10 or q.bloom_level in {"Analyze", "Apply/Analyze"}:
+        return "Medium"
+    return "Low"
+
+
+def _infer_estimated_time(q: Question) -> int:
+    if q.points >= 20:
+        return 18
+    if q.points >= 15:
+        return 12
+    if q.points >= 10:
+        return 8
+    return 4
+
+
+def _default_rubric(q: Question) -> list[str]:
+    if "essay" in q.kind.lower():
+        return [
+            "Defines the relevant lecture concepts accurately.",
+            "Develops a coherent argument with explicit reasoning.",
+            "Uses lecture-grounded evidence or examples.",
+            "Addresses limitations or trade-offs where appropriate.",
+        ]
+    if "application" in q.kind.lower():
+        return [
+            "Identifies the relevant work-system or process problem.",
+            "Applies the named lecture framework correctly.",
+            "Proposes concrete actions tied to the scenario.",
+            "Explains why the proposed actions address the root cause.",
+        ]
+    if "comparison" in q.kind.lower():
+        return [
+            "Defines both concepts accurately.",
+            "States at least one meaningful similarity or difference.",
+            "Explains the implication for work-system analysis.",
+        ]
+    return [
+        "States the core concept accurately.",
+        "Uses precise terminology from the lecture.",
+        "Avoids unsupported claims beyond the lecture material.",
+    ]
+
+
+def enrich_assessment_metadata(questions: list[Question]) -> list[Question]:
+    """Fill instructor-facing validity metadata for every question."""
+
+    for q in questions:
+        if not q.bloom_level:
+            q.bloom_level = _infer_bloom_level(q)
+        else:
+            normalized_bloom = q.bloom_level.strip()
+            known = {
+                "remember": "Remember/Understand",
+                "understand": "Remember/Understand",
+                "remember/understand": "Remember/Understand",
+                "analyze": "Analyze",
+                "apply": "Apply/Analyze",
+                "apply/analyze": "Apply/Analyze",
+                "evaluate": "Evaluate/Create",
+                "create": "Evaluate/Create",
+                "evaluate/create": "Evaluate/Create",
+            }
+            q.bloom_level = known.get(normalized_bloom.lower(), normalized_bloom)
+        if not q.difficulty:
+            q.difficulty = _infer_difficulty(q)
+        else:
+            q.difficulty = q.difficulty.strip().title()
+        if not q.estimated_time_minutes:
+            q.estimated_time_minutes = _infer_estimated_time(q)
+        if not q.learning_objective:
+            q.learning_objective = f"Assess whether students can use {q.topic} concepts in a {q.kind.lower()} task."
+        if not q.exam_intent:
+            q.exam_intent = (
+                f"This item tests {q.topic} beyond surface recall by requiring a response appropriate "
+                f"to the {q.kind.lower()} format."
+            )
+        if not q.assessed_skill:
+            q.assessed_skill = {
+                "Remember/Understand": "concept recall and explanation",
+                "Analyze": "concept distinction and structural reasoning",
+                "Apply/Analyze": "framework application to a concrete work-system situation",
+                "Evaluate/Create": "synthesis, justification, and critical evaluation",
+            }.get(q.bloom_level, "lecture-grounded reasoning")
+        if not q.rubric:
+            q.rubric = _default_rubric(q)
+    return questions
+
+
+def fit_estimated_time_budget(questions: list[Question], target_minutes: int) -> list[Question]:
+    """Keep estimated student time within the requested exam duration."""
+
+    if not target_minutes:
+        return questions
+    current = sum(q.estimated_time_minutes for q in questions)
+    if current <= target_minutes:
+        return questions
+
+    by_kind_min = {
+        "short": 3,
+        "comparison": 6,
+        "application": 9,
+        "essay": 12,
+    }
+    while current > target_minutes:
+        adjustable = sorted(
+            questions,
+            key=lambda item: (item.estimated_time_minutes, item.points),
+            reverse=True,
+        )
+        changed = False
+        for q in adjustable:
+            kind_lc = q.kind.lower()
+            if "essay" in kind_lc:
+                kind_key = "essay"
+            elif "application" in kind_lc:
+                kind_key = "application"
+            elif "comparison" in kind_lc:
+                kind_key = "comparison"
+            else:
+                kind_key = "short"
+            floor = by_kind_min[kind_key]
+            if q.estimated_time_minutes > floor:
+                q.estimated_time_minutes -= 1
+                current -= 1
+                changed = True
+                break
+        if not changed:
+            break
+    return questions
+
+
+def build_assessment_validity_report(
+    requirements: dict[str, Any],
+    questions: list[Question],
+    coverage_matrix: dict[str, Any],
+    source_grounding_report: dict[str, Any],
+    chunk_grounding_report: dict[str, Any],
+) -> dict[str, Any]:
+    bloom_distribution: dict[str, int] = {}
+    difficulty_distribution: dict[str, int] = {}
+    kind_distribution: dict[str, int] = {}
+    missing_metadata: list[dict[str, Any]] = []
+    for q in questions:
+        bloom_distribution[q.bloom_level] = bloom_distribution.get(q.bloom_level, 0) + 1
+        difficulty_distribution[q.difficulty] = difficulty_distribution.get(q.difficulty, 0) + 1
+        kind_distribution[q.kind] = kind_distribution.get(q.kind, 0) + 1
+        missing = [
+            field
+            for field in [
+                "learning_objective",
+                "bloom_level",
+                "difficulty",
+                "estimated_time_minutes",
+                "exam_intent",
+                "assessed_skill",
+                "rubric",
+                "source_refs",
+            ]
+            if not getattr(q, field)
+        ]
+        if missing:
+            missing_metadata.append({"question": q.number, "missing": missing})
+
+    total_time = sum(q.estimated_time_minutes for q in questions)
+    target_time = int(requirements.get("target_duration_minutes", 0) or 0)
+    higher_order = sum(
+        count
+        for level, count in bloom_distribution.items()
+        if level in {"Analyze", "Apply/Analyze", "Evaluate/Create"}
+    )
+    return {
+        "metadata_complete": not missing_metadata,
+        "missing_metadata": missing_metadata,
+        "kind_distribution": kind_distribution,
+        "bloom_distribution": bloom_distribution,
+        "difficulty_distribution": difficulty_distribution,
+        "estimated_total_time_minutes": total_time,
+        "target_duration_minutes": target_time,
+        "time_within_target": bool(target_time) and total_time <= target_time,
+        "higher_order_question_count": higher_order,
+        "higher_order_question_share": round(higher_order / len(questions), 3) if questions else 0,
+        "coverage_passed": coverage_matrix.get("passed", False),
+        "source_grounding_passed": source_grounding_report.get("passed", False),
+        "chunk_grounding_passed": chunk_grounding_report.get("passed", False),
+        "professor_review_focus": [
+            "Confirm that the Bloom-level mix matches the instructor's intended assessment emphasis.",
+            "Check whether the estimated total time is feasible for the target duration.",
+            "Inspect every application and essay item for authentic scenario reasoning rather than lecture-summary phrasing.",
+            "Verify rubric criteria are specific enough for consistent grading.",
+        ],
+    }
+
+
+def render_assessment_validity_report(report: dict[str, Any], questions: list[Question]) -> str:
+    lines = [
+        "# Assessment Validity Report",
+        "",
+        "This report exists to defend generated exam quality, not merely pipeline completion.",
+        "",
+        "## Summary",
+        "",
+        f"- Metadata complete: `{report['metadata_complete']}`",
+        f"- Coverage passed: `{report['coverage_passed']}`",
+        f"- Source grounding passed: `{report['source_grounding_passed']}`",
+        f"- Chunk grounding passed: `{report['chunk_grounding_passed']}`",
+        f"- Estimated total time: {report['estimated_total_time_minutes']} / {report['target_duration_minutes']} minutes",
+        f"- Higher-order question share: {report['higher_order_question_share']}",
+        "",
+        "## Distributions",
+        "",
+        f"- Question kind: `{json.dumps(report['kind_distribution'], ensure_ascii=False)}`",
+        f"- Bloom level: `{json.dumps(report['bloom_distribution'], ensure_ascii=False)}`",
+        f"- Difficulty: `{json.dumps(report['difficulty_distribution'], ensure_ascii=False)}`",
+        "",
+        "## Item-Level Evidence",
+        "",
+    ]
+    for q in questions:
+        lines += [
+            f"### Q{q.number}",
+            "",
+            f"- Topic: {q.topic}",
+            f"- Bloom level: {q.bloom_level}",
+            f"- Difficulty: {q.difficulty}",
+            f"- Estimated time: {q.estimated_time_minutes} minutes",
+            f"- Learning objective: {q.learning_objective}",
+            f"- Assessed skill: {q.assessed_skill}",
+            f"- Exam intent: {q.exam_intent}",
+            f"- Sources: {', '.join(q.source_refs) if q.source_refs else 'MISSING'}",
+            "",
+        ]
+    lines += ["## Professor Review Focus", ""]
+    lines += [f"- {item}" for item in report["professor_review_focus"]]
+    lines.append("")
+    return "\n".join(lines)
 
 
 def build_source_grounding_report(questions: list[Question], notes: dict[str, str]) -> dict[str, Any]:
@@ -300,7 +556,7 @@ def build_residual_risk_report(
                 "risk": "deterministic_provider",
                 "severity": "high",
                 "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
-                "mitigation": "Run the final pipeline with --provider gemini --quality final --strict-provider and preserve cost_report.json as evidence.",
+                "mitigation": "Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider or --provider vertex --quality final --strict-provider, then preserve cost_report.json as evidence.",
             }
         )
     if blueprint:
@@ -402,15 +658,33 @@ def human_review_template(questions: list[Question]) -> dict[str, Any]:
         "reviewer": "",
         "review_date": "",
         "scale": "approve | revise | reject",
+        "review_protocol": [
+            "Read exam.md without looking at model answers first.",
+            "Check whether each question measures the stated learning objective.",
+            "Compare answers.md against lecture notes and source_refs.",
+            "Mark any item that is ambiguous, too easy, too broad, or not gradeable.",
+        ],
         "overall_notes": "",
+        "overall_decision": "",
+        "estimated_student_time_minutes": None,
+        "automation_claim_review": {
+            "automated_steps_credible": None,
+            "human_review_needed_before_release": True,
+            "comments": "",
+        },
         "items": [
             {
                 "question": q.number,
                 "decision": "",
+                "learning_objective_ok": None,
+                "bloom_level_ok": None,
                 "scope_ok": None,
                 "difficulty_ok": None,
+                "estimated_time_ok": None,
                 "source_grounding_ok": None,
                 "rubric_ok": None,
+                "professor_like_quality": None,
+                "revision_priority": "none | low | medium | high",
                 "comments": "",
             }
             for q in questions
@@ -449,8 +723,30 @@ def render_critical_discussion(
     lines += [
         "## Discussion",
         "",
-        "The system now has a closed quality-control layer, but final submission should not claim full autonomy.",
-        "The strongest defensible claim is that the system automates generation, checking, evidence collection, and revision support, while preserving a final human gate for scope and fairness.",
+        "The system now has a closed quality-control layer, but final submission should not claim full autonomy. "
+        "The defensible claim is narrower: the program automates ingestion, planning, generation, checking, evidence collection, and revision support, while preserving a final human gate for educational validity.",
+        "",
+        "## Automation Boundary",
+        "",
+        "- Automated well: format conversion, first-pass coverage planning, question drafting, answer drafting, source-reference collection, rubric drafting, cost logging, and judge-based revision support.",
+        "- Still human-critical: deciding whether a question reflects the instructor's intended emphasis, whether a scenario is pedagogically authentic, whether difficulty matches the cohort, and whether the rubric will produce fair grading.",
+        "",
+        "## LLM-as-Judge Bias",
+        "",
+        "The agentic judge system reduces obvious defects but cannot be treated as independent ground truth. "
+        "Because generator and judge may share similar model priors, they can agree on fluent but shallow questions. "
+        "The mitigation is to compare agentic_judge_report.json with human_review_notes_template.json after a real reviewer fills it in.",
+        "",
+        "## Cost-Quality Trade-off",
+        "",
+        "The low-cost Vertex/Gemini path is appropriate for iteration, metadata filling, and repeated judge calls. "
+        "A higher-capability model should be reserved for final question rewriting or cases where human review flags weak reasoning. "
+        "This staged policy protects cost without pretending that all model calls have equal educational value.",
+        "",
+        "## Evidence Required For The Final Claim",
+        "",
+        "Before submission, the team should preserve assessment_validity_report.md, agentic_judge_report.json, cost_report.json, and a completed human_review_notes file. "
+        "Together these show not only that the program ran, but why the resulting exam is aligned, grounded, gradeable, and still appropriately human-supervised.",
         "",
         "The most important next validation step is to run the final pipeline with a live LLM provider in strict mode and compare the generated exam with human reviewer notes.",
         "",
@@ -698,9 +994,21 @@ def run_pipeline(
         }
     )
 
+    questions = enrich_assessment_metadata(questions)
+    questions = fit_estimated_time_budget(
+        questions,
+        int(requirements.get("target_duration_minutes", 0) or 0),
+    )
     coverage_matrix = build_coverage_matrix(requirements, questions)
     source_grounding_report = build_source_grounding_report(questions, notes)
     chunk_grounding_report = build_chunk_grounding_report(questions, notes)
+    assessment_validity_report = build_assessment_validity_report(
+        requirements=requirements,
+        questions=questions,
+        coverage_matrix=coverage_matrix,
+        source_grounding_report=source_grounding_report,
+        chunk_grounding_report=chunk_grounding_report,
+    )
     residual_risk_report = build_residual_risk_report(
         provider_name=state["provider"],
         strict_provider=strict_provider,
@@ -711,6 +1019,7 @@ def run_pipeline(
     state["coverage_matrix"] = coverage_matrix
     state["source_grounding_report"] = source_grounding_report
     state["chunk_grounding_report"] = chunk_grounding_report
+    state["assessment_validity_report"] = assessment_validity_report
     state["residual_risk_report"] = residual_risk_report
 
     # --- Task 6: Formatter ---
@@ -749,6 +1058,14 @@ def run_pipeline(
     )
     (outputs_dir / "chunk_grounding_report.json").write_text(
         json.dumps(chunk_grounding_report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    (outputs_dir / "assessment_validity_report.json").write_text(
+        json.dumps(assessment_validity_report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    (outputs_dir / "assessment_validity_report.md").write_text(
+        render_assessment_validity_report(assessment_validity_report, questions),
         encoding="utf-8",
     )
     (outputs_dir / "residual_risk_report.json").write_text(

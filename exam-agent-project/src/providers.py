@@ -255,7 +255,9 @@ class GeminiProvider:
     ) -> list[dict[str, str]]:
         system = (
             f"You are the {kind} writer for a university midterm. "
-            "Return JSON only: a list of objects with keys topic, prompt, answer. "
+            "Return JSON only: a list of objects with keys topic, prompt, answer, "
+            "learning_objective, bloom_level, difficulty, estimated_time_minutes, "
+            "exam_intent, assessed_skill, rubric. "
             "Anchor every question in the lecture notes; do not invent historical facts."
         )
         ctx, _ = self._retrieval_context(notes, topic.keywords, limit=3)
@@ -265,7 +267,11 @@ class GeminiProvider:
             f"Write exactly {count} {kind} question(s) for this topic. "
             "Each prompt must be a single clear ask. The answer field is a "
             "concise model answer in <=120 words.\n"
-            "Return: [{\"topic\":..., \"prompt\":..., \"answer\":...}, ...]"
+            "Rubric must be a list of 2-4 concrete scoring criteria. "
+            "Return: [{\"topic\":..., \"prompt\":..., \"answer\":..., "
+            "\"learning_objective\":..., \"bloom_level\":..., \"difficulty\":..., "
+            "\"estimated_time_minutes\":..., \"exam_intent\":..., "
+            "\"assessed_skill\":..., \"rubric\":[...]}, ...]"
         )
         try:
             raw = self._generate_for_role("writer", prompt, system, stage=f"question_writer:{kind}")
@@ -281,6 +287,13 @@ class GeminiProvider:
                         "topic": item.get("topic", topic.title),
                         "prompt": str(item.get("prompt", "")).strip(),
                         "answer": str(item.get("answer", "")).strip(),
+                        "learning_objective": str(item.get("learning_objective", "")).strip(),
+                        "bloom_level": str(item.get("bloom_level", "")).strip(),
+                        "difficulty": str(item.get("difficulty", "")).strip(),
+                        "estimated_time_minutes": int(item.get("estimated_time_minutes", 0) or 0),
+                        "exam_intent": str(item.get("exam_intent", "")).strip(),
+                        "assessed_skill": str(item.get("assessed_skill", "")).strip(),
+                        "rubric": list(item.get("rubric", [])),
                     }
                 )
             results = [r for r in results if r["prompt"]]
