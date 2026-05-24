@@ -61,6 +61,7 @@ lecture_notes/processed/*.txt   (텍스트 추출 완료)
         │    ├── AnswerJudgeAgent               답안 품질 심사
         │    └── CoverageAuditAgent             범위·배점 검증
         ├── Task 5  RefinementCoordinator        미흡 항목 재작성 루프
+        ├── Task 5b AgenticJudgeSystemAgent     전문가 에이전트 2차 심사 루프
         └── Task 6  FormatterAgent              최종 파일 출력
                 │
                 ▼
@@ -99,8 +100,12 @@ flowchart TD
     T5 --> T4B["🟪 Task 4b — Answer Judge"]
     T4A --> LOOP{미흡 항목 있음?}
     T4B --> LOOP
-    LOOP -- "예 (반복 횟수 < 2)" --> T2A
-    LOOP -- "아니오 또는 2회 초과" --> T6["🟩 Task 6 — Formatter"]
+    LOOP -- "예 (반복 횟수 < 2)" --> REGEN["🟩 regen_question / regen_answer\n(provider 직접 호출)"]
+    REGEN --> T5
+    LOOP -- "아니오 또는 2회 초과" --> T5B["🟪 Task 5b — Agentic Judge System"]
+    T5B --> LOOP2{non-PASS 항목?}
+    LOOP2 -- "예 (반복 횟수 < 2)" --> REGEN
+    LOOP2 -- "아니오 또는 2회 초과" --> T6["🟩 Task 6 — Formatter"]
     T4C --> T6
 
     T6 --> EXAM["outputs/exam.md"]
@@ -225,6 +230,15 @@ Thought → Action → Observation 사이클을 반복해 답안의 근거를 �
 최대 반복 횟수를 2회로 제한한 이유: LLM이 무한히 수정하다 더 나빠지는 경우를 방지하고, 사람이 최종 판단할 여지를 남기기 위해서입니다.
 
 - **패턴**: Supervisor-Evaluator Reflection Loop (강의 M5.3.3)
+
+---
+
+### Task 5b — AgenticJudgeSystemAgent
+**역할**: Task 5의 RefinementCoordinator와 별개로, 전문 심사 에이전트들이 각 문제를 독립적으로 다시 평가합니다. 항목별 PASS / REVISE / FAIL 판정을 내리고, PASS가 아닌 항목에 대해 구체적인 수정 지시(`revision_instructions`)를 생성합니다. 이 지시를 주입해 `regen_question` / `regen_answer`를 호출하는 2차 폐루프를 최대 2회 실행합니다.
+
+결과물: `outputs/agentic_judge_report.json`
+
+- **패턴**: Agentic Judge with Closed Revision Loop (강의 M5.3.4)
 
 ---
 
@@ -374,7 +388,8 @@ exam-agent-project/
 Python 3.9 이상이 설치되어 있어야 합니다.
 
 ```bash
-pip install pymupdf   # PDF 텍스트 추출용
+pip install pypdf          # PDF 텍스트 추출용 (필수)
+# pip install google-genai  # Gemini 모드 사용 시 추가 설치
 ```
 
 ### Step 1. 강의 자료 준비
@@ -397,6 +412,13 @@ python src/main.py
 
 완료되면 `outputs/` 폴더에 3개 파일이 생성됩니다.
 
+> **주의 — `exam_blueprint.json`**: 프로젝트 루트에 이 파일이 존재하면 Task 1(Coverage Planner)과 Task 2(4개 Writer 에이전트)가 **전부 우회**되고 blueprint에 미리 정의된 문제가 그대로 사용됩니다. 에이전트 파이프라인 전체를 실행하려면 이 파일을 삭제하거나 `--blueprint` 인자를 다른 경로로 지정하세요.
+>
+> ```bash
+> # blueprint를 무시하고 에이전트가 직접 문제를 생성하도록 실행
+> python src/main.py --blueprint nonexistent_path
+> ```
+
 ---
 
 ## 11. 실행 모드 (Provider)
@@ -405,7 +427,7 @@ python src/main.py
 
 ### 결정론적 모드 (기본값, API 키 불필요)
 
-LLM 없이 미리 준비된 문제 은행(static question bank)에서 문제를 선택합니다. 인터넷 연결이나 API 키 없이 즉시 실행 가능하므로 로컬 테스트에 적합합니다.
+> **중요**: 이 모드는 LLM을 전혀 사용하지 않습니다. 미리 작성된 문제 은행(static question bank)에서 문제를 꺼내는 방식으로, 파이프라인 구조 테스트 목적으로만 적합합니다. **실제 LLM 기반 시험 생성**을 원한다면 반드시 아래 Gemini 모드를 사용하세요.
 
 ```bash
 python src/main.py
@@ -484,7 +506,7 @@ python src/evaluation.py --provider gemini --simulate-trials 3
 1. **범위 확인**: M3.1.1 Therbligs가 실제 시험 범위에 포함되는지 교수님께 확인
 2. **공정성 검토**: 생성된 문제가 편향 없이 공정한지, 교수님의 출제 스타일과 맞는지 확인
 3. **재작성 한계 초과 항목**: 2회 재작성 후에도 POOR 판정이면 사람이 직접 수정
-4. **최종 배점 확정**: 자동 생성된 배점은 참고용이며, 최종 배점은 강사가 승인
+4. **최종 배점 확정**: 자동 생성된 배점은 참고용이며, 최종 배점은 교수가 승인
 
 ---
 
@@ -501,6 +523,7 @@ python src/evaluation.py --provider gemini --simulate-trials 3
 | ReAct + Retrieval | M5.3.1.2 §8 + M5.3.2 | `AnswerWriterAgent`의 Thought→Action→Observation |
 | LLM-as-Judge | M5.3.4 `JUDGE_*_PROMPT` | `QuestionJudgeAgent`, `AnswerJudgeAgent` |
 | Supervisor-Evaluator Loop | M5.3.3 reflective | `RefinementCoordinator` (최대 2회 반복) |
+| Agentic Judge Closed Loop | M5.3.4 LLM-as-Judge | `AgenticJudgeSystemAgent` (PASS/REVISE/FAIL 판정 → 재작성, 최대 2회) |
 | 3-method Evaluation | M5.3.4 §3-method matrix | `src/evaluation.py` |
 
 ---

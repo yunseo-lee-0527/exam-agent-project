@@ -101,7 +101,7 @@ A worker assembling small kits repeatedly searches for parts, reaches across the
 ## Q11. Essay (20 points)
 
 Topic: Scientific Management
-Bloom level: Apply/Analyze | Difficulty: Medium | Estimated time: 12 min
+Bloom level: Evaluate/Create | Difficulty: Hard | Estimated time: 18 min
 
 Assessed skill: framework application to a concrete work-system situation
 

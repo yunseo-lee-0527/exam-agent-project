@@ -67,6 +67,8 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 The five frameworks are addition, subtraction, alternate means, combination, and transposition. Addition creates value by adding a feature, component, or function. Subtraction creates value by removing a component that adds complexity or cost. Alternate means replaces the way a function is achieved. Combination joins existing elements. Transposition moves a solution pattern from one domain to another.
 
+*(Grading note: The question asks students to explain **any two** frameworks. Full marks (2 pts) are awarded for any two accurate one-line explanations. All five are provided here for reference only.)*
+
 Learning objective: Check whether students can identify the systematic innovation methods from lecture.
 
 Exam intent: This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the short answer format.
@@ -227,9 +229,9 @@ Learning objective: Check synthesis across scientific management, work systems, 
 
 Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the essay format.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=12 minutes
+Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=18 minutes
 
-Assessed skill: framework application to a concrete work-system situation
+Assessed skill: synthesis, justification, and critical evaluation
 
 Rubric:
 

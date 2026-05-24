@@ -1,0 +1,12 @@
+# Core dependency (PDF ingestion)
+pypdf>=3.0.0
+
+# LLM providers (install the one(s) you need)
+# Gemini / Vertex AI
+# google-genai>=1.0.0
+
+# OpenAI
+# openai>=1.0.0
+
+# Anthropic / Claude
+# anthropic>=0.20.0
