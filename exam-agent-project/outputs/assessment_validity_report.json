@@ -10,12 +10,13 @@
   "bloom_distribution": {
     "Remember/Understand": 6,
     "Analyze": 2,
-    "Apply/Analyze": 3
+    "Apply/Analyze": 2,
+    "Evaluate/Create": 1
   },
   "difficulty_distribution": {
     "Easy": 5,
-    "Medium": 4,
-    "Hard": 2
+    "Hard": 2,
+    "Medium": 4
   },
   "estimated_total_time_minutes": 75,
   "target_duration_minutes": 75,

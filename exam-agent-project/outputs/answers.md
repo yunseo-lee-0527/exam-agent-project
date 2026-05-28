@@ -67,8 +67,6 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 The five frameworks are addition, subtraction, alternate means, combination, and transposition. Addition creates value by adding a feature, component, or function. Subtraction creates value by removing a component that adds complexity or cost. Alternate means replaces the way a function is achieved. Combination joins existing elements. Transposition moves a solution pattern from one domain to another.
 
-*(Grading note: The question asks students to explain **any two** frameworks. Full marks (2 pts) are awarded for any two accurate one-line explanations. All five are provided here for reference only.)*
-
 Learning objective: Check whether students can identify the systematic innovation methods from lecture.
 
 Exam intent: This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the short answer format.
@@ -101,8 +99,8 @@ Assessed skill: concept recall and explanation
 Rubric:
 
 - 2 points for defining Therbligs as basic motion elements.
-- 1.5 points for three correct examples.
-- 1.5 points for explaining their redesign value.
+- 2 points for three correct examples.
+- 1 point for explaining their redesign value.
 
 Coverage contribution: motion_study_and_therbligs: 5
 
@@ -116,7 +114,7 @@ Learning objective: Check system-level reasoning rather than isolated task reaso
 
 Exam intent: This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=4 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Hard, estimated_time=4 minutes
 
 Assessed skill: concept recall and explanation
 
@@ -138,7 +136,7 @@ Learning objective: Check whether students can explain Taylor's diagnosis of ine
 
 Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the concept comparison format.
 
-Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=8 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=8 minutes
 
 Assessed skill: concept distinction and structural reasoning
 
@@ -206,7 +204,7 @@ Learning objective: Check whether students can move from motion diagnosis to wor
 
 Exam intent: This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the application format.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Hard, estimated_time=12 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=12 minutes
 
 Assessed skill: framework application to a concrete work-system situation
 
@@ -227,9 +225,9 @@ Scientific management treated productivity as a design problem. Taylor attacked 
 
 Learning objective: Check synthesis across scientific management, work systems, and disciplined problem solving.
 
-Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the essay format.
+Exam intent: This integrative item requires students to synthesize Taylor, Gilbreth, Bloom Evaluate/Create level reasoning, and DASSI into a coherent argument — the highest cognitive demand on this exam.
 
-Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=18 minutes
+Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=12 minutes
 
 Assessed skill: synthesis, justification, and critical evaluation
 

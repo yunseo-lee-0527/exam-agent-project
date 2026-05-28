@@ -14,8 +14,8 @@ This report exists to defend generated exam quality, not merely pipeline complet
 ## Distributions
 
 - Question kind: `{"Short Answer": 6, "Concept Comparison": 2, "Application": 2, "Essay": 1}`
-- Bloom level: `{"Remember/Understand": 6, "Analyze": 2, "Apply/Analyze": 3}`
-- Difficulty: `{"Easy": 5, "Medium": 4, "Hard": 2}`
+- Bloom level: `{"Remember/Understand": 6, "Analyze": 2, "Apply/Analyze": 2, "Evaluate/Create": 1}`
+- Difficulty: `{"Easy": 5, "Hard": 2, "Medium": 4}`
 
 ## Item-Level Evidence
 
@@ -78,7 +78,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 
 - Topic: Work and Work Systems
 - Bloom level: Remember/Understand
-- Difficulty: Medium
+- Difficulty: Hard
 - Estimated time: 4 minutes
 - Learning objective: Check system-level reasoning rather than isolated task reasoning.
 - Assessed skill: concept recall and explanation
@@ -89,7 +89,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 
 - Topic: Scientific Management
 - Bloom level: Analyze
-- Difficulty: Hard
+- Difficulty: Medium
 - Estimated time: 8 minutes
 - Learning objective: Check whether students can explain Taylor's diagnosis of inefficiency.
 - Assessed skill: concept distinction and structural reasoning
@@ -122,7 +122,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 
 - Topic: Motion Study and Therbligs
 - Bloom level: Apply/Analyze
-- Difficulty: Hard
+- Difficulty: Medium
 - Estimated time: 12 minutes
 - Learning objective: Check whether students can move from motion diagnosis to work-system redesign.
 - Assessed skill: framework application to a concrete work-system situation
@@ -132,12 +132,12 @@ This report exists to defend generated exam quality, not merely pipeline complet
 ### Q11
 
 - Topic: Scientific Management
-- Bloom level: Apply/Analyze
-- Difficulty: Medium
+- Bloom level: Evaluate/Create
+- Difficulty: Hard
 - Estimated time: 12 minutes
 - Learning objective: Check synthesis across scientific management, work systems, and disciplined problem solving.
-- Assessed skill: framework application to a concrete work-system situation
-- Exam intent: This item tests Scientific Management beyond surface recall by requiring a response appropriate to the essay format.
+- Assessed skill: synthesis, justification, and critical evaluation
+- Exam intent: This integrative item requires students to synthesize Taylor, Gilbreth, Bloom Evaluate/Create level reasoning, and DASSI into a coherent argument — the highest cognitive demand on this exam.
 - Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt, M2.1.1 Engineering Problem-Solving Process.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ## Professor Review Focus

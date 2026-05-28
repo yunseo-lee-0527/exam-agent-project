@@ -181,12 +181,12 @@ Thought → Action → Observation 사이클을 반복해 답안의 근거를 �
 
 | 항목 | 설명 | 만점 |
 |------|------|------|
-| `scope_alignment` | 강의 범위와 일치하는가 | 7점 |
-| `difficulty` | 난이도가 적절한가 | 5점 |
-| `clarity` | 문제가 명확한가 | 5점 |
-| `answerable` | 강의 내용으로 풀 수 있는가 | 5점 |
+| `scope_alignment` | 강의 범위와 일치하는가 | 5점 |
+| `difficulty_appropriateness` | 난이도가 적절한가 | 5점 |
+| `clarity_no_ambiguity` | 문제가 명확한가 | 5점 |
+| `answerable_from_lecture` | 강의 내용으로 풀 수 있는가 | 5점 |
 
-총점 기준: **17점 이상 GOOD**, **13~16점 ACCEPTABLE**, **12점 이하 POOR**
+총점 기준: **17점 이상 GOOD**, **13~16점 ACCEPTABLE**, **12점 이하 POOR** (만점 20점)
 
 - **패턴**: LLM-as-Judge with JSON Rubric (강의 M5.3.4)
 
@@ -197,10 +197,12 @@ Thought → Action → Observation 사이클을 반복해 답안의 근거를 �
 
 | 항목 | 설명 | 만점 |
 |------|------|------|
-| `accuracy` | 내용이 정확한가 | 7점 |
-| `completeness` | 핵심 내용이 빠짐없이 포함되었는가 | 7점 |
+| `factual_accuracy` | 내용이 정확한가 | 5점 |
+| `completeness` | 핵심 내용이 빠짐없이 포함되었는가 | 5점 |
 | `lecture_grounded` | 강의 자료에 근거했는가 | 5점 |
-| `concise` | 간결하게 서술되었는가 | 3점 |
+| `concise_pedagogical` | 간결하고 교육적으로 적절한가 | 5점 |
+
+총점 기준: **17점 이상 GOOD**, **13~16점 ACCEPTABLE**, **12점 이하 POOR** (만점 20점)
 
 - **패턴**: LLM-as-Judge with JSON Rubric (강의 M5.3.4)
 

@@ -114,8 +114,8 @@
     "assessed_skill": "concept recall and explanation",
     "rubric": [
       "2 points for defining Therbligs as basic motion elements.",
-      "1.5 points for three correct examples.",
-      "1.5 points for explaining their redesign value."
+      "2 points for three correct examples.",
+      "1 point for explaining their redesign value."
     ],
     "coverage_contribution": {
       "motion_study_and_therbligs": 5
@@ -132,7 +132,7 @@
       "M1.3 What is a Work System.txt",
       "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "learning_objective": "Check system-level reasoning rather than isolated task reasoning.",
     "bloom_level": "Remember/Understand",
     "estimated_time_minutes": 4,
@@ -157,7 +157,7 @@
     "source_refs": [
       "M1.4 Scientific Management as Work System Redesign.txt"
     ],
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "learning_objective": "Check whether students can explain Taylor's diagnosis of inefficiency.",
     "bloom_level": "Analyze",
     "estimated_time_minutes": 8,
@@ -239,7 +239,7 @@
       "M1.1 What is Work_Revised 260312.txt",
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "learning_objective": "Check whether students can move from motion diagnosis to work-system redesign.",
     "bloom_level": "Apply/Analyze",
     "estimated_time_minutes": 12,
@@ -269,12 +269,12 @@
       "M2.1.1 Engineering Problem-Solving Process.txt",
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "learning_objective": "Check synthesis across scientific management, work systems, and disciplined problem solving.",
-    "bloom_level": "Apply/Analyze",
+    "bloom_level": "Evaluate/Create",
     "estimated_time_minutes": 12,
-    "exam_intent": "This item tests Scientific Management beyond surface recall by requiring a response appropriate to the essay format.",
-    "assessed_skill": "framework application to a concrete work-system situation",
+    "exam_intent": "This integrative item requires students to synthesize Taylor, Gilbreth, Bloom Evaluate/Create level reasoning, and DASSI into a coherent argument — the highest cognitive demand on this exam.",
+    "assessed_skill": "synthesis, justification, and critical evaluation",
     "rubric": [
       "4 points for Taylor's principles and cases.",
       "3 points for Gilbreth, motion study, and Therbligs.",

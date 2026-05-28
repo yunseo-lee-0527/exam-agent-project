@@ -274,7 +274,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=medium",
+        "kind=Short Answer; difficulty=hard",
         "learning_objective=Check system-level reasoning rather than isolated task reasoning."
       ],
       "revision_instruction": ""
@@ -285,7 +285,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Concept Comparison; difficulty=hard",
+        "kind=Concept Comparison; difficulty=medium",
         "learning_objective=Check whether students can explain Taylor's diagnosis of inefficiency."
       ],
       "revision_instruction": ""
@@ -318,7 +318,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Application; difficulty=hard",
+        "kind=Application; difficulty=medium",
         "learning_objective=Check whether students can move from motion diagnosis to work-system redesign."
       ],
       "revision_instruction": ""
@@ -329,7 +329,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Essay; difficulty=medium",
+        "kind=Essay; difficulty=hard",
         "learning_objective=Check synthesis across scientific management, work systems, and disciplined problem solving."
       ],
       "revision_instruction": ""

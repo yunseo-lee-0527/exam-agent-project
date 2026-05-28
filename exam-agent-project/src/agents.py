@@ -1265,23 +1265,19 @@ class FormatterAgent(BaseAgentWorker):
         lines = [
             f"# {requirements['course']} {requirements['exam_name']}",
             "",
-            f"Duration: {requirements.get('target_duration_minutes', 'TBD')} minutes",
+            f"Duration: {requirements.get('target_duration_minutes', 'TBD')} minutes  |  Total: 100 points",
             "",
             "## Instructions",
             "",
-            "- Answer all questions.",
-            "- Use concepts and examples from the lecture materials.",
-            "- For application and essay questions, justify your reasoning.",
+            "- Answer all questions in the space provided.",
+            "- Use concepts and terminology from the lecture materials.",
+            "- For application and essay questions, justify your reasoning explicitly.",
+            "- Point values are shown for each question.",
             "",
         ]
         for q in questions:
             lines += [
                 f"## Q{q.number}. {q.kind} ({q.points} points)",
-                "",
-                f"Topic: {q.topic}",
-                f"Bloom level: {q.bloom_level or 'TBD'} | Difficulty: {q.difficulty or 'TBD'} | Estimated time: {q.estimated_time_minutes or 'TBD'} min",
-                "",
-                f"Assessed skill: {q.assessed_skill or 'TBD'}",
                 "",
                 q.prompt,
                 "",

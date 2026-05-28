@@ -1,7 +1,7 @@
 {
   "provider": "ConfiguredDeterministicProvider",
-  "quality": "final",
-  "model_preset": "lecture_flash",
+  "quality": "draft",
+  "model_preset": null,
   "models": {
     "planner": "gemini-2.5-flash",
     "writer": "gemini-2.5-flash",
