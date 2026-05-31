@@ -13,7 +13,7 @@ The core design principle is separation of concerns: each agent knows its task b
 
 ### 1.2 Agent Roles and Pipeline
 
-The system consists of **12 agents** organized in a sequential-then-parallel pipeline.
+The system consists of **13 agents** organized in a sequential-then-parallel pipeline.
 
 | Task | Agent | Pattern | Role |
 |------|-------|---------|------|
@@ -23,7 +23,7 @@ The system consists of **12 agents** organized in a sequential-then-parallel pip
 | Task 2b | `ComparisonWriterAgent` | Specialist Parallel Fan-out | Generates concept-comparison questions |
 | Task 2c | `ApplicationWriterAgent` | Specialist Parallel Fan-out | Generates application/scenario questions |
 | Task 2d | `EssayWriterAgent` | Specialist Parallel Fan-out | Generates synthesis essay questions |
-| Task 3 | `AnswerWriterAgent` | ReAct + Retrieval | Thought → Action (`search_lecture_notes`) → Observation → answer with `source_refs` |
+| Task 3 | `AnswerWriterAgent` | ReAct-inspired Retrieval | `search_lecture_notes` → lecture snippets → answer with `source_refs` |
 | Task 4a | `QuestionJudgeAgent` | LLM-as-Judge | Scores questions on scope, difficulty, clarity, answerability (0–5 each) |
 | Task 4b | `AnswerJudgeAgent` | LLM-as-Judge | Scores answers on accuracy, completeness, grounding, conciseness (0–5 each) |
 | Task 4c | `CoverageAuditAgent` | Deterministic validation | Checks point total = 100, all topics covered, mix matches `requirements.json` |
@@ -144,19 +144,19 @@ Following the lecture's four memory layers (M5.3.2):
 
 ### 2.2 Agent Pattern Implementation
 
-**BaseAgentWorker** (M5.3.1.2): All 12 agents inherit from a common interface with a single `run(payload) → result` contract. The orchestrator in `main.py` calls `agent.run(payload)` without knowing the agent's internal implementation.
+**BaseAgentWorker** (M5.3.1.2): All 13 agents inherit from a common interface with a single `run(payload) → result` contract. The orchestrator in `main.py` calls `agent.run(payload)` without knowing the agent's internal implementation.
 
 **Planner-Executor** (M5.3.3): `CoveragePlannerAgent` produces a structured JSON plan (topics with weights, keywords, source files). The four writer agents then execute against this plan independently. When a live LLM is used, the planner is Gemini-backed; it reasons about the full lecture inventory before committing to topic-weight allocations.
 
 **Parallel Fan-out** (M5.3.3 `parallel_screening`): `fan_out_question_writers()` uses `ThreadPoolExecutor(max_workers=4)` to run all four writer agents simultaneously. Each writer maintains its own deduplication set (`seen_prompts`), then results are merged and renumbered.
 
-**ReAct + Retrieval** (M5.3.1.2 §8): `AnswerWriterAgent` follows the Thought→Action→Observation cycle. The "Action" is a call to `search_lecture_notes(notes, keyword, limit=3)` which returns up to 3 paragraph snippets with their source filenames. The LLM provider receives these snippets as `Lecture context:` and must anchor its answer to them.
+**ReAct-inspired Retrieval** (M5.3.1.2 §8): `AnswerWriterAgent` calls `search_lecture_notes(notes, keyword, limit=3)` to retrieve up to 3 paragraph snippets with their source filenames. The LLM provider receives these snippets as `Lecture context:` and must anchor its answer to them. The implementation uses the ReAct idea of tool-backed observation, but it does not log a full multi-step Thought→Action→Observation trace.
 
 **LLM-as-Judge** (M5.3.4): Two judge tiers. The first tier (`QuestionJudgeAgent`, `AnswerJudgeAgent`) produces a numeric rubric (0–5 per criterion, max 20) and a GOOD/ACCEPTABLE/POOR verdict. The second tier (`AgenticJudgeSystemAgent`) runs 6 specialist judges in sequence — coverage, source grounding, difficulty balance, pedagogical quality, answer rubric adequacy, and a red-team fairness pass — then aggregates their PASS/REVISE/FAIL findings.
 
 **Supervisor-Evaluator Reflection Loop** (M5.3.3): `RefinementCoordinator` injects the judge's `suggestion` string back into the regeneration prompt. This implements the "reflective" pattern: the regenerated prompt carries forward context about *why* the previous version failed. Maximum 2 iterations prevents runaway loops.
 
-**Provider Abstraction**: `providers.py` defines `make_provider()` which selects from Vertex AI Gemini, API-key Gemini, OpenAI, Anthropic, or Deterministic based on CLI flags and environment variables. All providers expose the same five methods (`plan`, `write_questions`, `pool_questions`, `write_answer`, `judge_question`, `judge_answer`), so agent code never imports a provider directly.
+**Provider Abstraction**: `providers.py` defines `make_provider()` which selects a provider using a three-level priority chain: (1) explicit `--provider` CLI flag or `EXAM_AGENT_PROVIDER` env var, (2) credential auto-detection (`GEMINI_API_KEY` / `GOOGLE_API_KEY` → `GeminiApiKeyProvider`; `GCP_PROJECT_ID` → `GeminiProvider` (Vertex AI); `OPENAI_API_KEY` → `OpenAIProvider`; `ANTHROPIC_API_KEY` → `AnthropicProvider`), (3) `ConfiguredDeterministicProvider` if no credentials are found. All providers expose the same interface (`plan`, `write_questions`, `pool_questions`, `write_answer`, `judge_question`, `judge_answer`), so agent code never imports a provider directly. `GeminiProvider._generate()` also implements per-call 429 retry with a sleep derived from the API's `retryDelay` field, so transient rate-limit bursts do not abort a run.
 
 ### 2.3 Model Policy
 
@@ -165,12 +165,15 @@ Following the lecture's four memory layers (M5.3.2):
 ```json
 "draft":       { "planner": "gemini-2.5-flash", "writer": "gemini-2.5-flash",
                  "answer_writer": "gemini-2.5-flash", "judge": "gemini-2.5-flash-lite" }
-"final":       { "planner": "gemini-2.5-pro", "writer": "gemini-2.5-flash",
+"final":       { "planner": "gemini-2.5-flash", "writer": "gemini-2.5-flash",
                  "answer_writer": "gemini-2.5-flash", "judge": "gemini-2.5-flash-lite" }
-"final_low_cost": { "planner": "gemini-2.5-flash", "writer": "gemini-2.5-flash-lite", ... }
+"final_low_cost": { "planner": "gemini-2.5-flash", "writer": "gemini-2.5-flash",
+                    "answer_writer": "gemini-2.5-flash", "judge": "gemini-2.5-flash-lite" }
 ```
 
-**Design rationale**: The planner makes a single high-stakes decision (what to test) so it justifies the most capable model. Writers and answer writers are called once per question, so Flash is appropriate. Judges run in a loop (up to 2×11 = 22 calls per iteration), so Flash-Lite minimizes cost without losing verdict quality on structured rubric output.
+All three quality profiles share the same default model assignments. The `model_presets` block in `model_policy.json` provides opt-in upgrades: activating `--model-preset pro` replaces every role with `gemini-2.5-pro` (judge becomes `gemini-2.5-flash`); `claude_opus` or `gpt` presets switch the full pipeline to Anthropic or OpenAI models.
+
+**Design rationale**: Writers and answer writers are called once per question, so Flash is appropriate for all default profiles. Judges run in a loop (up to 2×11 = 22 calls per iteration), so Flash-Lite minimizes cost without losing verdict quality on structured rubric output. For a one-off high-stakes planner call, the `pro` preset can be enabled independently without changing the quality profile.
 
 ### 2.4 Running the System
 
@@ -178,35 +181,41 @@ Following the lecture's four memory layers (M5.3.2):
 # Step 1: Extract lecture PDFs to text
 python scripts/extract_pdf_text.py
 
-# Step 2: Generate exam (deterministic mode, no API key needed)
+# Step 2: Generate exam — deterministic mode (no API key needed)
 python src/main.py
 
-# Step 3: Generate exam with Gemini Vertex AI
-set GCP_PROJECT_ID=your-project-id
-python src/main.py --provider vertex --quality final --strict-provider
+# Step 3: Generate exam — Gemini AI Studio (GEMINI_API_KEY auto-detected)
+set GEMINI_API_KEY=your-key-here          # Windows cmd; once set, auto-detected on every run
+python src/main.py --quality final_low_cost --strict-provider
 
-# Step 4: Evaluate quality
+# Step 4: Generate exam — Vertex AI (explicit provider flag)
+set GCP_PROJECT_ID=your-project-id
+python src/main.py --provider vertex --quality final_low_cost --strict-provider
+
+# Step 5: Evaluate quality
 python src/evaluation.py --simulate-trials 3
 ```
 
-The `--blueprint nonexistent_path` flag bypasses the pre-approved `exam_blueprint.json` and forces a fully agentic run.
+`make_provider()` applies a three-level priority: explicit `--provider` flag → `EXAM_AGENT_PROVIDER` env var → credential auto-detection (`GEMINI_API_KEY` → Gemini AI Studio; `GCP_PROJECT_ID` → Vertex AI; `OPENAI_API_KEY` → OpenAI; `ANTHROPIC_API_KEY` → Anthropic) → deterministic fallback.
+
+The `--blueprint nonexistent_path` flag bypasses the team-authored `exam_blueprint.json` and forces the specialist writer path (Tasks 1–2). To observe live LLM generation for the full pipeline, combine it with a live provider: `--provider gemini --strict-provider --blueprint nonexistent_path`.
 
 ### 2.5 Automation Coverage
 
 | Sub-task | Automated? | Evidence |
 |----------|-----------|---------|
-| PDF ingestion and text normalization | ✅ Full | `scripts/extract_pdf_text.py`, `ingest_materials.py` |
+| PDF ingestion and text normalization | ⚠️ Partial | `scripts/extract_pdf_text.py`, `ingest_materials.py`; scanned/image-only PDFs require OCR |
 | Coverage planning from requirements | ✅ Full | `CoveragePlannerAgent` |
-| Question drafting (all 4 types) | ✅ Full | `fan_out_question_writers` + 4 specialists |
+| Question drafting (all 4 types) | ⚠️ Conditional | Full path: `fan_out_question_writers` + 4 specialists (requires `--blueprint nonexistent_path`); current submitted outputs use `exam_blueprint.json` |
 | Model answer drafting | ✅ Full | `AnswerWriterAgent` with source grounding |
-| Quality judging (2 tiers, 7 judges) | ✅ Full | `RefinementCoordinator` + `AgenticJudgeSystemAgent` |
+| Quality judging (2 tiers, 7 judges) | ⚠️ Conditional | With live LLM: `RefinementCoordinator` + `AgenticJudgeSystemAgent`; current submitted outputs used `ConfiguredDeterministicProvider` (0 LLM calls) |
 | Rubric and Bloom metadata enrichment | ✅ Full | `enrich_assessment_metadata` |
 | Cost tracking | ✅ Full | `UsageTracker`, `cost_report.json` |
 | Final scope confirmation | ❌ Human | Human must confirm M3.1.1 Therbligs inclusion |
 | Pedagogical fairness check | ❌ Human | `human_review_checklist.md` |
 | Point allocation approval | ❌ Human | Final review by instructor |
 
-**Automation ratio**: approximately 85% of the end-to-end workflow is fully automated. Human review is required only for the final 3 gates above.
+**Automation ratio**: the pipeline infrastructure automates approximately 85% of the end-to-end workflow. The current submitted outputs were generated in deterministic + blueprint mode (reproducible without any API key); live LLM judging and the specialist writer path require a live provider run.
 
 ---
 
@@ -311,15 +320,15 @@ Discuss scientific management as an early form of work-system redesign. Your ans
 
 **4.1.1 Deterministic Fallback Masks LLM Quality**
 
-The project ships with a local `DeterministicProvider` that draws from a pre-written static question bank. This fallback is essential for testing the pipeline structure without API costs, but it means a reviewer running `python src/main.py` without a GCP project ID will see questions drawn from the bank rather than LLM-generated questions. The pipeline architecture is valid; the generation quality evidence requires running with `--provider vertex`.
+The project ships with a local `DeterministicProvider` that draws from a pre-written static question bank. This fallback is essential for testing the pipeline structure without API costs, but it means a reviewer running `python src/main.py` without any LLM credentials will see questions drawn from the static bank rather than LLM-generated questions. If `GEMINI_API_KEY`, `GCP_PROJECT_ID`, `OPENAI_API_KEY`, or `ANTHROPIC_API_KEY` is present, `make_provider()` auto-detects the credential and selects the corresponding live provider — so the fallback is only active when no credentials exist at all. The pipeline architecture is valid; the generation quality evidence requires running with a live provider and `--strict-provider`.
 
-*Mitigation*: The `--strict-provider` flag disables the fallback, making API key configuration explicit. `residual_risk_report.json` flags this risk as "high" when the deterministic provider is used.
+*Mitigation*: Set `GEMINI_API_KEY` (auto-detected) or pass `--provider gemini --strict-provider` explicitly. `residual_risk_report.json` flags this risk as "high" when the deterministic provider is used, making the fallback condition visible in every run's audit trail.
 
-**4.1.2 Blueprint Bypass of Task 1 and Task 2**
+**4.1.2 Blueprint Bypass of Specialist Writers**
 
-When `exam_blueprint.json` exists in the project root, the Coverage Planner and all four Writer agents are bypassed. This shortcut improves reproducibility for grading (the exam content is stable), but it means the full agentic pipeline is not exercised by default. The blueprint was generated by a prior full run and represents an instructor-approved exam structure.
+When `exam_blueprint.json` exists in the project root, the Coverage Planner still runs, but the actual question selection and construction are controlled by the blueprint and the four specialist Writer agents are bypassed. This shortcut improves reproducibility for grading (the exam content is stable), but it means the full writer path is not exercised by default. The blueprint is a team-authored, requirement-aligned exam structure, not an instructor-approved artifact.
 
-*Mitigation*: Pass `--blueprint nonexistent_path` to force a fully agentic run. The README clearly documents this behavior.
+*Mitigation*: Pass `--blueprint nonexistent_path` to force the specialist writer path. For live LLM generation, also pass a live provider such as `--provider gemini --strict-provider`. The README documents this behavior.
 
 **4.1.3 Lexical Grounding Is Not Semantic Entailment**
 
@@ -391,7 +400,7 @@ Each run produces a deterministic artifact (the blueprint JSON). Storing bluepri
 | Local tools + JSON DB | M5.3.2 ApplicationCollector | `LectureNoteCollectorAgent` |
 | Planner-Executor | M5.3.3 `plan_and_accept` | `CoveragePlannerAgent` → Writers |
 | Parallel Fan-out | M5.3.3 `parallel_screening` | `fan_out_question_writers()` |
-| ReAct + Retrieval | M5.3.1.2 §8 + M5.3.2 | `AnswerWriterAgent` |
+| ReAct-inspired Retrieval | M5.3.1.2 §8 + M5.3.2 | `AnswerWriterAgent` |
 | LLM-as-Judge (JSON rubric) | M5.3.4 `JUDGE_*_PROMPT` | `QuestionJudgeAgent`, `AnswerJudgeAgent` |
 | Supervisor-Evaluator Loop | M5.3.3 reflective | `RefinementCoordinator` |
 | Agentic Judge Closed Loop | M5.3.4 | `AgenticJudgeSystemAgent` |
