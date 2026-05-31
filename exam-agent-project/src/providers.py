@@ -593,10 +593,29 @@ def make_provider(
 ) -> Any:
     """Factory honoring CLI flag + env var.
 
-    name precedence: explicit > EXAM_AGENT_PROVIDER env > 'deterministic'.
+    name precedence: explicit > EXAM_AGENT_PROVIDER env > auto-detect from credentials > 'deterministic'.
+    Auto-detection: GEMINI_API_KEY / GOOGLE_API_KEY → gemini, GCP_PROJECT_ID → vertex,
+    OPENAI_API_KEY → openai, ANTHROPIC_API_KEY → anthropic, else deterministic.
     """
 
-    chosen = (name or os.environ.get("EXAM_AGENT_PROVIDER") or "deterministic").lower()
+    explicit = name or os.environ.get("EXAM_AGENT_PROVIDER")
+    if not explicit:
+        has_gemini_key = bool(os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"))
+        has_project = bool(
+            os.environ.get("GCP_PROJECT_ID")
+            or os.environ.get("GOOGLE_CLOUD_PROJECT")
+            or os.environ.get("PROJECT_ID")
+        )
+        if has_gemini_key or has_project:
+            explicit = "gemini"
+        elif os.environ.get("OPENAI_API_KEY"):
+            explicit = "openai"
+        elif os.environ.get("ANTHROPIC_API_KEY"):
+            explicit = "anthropic"
+        else:
+            explicit = "deterministic"
+        print(f"[make_provider] Auto-detected provider: {explicit}")
+    chosen = explicit.lower()
     if chosen in {"gemini", "vertex", "vertexai", "gemini-vertex"}:
         try:
             auth_mode = os.environ.get("EXAM_AGENT_GEMINI_AUTH", "auto").lower()
