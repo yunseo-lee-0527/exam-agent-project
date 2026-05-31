@@ -40,44 +40,43 @@ def main() -> None:
         )
     )
 
-    gcloud_path = shutil.which("gcloud")
-    results.append(
-        check(
-            "Google Cloud CLI",
-            gcloud_path is not None,
-            gcloud_path or "Install from https://cloud.google.com/sdk/docs/install",
-        )
-    )
-
+    gemini_api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     project_id = (
         os.environ.get("GCP_PROJECT_ID")
         or os.environ.get("GOOGLE_CLOUD_PROJECT")
         or os.environ.get("PROJECT_ID")
     )
+    has_gemini_auth = bool(gemini_api_key or project_id)
     results.append(
         check(
-            "Vertex AI project ID",
-            bool(project_id),
-            "Found a project ID environment variable." if project_id else "Set with cmd: set GCP_PROJECT_ID=your-project-id",
+            "Gemini authentication",
+            has_gemini_auth,
+            (
+                f"GEMINI_API_KEY found (API-key mode)." if gemini_api_key
+                else f"GCP project ID found (Vertex AI mode): {project_id}" if project_id
+                else "Set GEMINI_API_KEY for AI Studio mode, or GCP_PROJECT_ID for Vertex AI mode."
+            ),
         )
     )
 
-    location = (
-        os.environ.get("GCP_LOCATION")
-        or os.environ.get("GOOGLE_CLOUD_LOCATION")
-        or os.environ.get("LOCATION")
-        or "us-central1"
-    )
-    results.append(check("Vertex AI location", bool(location), f"Using {location}"))
-
-    adc_path = Path.home() / "AppData" / "Roaming" / "gcloud" / "application_default_credentials.json"
-    results.append(
-        check(
-            "Application Default Credentials",
-            adc_path.exists(),
-            str(adc_path) if adc_path.exists() else "Run: gcloud auth application-default login",
+    if not gemini_api_key:
+        gcloud_path = shutil.which("gcloud")
+        results.append(
+            check(
+                "Google Cloud CLI (Vertex AI mode only)",
+                gcloud_path is not None,
+                gcloud_path or "Not required if using GEMINI_API_KEY. Otherwise install from https://cloud.google.com/sdk/docs/install",
+            )
         )
-    )
+
+        adc_path = Path.home() / "AppData" / "Roaming" / "gcloud" / "application_default_credentials.json"
+        results.append(
+            check(
+                "Application Default Credentials (Vertex AI mode only)",
+                adc_path.exists(),
+                str(adc_path) if adc_path.exists() else "Not required if using GEMINI_API_KEY. Otherwise run: gcloud auth application-default login",
+            )
+        )
 
     outputs = {"project_root": str(root), "checks": results}
     print(json.dumps(outputs, indent=2, ensure_ascii=False))

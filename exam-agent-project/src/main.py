@@ -556,7 +556,7 @@ def build_residual_risk_report(
                 "risk": "deterministic_provider",
                 "severity": "high",
                 "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
-                "mitigation": "Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider or --provider vertex --quality final --strict-provider, then preserve cost_report.json as evidence.",
+                "mitigation": "Run the final pipeline with --quality final_low_cost --strict-provider (GEMINI_API_KEY auto-detected) or --provider gemini --quality final --strict-provider, then preserve cost_report.json as evidence.",
             }
         )
     if blueprint:

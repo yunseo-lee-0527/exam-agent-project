@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import time
 from pathlib import Path
 from typing import Any
 
@@ -205,17 +206,33 @@ class GeminiProvider:
                     continue
                 raise RuntimeError("All Gemini model attempts failed: " + " | ".join(errors)) from exc
 
+    @staticmethod
+    def _rate_limit_delay(exc: Exception) -> int:
+        m = re.search(r"retry.*?(\d+)s", str(exc).lower())
+        return int(m.group(1)) + 3 if m else 30
+
     def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
         model = self._strip_provider_prefix(model)
         config = None
         if system:
             config = self._types.GenerateContentConfig(system_instruction=system)
-        response = self.client.models.generate_content(
-            model=model, contents=prompt, config=config
-        )
-        text = (response.text or "").strip()
-        self.usage.record(stage, model, (system or "") + "\n" + prompt, text)
-        return text
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = self.client.models.generate_content(
+                    model=model, contents=prompt, config=config
+                )
+                text = (response.text or "").strip()
+                self.usage.record(stage, model, (system or "") + "\n" + prompt, text)
+                return text
+            except Exception as exc:
+                is_rate_limit = "429" in str(exc) or "resource_exhausted" in str(exc).lower()
+                if is_rate_limit and attempt < max_retries - 1:
+                    delay = self._rate_limit_delay(exc)
+                    print(f"[{self.__class__.__name__}] Rate-limited on {model}, waiting {delay}s (attempt {attempt + 1}/{max_retries})...")
+                    time.sleep(delay)
+                    continue
+                raise
 
     def _generate_json(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_json") -> dict[str, Any]:
         raw = self._generate(model, prompt, system, stage=stage)
