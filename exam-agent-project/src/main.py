@@ -42,16 +42,29 @@ def load_exam_blueprint(path: Path | None) -> dict[str, Any] | None:
 
 
 def _resolve_source_refs(refs: list[str], notes: dict[str, str]) -> list[str]:
-    """Resolve exact filenames or module prefixes such as M1.4 to note files."""
+    """Resolve exact filenames or module prefixes such as M1.4 to note files.
+
+    Also strips LLM-appended page suffixes like '--- Page 14' so that refs
+    such as 'M1.3 What is a Work System.txt --- Page 14' correctly resolve
+    to the known note key 'M1.3 What is a Work System.txt'.
+    """
 
     resolved: list[str] = []
     filenames = list(notes)
     for ref in refs:
-        if ref in notes:
+        # Strip common LLM-generated page suffixes before matching.
+        clean = re.split(r"\s*---\s*[Pp]age\s*\d+", ref)[0].strip()
+        if clean in notes:
+            match = clean
+        elif ref in notes:
             match = ref
         else:
-            ref_lc = ref.lower()
+            ref_lc = clean.lower()
+            # ref starts with a known filename prefix (e.g. module code "M1.4")
             match = next((f for f in filenames if f.lower().startswith(ref_lc)), None)
+            if match is None:
+                # known filename is a prefix of ref (handles page-suffixed refs)
+                match = next((f for f in filenames if ref_lc.startswith(f.lower())), None)
             if match is None:
                 match = next((f for f in filenames if ref_lc in f.lower()), ref)
         if match not in resolved:

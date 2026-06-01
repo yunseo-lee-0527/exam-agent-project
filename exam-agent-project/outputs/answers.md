@@ -2,43 +2,48 @@
 
 ## Q1. Short Answer
 
-Understanding work is crucial because it directly impacts productivity, efficiency, safety, and employee well-being. By systematically studying work, engineers and organizations can identify bottlenecks, optimize processes, design better tools, and create safer working environments. This leads to improved output, reduced costs, and enhanced job satisfaction, ultimately contributing to organizational success and societal progress.
+The four levels used to describe work are: 
+1.  **Action / motion:** Individual, fundamental movements (e.g., reach, click).
+2.  **Task:** A sequence of actions performed to achieve a specific goal (e.g., assemble a part, enter an order).
+3.  **Process:** Interrelated activities that transform inputs into outputs (e.g., manufacturing a product).
+4.  **Work System:** A complete system encompassing people, information, and technology working together to achieve a purpose.
 
-Learning objective: Students will be able to articulate the fundamental importance of studying work in engineering and organizational settings.
+Learning objective: Recall and define the different levels at which work can be described.
 
-Exam intent: Assess basic understanding of foundational concepts.
+Exam intent: Assess basic recall of foundational terminology related to work systems.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Explaining core concepts.
+Assessed skill: Recall and Definition
 
 Rubric:
 
-- Clearly states at least two reasons for studying work.
-- Mentions impact on efficiency, productivity, or safety.
-- Provides a concise explanation of its overall importance.
+- Identifies three levels of work correctly (1 point each, max 3 points).
+- Provides a clear and concise description for each identified level (1 point each, max 3 points).
+- Answer is within word limit and clear.
 
 Coverage contribution: work_and_work_systems: 5
 
-Sources: M1.2 Why Work Matters_260312.txt
+Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q2. Short Answer
 
-A general engineering problem-solving process typically involves several main stages. These stages commonly include: defining the problem, gathering information, generating potential solutions (ideation), evaluating and selecting the best solution, implementing the chosen solution, and finally, testing and verifying the solution's effectiveness, often followed by iteration or refinement.
+The primary objective of a structured engineering problem-solving process is to systematically and effectively address complex challenges. It guides individuals or teams from thoroughly understanding a problem to generating, evaluating, and implementing optimal solutions. This structured approach helps reduce ambiguity, ensures all critical aspects are considered, and increases the likelihood of developing a robust and sustainable solution, rather than just treating symptoms.
 
-Learning objective: Students will be able to recall the primary stages of the engineering problem-solving process.
+Learning objective: Explain the overarching purpose and benefits of a structured engineering problem-solving process.
 
-Exam intent: Assess recall of fundamental process steps.
+Exam intent: Test comprehension of why a structured problem-solving approach is necessary in engineering.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Listing process steps.
+Assessed skill: Explanation of Purpose
 
 Rubric:
 
-- Lists at least 4-5 distinct stages of the process.
-- Stages are logically ordered.
-- Description of stages is accurate and concise.
+- Clearly states the main objective of solving complex problems systematically (2 points).
+- Mentions benefits such as reducing ambiguity, ensuring comprehensive consideration, or leading to robust solutions (2 points).
+- Answer is concise and accurate.
+- Answer is within word limit.
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -46,134 +51,134 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q3. Short Answer
 
-From an engineering perspective, "work" refers to purposeful human activity directed towards achieving a specific outcome or transforming inputs into outputs. Key attributes include its intentional nature, the application of effort (physical or cognitive), the use of tools or resources, and the goal of creating value or solving a problem. It often involves a structured process and can be analyzed for efficiency and effectiveness.
+Frederick Taylor's Scientific Management aimed to redesign work systems primarily by reducing variability, standardizing methods, clarifying roles, and separating the planning of work from its execution. Taylor sought to optimize efficiency through detailed analysis of tasks, identifying the 'one best way' to perform each job. This included time studies to set performance standards and systematic training to ensure workers adhered to prescribed methods, essentially reinterpreting it as an early attempt at work system redesign focused on optimization and control.
 
-Learning objective: Students will be able to define 'work' within an engineering context.
+Learning objective: Describe how Scientific Management influenced the redesign of work systems.
 
-Exam intent: Test definitional understanding of a core concept.
+Exam intent: Assess understanding of Scientific Management's practical goals for work system improvement.
 
 Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
 
-Assessed skill: Defining terms.
+Assessed skill: Description of Principles
 
 Rubric:
 
-- Provides a clear, concise definition of work.
-- Includes at least two key attributes (e.g., purposeful, transformative, value-creating).
-- Reflects an engineering or systematic viewpoint.
+- Identifies at least two key aims of Taylor (e.g., reduce variability, standardize methods, clarify roles, separate planning from execution) (1.5 points each, max 3 points).
+- Briefly explains how these aims contributed to work system redesign (1-2 points).
+- Answer is accurate and within word limit.
 
 Coverage contribution: work_and_work_systems: 5
 
-Sources: M1.2 Why Work Matters_260312.txt
+Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt
 
 ## Q4. Short Answer
 
-Two fundamental components of a work system are inputs and outputs. Inputs are the resources, information, or materials that enter the system to be processed, such as raw materials, human effort, or data. Outputs are the products, services, or information that result from the system's operations, representing the desired outcomes or transformations. Other components often include processes, people, tools, and environment.
+A clear and precise definition of 'work' is crucial because it establishes the boundaries and scope for analysis and design within work systems. Without a well-defined understanding, efforts to measure, optimize, or improve work can become ambiguous and misdirected. It ensures all stakeholders share a common understanding of the activities, tasks, and processes involved, facilitating effective communication, accurate performance measurement, and the development of targeted, relevant solutions for system improvement.
 
-Learning objective: Students will be able to identify and briefly describe key components of a work system.
+Learning objective: Articulate the significance of defining 'work' in the context of work systems.
 
-Exam intent: Check understanding of basic work system structure.
+Exam intent: Evaluate comprehension of foundational concepts regarding work system analysis.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Identifying and describing components.
+Assessed skill: Explanation of Importance
 
 Rubric:
 
-- Identifies two distinct fundamental components.
-- Provides a brief and accurate description for each component.
-- Description reflects their role within a work system.
+- Explains that definition provides scope/boundaries for analysis (2 points).
+- Mentions benefits like clarity, accurate measurement, or effective solutions (2 points).
+- Answer is within word limit and coherent.
 
 Coverage contribution: work_and_work_systems: 5
 
-Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q5. Short Answer
 
-The primary goal of the ideation phase is to generate a wide range of diverse potential solutions or approaches to a defined problem without immediate judgment or evaluation. This phase emphasizes quantity and creativity, aiming to explore numerous possibilities and avoid premature convergence on a single idea. It seeks to break free from conventional thinking and uncover innovative or unconventional solutions.
+A common technique used during the 'solution generation' phase of the engineering problem-solving process is Brainstorming. This method encourages participants to rapidly generate a large quantity of ideas, often in a group setting, without immediate evaluation or criticism, to foster creative and diverse potential solutions.
 
-Learning objective: Students will be able to state the main objective of the ideation stage in problem-solving.
+Learning objective: Identify a standard technique for generating solutions in problem-solving.
 
-Exam intent: Assess understanding of a specific phase's purpose.
+Exam intent: Test basic recall of ideation techniques.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=2 minutes
 
-Assessed skill: Stating primary objectives.
+Assessed skill: Identification
 
 Rubric:
 
-- Clearly states the goal is to generate many diverse solutions.
-- Mentions the importance of quantity/creativity over quality/judgment at this stage.
-- Connects it to exploring possibilities or avoiding premature convergence.
+- Correctly identifies 'Brainstorming' as a solution generation technique (3 points).
+- Provides a brief, accurate description if included (1 point bonus).
+- Answer is concise and accurate.
 
 Coverage contribution: problem_solving_and_ideation: 5
 
-Sources: M2.1.3 Solution Generation (Brainstorming).txt, M2.1.1 Engineering Problem-Solving Process.txt
+Sources: M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q6. Short Answer
 
-The KJ Method and Brainstorming serve distinct purposes. Brainstorming is primarily a divergent technique used for generating a large quantity of diverse solutions or ideas to a known problem, typically applied during the solution generation phase. It prioritizes free association and volume. In contrast, the KJ Method (Affinity Diagram) is a convergent technique used for structuring and understanding complex, unstructured information or problems, often applied during problem definition or information gathering. It groups seemingly disparate ideas or data points into natural relationships to reveal underlying patterns or root causes.
+The 'Understanding and Structuring Problems' phase is crucial because it ensures engineers solve the *right* problem, not just symptoms. A poorly defined problem leads to wasted effort on irrelevant solutions. This phase clarifies objectives, identifies root causes, and maps relationships between problem elements. For example, the KJ Method (Affinity Diagram) helps organize disparate data points and opinions into natural groupings, revealing underlying patterns and core issues. This synthesis transforms vague challenges into clearly defined problems, providing a solid foundation for targeted and effective solution generation later on.
 
-Learning objective: Students will be able to differentiate between ideation and problem-structuring techniques based on their purpose and application.
+Learning objective: Analyze the critical role of problem definition and structuring in the engineering problem-solving process.
 
-Exam intent: Require analytical comparison and understanding of tool application.
+Exam intent: Assess analytical understanding of the problem-solving process and the application of specific techniques.
 
-Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=7 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=8 minutes
 
-Assessed skill: Comparing and contrasting methods; identifying application contexts.
+Assessed skill: Analysis and Application
 
 Rubric:
 
-- Clearly distinguishes Brainstorming as a solution generation technique.
-- Clearly distinguishes the KJ Method as a problem structuring/understanding technique.
-- Accurately describes their typical application points within the problem-solving process.
-- Highlights the difference between divergent and convergent thinking in their application.
+- Clearly explains why problem understanding/structuring is crucial (e.g., solving the right problem, avoiding wasted effort) (3 points).
+- Provides a relevant technique (e.g., KJ Method, Concept Fan) (2 points).
+- Explains *how* the chosen technique supports the problem understanding/structuring phase (3 points).
+- Answer is well-articulated, demonstrates depth of understanding, and is within word limit.
 
 Coverage contribution: problem_solving_and_ideation: 5
 
-Sources: M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt, M2.1.1 Engineering Problem-Solving Process.txt
+Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt
 
 ## Q7. Concept Comparison
 
-Work refers to purposeful human effort or tasks performed to produce value or achieve a specific outcome. It's the 'what' is being done. A work system, conversely, is a complex, structured entity comprising interacting components—people, information, technology, and customers—organized to perform work and achieve specific goals. While work is the direct action or output, a work system provides the overarching structure, environment, and process within which that work is carried out, emphasizing efficiency and effectiveness through design and management.
+The provided lecture context explicitly details the **Psychological perspective on work**, which significantly influences work system design by advocating for jobs that incorporate **autonomy** (worker freedom and discretion in methods, sequence, and pacing), **feedback** (clear information on performance effectiveness from the job or others), and **task meaning** (derived from task significance, task identity, and skill variety). Designing work systems from this perspective aims to enhance individual engagement and performance through intrinsic job characteristics. However, the provided lecture notes do not contain information on the **Sociological perspective** on work, thus precluding a comparison and contrast between the two based solely on the given context.
 
-Learning objective: Differentiate between the fundamental concept of work and the systemic view of work systems in industrial engineering.
+Learning objective: Differentiate between various levels of describing work within a work system.
 
-Exam intent: Assess foundational understanding of core terminology and distinctions in work systems.
+Exam intent: Assess understanding of fundamental definitions and hierarchical structures in work systems.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=6 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=6 minutes
 
-Assessed skill: Conceptual differentiation, synthesis of definitions
+Assessed skill: Conceptual differentiation, analytical thinking
 
 Rubric:
 
-- Accurately defines 'work' as purposeful activity/effort.
-- Accurately defines 'work system' as a structured entity with interacting components.
-- Clearly articulates a key difference between the two concepts (e.g., action vs. structure/context).
-- Provides a concise and coherent explanation within the word limit.
+- Accurately defines 'Task' with an example.
+- Accurately defines 'Process' with an example.
+- Clearly identifies key differences in scope and interdependence.
+- Concise and accurate language.
 
 Coverage contribution: work_and_work_systems: 10
 
-Sources: M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q8. Concept Comparison
 
-The KJ Method is primarily a problem structuring and understanding technique. Its purpose is to organize disparate ideas, data, or observations into meaningful thematic groups to identify root causes, patterns, or key problem areas, often after initial data gathering. Brainstorming, conversely, is a solution generation technique. Its main application is to rapidly produce a large quantity of diverse potential solutions or ideas for a *defined* problem. While both involve group ideation, KJ focuses on structuring existing information to clarify the problem, whereas brainstorming focuses on generating novel solutions.
+The KJ Method (Affinity Diagram) is a problem-structuring technique used to organize qualitative data (ideas, opinions) into natural groupings to understand and define the root problem. It's typically applied early in the problem-solving process to synthesize information. Brainstorming, conversely, is an ideation technique focused on generating a large quantity of diverse solutions to a *defined* problem. Its primary objective is uninhibited idea generation, often following problem definition. While both involve group participation and idea generation, KJ organizes existing ideas for understanding, whereas Brainstorming creates new ideas for solutions.
 
-Learning objective: Distinguish between methodologies used for problem structuring and those for solution generation within the engineering problem-solving process.
+Learning objective: Differentiate between problem structuring and solution generation techniques.
 
-Exam intent: Evaluate the student's ability to differentiate specific problem-solving and ideation tools.
+Exam intent: Assess understanding of distinct phases and methods in engineering problem-solving.
 
 Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=7 minutes
 
-Assessed skill: Methodological differentiation, analytical comparison
+Assessed skill: Methodological comparison, application context
 
 Rubric:
 
-- Accurately explains the KJ Method's purpose (problem structuring/understanding).
-- Accurately explains brainstorming's purpose (solution generation).
-- Clearly identifies a key difference in their application or stage within problem-solving.
-- Provides a concise and coherent explanation within the word limit.
+- Accurately describes the primary objective and function of the KJ Method.
+- Accurately describes the primary objective and function of Brainstorming.
+- Clearly distinguishes between their typical application stages in problem-solving.
+- Highlights a key difference in their fundamental purpose.
 
 Coverage contribution: problem_solving_and_ideation: 10
 
@@ -181,21 +186,22 @@ Sources: M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3
 
 ## Q9. Application
 
-Applying the Subtraction framework, the cafeteria could remove the 'drink' component from the standard meal deal. Instead of a fixed drink, students would purchase only the main dish and side, with drinks available separately if desired. This benefits the cafeteria by reducing waste from unwanted drinks and potentially lowering the base meal deal cost. Students benefit from greater flexibility to choose their preferred drink or opt out entirely, potentially saving money.
+Applying the 'Subtraction' framework, the university could remove the physical requirement for students to visit a specific office for ID card validation during registration. Instead, students could upload necessary documents online for remote verification or use existing student database photos. This subtraction eliminates wait times and travel for students, reducing the physical bottleneck and staff handling of documents, making the registration process more efficient and accessible.
 
-Learning objective: Apply systematic innovation frameworks to real-world scenarios.
+Learning objective: Students will be able to apply systematic innovation frameworks to generate novel solutions in a given context.
 
-Exam intent: Assess the ability to correctly identify and apply an innovation framework.
+Exam intent: Assess the student's ability to apply a systematic innovation framework to a practical business process.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=9 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=10 minutes
 
-Assessed skill: Analytical application of innovation principles.
+Assessed skill: Problem-solving, creative application of theoretical concepts.
 
 Rubric:
 
-- Correctly identifies and defines the Subtraction framework in the context of the problem.
-- Provides a clear, specific example of how Subtraction is applied to the meal deal.
-- Articulates plausible benefits for both the cafeteria and students resulting from the innovation.
+- Identifies the 'Subtraction' framework correctly.
+- Clearly proposes a specific element or component to be subtracted from the registration process.
+- Articulates how the subtraction leads to a clear and measurable improvement (e.g., efficiency, reduced effort).
+- Explanation demonstrates a solid understanding of the framework's application.
 
 Coverage contribution: innovation_frameworks: 15
 
@@ -203,45 +209,51 @@ Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 
 ## Q10. Application
 
-Three Therbligs present are: 'Reach (empty hand)', 'Grasp', and 'Transport Loaded'. A specific modification could be to implement a gravity-feed dispenser for the items, positioning it directly above the box. This would significantly reduce or eliminate the 'Transport Loaded' Therblig, as the item would drop directly into the box, and also reduce the 'Reach' distance for the next item, making the process more efficient by minimizing unnecessary movements.
+Three Therbligs involved are: 'Reach' (to grasp vial), 'Grasp' (holding the vial), and 'Use' (operating the syringe plunger to draw medication). To minimize 'Reach,' the workstation could be redesigned so that frequently used vials and syringes are placed in a designated, ergonomically optimal zone directly in front of the nurse, within easy access without excessive stretching. This reduces wasted motion and improves preparation time and comfort.
 
-Learning objective: Analyze a work task using Therbligs to identify opportunities for efficiency improvement.
+Learning objective: Students will be able to identify and analyze basic human motions using Therbligs to propose efficiency improvements.
 
-Exam intent: Assess the ability to apply Therblig analysis to practical work scenarios and propose solutions.
+Exam intent: Evaluate the student's ability to apply Therblig analysis to a common work task and propose practical improvements.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=9 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=10 minutes
 
-Assessed skill: Analytical problem-solving and process optimization.
+Assessed skill: Analytical thinking, process improvement, knowledge application.
 
 Rubric:
 
-- Correctly identifies at least three distinct Therbligs from the described process.
-- Proposes a specific and plausible modification to the workstation or process.
-- Clearly explains how the proposed modification eliminates or reduces an identified Therblig.
-- Articulates how this reduction leads to improved efficiency.
+- Correctly identifies three distinct Therbligs relevant to the medication preparation task.
+- Accurately describes the occurrence of each identified Therblig within the scenario.
+- Proposes a practical and relevant modification to minimize one of the identified Therbligs.
+- The proposed modification reflects an understanding of motion study principles for efficiency improvement.
 
 Coverage contribution: motion_study_and_therbligs: 15
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
+Sources: M1.4 Scientific Management as Work System Redesign.txt
 
 ## Q11. Essay
 
-Scientific Management (SM) remains relevant for its foundational emphasis on efficiency through work system redesign. Principles like reducing variability and standardizing methods still enhance productivity, especially in repeatable tasks or large-scale operations. For instance, lean manufacturing draws heavily on these concepts. However, SM's inherent limitations emerge in dynamic, knowledge-based environments. Its strict separation of planning from execution and emphasis on rigid standardization can stifle innovation, limit employee autonomy, and reduce adaptability, leading to dissatisfaction and decreased engagement. Contemporary work systems often prioritize flexibility, continuous improvement, and empowered teams, which conflict with SM's hierarchical and prescriptive nature. While SM provides a baseline for operational efficiency, it requires significant adaptation to address the human and dynamic aspects crucial for modern organizational performance.
+Two interventions using Scientific Management principles are: 
 
-Learning objective: Critically evaluate Scientific Management's impact on work system design, recognizing its foundational contributions and inherent limitations in diverse organizational contexts.
+1.  **Standardized Serving Procedures**: Implement time studies to establish optimal methods and tools for each serving task (e.g., plating, checkout). Staff would then be scientifically selected and trained in these "science[d]" methods, aligning with Taylor's principles of developing a science for work and scientifically training workers (M1.4, p.9; M1.3, p.14).
 
-Exam intent: Assess comprehensive understanding and critical thinking regarding foundational management theories and their modern applicability.
+2.  **Optimized Cafeteria Layout**: Analyze kitchen and serving workflows, redesigning equipment and storage placement based on "reach distances" to minimize worker motion. This reflects Lillian Gilbreth's application of work design principles to "kitchen workflows" and storage (M1.4, p.24).
 
-Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=12 minutes
+**Potential Drawback**: Such strict standardization can lead to worker dissatisfaction due to repetitive, de-skilled tasks and reduced autonomy, a psychological concern, despite Lillian Gilbreth's pioneering work in industrial psychology (M1.4, p.26).
 
-Assessed skill: Critical analysis, synthesis of theoretical concepts, application to contemporary scenarios
+Learning objective: Students should be able to explain the foundational principles of Scientific Management, analyze its role in work system redesign, and critically evaluate its historical impact and contemporary relevance.
+
+Exam intent: Assess deep understanding of Scientific Management, its systemic implications as work system redesign, and its controversial yet lasting influence on contemporary work.
+
+Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=15 minutes
+
+Assessed skill: Critical analysis, synthesis of historical context with theoretical principles, evaluation of managerial approaches and their legacies.
 
 Rubric:
 
-- Accurately identifies and explains Scientific Management's core principles (reducing variability, standardizing methods, separating planning/execution).
-- Clearly articulates Scientific Management's contributions to operational efficiency and its role in early work system redesign.
-- Critically discusses the primary limitations of Scientific Management in the context of modern, adaptable work systems (flexibility, employee empowerment).
-- Provides relevant examples that illustrate both the enduring effectiveness and shortcomings of Scientific Management principles.
+- Accurate and comprehensive explanation of Taylor's core principles.
+- Clear articulation of how Scientific Management constitutes work system redesign.
+- Thorough critical evaluation of criticisms and discussion of its enduring legacy.
+- Well-structured and coherent argument demonstrating strong analytical skills.
 
 Coverage contribution: scientific_management: 20
 

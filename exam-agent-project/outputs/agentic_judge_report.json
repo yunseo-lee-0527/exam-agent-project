@@ -88,8 +88,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt",
-        "matched_terms=work, engineering, understanding, because, productivity, safety"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, motion, describe, three, distinct, levels"
       ],
       "revision_instruction": ""
     },
@@ -100,7 +100,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=typical, main, engineering, problem-solving, process, involves"
+        "matched_terms=objective, structured, engineering, problem-solving, process, challenges"
       ],
       "revision_instruction": ""
     },
@@ -110,8 +110,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt",
-        "matched_terms=work, engineering, human, outcome, into"
+        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=taylor, scientific, management, redesign, work, according"
       ],
       "revision_instruction": ""
     },
@@ -121,8 +121,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, components, outputs, information, materials"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, clear, definition, when, systems, boundaries"
       ],
       "revision_instruction": ""
     },
@@ -132,8 +132,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt, M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=goal, ideation, phase, engineering, problem-solving, process"
+        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, method, technique, used, during, solution"
       ],
       "revision_instruction": ""
     },
@@ -143,8 +143,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt, M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=method, brainstorming, compare, used, engineering, problem-solving"
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+        "matched_terms=understanding, structuring, problems, engineering, problem-solving, even"
       ],
       "revision_instruction": ""
     },
@@ -154,8 +154,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, structured, entity, industrial, engineering"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, sociological, psychological, perspectives, design, systems"
       ],
       "revision_instruction": ""
     },
@@ -166,7 +166,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=method, brainstorming, affinity, diagram, ideation, problem"
+        "matched_terms=method, brainstorming, used, their, typical, affinity"
       ],
       "revision_instruction": ""
     },
@@ -177,8 +177,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=management, subtraction, currently, offers, standard, includes",
-        "lecture_innovation_frameworks_in_answer=subtraction"
+        "matched_terms=subtraction, innovation, imagine, looking, process, student"
       ],
       "revision_instruction": ""
     },
@@ -188,8 +187,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=worker, station, placing, small, items, into"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=therbligs, task, into, sequence, motions"
       ],
       "revision_instruction": ""
     },
@@ -200,7 +199,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=scientific, management, work, system, redesign, reduce"
+        "matched_terms=scientific, management, university, long, service, only"
       ],
       "revision_instruction": ""
     },
@@ -222,7 +221,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to articulate the fundamental importance of studying work in engineering and organizational settings."
+        "learning_objective=Recall and define the different levels at which work can be described."
       ],
       "revision_instruction": ""
     },
@@ -233,7 +232,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to recall the primary stages of the engineering problem-solving process."
+        "learning_objective=Explain the overarching purpose and benefits of a structured engineering problem-solving process."
       ],
       "revision_instruction": ""
     },
@@ -244,7 +243,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to define 'work' within an engineering context."
+        "learning_objective=Describe how Scientific Management influenced the redesign of work systems."
       ],
       "revision_instruction": ""
     },
@@ -255,7 +254,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to identify and briefly describe key components of a work system."
+        "learning_objective=Articulate the significance of defining 'work' in the context of work systems."
       ],
       "revision_instruction": ""
     },
@@ -266,7 +265,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to state the main objective of the ideation stage in problem-solving."
+        "learning_objective=Identify a standard technique for generating solutions in problem-solving."
       ],
       "revision_instruction": ""
     },
@@ -277,7 +276,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Students will be able to differentiate between ideation and problem-structuring techniques based on their purpose and application."
+        "learning_objective=Analyze the critical role of problem definition and structuring in the engineering problem-solving process."
       ],
       "revision_instruction": ""
     },
@@ -288,7 +287,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Differentiate between the fundamental concept of work and the systemic view of work systems in industrial engineering."
+        "learning_objective=Differentiate between various levels of describing work within a work system."
       ],
       "revision_instruction": ""
     },
@@ -299,7 +298,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Distinguish between methodologies used for problem structuring and those for solution generation within the engineering problem-solving process."
+        "learning_objective=Differentiate between problem structuring and solution generation techniques."
       ],
       "revision_instruction": ""
     },
@@ -310,7 +309,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Apply systematic innovation frameworks to real-world scenarios."
+        "learning_objective=Students will be able to apply systematic innovation frameworks to generate novel solutions in a given context."
       ],
       "revision_instruction": ""
     },
@@ -321,7 +320,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Analyze a work task using Therbligs to identify opportunities for efficiency improvement."
+        "learning_objective=Students will be able to identify and analyze basic human motions using Therbligs to propose efficiency improvements."
       ],
       "revision_instruction": ""
     },
@@ -332,7 +331,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Critically evaluate Scientific Management's impact on work system design, recognizing its foundational contributions and inherent limitations in diverse organizational contexts."
+        "learning_objective=Students should be able to explain the foundational principles of Scientific Management, analyze its role in work system redesign, and critically evaluate its historical impact and contemporary relevance."
       ],
       "revision_instruction": ""
     },
@@ -342,7 +341,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=53",
+        "answer_words=67",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -353,8 +352,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=47",
-        "rubric_items=3"
+        "answer_words=62",
+        "rubric_items=4"
       ],
       "revision_instruction": ""
     },
@@ -364,7 +363,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=64",
+        "answer_words=79",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -375,7 +374,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=61",
+        "answer_words=70",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -386,7 +385,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=61",
+        "answer_words=45",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -397,7 +396,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=89",
+        "answer_words=87",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -408,7 +407,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=79",
+        "answer_words=103",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -430,8 +429,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=71",
-        "rubric_items=3"
+        "answer_words=66",
+        "rubric_items=4"
       ],
       "revision_instruction": ""
     },
@@ -441,7 +440,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=68",
+        "answer_words=66",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -452,7 +451,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=120",
+        "answer_words=126",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -463,7 +462,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=14"
+        "prompt_words=20"
       ],
       "revision_instruction": ""
     },
@@ -473,7 +472,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=13"
       ],
       "revision_instruction": ""
     },
@@ -483,7 +482,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=10"
+        "prompt_words=18"
       ],
       "revision_instruction": ""
     },
@@ -493,7 +492,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=13"
+        "prompt_words=22"
       ],
       "revision_instruction": ""
     },
@@ -503,7 +502,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=14"
+        "prompt_words=15"
       ],
       "revision_instruction": ""
     },
@@ -513,7 +512,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=26"
+        "prompt_words=32"
       ],
       "revision_instruction": ""
     },
@@ -523,7 +522,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=24"
+        "prompt_words=25"
       ],
       "revision_instruction": ""
     },
@@ -533,7 +532,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=24"
+        "prompt_words=23"
       ],
       "revision_instruction": ""
     },
@@ -543,7 +542,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=69"
+        "prompt_words=43"
       ],
       "revision_instruction": ""
     },
@@ -553,7 +552,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=84"
+        "prompt_words=55"
       ],
       "revision_instruction": ""
     },
@@ -563,7 +562,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=68"
+        "prompt_words=65"
       ],
       "revision_instruction": ""
     }

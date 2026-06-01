@@ -10,6 +10,24 @@ This file summarizes the main limitations that remain after the current implemen
 
 ## Residual Risks
 
+### deterministic_provider
+
+- Severity: high
+- Evidence: Current run used the local deterministic fallback, not a live LLM provider.
+- Mitigation: Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider using the lecture Agent Platform setup, or --provider gemini with GEMINI_API_KEY as a backup path. Add --blueprint nonexistent_path when evidence from the specialist writer path is required.
+
+### provider_fallback_hidden
+
+- Severity: medium
+- Evidence: Strict provider mode is off, so live provider failures can fall back during development.
+- Mitigation: Use --strict-provider for final generation.
+
+### self_evaluation_bias
+
+- Severity: medium
+- Evidence: The same system family generates and judges the exam.
+- Mitigation: Add human_review_notes.json and compare human findings against agentic_judge_report.json.
+
 ### chunk_grounding_is_not_entailment
 
 - Severity: low
