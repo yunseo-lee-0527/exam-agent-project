@@ -26,7 +26,7 @@ Use this before submitting the final generated exam.
 
 ## Provider and Cost
 
-- [ ] Provider mode is correct for final generation. Estimated cost: $0.000000.
+- [ ] Provider mode is correct for final generation.
 - [ ] If using Gemini/OpenAI/Anthropic, confirm strict provider mode for the final run.
 - [ ] Confirm no private API keys or credentials are committed.
 

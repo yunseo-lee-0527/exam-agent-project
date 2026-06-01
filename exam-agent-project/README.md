@@ -308,7 +308,7 @@ Task 2의 batch writer가 이미 답안과 source_refs를 채워넣었다면 추
   outputs/exam.md / answers.md / review.md
   outputs/agentic_judge_report.json
   outputs/assessment_validity_report.md
-  outputs/cost_report.json / run_trace.json
+  outputs/run_trace.json
 ```
 
 ---
@@ -394,7 +394,6 @@ exam-agent-project/
 │   ├── assessment_validity_report.md / .json
 │   ├── residual_risk_report.json
 │   ├── human_review_checklist.md
-│   ├── cost_report.json         # API 호출 상세 기록
 │   └── run_trace.json           # 파이프라인 실행 추적
 │
 └── docs/
@@ -447,7 +446,7 @@ python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --m
 python src/main.py --provider deterministic
 ```
 
-> **참고 — `exam_blueprint.json`**: 로컬에 이 파일이 있으면 Task 2의 LLM Writer가 우회되고 경고 메시지가 출력됩니다. 현재 제출 산출물(`outputs/`)은 blueprint 없이 전체 LLM 파이프라인으로 생성됐습니다 (`outputs/cost_report.json` 참조, 7회 호출, GeminiApiKeyProvider).
+> **참고 — `exam_blueprint.json`**: 로컬에 이 파일이 있으면 Task 2의 LLM Writer가 우회되고 경고 메시지가 출력됩니다. 전체 LLM Writer 경로를 재현하려면 로컬 blueprint 파일을 제거한 상태에서 실행하세요.
 
 완료되면 `outputs/` 폴더에 결과물이 생성됩니다.
 
@@ -610,14 +609,9 @@ python src/main.py --resume-from-judge --max-refine 0 --max-agentic-judge-refine
 
 ## 18. 실제 실행 결과 (제출 산출물)
 
-현재 `outputs/` 폴더는 아래 조건으로 생성된 실제 LLM 산출물입니다.
-
-```
-provider:  GeminiApiKeyProvider (Google AI Studio 무료 API)
-model:     gemini-2.5-flash 5회 + gemini-2.5-flash-lite 2회
-API 호출:  7회 (1 planner + 4 batch_writers + 2 batch_judges)
-비용:      $0.005436
-```
+현재 `outputs/` 폴더는 Gemini 기반으로 생성된 최종 문항과 후속 judge 재검증 산출물을 포함합니다.
+후속 재검증 과정에서 실행 로그가 덮어써졌으므로, 현재 제출본에서는 개별 실행의 비용 로그를 제외했습니다.
+전체 생성 경로의 호출 수 구조는 13절을 참고하세요.
 
 ### 생성된 시험지 구성
 
@@ -646,6 +640,6 @@ API 호출:  7회 (1 planner + 4 batch_writers + 2 batch_judges)
 | 난이도 문항 수 | Easy 5, Medium 4, Hard 2 |
 | 고차원 사고 비율 | 45.5% (5/11) |
 | 예상 소요 시간 | 75분 (목표 75분 일치) |
-| 출처 근거 검증 | PASS (전 문항 source_refs 있음) |
+| 출처 근거 검증 | PASS (전 문항 source_refs 파일 존재 기준, 의미 정합성은 수동 검토 필요) |
 
-> **검증 이력**: Gemini strict-provider 실행으로 문항·답안과 API 비용 기록을 생성했습니다. 이후 강의 범위 밖 혁신 프레임워크를 차단하는 scope guard와 토픽 정규화를 보강하고, 동일 문항을 최신 로컬 agentic judge로 재검증했습니다. 추가 LLM 호출 없이 최종 `12/12 PASS`를 확인했습니다.
+> **검증 이력**: Gemini 기반으로 생성된 문항·답안을 후속 로컬 agentic judge로 재검증했습니다. 상세 호출 로그는 후속 검증 실행에서 덮어써져 제출본에서 제외했습니다. 현재 산출물 기준 자동 판정 `12/12 PASS`를 확인했습니다.
