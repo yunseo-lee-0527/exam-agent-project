@@ -11,7 +11,7 @@
   },
   {
     "task": "Task 2",
-    "agent": "Blueprint Question Writer",
+    "agent": "Question Writer fan-out",
     "status": "completed",
     "questions": 11
   },
@@ -24,7 +24,7 @@
     "task": "Task 4c",
     "agent": "Coverage Audit",
     "status": "completed",
-    "notes": 7
+    "notes": 1
   },
   {
     "task": "Task 5",
@@ -36,9 +36,9 @@
     "task": "Task 5b",
     "agent": "Agentic Judge System",
     "status": "completed",
-    "final_verdict": "PASS",
+    "final_verdict": "FAIL",
     "iterations": 1,
-    "non_pass_targets": 0
+    "non_pass_targets": 3
   },
   {
     "task": "Task 6",

@@ -4,23 +4,11 @@ This file summarizes the main limitations that remain after the current implemen
 
 ## Current Evidence
 
-- Agentic judge final verdict: `PASS`.
+- Agentic judge final verdict: `FAIL`.
 - Chunk-level grounding passed: `True`.
 - Supported questions: 11 / 11.
 
 ## Residual Risks
-
-### blueprint_dependency
-
-- Severity: medium
-- Evidence: exam_blueprint.json controls the current exam draft.
-- Mitigation: Frame it as a team-authored, requirement-aligned blueprint or run with --blueprint nonexistent_path and a live provider in strict mode before final submission.
-
-### self_evaluation_bias
-
-- Severity: medium
-- Evidence: The same system family generates and judges the exam.
-- Mitigation: Add human_review_notes.json and compare human findings against agentic_judge_report.json.
 
 ### chunk_grounding_is_not_entailment
 

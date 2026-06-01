@@ -536,8 +536,10 @@ class _BaseQuestionWriter(BaseAgentWorker):
                         assessed_skill=str(draft.get("assessed_skill", "")),
                         rubric=list(draft.get("rubric", [])),
                     ))
+                if len(questions) >= count:
+                    return questions[:count]
                 if questions:
-                    return questions
+                    return questions  # partial but acceptable — LLM returned fewer than asked
             except Exception as exc:
                 print(f"[{self.name}] batch_write_questions failed ({exc}); using pool mode.")
 

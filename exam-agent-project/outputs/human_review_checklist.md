@@ -26,32 +26,26 @@ Use this before submitting the final generated exam.
 
 ## Provider and Cost
 
-- [ ] Provider mode is correct for final generation. Estimated cost: $0.003210.
+- [ ] Provider mode is correct for final generation. Estimated cost: $0.006620.
 - [ ] If using Gemini/OpenAI/Anthropic, confirm strict provider mode for the final run.
 - [ ] Confirm no private API keys or credentials are committed.
 
 ## Generated Questions
 
-- [ ] Q1: Short Answer / Work and Work Systems / 5 points
-- [ ] Q2: Short Answer / Scientific Management / 5 points
-- [ ] Q3: Short Answer / Problem Solving and Ideation / 5 points
-- [ ] Q4: Short Answer / Five Innovation Frameworks / 5 points
-- [ ] Q5: Short Answer / Motion Study and Therbligs / 5 points
-- [ ] Q6: Short Answer / Work and Work Systems / 5 points
-- [ ] Q7: Concept Comparison / Scientific Management / 10 points
-- [ ] Q8: Concept Comparison / Problem Solving and Ideation / 10 points
-- [ ] Q9: Application / Five Innovation Frameworks / 15 points
-- [ ] Q10: Application / Motion Study and Therbligs / 15 points
-- [ ] Q11: Essay / Scientific Management / 20 points
+- [ ] Q1: Short Answer / Work and Work Systems Fundamentals / 5 points
+- [ ] Q2: Short Answer / Foundations and Principles of Scientific Management / 5 points
+- [ ] Q3: Short Answer / Engineering Problem Solving and Ideation Techniques / 5 points
+- [ ] Q4: Short Answer / Systematic Innovation Frameworks / 5 points
+- [ ] Q5: Short Answer / Micro-Level Motion Study and Therbligs / 5 points
+- [ ] Q6: Short Answer / Foundations and Principles of Scientific Management / 5 points
+- [ ] Q7: Concept Comparison / Work and Work Systems Fundamentals / 10 points
+- [ ] Q8: Concept Comparison / Foundations and Principles of Scientific Management / 10 points
+- [ ] Q9: Application / Work and Work Systems Fundamentals / 15 points
+- [ ] Q10: Application / Foundations and Principles of Scientific Management / 15 points
+- [ ] Q11: Essay / Foundations and Principles of Scientific Management / 20 points
 
 ## Coverage Audit Notes
 
-- Coverage gap: no question targets Introduction to Work and Work Systems.
-- Coverage gap: no question targets Foundations of Scientific Management.
-- Coverage gap: no question targets Engineering Problem Solving and Ideation Methods.
-- Coverage gap: no question targets Systematic Innovation Frameworks.
-- Coverage gap: no question targets Micro-level Motion Study and Therbligs.
-- Coverage contribution by topic key: {'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}.
 - Question type mix: {'Short Answer': 6, 'Concept Comparison': 2, 'Application': 2, 'Essay': 1}.
 
 ## Requirements Snapshot

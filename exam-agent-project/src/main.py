@@ -790,9 +790,9 @@ def run_pipeline(
     )
     state["model_policy"] = model_policy
 
-    if resume_from_judge and not batch_judge:
+    if not batch_judge:
         batch_judge = True
-        print("[run_pipeline] --resume-from-judge implies batch judge mode (2 calls instead of 22).")
+        print("[run_pipeline] Auto-enabling batch judge mode (2 calls instead of 22).")
 
     provider = make_provider(provider_name, model_policy=model_policy, strict=strict_provider)
     state["provider"] = provider.__class__.__name__
@@ -856,6 +856,10 @@ def run_pipeline(
     # --- Task 2: Question writers in parallel (skipped when resuming) ---
     blueprint = load_exam_blueprint(blueprint_path) if not resume_from_judge else None
     if not resume_from_judge and blueprint:
+        print(
+            "\n⚠️  WARNING: exam_blueprint.json found — using pre-written questions instead of LLM generation.\n"
+            "   Pass --blueprint nonexistent to force LLM question writing.\n"
+        )
         questions = questions_from_blueprint(blueprint, notes)
         state["blueprint"] = {
             "path": str(blueprint_path),

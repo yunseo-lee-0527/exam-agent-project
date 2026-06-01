@@ -9,6 +9,30 @@ venv/
 
 # Generated outputs
 outputs/*.tmp
+outputs/chunk_index.json
+outputs/chunk_grounding_report.json
+outputs/source_grounding_report.json
+outputs/coverage_matrix.json
+outputs/processed_notes_db.json
+outputs/materials_manifest.json
+outputs/human_review_notes_template.json
+outputs/evaluation_report.json
+outputs/unsupported_materials_report.md
+
+# Blueprint fallback — kept locally, not submitted
+exam_blueprint.json
+
+# Report drafts — not for submission
+docs/report_draft.md
+docs/report_draft.docx
+
+# Internal dev docs
+docs/agentic_judge_system.md
+docs/evaluation_criteria_alignment.md
+docs/gemini_api_key_setup.md
+docs/model_toggle_guide.md
+docs/quality_improvement_notes.md
+docs/vertex_ai_agent_platform_setup.md
 
 # Local editor files
 .DS_Store

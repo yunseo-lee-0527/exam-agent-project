@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-Define work, task, process, and work system. Explain how the four levels differ from one another.
+Based on the M1.5 lecture on "Anatomy and Taxonomy of Work Systems," explain why taxonomies are important for characterizing work systems and list the three complementary taxonomies discussed.
 
 ## Q2. Short Answer (5 points)
 
-List Taylor's four principles of scientific management and state the managerial logic behind them in one sentence.
+According to the M1.4 lecture, Frederick W. Taylor observed several key issues in industrial work that motivated his development of Scientific Management. Briefly describe three specific observations Taylor made that highlighted inefficiency.
 
 ## Q3. Short Answer (5 points)
 
-What are the five steps of the DASSI engineering problem-solving process? Give one phrase describing the purpose of each step.
+In the context of the M2.1.1 lecture, "Engineering Problem-Solving Process," how is this process conceptually similar to other improvement cycles? Provide an example of another improvement cycle that shares this similarity.
 
 ## Q4. Short Answer (5 points)
 
-Name the five innovation frameworks from the lecture and give a one-line meaning for any two of them.
+From the M2.1.5 lecture on "Systematic Innovation Methods," select and briefly describe two of the five innovation frameworks mentioned.
 
 ## Q5. Short Answer (5 points)
 
-What are Therbligs? Give three examples of Therblig motions and explain why this vocabulary is useful for motion study.
+Discuss the main contributions of Frank and Lillian Gilbreth to Scientific Management, specifically focusing on their extension of "time study" and the concept of "Therbligs," as described in the M1.4 lecture.
 
 ## Q6. Short Answer (5 points)
 
-Why is performance described as an emergent property of a work system? Answer using at least three work-system components.
+Beyond merely observing inefficiencies, Frederick W. Taylor's Scientific Management proposed a systematic approach to work system redesign. Based on the M1.4 lecture, describe two core principles or aspects of this systematic redesign that Taylor advocated.
 
 ## Q7. Concept Comparison (10 points)
 
-Compare natural soldiering and systematic soldiering in Taylor's theory. Why does the distinction matter for scientific management?
+As discussed in M1.5, three complementary taxonomies characterize work systems. Compare and contrast the primary purpose and key dimensions of the *structure-based taxonomy* with the *complexity-based taxonomy* for analyzing work systems.
 
 ## Q8. Concept Comparison (10 points)
 
-Compare DASSI, the KJ Method, and brainstorming. Where does each fit in a disciplined engineering problem-solving process?
+Based on Frederick W. Taylor's observations described in M1.4, compare a typical work system *before* Scientific Management intervention with a work system *after* being redesigned according to Scientific Management principles. Focus your comparison on work methods and knowledge management.
 
 ## Q9. Application (15 points)
 
-A university library wants to reduce student waiting time for study rooms without building more rooms. Use DASSI briefly to frame the problem, then propose two redesign ideas using two different innovation frameworks.
+Based on the lecture's discussion of work system taxonomies, consider a large online retail company that uses automated sorting machines, human package handlers, and a complex IT inventory system to fulfill customer orders. Which of the three complementary taxonomies mentioned in 'M1.5 Anatomy and Taxonomy of Work Systems' would be most effective for understanding the inherent complexity and interdependencies within this order fulfillment process? Explain how you would apply this chosen taxonomy to characterize the system.
 
 ## Q10. Application (15 points)
 
-A worker assembling small kits repeatedly searches for parts, reaches across the bench, positions items by hand, inspects the kit, and repacks defective kits. Identify likely Therbligs and propose a redesign that improves both motion efficiency and the surrounding work system.
+Imagine a university's registrar's office facing persistent issues with long student wait times for transcript requests, frequent errors in document processing, and new staff learning tasks inconsistently from different senior colleagues. Referencing Frederick W. Taylor's observations and the principles of Scientific Management discussed in 'M1.4 Scientific Management as Work System Redesign,' propose how these issues could be addressed.
 
 ## Q11. Essay (20 points)
 
-Discuss scientific management as an early form of work-system redesign. Your answer must cover Taylor, the Gilbreths, benefits, limitations, and how a modern manager should adapt the approach using work-system thinking and DASSI.
+Based on the M1.4 lecture 'Scientific Management as Work System Redesign,' Frederick W. Taylor observed several key issues in industrial settings, including a lack of standardized methods and output restriction. Explain how these initial observations led to the foundational principles of Scientific Management, and briefly describe one core principle Taylor proposed to address these problems.

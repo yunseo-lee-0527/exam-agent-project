@@ -1,16 +1,28 @@
 {
-  "final_verdict": "PASS",
+  "final_verdict": "FAIL",
   "summary": {
     "targets": 12,
-    "pass": 12,
-    "revise": 0,
-    "fail": 0
+    "pass": 9,
+    "revise": 2,
+    "fail": 1
   },
   "target_decisions": {
     "EXAM": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "coverage:work_and_work_systems",
+        "coverage:scientific_management",
+        "coverage:problem_solving_and_ideation",
+        "coverage:innovation_frameworks",
+        "coverage:motion_study_and_therbligs",
+        "difficulty:easy",
+        "difficulty:medium",
+        "difficulty:hard"
+      ],
+      "revision_instructions": [
+        "Regenerate the blueprint so topic contribution exactly matches requirements.json and total points equal 100.",
+        "Adjust question difficulty labels or replace questions so point-weighted easy/medium/hard balance follows requirements.json."
+      ]
     },
     "Q1": {
       "final_verdict": "PASS",
@@ -33,9 +45,13 @@
       "revision_instructions": []
     },
     "Q3": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "REVISE",
+      "failed_checks": [
+        "weak_lecture_specificity"
+      ],
+      "revision_instructions": [
+        "Clarify the learning objective and make the prompt test a lecture-specific concept with appropriate cognitive demand."
+      ]
     },
     "Q4": {
       "final_verdict": "PASS",
@@ -63,23 +79,33 @@
       "revision_instructions": []
     },
     "Q9": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "REVISE",
+      "failed_checks": [
+        "overlong_prompt"
+      ],
+      "revision_instructions": [
+        "Tighten wording, add scenario constraints, and clarify how partial credit should be awarded."
+      ]
     }
   },
   "findings": [
     {
       "target_id": "EXAM",
       "judge": "Coverage Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "coverage:work_and_work_systems",
+        "coverage:scientific_management",
+        "coverage:problem_solving_and_ideation",
+        "coverage:innovation_frameworks",
+        "coverage:motion_study_and_therbligs"
+      ],
       "evidence": [
         "target_coverage={'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}",
-        "actual_coverage={'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}",
+        "actual_coverage={'work_work_systems_fundamentals': 30, 'foundations_principles_of_scientific_management': 55, 'engineering_problem_solving_ideation_techniques': 5, 'systematic_innovation_frameworks': 5, 'micro-level_motion_study_therbligs': 5}",
         "total_points=100"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "Regenerate the blueprint so topic contribution exactly matches requirements.json and total points equal 100."
     },
     {
       "target_id": "Q1",
@@ -87,8 +113,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt",
-        "matched_terms=work, system, define, task, process, levels"
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, based, anatomy, taxonomy, systems, taxonomies"
       ],
       "revision_instruction": ""
     },
@@ -99,7 +125,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=taylor, scientific, management, work, method, four"
+        "matched_terms=taylor, work, scientific, management, according, frederick"
       ],
       "revision_instruction": ""
     },
@@ -110,7 +136,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=dassi, five, engineering, problem-solving, process, step"
+        "matched_terms=engineering, problem-solving, process, conceptually, similar, other"
       ],
       "revision_instruction": ""
     },
@@ -121,7 +147,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=innovation, frameworks, subtraction, combination, five, addition"
+        "matched_terms=innovation, frameworks, subtraction, system, systematic, methods"
       ],
       "revision_instruction": ""
     },
@@ -131,8 +157,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, therblig, motion, gilbreth, work, examples"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=gilbreth, scientific, management, therbligs, main, contributions"
       ],
       "revision_instruction": ""
     },
@@ -142,8 +168,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, performance, emergent, property, three"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=taylor, scientific, management, work, system, redesign"
       ],
       "revision_instruction": ""
     },
@@ -153,8 +179,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=soldiering, taylor, scientific, management, natural, systematic"
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, three, complementary, taxonomies, characterize, systems"
       ],
       "revision_instruction": ""
     },
@@ -164,8 +190,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=dassi, method, brainstorming, compare, disciplined, engineering"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt",
+        "matched_terms=taylor, work, system, scientific, management, based"
       ],
       "revision_instruction": ""
     },
@@ -175,8 +201,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=dassi, redesign, innovation, reduce, student, time"
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, system, based, taxonomies, large, uses"
       ],
       "revision_instruction": ""
     },
@@ -186,8 +212,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, worker, assembling, small, parts, across"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt",
+        "matched_terms=university, long, tasks"
       ],
       "revision_instruction": ""
     },
@@ -197,21 +223,25 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt, M2.1.1 Engineering Problem-Solving Process.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=scientific, management, redesign, taylor, dassi, early"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt",
+        "matched_terms=scientific, management, work, system, redesign, taylor"
       ],
       "revision_instruction": ""
     },
     {
       "target_id": "EXAM",
       "judge": "Difficulty Balance Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "difficulty:easy",
+        "difficulty:medium",
+        "difficulty:hard"
+      ],
       "evidence": [
         "target_difficulty={'easy': 25, 'medium': 50, 'hard': 25}",
-        "actual_difficulty={'easy': 25, 'medium': 50, 'hard': 25, 'unspecified': 0}"
+        "actual_difficulty={'easy': 0, 'medium': 100, 'hard': 0, 'unspecified': 0}"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "Adjust question difficulty labels or replace questions so point-weighted easy/medium/hard balance follows requirements.json."
     },
     {
       "target_id": "Q1",
@@ -219,8 +249,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=easy",
-        "learning_objective=Check whether students can distinguish nested levels of work analysis."
+        "kind=Short Answer; difficulty=Medium",
+        "learning_objective=Understand the fundamental concepts of work systems and their classification."
       ],
       "revision_instruction": ""
     },
@@ -230,21 +260,23 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=easy",
-        "learning_objective=Check recall of Taylor's canonical scientific management principles."
+        "kind=Short Answer; difficulty=Medium",
+        "learning_objective=Identify the historical context and foundational observations that led to Scientific Management."
       ],
       "revision_instruction": ""
     },
     {
       "target_id": "Q3",
       "judge": "Pedagogical Quality Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "kind=Short Answer; difficulty=easy",
-        "learning_objective=Check recall and sequencing of the DASSI process."
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "weak_lecture_specificity"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "kind=Short Answer; difficulty=Medium",
+        "learning_objective=Relate the engineering problem-solving process to broader continuous improvement methodologies."
+      ],
+      "revision_instruction": "Clarify the learning objective and make the prompt test a lecture-specific concept with appropriate cognitive demand."
     },
     {
       "target_id": "Q4",
@@ -252,8 +284,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=easy",
-        "learning_objective=Check whether students can identify the systematic innovation methods from lecture."
+        "kind=Short Answer; difficulty=Medium",
+        "learning_objective=Understand different systematic approaches to innovation."
       ],
       "revision_instruction": ""
     },
@@ -263,8 +295,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=easy",
-        "learning_objective=Check whether students understand micro-level motion analysis."
+        "kind=Short Answer; difficulty=Medium",
+        "learning_objective=Explain the role of the Gilbreths in the development of motion study and its key concepts."
       ],
       "revision_instruction": ""
     },
@@ -274,8 +306,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=hard",
-        "learning_objective=Check system-level reasoning rather than isolated task reasoning."
+        "kind=Short Answer; difficulty=Medium",
+        "learning_objective=Identify and explain the core principles underlying Scientific Management."
       ],
       "revision_instruction": ""
     },
@@ -285,8 +317,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Concept Comparison; difficulty=medium",
-        "learning_objective=Check whether students can explain Taylor's diagnosis of inefficiency."
+        "kind=Concept Comparison; difficulty=Medium",
+        "learning_objective=Students should be able to differentiate between various taxonomic approaches to work systems and understand their specific analytical contributions."
       ],
       "revision_instruction": ""
     },
@@ -296,8 +328,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Concept Comparison; difficulty=medium",
-        "learning_objective=Check whether students can place ideation tools inside a structured problem-solving process."
+        "kind=Concept Comparison; difficulty=Medium",
+        "learning_objective=Students should be able to describe the core changes Scientific Management brought to work systems, particularly concerning standardization and knowledge formalization."
       ],
       "revision_instruction": ""
     },
@@ -307,8 +339,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Application; difficulty=medium",
-        "learning_objective=Check whether students can use innovation frameworks as a problem-solving tool, not only recite them."
+        "kind=Application; difficulty=Medium",
+        "learning_objective=Students should be able to apply work system taxonomies to characterize and analyze complex real-world work systems."
       ],
       "revision_instruction": ""
     },
@@ -318,8 +350,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Application; difficulty=medium",
-        "learning_objective=Check whether students can move from motion diagnosis to work-system redesign."
+        "kind=Application; difficulty=Medium",
+        "learning_objective=Students should be able to apply Frederick W. Taylor's principles of Scientific Management to diagnose and propose solutions for contemporary workplace inefficiencies."
       ],
       "revision_instruction": ""
     },
@@ -329,8 +361,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Essay; difficulty=hard",
-        "learning_objective=Check synthesis across scientific management, work systems, and disciplined problem solving."
+        "kind=Essay; difficulty=Medium",
+        "learning_objective=Understand the historical context and foundational principles of Scientific Management as proposed by Frederick W. Taylor."
       ],
       "revision_instruction": ""
     },
@@ -340,7 +372,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=66",
+        "answer_words=68",
         "rubric_items=2"
       ],
       "revision_instruction": ""
@@ -351,7 +383,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=56",
+        "answer_words=87",
         "rubric_items=2"
       ],
       "revision_instruction": ""
@@ -362,7 +394,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=53",
+        "answer_words=84",
         "rubric_items=2"
       ],
       "revision_instruction": ""
@@ -373,7 +405,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=56",
+        "answer_words=88",
         "rubric_items=2"
       ],
       "revision_instruction": ""
@@ -384,7 +416,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=53",
+        "answer_words=94",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -395,8 +427,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=58",
-        "rubric_items=3"
+        "answer_words=92",
+        "rubric_items=2"
       ],
       "revision_instruction": ""
     },
@@ -406,8 +438,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=72",
-        "rubric_items=3"
+        "answer_words=92",
+        "rubric_items=4"
       ],
       "revision_instruction": ""
     },
@@ -417,7 +449,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=69",
+        "answer_words=84",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -428,7 +460,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=74",
+        "answer_words=107",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -439,7 +471,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=69",
+        "answer_words=111",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -450,8 +482,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=113",
-        "rubric_items=5"
+        "answer_words=105",
+        "rubric_items=4"
       ],
       "revision_instruction": ""
     },
@@ -461,7 +493,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=16"
+        "prompt_words=28"
       ],
       "revision_instruction": ""
     },
@@ -471,7 +503,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=32"
       ],
       "revision_instruction": ""
     },
@@ -481,22 +513,12 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=20"
+        "prompt_words=31"
       ],
       "revision_instruction": ""
     },
     {
       "target_id": "Q4",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=18"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q5",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
@@ -506,12 +528,22 @@
       "revision_instruction": ""
     },
     {
+      "target_id": "Q5",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=31"
+      ],
+      "revision_instruction": ""
+    },
+    {
       "target_id": "Q6",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=19"
+        "prompt_words=35"
       ],
       "revision_instruction": ""
     },
@@ -521,7 +553,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=31"
       ],
       "revision_instruction": ""
     },
@@ -531,19 +563,21 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=39"
       ],
       "revision_instruction": ""
     },
     {
       "target_id": "Q9",
       "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=33"
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "overlong_prompt"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "prompt_words=76"
+      ],
+      "revision_instruction": "Tighten wording, add scenario constraints, and clarify how partial credit should be awarded."
     },
     {
       "target_id": "Q10",
@@ -551,7 +585,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=41"
+        "prompt_words=58"
       ],
       "revision_instruction": ""
     },
@@ -561,7 +595,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=33"
+        "prompt_words=55"
       ],
       "revision_instruction": ""
     }
@@ -571,7 +605,7 @@
       "task": "Task 4d",
       "agent": "Coverage Judge",
       "findings": 1,
-      "non_pass": 0
+      "non_pass": 1
     },
     {
       "task": "Task 4e",
@@ -583,13 +617,13 @@
       "task": "Task 4f",
       "agent": "Difficulty Balance Judge",
       "findings": 1,
-      "non_pass": 0
+      "non_pass": 1
     },
     {
       "task": "Task 4g",
       "agent": "Pedagogical Quality Judge",
       "findings": 11,
-      "non_pass": 0
+      "non_pass": 1
     },
     {
       "task": "Task 4h",
@@ -601,12 +635,12 @@
       "task": "Task 4i",
       "agent": "Red-Team Judge",
       "findings": 11,
-      "non_pass": 0
+      "non_pass": 1
     },
     {
       "task": "Task 4j",
       "agent": "Judge Aggregator",
-      "final_verdict": "PASS"
+      "final_verdict": "FAIL"
     }
   ]
 }
