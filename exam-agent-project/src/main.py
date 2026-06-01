@@ -768,6 +768,7 @@ def run_pipeline(
     blueprint_path: Path | None = None,
     quality: str = "draft",
     strict_provider: bool = False,
+    resume_from_judge: bool = False,
 ) -> dict[str, Any]:
     """Sequential orchestrator with parallel fan-out and a refinement loop.
 
@@ -804,17 +805,52 @@ def run_pipeline(
         "estimated_tokens": sum(c["token_estimate"] for c in chunk_index),
     }
 
-    # --- Task 1: Planner ---
-    planner = CoveragePlannerAgent(provider)
-    planned = planner.run({"requirements": requirements, "notes": notes})
-    state["run_trace"].append({"task": planner.task_id, "agent": planner.name, "status": "completed"})
-    state["plan"] = planned["plan"]
-    topics: list[Topic] = planned["topics"]
-
-    # --- Task 2: Question writers in parallel ---
+    # --- Task 1: Planner (skipped when resuming from judge) ---
     mix = requirements.get("question_mix", {})
-    blueprint = load_exam_blueprint(blueprint_path)
-    if blueprint:
+    if resume_from_judge:
+        questions_path = outputs_dir / "questions.json"
+        if not questions_path.exists():
+            raise FileNotFoundError(
+                f"--resume-from-judge requires {questions_path}. Run the full pipeline first."
+            )
+        raw_qs = json.loads(questions_path.read_text(encoding="utf-8"))
+        questions = [
+            Question(
+                number=int(q["number"]),
+                kind=str(q["kind"]),
+                topic=str(q["topic"]),
+                prompt=str(q["prompt"]),
+                points=int(q["points"]),
+                answer=str(q.get("answer", "")),
+                source_refs=list(q.get("source_refs", [])),
+                difficulty=str(q.get("difficulty", "")),
+                learning_objective=str(q.get("learning_objective", "")),
+                bloom_level=str(q.get("bloom_level", "")),
+                estimated_time_minutes=int(q.get("estimated_time_minutes", 0) or 0),
+                exam_intent=str(q.get("exam_intent", "")),
+                assessed_skill=str(q.get("assessed_skill", "")),
+                rubric=list(q.get("rubric", [])),
+                coverage_contribution={str(k): int(v) for k, v in (q.get("coverage_contribution") or {}).items()},
+            )
+            for q in raw_qs
+        ]
+        topics = []
+        state["plan"] = {"note": "Loaded from questions.json (resume-from-judge mode)"}
+        state["run_trace"].append({"task": "Task 1-3", "agent": "Skipped (resume-from-judge)", "status": "skipped", "questions": len(questions)})
+        print(f"[resume-from-judge] Loaded {len(questions)} questions from {questions_path}")
+    else:
+        planner = CoveragePlannerAgent(provider)
+        planned = planner.run({"requirements": requirements, "notes": notes})
+        state["run_trace"].append({"task": planner.task_id, "agent": planner.name, "status": "completed"})
+        state["plan"] = planned["plan"]
+        topics = planned["topics"]
+
+    if not resume_from_judge:
+        pass  # writer block follows
+
+    # --- Task 2: Question writers in parallel (skipped when resuming) ---
+    blueprint = load_exam_blueprint(blueprint_path) if not resume_from_judge else None
+    if not resume_from_judge and blueprint:
         questions = questions_from_blueprint(blueprint, notes)
         state["blueprint"] = {
             "path": str(blueprint_path),
@@ -877,10 +913,13 @@ def run_pipeline(
         )
     state["draft_questions"] = len(questions)
 
-    # --- Task 3: Answers (ReAct + retrieval) ---
-    answer_writer = AnswerWriterAgent(provider)
-    questions = answer_writer.run({"questions": questions, "notes": notes})
-    state["run_trace"].append({"task": answer_writer.task_id, "agent": answer_writer.name, "status": "completed"})
+    # --- Task 3: Answers (ReAct + retrieval) — skipped when resuming ---
+    if not resume_from_judge:
+        answer_writer = AnswerWriterAgent(provider)
+        questions = answer_writer.run({"questions": questions, "notes": notes})
+        state["run_trace"].append({"task": answer_writer.task_id, "agent": answer_writer.name, "status": "completed"})
+    else:
+        state["run_trace"].append({"task": "Task 3", "agent": "Skipped (resume-from-judge)", "status": "skipped"})
 
     # --- Task 4c: Coverage audit (deterministic structural checks) ---
     auditor = CoverageAuditAgent()
@@ -1142,6 +1181,11 @@ def main() -> None:
     parser.add_argument("--quality", choices=["draft", "final", "final_low_cost"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
+        "--resume-from-judge",
+        action="store_true",
+        help="Skip Tasks 1-3; load questions from outputs/questions.json and run only the judge phase.",
+    )
+    parser.add_argument(
         "--provider",
         choices=["deterministic", "gemini", "vertex", "openai", "gpt", "anthropic", "claude"],
         default=None,
@@ -1170,6 +1214,7 @@ def main() -> None:
         blueprint_path=root / args.blueprint,
         quality=args.quality,
         strict_provider=args.strict_provider,
+        resume_from_judge=args.resume_from_judge,
     )
 
     print(f"Provider: {state['provider']}")
