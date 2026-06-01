@@ -9,12 +9,12 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Source grounding passed: `True`
 - Chunk grounding passed: `True`
 - Estimated total time: 75 / 75 minutes
-- Higher-order question share: 0.455
+- Higher-order question share: 0.545
 
 ## Distributions
 
 - Question kind: `{"Short Answer": 6, "Concept Comparison": 2, "Application": 2, "Essay": 1}`
-- Bloom level: `{"Remember/Understand": 5, "Apply/Analyze": 3, "Analyze": 2, "Evaluation": 1}`
+- Bloom level: `{"Remember/Understand": 5, "Apply/Analyze": 3, "Analyze": 3}`
 - Difficulty: `{"Easy": 5, "Hard": 2, "Medium": 4}`
 
 ## Item-Level Evidence
@@ -25,20 +25,20 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 3 minutes
-- Learning objective: Explain the significance of work system taxonomies.
-- Assessed skill: Conceptual understanding and explanation.
-- Exam intent: Assess understanding of the role of taxonomies in work system analysis.
-- Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+- Learning objective: Understand the Information Systems perspective on work and the definition and components of a work system.
+- Assessed skill: Knowledge recall
+- Exam intent: Assess foundational knowledge of why work systems are studied.
+- Sources: M1.1 What is Work_Revised 260312.txt
 
 ### Q2
 
-- Topic: Engineering Problem-Solving and Solution Generation
+- Topic: Problem Solving And Ideation
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 3 minutes
-- Learning objective: Students will be able to explain the significance of key initial steps in the DASSI Engineering Problem Solving Process.
-- Assessed skill: Recall and definition of core concepts.
-- Exam intent: Test knowledge of the foundational goal of engineering problem-solving.
+- Learning objective: Understand the principles of the engineering problem-solving process, specifically regarding alternative generation, and recognize specific ideation techniques.
+- Assessed skill: Knowledge recall
+- Exam intent: Test knowledge of the first phase of problem-solving.
 - Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ### Q3
@@ -46,10 +46,10 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Topic: Work And Work Systems
 - Bloom level: Remember/Understand
 - Difficulty: Easy
-- Estimated time: 4 minutes
-- Learning objective: Understand the key components and rationale behind the 'work system thinking' approach from an Information Systems perspective.
-- Assessed skill: Explanation of historical concepts and their application.
-- Exam intent: Evaluate understanding of core tenets of Scientific Management.
+- Estimated time: 3 minutes
+- Learning objective: Differentiate between a narrow IT-focused definition of 'system' and the broader 'work system thinking' from an Information Systems perspective, identifying its core components.
+- Assessed skill: Knowledge recall
+- Exam intent: Assess understanding of basic terminology in work systems.
 - Sources: M1.1 What is Work_Revised 260312.txt
 
 ### Q4
@@ -57,65 +57,65 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Topic: Work And Work Systems
 - Bloom level: Remember/Understand
 - Difficulty: Easy
-- Estimated time: 4 minutes
-- Learning objective: Connect Scientific Management to the broader concept of work system redesign.
-- Assessed skill: Analysis of historical context and theoretical integration.
-- Exam intent: Assess student's ability to contextualize Scientific Management within work system theory.
-- Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt
+- Estimated time: 3 minutes
+- Learning objective: Differentiate between 'work' and a 'work system.'
+- Assessed skill: Conceptual understanding
+- Exam intent: Test conceptual understanding of key terms.
+- Sources: M1.1 What is Work_Revised 260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ### Q5
 
-- Topic: Engineering Problem-Solving and Solution Generation
+- Topic: Problem Solving And Ideation
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 3 minutes
-- Learning objective: Describe the objective and key characteristics of brainstorming.
-- Assessed skill: Recall and description of problem-solving techniques.
-- Exam intent: Check understanding of a common ideation method.
+- Learning objective: Students will be able to explain the importance of generating alternatives in the engineering problem-solving process and recall a specific ideation technique.
+- Assessed skill: Knowledge recall
+- Exam intent: Evaluate understanding of a common ideation technique.
 - Sources: M2.1.3 Solution Generation (Brainstorming).txt
 
 ### Q6
 
-- Topic: Engineering Problem-Solving and Solution Generation
+- Topic: Problem Solving And Ideation
 - Bloom level: Apply/Analyze
 - Difficulty: Hard
-- Estimated time: 6 minutes
-- Learning objective: Apply systematic innovation frameworks to generate solutions.
-- Assessed skill: Application of theoretical frameworks and concrete exemplification.
-- Exam intent: Assess the ability to apply a specific innovation framework with an illustrative example.
-- Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
+- Estimated time: 5 minutes
+- Learning objective: Understand the structured approach to problem-solving and the key considerations during solution generation.
+- Assessed skill: Application, critical thinking
+- Exam intent: Assess the ability to apply a specific innovation framework.
+- Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ### Q7
 
 - Topic: Work And Work Systems
 - Bloom level: Analyze
 - Difficulty: Medium
-- Estimated time: 10 minutes
-- Learning objective: Differentiate between various taxonomies for characterizing work systems and explain their distinct purposes.
-- Assessed skill: Comparative analysis, conceptual differentiation
-- Exam intent: Assess students' ability to distinguish between different frameworks for analyzing work systems and understand their complementary nature.
-- Sources: M1.1 What is Work_Revised 260312.txt
+- Estimated time: 8 minutes
+- Learning objective: Students should be able to differentiate between the concepts of work and a work system and explain their relationship.
+- Assessed skill: Conceptual differentiation and integration.
+- Exam intent: Assess understanding of foundational concepts in scientific management related to work and systems.
+- Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ### Q8
 
-- Topic: Engineering Problem-Solving and Solution Generation
+- Topic: Problem Solving And Ideation
 - Bloom level: Analyze
 - Difficulty: Medium
-- Estimated time: 10 minutes
-- Learning objective: Distinguish between the initial problem definition and subsequent solution ideation stages of the engineering problem-solving process.
-- Assessed skill: Process stage differentiation, understanding objectives
-- Exam intent: Evaluate students' comprehension of distinct objectives and methodologies in different stages of engineering problem-solving.
-- Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt
+- Estimated time: 8 minutes
+- Learning objective: Students should be able to explain the distinct phases of problem understanding/structuring and solution generation within the engineering problem-solving process.
+- Assessed skill: Process analysis and conceptual differentiation.
+- Exam intent: Evaluate comprehension of the systematic approach to engineering problem-solving and its distinct phases.
+- Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt
 
 ### Q9
 
-- Topic: Systematic Methods for Innovation
+- Topic: Innovation Frameworks
 - Bloom level: Apply/Analyze
 - Difficulty: Medium
-- Estimated time: 10 minutes
-- Learning objective: Apply systematic innovation frameworks to generate novel product or service ideas.
-- Assessed skill: Analytical Application, Creative Problem-Solving
-- Exam intent: Assess the ability to use specific innovation frameworks for product development.
+- Estimated time: 12 minutes
+- Learning objective: Apply systematic innovation frameworks to generate new product concepts.
+- Assessed skill: Application of theoretical frameworks to practical scenarios, creative problem-solving.
+- Exam intent: Assess understanding of systematic innovation frameworks and ability to apply them.
 - Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 
 ### Q10
@@ -123,22 +123,22 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Topic: Motion Study And Therbligs
 - Bloom level: Apply/Analyze
 - Difficulty: Medium
-- Estimated time: 10 minutes
-- Learning objective: Analyze a work sequence using therbligs and propose efficiency improvements based on motion study principles.
-- Assessed skill: Process Analysis, Problem-Solving, Application of Principles
-- Exam intent: Assess the ability to apply therblig analysis to optimize a manual task.
+- Estimated time: 12 minutes
+- Learning objective: Apply the concept of Therbligs to analyze and improve work motions in a given scenario.
+- Assessed skill: Analytical decomposition, problem-solving, application of scientific management principles.
+- Exam intent: Assess the ability to decompose a task into basic motions and suggest efficiency improvements.
 - Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ### Q11
 
 - Topic: Scientific Management
-- Bloom level: Evaluation
+- Bloom level: Analyze
 - Difficulty: Hard
-- Estimated time: 12 minutes
-- Learning objective: Analyze the historical context, principles, and enduring impact of Scientific Management, recognizing its strengths and limitations in various work system designs.
-- Assessed skill: Critical analysis, synthesis of information, evaluation of theoretical frameworks.
-- Exam intent: Assess critical understanding of foundational management theories and their contemporary relevance.
-- Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
+- Estimated time: 15 minutes
+- Learning objective: Students will be able to differentiate the core contributions of Taylor and the Gilbreths to Scientific Management and evaluate its enduring legacy in work system design.
+- Assessed skill: Analytical thinking, historical context understanding, synthesis of information, critical evaluation
+- Exam intent: To assess students' comprehensive understanding of Scientific Management's foundational tenets, its key developers, and its enduring influence on work system design.
+- Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt
 
 ## Professor Review Focus
 

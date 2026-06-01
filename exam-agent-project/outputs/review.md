@@ -2,43 +2,41 @@
 
 ## Coverage Audit
 
-- Coverage gap: no question targets Fundamentals of Work and Work Systems.
-- Coverage gap: no question targets Scientific Management as Work System Redesign.
-- Coverage gap: no question targets Micro-level Motion Study and Therbligs.
 - Coverage contribution by topic key: {'work_and_work_systems': 25, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15, 'scientific_management': 20}.
 - Question type mix: {'Short Answer': 6, 'Concept Comparison': 2, 'Application': 2, 'Essay': 1}.
 
 ## Question Judge
 
-- Q1: total=20 verdict=GOOD suggestion=-
-- Q2: total=20 verdict=GOOD suggestion=-
-- Q3: total=20 verdict=GOOD suggestion=-
-- Q4: total=20 verdict=GOOD suggestion=-
-- Q5: total=20 verdict=GOOD suggestion=-
-- Q6: total=20 verdict=GOOD suggestion=-
-- Q7: total=18 verdict=GOOD suggestion=The answer does not fully compare and contrast the two taxonomies, and its answerability from the provided context is not fully confirmed. Please ensure the answer fully addresses both comparison and contrast aspects and is directly supported by the lecture material.
-- Q8: total=20 verdict=GOOD suggestion=-
-- Q9: total=19 verdict=GOOD suggestion=The answer correctly applies the Subtraction framework and mentions the Combination framework but does not fully explain the latter's application. Please elaborate on the Combination framework's application to a smartphone feature.
-- Q10: total=19 verdict=GOOD suggestion=The answer correctly identifies three therbligs and proposes an improvement. However, the justification for the improvement could be more explicitly linked to the identified therbligs or principles of motion economy. Please strengthen this connection.
-- Q11: total=19 verdict=GOOD suggestion=The answer provides a good overview of Scientific Management's impact and shortcomings. To achieve a 'GOOD' score, please ensure all aspects of the prompt are thoroughly addressed, particularly the critical evaluation and the specific contributions of both Taylor and the Gilbreths, with clear links to modern work systems and human factors.
+- Q1: total=20 verdict=GOOD suggestion=This question is well-defined and directly asks for information present in the lecture material. The answer provided is comprehensive and accurate.
+- Q2: total=17 verdict=GOOD suggestion=The question asks for specific techniques from lectures, but the provided context for this question is too general and does not contain the answer. The answer itself implies knowledge beyond the provided snippet. If the lecture did cover specific techniques, the context needs to be updated.
+- Q3: total=20 verdict=GOOD suggestion=This question is excellent. It is specific, covers key concepts from the lecture, and the provided context directly supports the answer. The answer itself is detailed and accurate.
+- Q4: total=20 verdict=GOOD suggestion=A clear and concise question that targets a fundamental distinction discussed in the lecture. The context provided is sufficient for answering this question.
+- Q5: total=17 verdict=GOOD suggestion=Similar to Q2, this question asks for specific techniques from the lectures, but the provided context is too general and doesn't contain the answer. The answer correctly identifies 'Search for Alternatives' but its explanation of a technique not detailed in the snippet. If specific techniques were taught, the context needs to be updated.
+- Q6: total=17 verdict=GOOD suggestion=This question is good in its scope and clarity, but similar to Q2 and Q5, the provided context (Page 6 of M1.2) does not contain the detailed guidelines for the 'Search for Alternatives' step that the question asks for. The answer implies knowledge from lectures that isn't reflected in the provided context.
+- Q7: total=20 verdict=GOOD suggestion=This question effectively tests the student's understanding of the relationship between two core concepts. The provided context is relevant and sufficient.
+- Q8: total=17 verdict=GOOD suggestion=The question is clear and tests a relevant comparison. However, the context provided (Page 6 of M1.2) is too general and does not sufficiently cover the specifics of 'understanding and structuring problems' versus 'solution generation' in the engineering problem-solving process. The answer provided is good but relies on information not present in the context.
+- Q9: total=20 verdict=GOOD suggestion=This is an excellent application question. It clearly defines the scenario, the framework to be applied, and what the student needs to demonstrate. The context provided is directly relevant.
+- Q10: total=18 verdict=GOOD suggestion=The question is well-structured and targets specific concepts (Therbligs and motion study). However, the provided context only lists 'action/motion' as an example level of describing work and doesn't detail specific Therbligs or Gilbreths' principles for reduction. The answer correctly identifies Therbligs and suggests modifications, implying knowledge from lectures not fully supported by the given context snippet.
+- Q11: total=18 verdict=GOOD suggestion=This is a strong essay question that requires critical analysis. The main issue is that the provided context (Page 14 of M1.3) only offers a brief reinterpretation of Scientific Management and mentions Taylor's aims to reduce variability and standardize methods. It does not provide enough detail to support a comprehensive critical analysis distinguishing Taylor from the Gilbreths or discussing the redesign of work systems. The answer is good but draws on information likely from a more complete lecture source.
 
 ## Answer Judge
 
-- A1: total=19 verdict=GOOD suggestion=The answer correctly explains the importance of taxonomies. It could be slightly more complete by elaborating on *why* structured frameworks are important for analysis and communication, perhaps by mentioning benefits like comparison or identification of patterns.
-- A2: total=20 verdict=GOOD suggestion=The answer is excellent. It clearly and concisely defines the primary purpose of the engineering problem-solving process, highlighting its systematic nature and goal of achieving robust solutions.
-- A3: total=20 verdict=GOOD suggestion=This answer effectively explains how Scientific Management aimed to redesign work systems by focusing on standardization, efficiency, and identifying the 'one best way' through time and motion studies.
-- A4: total=20 verdict=GOOD suggestion=The answer provides a clear and accurate reinterpretation of Scientific Management as an early attempt at work system redesign, emphasizing deliberate intervention, standardization, and scientific methods.
-- A5: total=20 verdict=GOOD suggestion=This is a strong answer that precisely captures the primary goal of brainstorming: maximizing idea quantity and diversity in a non-judgmental setting to foster expansive thinking.
-- A6: total=18 verdict=GOOD suggestion=The explanation of the 'Subtraction' framework is good. It could be more complete by providing the requested example to fully illustrate its application as a solution generation technique.
-- A7: total=18 verdict=GOOD suggestion=The answer correctly contrasts the structure-based and complexity-based taxonomies. It could be more complete by explicitly highlighting *how* they compare and contrast, rather than just describing each in isolation, and by further elaborating on the 'three-axis' vs 'two-axis' aspect.
-- A8: total=18 verdict=GOOD suggestion=The answer accurately describes the 'Understanding and Structuring Problems' phase. It could be more complete by providing a more detailed comparison and contrast with the 'Solution Generation' phase, rather than focusing primarily on the former.
-- A9: total=20 verdict=GOOD suggestion=This answer effectively applies two distinct systematic innovation frameworks (Subtraction and Combination) to the smartphone example, demonstrating a strong understanding of the concepts.
-- A10: total=20 verdict=GOOD suggestion=The answer correctly identifies three distinct therbligs (Search, Grasp, Use) for the described task and provides a relevant improvement suggestion, demonstrating a good understanding of micro-level motion study.
-- A11: total=20 verdict=GOOD suggestion=This answer provides a comprehensive and critical evaluation of Scientific Management's enduring impact, accurately discussing its core principles and their widespread adoption in modern work systems.
+- A1: total=18 verdict=GOOD suggestion=The answer is good, but could be improved by listing all of the key components. The 'work system' is defined by the following components: People, Information, Technology, Tasks, and Organization.
+- A2: total=18 verdict=GOOD suggestion=The answer is good, but could be improved by naming and explaining a specific technique for generating alternatives. The lectures discuss Brainstorming, TRIZ, and SCAMPER as potential techniques.
+- A3: total=20 verdict=GOOD suggestion=The answer is good. The answer could be improved by stating that the common mistake is to define 'system' as merely Information Technology (IT), and the proper unit of analysis is the 'work system' itself.
+- A4: total=20 verdict=GOOD suggestion=The answer is good. The answer could be improved by stating that 'work' refers to a specific task, activity, or effort performed to achieve a goal, focusing on the action itself, such as assembling a product or writing a report.
+- A5: total=19 verdict=GOOD suggestion=The answer is good, but could be improved by naming and explaining a specific technique for generating alternatives. The lectures discuss Brainstorming, TRIZ, and SCAMPER as potential techniques.
+- A6: total=19 verdict=GOOD suggestion=The answer is good, but could be improved by naming and explaining a specific technique for generating alternatives. The lectures discuss Brainstorming, TRIZ, and SCAMPER as potential techniques.
+- A7: total=20 verdict=GOOD suggestion=The answer is good. The answer could be improved by stating that 'work' refers to human activity performed to create value, often involving effort towards a purpose. It's the fundamental element.
+- A8: total=19 verdict=GOOD suggestion=The answer is good, but could be improved by completing the comparison and contrast of the two phases. The answer should also name and explain the specific methods discussed in the lectures, such as the KJ Method and Concept Fan for problem structuring, and Brainstorming for solution generation.
+- A9: total=20 verdict=GOOD suggestion=The answer is good. The answer could be improved by explaining the Subtraction framework in more detail, outlining how each component of the original product is analyzed and potentially removed or simplified.
+- A10: total=20 verdict=GOOD suggestion=The answer is good. The answer could be improved by identifying and explaining other relevant Therbligs in the assembly process, such as 'Grasp,' 'Position,' and 'Use.'
+- A11: total=20 verdict=GOOD suggestion=The answer is good. The answer could be improved by further elaborating on the specific contributions of the Gilbreths, such as their development of Therbligs and their focus on human factors in motion study, which complemented Taylor's more task-oriented approach.
 
 ## Refinement History
 
-- iter 1: q_avg=19.5 a_avg=19.4 failed_q=[] failed_a=[]
+- iter 1: q_avg=16.2 a_avg=19.7 failed_q=['Q2', 'Q5', 'Q6'] failed_a=[]
+- iter 2: q_avg=18.5 a_avg=19.4 failed_q=[] failed_a=[]
 
 ## Human-in-the-loop
 

@@ -1314,21 +1314,30 @@ def run_pipeline(
         q.source_refs = result.get("source_refs", []) or q.source_refs
         return q
 
-    def regen_rubric(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
-        """Regenerate ONLY the rubric, keeping question prompt and answer intact.
+    def regen_answer_and_rubric(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
+        """Rewrite answer from lecture context, then derive rubric from the new answer.
 
-        Stage-3 failures (rubric doesn't match answer) should not touch the
-        prompt or the answer — only the rubric needs to be rewritten to
-        reflect what the existing model answer actually covers.
+        Used for both Stage-2 (answer quality) and Stage-3 (rubric quality) failures.
+        Writing answer + rubric together guarantees they're always consistent:
+        the rubric criteria come from the new answer, so mismatch is impossible.
         """
-        if hasattr(provider, "write_rubric"):
+        if hasattr(provider, "write_answer_and_rubric"):
             try:
-                new_rubric = provider.write_rubric(q, notes_, revision_instruction=suggestion)
-                if new_rubric:
-                    q.rubric = new_rubric
+                result = provider.write_answer_and_rubric(q, notes_, revision_instruction=suggestion)
+                if result.get("answer"):
+                    q.answer = result["answer"].strip()
+                if result.get("rubric"):
+                    q.rubric = list(result["rubric"])
+                if result.get("source_refs"):
+                    q.source_refs = list(dict.fromkeys(result["source_refs"]))
+                return q
             except Exception:
                 pass
-        return q
+        # Fallback: regen answer only (old behaviour)
+        return regen_answer(q, suggestion, notes_)
+
+    def regen_rubric(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
+        return regen_answer_and_rubric(q, suggestion, notes_)
 
     # --- Targeted regen (--regen-questions flag) ---
     # Applied before the refinement loop so the regen'd questions also go
@@ -1455,12 +1464,14 @@ def run_pipeline(
             # and prevents answer issues from overwriting a good question.
             stage = decision.get("earliest_failing_stage", 3)
             if stage == 1:
+                # Question itself is wrong → regen everything from scratch
                 questions[idx] = regen_question(questions[idx], instruction, notes)
-                questions[idx] = regen_answer(questions[idx], instruction, notes)
-            elif stage == 2:
-                questions[idx] = regen_answer(questions[idx], instruction, notes)
+                questions[idx] = regen_answer_and_rubric(questions[idx], instruction, notes)
             else:
-                questions[idx] = regen_rubric(questions[idx], instruction, notes)
+                # Stage 2 or 3: answer or rubric quality issue.
+                # Rewrite answer from lecture context, then derive rubric from it.
+                # This guarantees answer-rubric consistency in one shot.
+                questions[idx] = regen_answer_and_rubric(questions[idx], instruction, notes)
             revised_any = True
 
         if not revised_any:

@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-Explain why taxonomies are important in characterizing work systems.
+From an Information Systems perspective, define a 'work system' and list its key components.
 
 ## Q2. Short Answer (5 points)
 
-Explain why both the "Define the problem" and "Search for alternatives" steps are considered critical in the Five-Step Engineering Problem Solving Process (DASSI).
+Describe the importance of generating multiple alternatives in the engineering problem-solving process, and name and explain one specific technique for solution generation covered in the lectures.
 
 ## Q3. Short Answer (5 points)
 
-From the Information Systems perspective presented in the lecture, what are the five core components that constitute a 'work system' and why is it important to adopt 'work system thinking' rather than just focusing on IT?
+From the Information Systems Perspective discussed in the lecture, identify the common mistake made when defining "system" and then describe the proper unit of analysis according to "work system thinking," listing its five core components.
 
 ## Q4. Short Answer (5 points)
 
-In the context of work systems, how is Scientific Management reinterpreted as an early attempt at work system redesign?
+What is the fundamental distinction between 'work' and a 'work system'?
 
 ## Q5. Short Answer (5 points)
 
-What is the primary goal of brainstorming as a solution generation technique?
+According to the Engineering Problem Solving Process, explain the significance of "searching for alternatives" and identify one technique discussed in the lectures that facilitates generating new ideas.
 
 ## Q6. Short Answer (5 points)
 
-Explain how the 'Subtraction' framework from systematic innovation methods can be applied as a solution generation technique. Provide an example.
+Explain the primary purpose of the Engineering Problem-Solving Process and detail the critical guidelines for the "Search for Alternatives" step as presented in the lectures.
 
 ## Q7. Concept Comparison (10 points)
 
-Compare and contrast the three-axis structure-based taxonomy and the two-axis complexity-based taxonomy used to characterize work systems. Highlight their primary focus and how they complement each other.
+Compare and contrast the concepts of 'work' and 'work system' within the context of scientific management, highlighting their relationship.
 
 ## Q8. Concept Comparison (10 points)
 
-Compare and contrast the 'Understanding and Structuring Problems' phase with the 'Solution Generation' phase within the engineering problem-solving process. Explain the primary objective and typical activities of each phase.
+Compare and contrast the objectives and primary methods of 'understanding and structuring problems' with 'solution generation' as distinct phases in the engineering problem-solving process.
 
 ## Q9. Application (15 points)
 
-A common smartphone allows users to make calls, send messages, browse the internet, and take photos. Using two distinct systematic innovation frameworks from the lecture (Addition, Subtraction, Alternate, Combination, Transposition), propose two separate innovative improvements or new features for a smartphone. For each proposed innovation, clearly name the framework used and briefly explain how it applies to generate your idea.
+A company, "HydrateX," currently manufactures conventional single-use plastic water bottles. HydrateX wants to innovate its product line using one of the systematic innovation frameworks to create a more appealing and environmentally conscious offering without entirely abandoning the concept of a reusable water container. Apply the **Subtraction** framework to the existing plastic water bottle product. Describe the component(s) you would subtract and explain how this leads to a novel and potentially superior product concept. Justify why this new concept is innovative and addresses the company's goals.
 
 ## Q10. Application (15 points)
 
-Consider the common task of an office worker picking up a pen from a desk, writing a short note, and then placing the pen back. Identify three distinct therbligs that occur during this specific sequence of actions. For each therblig identified, explain its role in the action sequence. Then, propose one specific practical improvement to make this process more efficient, justifying your suggestion by referring to the identified therbligs or principles of motion economy.
+A worker is assembling a small electronic device. The process involves reaching for a screwdriver from a bin, picking it up, identifying the correct screw head, positioning the screwdriver, turning the screw, and returning the screwdriver to the bin. Identify two distinct Therbligs present in this description. For each identified Therblig, suggest a specific modification to the workstation or process, based on the Gilbreths' motion study principles, to reduce or eliminate that Therblig.
 
 ## Q11. Essay (20 points)
 
-Critically evaluate the enduring impact of Scientific Management on modern work systems. Discuss how its foundational principles, as articulated by Taylor and extended by the Gilbreths, continue to influence operational efficiency and design, while also identifying its primary shortcomings in addressing human factors and adaptability within complex, dynamic environments.
+Critically analyze the core principles of Scientific Management as envisioned by Frederick Taylor, distinguishing his focus from the specific contributions of Frank and Lillian Gilbreth. Discuss how these foundational ideas aimed to redesign work systems and identify one significant, lasting impact on modern work practices.

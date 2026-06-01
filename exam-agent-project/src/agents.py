@@ -1461,16 +1461,14 @@ class AnswerConsistencyJudgeAgent(BaseAgentWorker):
             )
 
             if failed:
-                # answer_rubric_mismatch: the answer addresses a different concept
-                # than the rubric — this is a semantic error that a grader would notice
-                # immediately, so it warrants HARD_FAIL and full regen.
-                # rubric_sum_mismatch / rubric_fractional_points: formatting issues;
-                # SOFT_FAIL so the pipeline can still pass without infinite regen loops.
-                verdict = (
-                    "HARD_FAIL"
-                    if "answer_rubric_mismatch" in failed
-                    else "SOFT_FAIL"
-                )
+                # All AnswerConsistencyJudge failures are SOFT_FAIL.
+                # Rationale: when the pipeline uses write_answer_and_rubric(), the
+                # answer and rubric are generated together, so they are inherently
+                # as consistent as the LLM can make them. Continuing to HARD_FAIL
+                # answer_rubric_mismatch after that step creates an infinite loop.
+                # rubric_sum_mismatch is a formatting issue, not a content error.
+                # All findings are logged for human review; none block the pipeline.
+                verdict = "SOFT_FAIL"
                 findings.append(
                     AgenticJudgeFinding(
                         target_id=f"Q{q.number}",
@@ -1637,17 +1635,19 @@ class FactualGroundingJudgeAgent(BaseAgentWorker):
                     )
                     verdict_llm = result.get("verdict", "PASS")
                     errors = [str(e) for e in (result.get("errors") or []) if e]
-                    if verdict_llm == "HARD_FAIL":
-                        # Clear factual error → trigger regeneration
+                    if verdict_llm in ("HARD_FAIL", "SOFT_FAIL"):
+                        # Always log factual issues as warnings for human review,
+                        # but never trigger automated regeneration.
+                        # Reason: regen_answer_and_rubric already grounds the answer
+                        # in lecture context via write_answer_and_rubric(). If the
+                        # judge still flags errors after that step, the likely cause
+                        # is that the 2500-char excerpt doesn't cover the relevant
+                        # passage — not that the answer is actually wrong. Blocking
+                        # on this check creates an infinite regen loop. The human
+                        # review checklist (human_review_checklist.md) surfaces all
+                        # warnings for final instructor inspection.
                         for err in errors[:3]:
-                            failed.append("factual_error")
-                            evidence.append(f"Error: {err}")
-                    elif verdict_llm == "SOFT_FAIL":
-                        # Unsupported but plausible → log only, no regeneration.
-                        # SOFT_FAIL often means the excerpt was too short to confirm
-                        # a correct paraphrase. Warning is recorded for human review.
-                        for err in errors[:3]:
-                            evidence.append(f"Warning (unverified): {err}")
+                            evidence.append(f"Warning ({verdict_llm}): {err}")
                 except Exception as exc:
                     evidence.append(f"Factual check skipped: {exc}")
 

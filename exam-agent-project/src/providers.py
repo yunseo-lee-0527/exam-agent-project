@@ -703,6 +703,56 @@ class GeminiProvider:
         except Exception as exc:
             return self._fallback_or_raise(exc, "judge_answer", lambda: self.fallback.judge_answer(question, notes))
 
+    def write_answer_and_rubric(
+        self,
+        question: Question,
+        notes: dict[str, str],
+        revision_instruction: str | None = None,
+    ) -> dict[str, Any]:
+        """Rewrite model answer (grounded in lecture context) + derive rubric from it.
+
+        Called when stage-2 or stage-3 judges flag a problem.  Writing both
+        together guarantees consistency: rubric criteria are derived from the
+        newly written answer, so they can never mismatch.
+        """
+        keywords = [w for w in question.topic.split() if len(w) > 3]
+        keywords += [w for w in question.prompt.split()[:6] if len(w) > 3]
+        ctx, sources = self._retrieval_context(notes, keywords, limit=4)
+        hint = f"\nRevision note: {revision_instruction}" if revision_instruction else ""
+        system = (
+            "You are a university exam answer writer. "
+            "Using the provided lecture context, write a factually accurate model answer "
+            f"(≤120 words) for the question, then derive {2}-{4} specific grading rubric "
+            "criteria DIRECTLY from your answer. "
+            "Rules: every rubric criterion must be satisfiable from your answer; "
+            "point values must be integers summing exactly to the question's total points; "
+            "source_refs must be filenames from the lecture context header lines. "
+            "Return JSON only: "
+            "{\"answer\": \"...\", \"rubric\": [\"criterion (N pts)\", ...], "
+            "\"source_refs\": [\"filename.txt\", ...]}"
+        )
+        prompt = (
+            f"Question ({question.kind}, {question.points} pts total):\n"
+            f"{question.prompt}{hint}\n\n"
+            f"Lecture context:\n{ctx or '(no direct hits — answer conservatively)'}"
+        )
+        try:
+            raw = self._generate_for_role(
+                "answer_writer", prompt, system, stage="answer_and_rubric_writer"
+            )
+            data = parse_json_block(raw) or {}
+            return {
+                "answer": str(data.get("answer", "")).strip(),
+                "rubric": [str(r) for r in (data.get("rubric") or []) if r],
+                "source_refs": list(data.get("source_refs") or sources),
+            }
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "write_answer_and_rubric",
+                lambda: {"answer": question.answer, "rubric": list(question.rubric), "source_refs": question.source_refs},
+            )
+
     def write_rubric(
         self,
         question: Question,

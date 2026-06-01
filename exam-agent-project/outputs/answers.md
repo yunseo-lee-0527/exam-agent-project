@@ -2,44 +2,44 @@
 
 ## Q1. Short Answer
 
-Taxonomies are important for characterizing work systems because they allow for the description of these systems along various dimensions. Three complementary taxonomies, for instance, help in understanding how a work system is organized (structure-based taxonomy) and how difficult it is (complexity-based taxonomy).
+From an Information Systems perspective, a 'work system' is considered the proper unit of analysis for understanding how work is accomplished, moving beyond the common mistake of solely viewing a "system" as just IT. It encompasses all elements involved in performing work to deliver value. Its key components include: People, Processes, Information, Technology, and Customers. This holistic view is crucial for effective analysis, redesign, and ensuring project success, addressing issues beyond just software functionality.
 
-Learning objective: Explain the significance of work system taxonomies.
+Learning objective: Understand the Information Systems perspective on work and the definition and components of a work system.
 
-Exam intent: Assess understanding of the role of taxonomies in work system analysis.
+Exam intent: Assess foundational knowledge of why work systems are studied.
 
 Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=3 minutes
 
-Assessed skill: Conceptual understanding and explanation.
+Assessed skill: Knowledge recall
 
 Rubric:
 
-- Definition of taxonomy in the context of work systems (1 pt)
-- Explanation of how taxonomies aid in describing work systems along dimensions (2 pts)
-- Mention of structure-based taxonomy and its purpose (1 pt)
-- Mention of complexity-based taxonomy and its purpose (1 pt)
+- Defines a 'work system' as the proper unit of analysis from an IS perspective, distinguishing it from merely IT (2 pts)
+- Lists at least four of the five key components (People, Processes, Information, Technology, Customers) (2 pts)
+- Lists all five key components (People, Processes, Information, Technology, Customers) (1 pt)
 
 Coverage contribution: work_and_work_systems: 5
 
-Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q2. Short Answer
 
-Defining the problem is critical because a "well-defined problem is already half solved," clarifying "what is wrong, for whom, and under what conditions." Good improvement begins with this clear definition. Searching for alternatives is equally critical as real-world engineering problems "rarely have one obvious answer." Therefore, "multiple alternatives should be generated and compared," rather than settling for the first idea, to ensure a comprehensive solution.
+The engineering problem-solving process emphasizes generating multiple alternatives, ideally at least three, before selecting a final solution. This approach is crucial because it ensures a comprehensive exploration of possibilities, preventing engineers from settling for the first viable option and allowing for more robust improvements. It also treats the existing method as one alternative to be critically evaluated. A specific technique for generating new ideas is Bodystorming, which involves physically experiencing a situation, complete with necessary artifacts and people, to stimulate insights and generate novel solutions through immersive interaction.
 
-Learning objective: Students will be able to explain the significance of key initial steps in the DASSI Engineering Problem Solving Process.
+Learning objective: Understand the principles of the engineering problem-solving process, specifically regarding alternative generation, and recognize specific ideation techniques.
 
-Exam intent: Test knowledge of the foundational goal of engineering problem-solving.
+Exam intent: Test knowledge of the first phase of problem-solving.
 
 Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=3 minutes
 
-Assessed skill: Recall and definition of core concepts.
+Assessed skill: Knowledge recall
 
 Rubric:
 
-- Explanation of why 'Define the problem' is critical, including its role in clarifying the issue (2 pts)
-- Explanation of why 'Search for alternatives' is critical, including the need to generate multiple options (2 pts)
-- Statement that engineering problems rarely have a single obvious answer (1 pts)
+- Explains the importance of generating multiple alternatives (e.g., why 'at least three' or comprehensive exploration). (2 pts)
+- Mentions that the existing method should be treated as an alternative. (1 pts)
+- Correctly names Bodystorming as a solution generation technique. (1 pts)
+- Accurately describes Bodystorming as physically experiencing a situation. (1 pts)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -47,21 +47,21 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q3. Short Answer
 
-From the Information Systems perspective, the five core components of a 'work system' are people, processes, information, technology, and customers. It is important to adopt 'work system thinking' instead of solely focusing on IT because the common mistake is treating "system" as just IT. Work system thinking ensures the proper unit of analysis is the entire work system, encompassing these five crucial elements for a comprehensive understanding.
+From the Information Systems Perspective, the common mistake when defining "system" is treating it as merely Information Technology (IT). According to "work system thinking," the proper unit of analysis is the "work system" itself. This comprehensive approach recognizes that a system encompasses more than just technology. The five core components that constitute a work system are People, Processes, Information, Technology, and Customers.
 
-Learning objective: Understand the key components and rationale behind the 'work system thinking' approach from an Information Systems perspective.
+Learning objective: Differentiate between a narrow IT-focused definition of 'system' and the broader 'work system thinking' from an Information Systems perspective, identifying its core components.
 
-Exam intent: Evaluate understanding of core tenets of Scientific Management.
+Exam intent: Assess understanding of basic terminology in work systems.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=3 minutes
 
-Assessed skill: Explanation of historical concepts and their application.
+Assessed skill: Knowledge recall
 
 Rubric:
 
-- Identifies all five core components of a 'work system' (people, processes, information, technology, customers). (5 pts)
-- Explains that 'work system thinking' avoids the common mistake of treating 'system' as just IT. (2 pts)
-- Articulates that this holistic view, considering interconnected components, enables effective analysis, measurement, and redesign of work. (3 pts)
+- Identifies the common mistake: treating "system" as just IT (1 pt)
+- States the proper unit of analysis as "work system" (1 pt)
+- Lists all five core components: People, Processes, Information, Technology, and Customers (3 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -69,43 +69,44 @@ Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q4. Short Answer
 
-Scientific Management, in work system terms, is reinterpreted as an early, systematic attempt at work system redesign because it focused on deliberate intervention to optimize how work was performed. Taylor aimed to reduce variability, standardize processes, and clarify worker roles through scientific analysis and measurement, rather than relying on tradition or individual worker discretion. This comprehensive approach to breaking down, analyzing, and then reconstructing work processes was a foundational effort in consciously engineering work systems for greater efficiency and predictability.
+'Work' refers to a specific task, activity, or effort performed to achieve a goal, focusing on the action itself, such as assembling a product or writing a report. A 'work system,' however, is the broader, integrated arrangement of people, information, and technology within which work is performed. It encompasses the organizational context, processes, resources, and environment that enable and govern the execution of specific work activities, rather than just the individual tasks.
 
-Learning objective: Connect Scientific Management to the broader concept of work system redesign.
+Learning objective: Differentiate between 'work' and a 'work system.'
 
-Exam intent: Assess student's ability to contextualize Scientific Management within work system theory.
-
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
-
-Assessed skill: Analysis of historical context and theoretical integration.
-
-Rubric:
-
-- Identifies Scientific Management as an early, systematic attempt at work system redesign. (2 pts)
-- Explains its focus on reducing variability, standardizing processes, or clarifying roles. (2 pts)
-- Mentions the use of scientific analysis/measurement over tradition. (1 pts)
-
-Coverage contribution: work_and_work_systems: 5
-
-Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt
-
-## Q5. Short Answer
-
-The primary goal of brainstorming, as a solution generation technique, is to focus on generating a large quantity of ideas, even fragmented ones or keywords. This approach operates on the principle that "quantity bears quality," meaning that a high volume of ideas will ultimately lead to better solutions.
-
-Learning objective: Describe the objective and key characteristics of brainstorming.
-
-Exam intent: Check understanding of a common ideation method.
+Exam intent: Test conceptual understanding of key terms.
 
 Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=3 minutes
 
-Assessed skill: Recall and description of problem-solving techniques.
+Assessed skill: Conceptual understanding
 
 Rubric:
 
-- Identifies the primary goal as generating a large quantity of ideas (2 pts)
-- Explains the underlying principle that quantity leads to quality (2 pts)
-- Mentions the acceptance of fragmented ideas or keywords (1 pt)
+- Accurately defines 'work' as a specific task or activity. (2 pts)
+- Accurately defines a 'work system' as a broader, integrated arrangement of elements (people, info, tech). (2 pts)
+- Clearly articulates the fundamental distinction or relationship between the two. (1 pts)
+
+Coverage contribution: work_and_work_systems: 5
+
+Sources: M1.1 What is Work_Revised 260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+
+## Q5. Short Answer
+
+Step 3, "Search for Alternatives," is crucial because engineers must generate multiple options before selecting one to ensure a systematic approach to improvement. This prevents premature commitment to a single solution and broadens the solution space. The lectures state at least three alternatives should be explored, including the existing method. One technique mentioned for generating new ideas is Bodystorming, which involves physically experiencing a situation, complete with artifacts and people, to stimulate new insights and solutions.
+
+Learning objective: Students will be able to explain the importance of generating alternatives in the engineering problem-solving process and recall a specific ideation technique.
+
+Exam intent: Evaluate understanding of a common ideation technique.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=3 minutes
+
+Assessed skill: Knowledge recall
+
+Rubric:
+
+- Explains the significance of generating multiple alternatives (e.g., systematic approach, avoiding premature commitment, broadening solution space). (2 pts)
+- Mentions the lecture's guidance on exploring at least three alternatives, including the existing method. (1 pts)
+- Identifies "Bodystorming" as a technique for generating new ideas. (1 pts)
+- Provides a brief, accurate description of Bodystorming (physically experiencing a situation). (1 pts)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -113,97 +114,91 @@ Sources: M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q6. Short Answer
 
-The 'Subtraction' framework, one of five systematic innovation methods, can be applied as a solution generation technique to simplify processes. For instance, in software development automation, it involves using generative AI to simplify coding. This application assists in automating coding tasks, thereby reducing manual effort. It also enables rapid prototyping and accelerates development processes.
+The primary purpose of the Engineering Problem-Solving Process is to provide a systematic method for generating and implementing improvements, particularly in work methods, products, services, or systems. For the "Search for Alternatives" step, critical guidelines state that engineers must generate multiple options before selecting one. Specifically, at least three alternatives should be explored whenever possible. Furthermore, it is crucial that the existing method be treated as one of these alternatives to ensure a comprehensive evaluation of all potential solutions.
 
-Learning objective: Apply systematic innovation frameworks to generate solutions.
+Learning objective: Understand the structured approach to problem-solving and the key considerations during solution generation.
 
-Exam intent: Assess the ability to apply a specific innovation framework with an illustrative example.
+Exam intent: Assess the ability to apply a specific innovation framework.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Hard, estimated_time=6 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Hard, estimated_time=5 minutes
 
-Assessed skill: Application of theoretical frameworks and concrete exemplification.
+Assessed skill: Application, critical thinking
 
 Rubric:
 
-- Correctly defines 'Subtraction' as removing an essential component from a product/system. (1 pts)
-- Explains the purpose: rethinking core functionality, finding new value, or challenging assumptions. (2 pts)
-- Provides a clear and relevant example illustrating the Subtraction framework. (2 pts)
+- Explains the primary purpose of the Engineering Problem-Solving Process as a systematic way to generate and implement improvements (2 pts)
+- States the guideline to generate multiple alternatives for the "Search for Alternatives" step (1 pt)
+- Specifies exploring at least three alternatives (1 pt)
+- Mentions treating the existing method as one alternative (1 pt)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
-Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
+Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q7. Concept Comparison
 
-The provided lecture context does not contain information detailing a comparison or contrast between a three-axis structure-based taxonomy and a two-axis complexity-based taxonomy for characterizing work systems, nor does it highlight their primary focus or how they complement each other. While work systems are discussed, including their components like people, processes, information, technology, and customers from an Information Systems Perspective, and task complexity is mentioned in the Human Factors/Ergonomics Perspective, these specific taxonomies are not described.
+Work refers to human activity performed to create value, often involving effort towards a purpose. It's the fundamental element. A work system, however, is a broader, structured framework comprising inputs (e.g., people, information, materials), processes (how work is transformed), outputs (products/services), and outcomes, all operating within an environment and guided by management. While work is the activity, a work system is the organized context within which work is performed. Scientific management often focuses on redesigning the work system to optimize individual work activities, reducing variability and standardizing methods to improve efficiency and output.
 
-Learning objective: Differentiate between various taxonomies for characterizing work systems and explain their distinct purposes.
+Learning objective: Students should be able to differentiate between the concepts of work and a work system and explain their relationship.
 
-Exam intent: Assess students' ability to distinguish between different frameworks for analyzing work systems and understand their complementary nature.
+Exam intent: Assess understanding of foundational concepts in scientific management related to work and systems.
 
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=10 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=8 minutes
 
-Assessed skill: Comparative analysis, conceptual differentiation
+Assessed skill: Conceptual differentiation and integration.
 
 Rubric:
 
-- Identifies the three axes of the structure-based taxonomy (e.g., components, relationships, environment) and its primary focus on organizational design and interdependencies (3 pts)
-- Identifies the two axes of the complexity-based taxonomy (e.g., task complexity, system complexity) and its primary focus on cognitive and operational load (3 pts)
-- Clearly contrasts the primary focus of each taxonomy, highlighting the structure-based view's emphasis on design and the complexity-based view's emphasis on challenges/load (2 pts)
-- Explains how the two taxonomies complement each other, such as structure influencing complexity or complexity driving structural adaptation (2 pts)
+- Accurate definition of 'work' (3 points)
+- Accurate definition and key components of a 'work system' (4 points)
+- Clear explanation of the relationship and distinction between the two, particularly in the context of scientific management (3 points)
 
 Coverage contribution: work_and_work_systems: 10
 
-Sources: M1.1 What is Work_Revised 260312.txt
+Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ## Q8. Concept Comparison
 
-In the engineering problem-solving process, the 'Understanding and Structuring Problems' phase, encompassing problem definition and analysis (DASSI Steps 1 & 2), aims to clarify "what is wrong, for whom, and under what conditions." Its primary objective is to define the problem, as a well-defined problem is "half solved," involving activities like data collection. In contrast, the 'Solution Generation' phase (DASSI Step 3: "Search for possible alternatives") aims to generate multiple potential solutions. Typical activities include brainstorming, where the focus is on quantity and avoiding initial criticism.
+In the engineering problem-solving process, 'understanding and structuring problems' aims to clearly define the problem space, identify root causes, and categorize information, often before seeking solutions. Methods like the KJ Method help organize disparate ideas into thematic groups, while the Concept Fan broadens or narrows problem definitions to explore different perspectives. In contrast, 'solution generation' focuses on brainstorming a wide array of potential answers or interventions without immediate evaluation. Techniques like brainstorming encourage divergent thinking to produce many ideas, leveraging collective creativity. The key distinction is that problem structuring clarifies *what* needs to be solved, while solution generation explores *how* it might be solved.
 
-Learning objective: Distinguish between the initial problem definition and subsequent solution ideation stages of the engineering problem-solving process.
+Learning objective: Students should be able to explain the distinct phases of problem understanding/structuring and solution generation within the engineering problem-solving process.
 
-Exam intent: Evaluate students' comprehension of distinct objectives and methodologies in different stages of engineering problem-solving.
+Exam intent: Evaluate comprehension of the systematic approach to engineering problem-solving and its distinct phases.
 
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=10 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=8 minutes
 
-Assessed skill: Process stage differentiation, understanding objectives
+Assessed skill: Process analysis and conceptual differentiation.
 
 Rubric:
 
-- Explains the primary focus and typical activities of the 'Understanding and Structuring Problems' phase, including its goal. (4 pts)
-- Explains the primary focus and typical activities of the 'Solution Generation' phase, including its goal. (4 pts)
-- Clearly articulates the fundamental difference or relationship between these two phases. (2 pts)
+- Explanation of the objectives of 'understanding and structuring problems' (3 points)
+- Identification of specific methods for 'understanding and structuring problems' (e.g., KJ Method, Concept Fan) (3 points)
+- Explanation of the objectives and methods (e.g., brainstorming) of 'solution generation' (3 points)
+- Clear distinction between the two phases (1 point)
 
 Coverage contribution: problem_solving_and_ideation: 10
 
-Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt
+Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q9. Application
 
-Here are two innovative improvements for a smartphone using distinct systematic innovation frameworks:
+Applying the Subtraction framework, HydrateX would remove the rigid plastic bottle body of its conventional single-use product. This leads to a novel product concept: a highly durable, collapsible, reusable water pouch with an integrated, re-sealable spout. This design significantly reduces the amount of plastic material per unit and optimizes space, as it can be folded or rolled when empty. The product is superior because it is lightweight, extremely portable, and environmentally conscious due to material reduction and reusability. It innovates by redefining the traditional "bottle" form factor, offering convenience and sustainability. This directly addresses HydrateX's goals by providing an appealing, environmentally friendly, reusable container that meets modern consumer demands for portability and reduced waste.
 
-1.  **Framework: Combination**
-    *   **Innovation:** A smartphone with integrated, advanced medical diagnostic sensors (e.g., for blood pressure or glucose monitoring).
-    *   **Explanation:** This innovation applies the "Combination" framework by integrating new, specialized medical diagnostic capabilities directly into the multi-use smartphone's existing technological platform, similar to how the iPhone combined previous features with a better user interface.
+Learning objective: Apply systematic innovation frameworks to generate new product concepts.
 
-2.  **Framework: Subtraction**
-    *   **Innovation:** A smartphone designed without a front-facing camera.
-    *   **Explanation:** This innovation applies the "Subtraction" framework by deliberately removing the front-facing camera. This aims to simplify the device, maximize the screen-to-body ratio, and potentially reduce manufacturing complexity.
+Exam intent: Assess understanding of systematic innovation frameworks and ability to apply them.
 
-Learning objective: Apply systematic innovation frameworks to generate novel product or service ideas.
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=12 minutes
 
-Exam intent: Assess the ability to use specific innovation frameworks for product development.
-
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=10 minutes
-
-Assessed skill: Analytical Application, Creative Problem-Solving
+Assessed skill: Application of theoretical frameworks to practical scenarios, creative problem-solving.
 
 Rubric:
 
-- Identify and correctly apply the Subtraction framework to propose a smartphone innovation. (5 pts)
-- Clearly explain the rationale and benefit of the Subtraction-based innovation. (3 pts)
-- Identify and correctly apply the Combination framework to propose a smartphone innovation. (5 pts)
-- Clearly explain the rationale and benefit of the Combination-based innovation. (2 pts)
+- Clearly identifies the rigid plastic bottle body as the component subtracted (3 pts)
+- Describes the novel product concept as a durable, collapsible, reusable water pouch with an integrated spout (4 pts)
+- Explains how the new concept is superior through benefits like material reduction, portability, and environmental consciousness (3 pts)
+- Justifies the innovation by explaining how it redefines the traditional bottle form factor (2 pts)
+- Explains how the new concept addresses company goals of being appealing, environmentally conscious, and a reusable container (3 pts)
 
 Coverage contribution: innovation_frameworks: 15
 
@@ -211,29 +206,26 @@ Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 
 ## Q10. Application
 
-The provided lecture context introduces "Therbligs" as a concept developed by the Gilbreths for motion study, extending time study and aiming for dramatically improved efficiency. However, the context does not define or list specific therbligs (e.g., Reach, Grasp, Position). Therefore, identifying three distinct therbligs and explaining their roles based *solely* on the provided materials is not possible.
+Two distinct Therbligs present in the assembly process are **Search (SH)** and **Reach (R)**.
 
-Despite this, one practical improvement to make the process of picking up a pen, writing, and placing it back more efficient can be proposed:
+The worker performs **Search** when "identifying the correct screw head." To reduce this Therblig, Gilbreths' motion study principles suggest standardizing screw heads, using clear color-coding on screwdrivers or screws for instantaneous visual identification, or implementing a jig that automatically guides the correct screwdriver to the screw, thereby eliminating the need for conscious identification.
 
-**Improvement:** Keep the pen in a designated, fixed holder immediately adjacent to the writing surface.
+The worker performs **Reach** when "reaching for a screwdriver from a bin." To reduce this Therblig, the workstation should be modified to position the screwdriver dispenser or holder within the worker's immediate grasp or normal working area, minimizing travel distance. A spring-loaded tool balancer or a gravity-feed system can also present the tool at the point of use, eliminating extensive reaching and promoting motion economy.
 
-**Justification:** This suggestion aligns with the principles of motion study and the aim of scientific management to "develop a science for each element of work" through "standardization" and "tool optimization" (M1.4, Page 9). By standardizing the pen's location and using a simple "tool" (the holder) to optimize its placement, unnecessary or inefficient motions (like searching for the pen or reaching over a long distance) are reduced. The Gilbreths' "motion study" aimed for "dramatically improved efficiency" (M1.4, Page 20) by analyzing and optimizing work actions, a goal supported by reducing variability and effort in obtaining tools.
+Learning objective: Apply the concept of Therbligs to analyze and improve work motions in a given scenario.
 
-Learning objective: Analyze a work sequence using therbligs and propose efficiency improvements based on motion study principles.
+Exam intent: Assess the ability to decompose a task into basic motions and suggest efficiency improvements.
 
-Exam intent: Assess the ability to apply therblig analysis to optimize a manual task.
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=12 minutes
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=10 minutes
-
-Assessed skill: Process Analysis, Problem-Solving, Application of Principles
+Assessed skill: Analytical decomposition, problem-solving, application of scientific management principles.
 
 Rubric:
 
-- Correctly identify 'Search' and explain its role in the sequence. (3 pts)
-- Correctly identify 'Grasp' and explain its role in the sequence. (3 pts)
-- Correctly identify 'Use' and explain its role in the sequence. (3 pts)
-- Propose one specific practical improvement for the process. (3 pts)
-- Justify the improvement by clearly linking it to the elimination or reduction of identified therbligs or principles of motion economy. (3 pts)
+- Correctly identifies "Search" as a Therblig present in the description. (2 pts)
+- Suggests a specific, Gilbreths-inspired modification to reduce/eliminate "Search" (e.g., standardizing screw heads, color-coding, or using a jig for automatic alignment). (5 pts)
+- Correctly identifies "Reach" as a Therblig present in the description. (2 pts)
+- Suggests a specific, Gilbreths-inspired modification to reduce/eliminate "Reach" (e.g., positioning the screwdriver within immediate grasp, using a spring-loaded tool balancer, or a gravity-feed system). (6 pts)
 
 Coverage contribution: motion_study_and_therbligs: 15
 
@@ -241,24 +233,23 @@ Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-le
 
 ## Q11. Essay
 
-Scientific Management, conceptualized by Taylor as an early attempt at work system redesign, enduringly impacts modern operational efficiency by emphasizing reduced variability, standardized methods, and clarified roles. These principles aim to streamline work processes. Nevertheless, its primary shortcomings include neglecting human factors and adaptability. By focusing on standardization, it often overlooks psychological aspects like worker autonomy in job design (methods, pacing), feedback, and task meaning (significance, identity, skill variety). This inherent rigidity, aiming to reduce variability, also limits its effectiveness in complex, dynamic environments requiring adaptability.
+Taylor's Scientific Management focused on optimizing individual tasks through time studies, standardizing methods, reducing variability, and clearly separating planning from execution. His primary aim was to maximize efficiency and productivity by finding the "one best way" for each task. The Gilbreths extended this by introducing motion study and micromotion analysis, breaking down work into fundamental elements (Therbligs) to eliminate wasteful movements, emphasizing direct improvements in worker motion economy. Both approaches collectively aimed to systematically redesign work systems through rigorous analysis and standardization. A significant, lasting impact is the systematic approach to work system redesign, forming the basis for industrial engineering and modern operational efficiency efforts.
 
-Learning objective: Analyze the historical context, principles, and enduring impact of Scientific Management, recognizing its strengths and limitations in various work system designs.
+Learning objective: Students will be able to differentiate the core contributions of Taylor and the Gilbreths to Scientific Management and evaluate its enduring legacy in work system design.
 
-Exam intent: Assess critical understanding of foundational management theories and their contemporary relevance.
+Exam intent: To assess students' comprehensive understanding of Scientific Management's foundational tenets, its key developers, and its enduring influence on work system design.
 
-Assessment metadata: Bloom=Evaluation, difficulty=Hard, estimated_time=12 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=15 minutes
 
-Assessed skill: Critical analysis, synthesis of information, evaluation of theoretical frameworks.
+Assessed skill: Analytical thinking, historical context understanding, synthesis of information, critical evaluation
 
 Rubric:
 
-- Explanation of foundational principles and aims of Scientific Management, including Taylor's objectives. (5 pts)
-- Description of the Gilbreths' extension through motion study and Therbligs. (3 pts)
-- Discussion of its enduring positive impact on operational efficiency and design in modern contexts. (5 pts)
-- Identification and explanation of primary shortcomings regarding human factors and inherent rigidity. (4 pts)
-- Analysis of limitations in addressing modern, complex, and dynamic work environments, citing specific challenges. (3 pts)
+- Explains Taylor's core principles of Scientific Management and his primary aims (e.g., time studies, standardization, separating planning from execution). (5 pts)
+- Distinguishes the Gilbreths' specific contributions (e.g., motion study, micromotion analysis, Therbligs, worker motion economy). (5 pts)
+- Discusses how these foundational ideas aimed to systematically redesign work systems through analysis and standardization. (4 pts)
+- Identifies and explains one significant, lasting impact of Scientific Management on modern work practices (e.g., industrial engineering, operational efficiency). (6 pts)
 
 Coverage contribution: scientific_management: 20
 
-Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
+Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt
