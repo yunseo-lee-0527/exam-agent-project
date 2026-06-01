@@ -67,7 +67,7 @@ flowchart TD
 | Task | Agent class | APD | Pattern | Notes |
 | --- | --- | --- | --- | --- |
 | 0 | `LectureNoteCollectorAgent` | 🟦 | Local tools + JSON DB | Replaces old `InputParserAgent`. Skips already-registered files. |
-| 1 | `CoveragePlannerAgent` | 🟧 | Planner-Executor (`gemini-2.5-pro` → `flash-lite`) | Emits a JSON plan; topic clusters derived from notes, not hardcoded. |
+| 1 | `CoveragePlannerAgent` | 🟧 | Planner-Executor (`gemini-2.5-flash` by default; `pro` preset optional) | Emits a JSON plan; topic clusters derived from notes, not hardcoded. |
 | 2a | `ShortAnswerWriterAgent` | 🟩 | Specialist (parallel) | Definitions/lists, ~5 pts each. |
 | 2b | `ComparisonWriterAgent` | 🟩 | Specialist (parallel) | Two paired ideas, ~10 pts each. |
 | 2c | `ApplicationWriterAgent` | 🟩 | Specialist (parallel) | Scenario + analytic ask, ~15 pts each. |
@@ -131,17 +131,18 @@ Output: `outputs/evaluation_report.json`.
 ## Provider Hook
 
 Providers are selected at runtime via
-`--provider {deterministic,gemini,openai,anthropic}` or
+`--provider {deterministic,gemini,vertex,openai,anthropic}` or
 `EXAM_AGENT_PROVIDER=...`. Role-level model selection is controlled by
 `model_policy.json` and the `--quality {draft,final}` flag.
 
 | Provider | Where | Models | Use |
 | --- | --- | --- | --- |
 | `ConfiguredDeterministicProvider` | `src/providers.py` | none | Local fallback. Static bank with prompt-level dedup. Runs without a GCP key. |
-| `GeminiProvider` | `src/providers.py` | from `model_policy.json` | Vertex AI mode. Auth via `gcloud auth application-default login` locally or `auth.authenticate_user()` in Colab. |
-| `openai` / `anthropic` | reserved provider hooks | premium final models | Extension point for final-generation providers such as GPT or Claude. |
+| `GeminiProvider` | `src/providers.py` | from `model_policy.json` | Vertex AI / Agent Platform mode via `--provider vertex`, matching the lecture setup. |
+| `GeminiApiKeyProvider` | `src/providers.py` | from `model_policy.json` | Google AI Studio API-key backup path via `--provider gemini`. |
+| `OpenAIProvider` / `AnthropicProvider` | `src/providers.py` | provider-prefixed presets in `model_policy.json` | Optional GPT / Claude comparison path when SDKs and API keys are available. |
 
-Both providers expose the same five methods — `plan`, `write_questions`,
+All live providers expose the same five methods — `plan`, `write_questions`,
 `pool_questions`, `write_answer`, `judge_question`, `judge_answer` —
 so agent boundaries do not move when the provider is swapped. Per-call
 errors in `GeminiProvider` fall back to deterministic mode during development
@@ -154,12 +155,12 @@ generation so provider failures are not hidden.
 # default — deterministic, no API key
 python src/main.py
 
-# Gemini via Vertex AI (M5.3.1.1 setup)
+# Gemini via Vertex AI / Agent Platform (M5.3.1.1 setup)
 pip install google-genai
 gcloud auth application-default login
 export GCP_PROJECT_ID=<your-project-id>
-python src/main.py --provider gemini --quality draft
-python src/main.py --provider gemini --quality final --strict-provider
+python src/main.py --provider vertex --quality draft
+python src/main.py --blueprint nonexistent_path --provider vertex --quality final --strict-provider
 ```
 
 ## Token and Cost Tracking

@@ -77,8 +77,8 @@ Use `--provider vertex` to force the Vertex AI / Agent Platform API path:
 
 ```bat
 cd /d "C:\Users\iy579\Documents\New project 2\exam-agent-project"
-python .\src\main.py --provider vertex --quality final_low_cost --strict-provider
-python .\src\evaluation.py --provider vertex --quality final_low_cost --strict-provider --simulate-trials 1
+python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final_low_cost --strict-provider
+python .\src\evaluation.py --blueprint nonexistent_path --provider vertex --quality final_low_cost --strict-provider --simulate-trials 1
 ```
 
 This maps to the lecture notebook pattern:

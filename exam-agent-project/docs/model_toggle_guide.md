@@ -3,7 +3,7 @@
 The course-aligned default is still Gemini 2.5 Flash through Vertex AI:
 
 ```bat
-python .\src\main.py --provider vertex --quality final --model-preset lecture_flash --strict-provider
+python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final --model-preset lecture_flash --strict-provider
 ```
 
 The project also exposes a wider model toggle so the same agentic pipeline can
@@ -29,7 +29,7 @@ Presets live in `model_policy.json`.
 Lecture/default path:
 
 ```bat
-python .\src\main.py --provider vertex --quality final --model-preset lecture_flash --strict-provider
+python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final --model-preset lecture_flash --strict-provider
 ```
 
 OpenAI GPT path:
@@ -37,7 +37,7 @@ OpenAI GPT path:
 ```bat
 python -m pip install openai
 set OPENAI_API_KEY=your-key
-python .\src\main.py --provider openai --quality final --model-preset gpt --strict-provider
+python .\src\main.py --blueprint nonexistent_path --provider openai --quality final --model-preset gpt --strict-provider
 ```
 
 Anthropic Claude Opus path:
@@ -45,7 +45,7 @@ Anthropic Claude Opus path:
 ```bat
 python -m pip install anthropic
 set ANTHROPIC_API_KEY=your-key
-python .\src\main.py --provider anthropic --quality final --model-preset claude_opus --strict-provider
+python .\src\main.py --blueprint nonexistent_path --provider anthropic --quality final --model-preset claude_opus --strict-provider
 ```
 
 ## Per-Role Overrides

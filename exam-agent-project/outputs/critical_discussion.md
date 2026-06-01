@@ -14,13 +14,13 @@ This file summarizes the main limitations that remain after the current implemen
 
 - Severity: high
 - Evidence: Current run used the local deterministic fallback, not a live LLM provider.
-- Mitigation: Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider or --provider vertex --quality final --strict-provider, then preserve cost_report.json as evidence.
+- Mitigation: Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider using the lecture Agent Platform setup, or --provider gemini with GEMINI_API_KEY as a backup path. Add --blueprint nonexistent_path when evidence from the specialist writer path is required.
 
 ### blueprint_dependency
 
 - Severity: medium
 - Evidence: exam_blueprint.json controls the current exam draft.
-- Mitigation: Frame it as an instructor-approved blueprint or generate a fresh blueprint from the planner before final submission.
+- Mitigation: Frame it as a team-authored, requirement-aligned blueprint or run with --blueprint nonexistent_path and a live provider in strict mode before final submission.
 
 ### provider_fallback_hidden
 
