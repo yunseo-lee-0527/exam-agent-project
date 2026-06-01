@@ -7,7 +7,7 @@
 
 ## 1. 이 프로젝트가 하는 일
 
-이 시스템은 **과학적 관리론 중간고사 시험지를 자동으로 만들어 주는 AI 에이전트 파이프라인**입니다.
+이 시스템은 **과학적 관리론 중간고사 시험지를 자동으로 만들어 주는 LLM 기반 에이전트 파이프라인**입니다.
 
 강의 슬라이드 PDF 파일들을 입력으로 넣으면, 시스템이 스스로:
 
@@ -15,7 +15,7 @@
 2. 어떤 주제에서 몇 점 분량의 문제를 낼지 계획한다
 3. 문제 유형별(단답형·비교형·적용형·서술형)로 문제를 동시에 작성한다
 4. 각 문제에 대한 모범 답안을 작성한다
-5. 문제와 답안의 품질을 심사하고 미흡한 항목을 재작성한다
+5. 문제와 답안의 품질을 LLM 심사관이 평가하고 미흡 항목을 재작성한다
 6. 최종 시험지·정답지·검토 보고서를 파일로 저장한다
 
 사람이 직접 해야 하는 일은 전체의 약 20%로, "최종 범위 확인", "공정성 검토", "배점 승인" 단계만 남겨 두었습니다.
@@ -34,7 +34,7 @@
 | 한 번에 하나의 질문에 답한다 | 여러 도구를 순서대로 호출해 복잡한 작업을 완료한다 |
 | 이전 대화 맥락이 금방 사라진다 | 메모리·데이터베이스를 통해 정보를 유지한다 |
 
-이 프로젝트는 12개의 에이전트가 **조립 라인처럼 협력**하여 시험지를 만들어 냅니다. 각 에이전트는 정해진 역할(Task)만 담당하고, 결과물을 다음 에이전트에게 넘겨 줍니다.
+이 프로젝트는 **13개의 에이전트**가 조립 라인처럼 협력하여 시험지를 만들어 냅니다. 각 에이전트는 정해진 역할(Task)만 담당하고, 결과물을 다음 에이전트에게 넘겨 줍니다.
 
 ---
 
@@ -46,7 +46,7 @@ lecture_notes/raw/*.pdf   (입력: 강의 슬라이드)
         ▼  [scripts/extract_pdf_text.py]
 lecture_notes/processed/*.txt   (텍스트 추출 완료)
         │
-        ▼  [src/main.py — 12개 에이전트 파이프라인]
+        ▼  [src/main.py — 13개 에이전트 파이프라인]
         │
         ├── Task 0  LectureNoteCollectorAgent   강의 내용 수집·등록
         ├── Task 1  CoveragePlannerAgent         출제 계획 수립
@@ -56,18 +56,24 @@ lecture_notes/processed/*.txt   (텍스트 추출 완료)
         │    ├── ApplicationWriterAgent          적용형 문제 작성
         │    └── EssayWriterAgent               서술형 문제 작성
         ├── Task 3  AnswerWriterAgent            모범 답안 작성
-        ├── Task 4  (심사·감사 병렬 실행)
-        │    ├── QuestionJudgeAgent             문제 품질 심사
-        │    ├── AnswerJudgeAgent               답안 품질 심사
-        │    └── CoverageAuditAgent             범위·배점 검증
+        ├── Task 4a QuestionJudgeAgent           문제 품질 심사 (LLM)
+        ├── Task 4b AnswerJudgeAgent             답안 품질 심사 (LLM)
+        ├── Task 4c CoverageAuditAgent           범위·배점 검증 (결정론적)
         ├── Task 5  RefinementCoordinator        미흡 항목 재작성 루프
-        ├── Task 5b AgenticJudgeSystemAgent     전문가 에이전트 2차 심사 루프
+        ├── Task 5b AgenticJudgeSystemAgent      전문가 에이전트 2차 심사
+        │    ├── CoverageJudgeAgent
+        │    ├── SourceGroundingJudgeAgent
+        │    ├── DifficultyBalanceJudgeAgent
+        │    ├── PedagogicalQualityJudgeAgent
+        │    ├── AnswerRubricJudgeAgent
+        │    ├── RedTeamJudgeAgent
+        │    └── JudgeAggregatorAgent
         └── Task 6  FormatterAgent              최종 파일 출력
                 │
                 ▼
         outputs/exam.md        (시험지)
         outputs/answers.md     (정답지)
-        outputs/review.md      (검토 보고서)
+        outputs/review.md      (심사 보고서)
 ```
 
 ---
@@ -96,11 +102,11 @@ flowchart TD
     T3 --> T4C["🟧 Task 4c — Coverage Audit (결정론적 검증)"]
     T3 --> T5["🟪 Task 5 — Refinement Coordinator"]
 
-    T5 --> T4A["🟪 Task 4a — Question Judge"]
-    T5 --> T4B["🟪 Task 4b — Answer Judge"]
+    T5 --> T4A["🟪 Task 4a — Question Judge (LLM)"]
+    T5 --> T4B["🟪 Task 4b — Answer Judge (LLM)"]
     T4A --> LOOP{미흡 항목 있음?}
     T4B --> LOOP
-    LOOP -- "예 (반복 횟수 < 2)" --> REGEN["🟩 regen_question / regen_answer\n(provider 직접 호출)"]
+    LOOP -- "예 (반복 횟수 < 2)" --> REGEN["🟩 regen_question / regen_answer"]
     REGEN --> T5
     LOOP -- "아니오 또는 2회 초과" --> T5B["🟪 Task 5b — Agentic Judge System"]
     T5B --> LOOP2{non-PASS 항목?}
@@ -117,66 +123,57 @@ flowchart TD
 
 ## 5. 에이전트별 상세 설명
 
-각 에이전트가 구체적으로 무엇을 하는지, 어떤 AI 패턴을 사용하는지 설명합니다.
-
 ### Task 0 — LectureNoteCollectorAgent
-**역할**: `lecture_notes/processed/` 폴더의 텍스트 파일을 읽어 `outputs/processed_notes_db.json`에 등록합니다.
+**역할**: `lecture_notes/processed/` 폴더의 텍스트 파일을 읽어 에이전트 파이프라인에 전달합니다.
 
-- 이미 등록된 파일은 건너뛰어 중복 처리를 방지합니다.
-- 이후 에이전트들은 이 JSON DB를 통해 강의 내용을 조회합니다.
+- 이미 처리된 파일은 JSON DB(`outputs/processed_notes_db.json`)로 중복 처리를 방지합니다.
 - **패턴**: Application Collector + JSON Database (강의 M5.3.2)
 
 ---
 
 ### Task 1 — CoveragePlannerAgent
-**역할**: 강의 내용과 `requirements.json`(출제 기준)을 분석해 "어떤 주제에서 몇 점 분량의 문제를 낼 것인가"를 담은 JSON 계획을 작성합니다.
+**역할**: 강의 내용과 `requirements.json`을 분석해 "어떤 주제에서 몇 점 분량의 문제를 낼 것인가"를 담은 JSON 계획을 작성합니다.
 
-출력 예시:
 ```json
 [
-  {"key": "work_and_work_systems", "title": "일과 작업 시스템", "weight": 25, "keywords": ["DASSI", "작업 시스템"]},
-  {"key": "scientific_management",  "title": "과학적 관리",     "weight": 20, "keywords": ["Taylor", "4원칙"]}
+  {"key": "work_and_work_systems", "title": "일과 작업 시스템", "weight": 25, "keywords": ["work system", "emergence"]},
+  {"key": "scientific_management",  "title": "과학적 관리",     "weight": 20, "keywords": ["Taylor", "soldiering"]}
 ]
 ```
 
-- **패턴**: Planner-Executor (강의 M5.3.3) — 계획자가 먼저 계획을 세우고, 실행자(Task 2)들이 그에 따라 움직입니다.
+- **패턴**: Planner-Executor (강의 M5.3.3)
 
 ---
 
 ### Task 2 — 문제 작성 에이전트 (4개 병렬 실행)
-**역할**: 4종류의 문제를 동시에 작성합니다. `ThreadPoolExecutor`를 사용해 병렬로 실행되므로 하나씩 순서대로 실행하는 것보다 빠릅니다.
+**역할**: 4종류의 문제를 동시에 작성합니다. `ThreadPoolExecutor`로 병렬 실행됩니다.
 
 | Task | 에이전트 | 문제 유형 | 배점 |
 |------|---------|----------|------|
-| 2a | `ShortAnswerWriterAgent`  | 단답형 — 정의, 열거 | 각 ~5점 × 6문제 |
-| 2b | `ComparisonWriterAgent`   | 비교형 — 두 개념 대조 | 각 ~10점 × 2문제 |
-| 2c | `ApplicationWriterAgent`  | 적용형 — 시나리오 분석 | 각 ~15점 × 2문제 |
-| 2d | `EssayWriterAgent`        | 서술형 — 주제 통합 논술 | ~20점 × 1문제 |
+| 2a | `ShortAnswerWriterAgent`  | 단답형 — 정의, 열거 | 각 5점 × 6문제 |
+| 2b | `ComparisonWriterAgent`   | 비교형 — 두 개념 대조 | 각 10점 × 2문제 |
+| 2c | `ApplicationWriterAgent`  | 적용형 — 시나리오 분석 | 각 15점 × 2문제 |
+| 2d | `EssayWriterAgent`        | 서술형 — 주제 통합 논술 | 20점 × 1문제 |
 
-4개 에이전트의 출력은 **Combiner**가 합쳐 Q1~Q11로 번호를 통일합니다.
+LLM provider에 `batch_write_questions()` 메서드가 있으면 토픽 전체를 **단일 API 호출**로 처리합니다 (기본 20회 → 4회 절감).
+
+4개 에이전트의 출력은 Combiner가 합쳐 Q1~Q11로 번호를 통일합니다.
 
 - **패턴**: Specialist Parallel Fan-out (강의 M5.3.3)
 
 ---
 
 ### Task 3 — AnswerWriterAgent
-**역할**: 각 문제에 대한 모범 답안을 작성합니다. 단순히 LLM에게 "답을 써 달라"고 요청하는 것이 아니라, **ReAct-inspired retrieval flow**를 사용해 실제 강의 자료에서 근거를 찾아 인용합니다.
+**역할**: 각 문제에 대한 모범 답안을 작성합니다. `search_lecture_notes()` 도구로 강의 자료에서 근거를 찾아 `source_refs`에 기록합니다.
 
-**ReAct-inspired retrieval flow란?**
-```
-Action:   search_lecture_notes(keyword="Taylor 4원칙")
-Observation: "[M5.1 강의 노트] 과업 관리, 과학적 선발..."
-Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) 기록
-```
+Task 2의 batch writer가 이미 답안과 source_refs를 채워넣었다면 추가 API 호출 없이 건너뜁니다.
 
-현재 구현은 엄밀한 다단계 Thought → Action → Observation 로그를 남기지는 않지만, 검색 도구 호출 결과를 `Lecture context`로 주입해 답안의 근거를 강의 자료에 정박시킵니다.
-
-- **패턴**: ReAct-inspired Retrieval Tool (강의 M5.3.1.2 §8)
+- **패턴**: ReAct-inspired Retrieval Tool (강의 M5.3.1.2 §8 + M5.3.2)
 
 ---
 
 ### Task 4a — QuestionJudgeAgent
-**역할**: 작성된 문제를 4개 항목으로 채점합니다.
+**역할**: 작성된 문제를 4개 항목으로 LLM이 채점합니다.
 
 | 항목 | 설명 | 만점 |
 |------|------|------|
@@ -185,14 +182,16 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 | `clarity_no_ambiguity` | 문제가 명확한가 | 5점 |
 | `answerable_from_lecture` | 강의 내용으로 풀 수 있는가 | 5점 |
 
-총점 기준: **17점 이상 GOOD**, **13~16점 ACCEPTABLE**, **12점 이하 POOR** (만점 20점)
+총점 기준: **17점 이상 GOOD**, **13~16점 ACCEPTABLE**, **12점 이하 POOR**
+
+`batch_judge_questions()`로 11문항 전체를 **1회 호출**로 처리합니다.
 
 - **패턴**: LLM-as-Judge with JSON Rubric (강의 M5.3.4)
 
 ---
 
 ### Task 4b — AnswerJudgeAgent
-**역할**: 작성된 모범 답안을 4개 항목으로 채점합니다.
+**역할**: 작성된 모범 답안을 4개 항목으로 LLM이 채점합니다.
 
 | 항목 | 설명 | 만점 |
 |------|------|------|
@@ -201,7 +200,7 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 | `lecture_grounded` | 강의 자료에 근거했는가 | 5점 |
 | `concise_pedagogical` | 간결하고 교육적으로 적절한가 | 5점 |
 
-총점 기준: **17점 이상 GOOD**, **13~16점 ACCEPTABLE**, **12점 이하 POOR** (만점 20점)
+`batch_judge_answers()`로 11답안 전체를 **1회 호출**로 처리합니다.
 
 - **패턴**: LLM-as-Judge with JSON Rubric (강의 M5.3.4)
 
@@ -215,27 +214,33 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 - `requirements.json`에 지정된 주제가 모두 포함되었는가
 - 문제 유형별 개수가 요건과 일치하는가
 
-- **패턴**: Deterministic (결정론적) — LLM을 사용하지 않아 항상 같은 결과를 냅니다.
+- **패턴**: Deterministic — LLM을 사용하지 않아 항상 같은 결과를 냅니다.
 
 ---
 
 ### Task 5 — RefinementCoordinator
 **역할**: Task 4a·4b의 심사 결과를 종합하고, POOR 판정을 받은 문제·답안을 재작성합니다. 이 과정을 최대 2회 반복합니다.
 
-반복 루프 흐름:
 ```
 [1회차 심사] → POOR 문제 발견 → judge의 suggestion을 프롬프트에 주입 → 해당 문제만 재작성
 [2회차 심사] → 여전히 POOR이면 현재 상태 유지 (인간 검토로 넘김)
 ```
-
-최대 반복 횟수를 2회로 제한한 이유: LLM이 무한히 수정하다 더 나빠지는 경우를 방지하고, 사람이 최종 판단할 여지를 남기기 위해서입니다.
 
 - **패턴**: Supervisor-Evaluator Reflection Loop (강의 M5.3.3)
 
 ---
 
 ### Task 5b — AgenticJudgeSystemAgent
-**역할**: Task 5의 RefinementCoordinator와 별개로, 전문 심사 에이전트들이 각 문제를 독립적으로 다시 평가합니다. 항목별 PASS / REVISE / FAIL 판정을 내리고, PASS가 아닌 항목에 대해 구체적인 수정 지시(`revision_instructions`)를 생성합니다. 이 지시를 주입해 `regen_question` / `regen_answer`를 호출하는 2차 폐루프를 최대 2회 실행합니다.
+**역할**: 6개의 전문 심사 에이전트가 각 문제를 독립적으로 평가한 뒤, JudgeAggregatorAgent가 결과를 종합합니다. PASS가 아닌 항목에 대해 `revision_instructions`를 생성하고 최대 2회 재작성 루프를 실행합니다.
+
+| 전문 심사 에이전트 | 담당 | 판정 |
+|---|---|---|
+| `CoverageJudgeAgent` | 배점 합계·토픽 가중치 | HARD_FAIL |
+| `SourceGroundingJudgeAgent` | 강의노트 출처 검증 | HARD_FAIL / SOFT_FAIL |
+| `DifficultyBalanceJudgeAgent` | 난이도 분포 | SOFT_FAIL |
+| `PedagogicalQualityJudgeAgent` | 학습목표·고차원 인지 | SOFT_FAIL |
+| `AnswerRubricJudgeAgent` | 모범답안 충실도·루브릭 | HARD_FAIL / SOFT_FAIL |
+| `RedTeamJudgeAgent` | 학생 관점 모호성·공정성 | SOFT_FAIL |
 
 결과물: `outputs/agentic_judge_report.json`
 
@@ -244,12 +249,12 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 ---
 
 ### Task 6 — FormatterAgent
-**역할**: 지금까지 만들어진 데이터를 3개의 파일로 저장합니다.
+**역할**: 지금까지 만들어진 데이터를 파일로 저장합니다.
 
 | 파일 | 내용 |
 |------|------|
 | `outputs/exam.md` | 수험생용 시험지 (문제만) |
-| `outputs/answers.md` | 강사용 정답지 (문제 + 모범 답안 + 출처) |
+| `outputs/answers.md` | 강사용 정답지 (문제 + 모범 답안 + 루브릭 + 출처) |
 | `outputs/review.md` | 검토 보고서 (범위 감사 결과, 심사 점수, 재작성 이력) |
 
 - **패턴**: Deterministic local tool (LLM 없이 문자열 조립)
@@ -261,50 +266,43 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 ```
 [입력]
   lecture_notes/raw/*.pdf
-        │
         │ scripts/extract_pdf_text.py
         ▼
   lecture_notes/processed/*.txt
-        │
         │ Task 0: LectureNoteCollectorAgent
         ▼
-  outputs/processed_notes_db.json   ◄──── 이후 모든 에이전트가 참조
-        │
-        │ Task 1: CoveragePlannerAgent
+  notes{filename: text}  ◄──── 이후 모든 에이전트가 참조
+        │ Task 1: CoveragePlannerAgent (1회 LLM 호출)
         ▼
-  coverage_plan (JSON 객체, 메모리 내 전달)
-        │
-        │ Task 2: 4개 에이전트 병렬 실행
+  topics[] (메모리 내 전달)
+        │ Task 2: 4개 에이전트 병렬 실행 (4회 LLM 호출)
         ▼
-  questions[] (메모리 내 전달)
-        │
-        │ Task 3: AnswerWriterAgent
+  questions[] (prompt + answer + source_refs 포함)
+        │ Task 3: AnswerWriterAgent (이미 채워진 경우 0회)
         ▼
-  questions[] + answers[] (메모리 내 전달)
-        │
-        │ Task 4c: CoverageAuditAgent
-        │ Task 5: RefinementCoordinator (→ 4a, 4b 포함)
+  questions[] (source_refs 보완)
+        │ Task 4c: CoverageAuditAgent (LLM 없음)
+        │ Task 5: RefinementCoordinator → 4a, 4b (2회 LLM 호출)
         ▼
-  refined_questions[], refined_answers[], verdicts[]
-        │
-        │ Task 6: FormatterAgent
+  refined_questions[], verdicts[]
+        │ Task 5b: AgenticJudgeSystemAgent (LLM 없음, 결정론적)
+        │ Task 6: FormatterAgent (LLM 없음)
         ▼
 [출력]
-  outputs/exam.md
-  outputs/answers.md
-  outputs/review.md
+  outputs/exam.md / answers.md / review.md
+  outputs/agentic_judge_report.json
+  outputs/assessment_validity_report.md
+  outputs/cost_report.json / run_trace.json
 ```
 
 ---
 
-## 7. 메모리 전략
-
-에이전트가 정보를 "기억"하는 방식에는 여러 층위가 있습니다. 이 프로젝트는 4가지 메모리 층위를 사용합니다(강의 M5.3.2).
+## 7. 메모리 전략 (강의 M5.3.2)
 
 | 층위 | 설명 | 이 프로젝트에서 |
 |------|------|----------------|
-| LLM 가중치(내재 지식) | Taylor·Gilbreth 등 도메인 지식은 LLM이 이미 학습으로 알고 있음 | `GeminiProvider` 모델 자체 |
-| 단기 기억 (세션) | 같은 주제 문제가 중복되지 않도록 대화 세션 내에서 유지 | `client.chats.create()` per specialist |
+| LLM 가중치(내재 지식) | Taylor·Gilbreth 등 도메인 지식은 LLM이 이미 학습으로 알고 있음 | Gemini Flash 모델 자체 |
+| 단기 기억 (세션) | 같은 주제 문제가 중복되지 않도록 세션 내에서 유지 | writer fast-path의 seen_prompts set |
 | 장기 기억 (JSON DB) | 처리된 강의 파일 목록 — 재실행 시 중복 처리 방지 | `outputs/processed_notes_db.json` |
 | 단기 요약 | 강의 노트가 LLM 컨텍스트 길이를 초과할 때 요약 | MVP에서는 미사용, 확장 가능 |
 
@@ -325,11 +323,11 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
     "essay": 1
   },
   "coverage_weights": {
-    "work_and_work_systems":       25,
-    "scientific_management":       20,
+    "work_and_work_systems":        25,
+    "scientific_management":        20,
     "problem_solving_and_ideation": 25,
-    "innovation_frameworks":       15,
-    "motion_study_and_therbligs":  15
+    "innovation_frameworks":        15,
+    "motion_study_and_therbligs":   15
   },
   "difficulty": {
     "easy": 25,
@@ -339,7 +337,7 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 }
 ```
 
-이 파일을 수정하면 시험 형식이 바뀝니다. 예를 들어 `short_answer`를 8로 늘리면 단답형이 8문제 출제됩니다. `CoverageAuditAgent`가 실행 시 이 파일을 기준으로 검증합니다.
+이 파일을 수정하면 시험 형식이 바뀝니다. 코드를 바꿀 필요 없습니다.
 
 ---
 
@@ -349,30 +347,39 @@ Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) �
 exam-agent-project/
 │
 ├── requirements.json            # 출제 기준 (문제 수, 배점, 주제 비중)
+├── model_policy.json            # 모델 선택 정책 (quality profile, fallback chain)
 │
 ├── lecture_notes/
-│   ├── raw/                     # 원본 강의 PDF 파일 (여기에 넣으세요)
-│   └── processed/               # 텍스트 추출 완료 파일 (자동 생성)
+│   ├── raw/                     # 원본 강의 PDF 파일
+│   └── processed/               # 텍스트 추출 완료 파일
 │
 ├── scripts/
-│   └── extract_pdf_text.py      # PDF → 텍스트 변환 유틸리티
+│   ├── extract_pdf_text.py      # PDF → 텍스트 변환
+│   ├── ingest_materials.py      # PDF/DOCX/PPTX/TXT 통합 처리
+│   └── doctor.py                # 환경 설정 진단
 │
 ├── src/
-│   ├── main.py                  # 파이프라인 진입점 (여기를 실행하세요)
-│   ├── agents.py                # 모든 에이전트 클래스 정의
-│   ├── providers.py             # Gemini LLM 연동 코드
-│   └── evaluation.py           # 평가 하네스 (선택 실행)
+│   ├── main.py                  # 파이프라인 진입점
+│   ├── agents.py                # 13개 에이전트 클래스 정의
+│   ├── providers.py             # GeminiProvider, OpenAI, Anthropic, Deterministic
+│   ├── evaluation.py            # 평가 하네스 (pilot test + LLM judge + simulation)
+│   └── costing.py               # 토큰·비용 추적
 │
 ├── prompts/
 │   ├── system_prompt.md         # 에이전트 공통 시스템 프롬프트
 │   └── reviewer_prompt.md       # 심사 에이전트 전용 프롬프트
 │
-├── outputs/                     # 생성된 결과물 (자동 생성)
+├── outputs/                     # 실행 결과물 (자동 생성)
 │   ├── exam.md                  # 시험지
-│   ├── answers.md               # 정답지
-│   ├── review.md                # 검토 보고서
-│   ├── evaluation_report.json   # 평가 결과
-│   └── processed_notes_db.json  # 처리된 강의 노트 DB
+│   ├── answers.md               # 정답지 + 루브릭
+│   ├── review.md                # LLM 심사 보고서
+│   ├── questions.json           # 문제 전체 데이터 (재실행·resume용)
+│   ├── agentic_judge_report.json
+│   ├── assessment_validity_report.md / .json
+│   ├── residual_risk_report.json
+│   ├── human_review_checklist.md
+│   ├── cost_report.json         # API 호출 상세 기록
+│   └── run_trace.json           # 파이프라인 실행 추적
 │
 └── docs/
     ├── architecture.md          # 시스템 설계 상세 문서
@@ -386,18 +393,27 @@ exam-agent-project/
 
 ### 사전 준비
 
-Python 3.9 이상이 설치되어 있어야 합니다.
-
 ```bash
-pip install pypdf          # PDF 텍스트 추출용 (필수)
-# pip install google-genai  # Gemini 모드 사용 시 추가 설치
+pip install pypdf google-genai
 ```
 
-### Step 1. 강의 자료 준비
+### Step 1. API 키 설정
+
+```bash
+# Windows CMD
+set GEMINI_API_KEY=여기에_API_키_입력
+
+# PowerShell
+$env:GEMINI_API_KEY="여기에_API_키_입력"
+```
+
+Google AI Studio(https://aistudio.google.com/apikey)에서 무료 발급 가능합니다. 하루 20회 호출 한도 내에서 무료입니다.
+
+### Step 2. 강의 자료 준비
 
 PDF 강의 슬라이드를 `lecture_notes/raw/` 폴더에 넣습니다.
 
-### Step 2. PDF에서 텍스트 추출
+### Step 3. PDF에서 텍스트 추출
 
 ```bash
 python scripts/extract_pdf_text.py
@@ -405,319 +421,215 @@ python scripts/extract_pdf_text.py
 
 `lecture_notes/processed/` 폴더에 `.txt` 파일들이 생성됩니다.
 
-### Step 3. 시험 생성
+### Step 4. 시험 생성
 
 ```bash
-python src/main.py
+# LLM 전체 경로 (권장 — 7회 호출, ~$0.007)
+python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
+
+# API 키 없이 파이프라인 구조만 테스트 (결정론적, 문제 은행 사용)
+python src/main.py --provider deterministic
 ```
 
-완료되면 `outputs/` 폴더에 3개 파일이 생성됩니다.
+> **참고 — `exam_blueprint.json`**: 로컬에 이 파일이 있으면 Task 2의 LLM Writer가 우회되고 경고 메시지가 출력됩니다. 현재 제출 산출물(`outputs/`)은 blueprint 없이 전체 LLM 파이프라인으로 생성됐습니다 (`outputs/cost_report.json` 참조, 7회 호출, GeminiApiKeyProvider).
 
-> **참고 — `exam_blueprint.json`**: 로컬에 이 파일이 있으면 Task 2의 LLM Writer가 우회되고 경고 메시지가 출력됩니다. **현재 제출 산출물(`outputs/`)은 `exam_blueprint.json` 없이 전체 LLM 파이프라인으로 생성됐습니다** (GeminiApiKeyProvider, 7회 호출, $0.0066, `outputs/cost_report.json` 참조). 재현 시에도 blueprint 없이 아래 커맨드를 사용하세요.
->
-> ```bash
-> # LLM 전체 경로 실행 (현재 제출 산출물과 동일한 방식)
-> python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
-> ```
+완료되면 `outputs/` 폴더에 결과물이 생성됩니다.
 
 ---
 
 ## 11. 실행 모드 (Provider)
 
-이 시스템은 두 가지 모드로 실행할 수 있습니다. 에이전트 코드는 변경 없이 `src/providers.py`의 provider만 교체됩니다.
+에이전트 코드는 변경 없이 `src/providers.py`의 provider만 교체됩니다. `GEMINI_API_KEY` 환경변수가 설정되어 있으면 자동으로 `GeminiApiKeyProvider`가 선택됩니다.
 
-### 결정론적 모드 (기본값, API 키 불필요)
-
-> **중요**: 이 모드는 LLM을 전혀 사용하지 않습니다. 미리 작성된 문제 은행(static question bank)에서 문제를 꺼내는 방식으로, 파이프라인 구조 테스트 목적으로만 적합합니다. **실제 LLM 기반 시험 생성**을 원한다면 반드시 아래 Gemini 모드를 사용하세요.
+### Gemini API 키 모드 (Google AI Studio, 무료 티어)
 
 ```bash
-python src/main.py
-# 또는 명시적으로
+set GEMINI_API_KEY=your-key
+python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
+```
+
+- 무료 한도: 모델당 하루 20회(RPD), 분당 10회(RPM)
+- `batch_write_questions` + `batch_judge` 자동 활성화로 전체 7회 호출에 완료 가능
+
+### Vertex AI 모드 (GCP 강의 경로)
+
+```bash
+pip install google-genai
+gcloud auth application-default login
+set GCP_PROJECT_ID=your-project-id
+python src/main.py --provider vertex --quality final_low_cost --strict-provider
+```
+
+### 결정론적 모드 (API 키 불필요, 구조 테스트용)
+
+```bash
 python src/main.py --provider deterministic
 ```
 
-### Gemini 모드 (Vertex AI 사용, 실제 LLM)
+미리 작성된 문제 은행에서 문제를 선택합니다. LLM을 전혀 사용하지 않으며, 파이프라인 구조 확인 목적으로만 적합합니다.
 
-Google Cloud의 Gemini 모델을 사용해 진짜 AI가 문제를 작성합니다.
-
-- 계획자(Task 1): 기본 `gemini-2.5-flash` — `--model-preset pro` 사용 시 `gemini-2.5-pro`로 격상 가능
-- 작성자(Task 2,3): 기본 `gemini-2.5-flash` — 빠르고 저렴하게 문제/답안 작성
-- 심사자(Task 4a,4b): `gemini-2.5-flash-lite` — 반복 호출이 많으므로 가장 경량 모델 사용
+### OpenAI / Anthropic 모드
 
 ```bash
-# 1. 패키지 설치
-pip install google-genai
+# OpenAI
+set OPENAI_API_KEY=your-key
+python src/main.py --provider openai --quality final --model-preset gpt --strict-provider
 
-# 2. Google Cloud 인증 (로컬 환경)
-gcloud auth application-default login
-
-# 3. 프로젝트 ID 설정
-export GCP_PROJECT_ID=<your-project-id>        # Windows: $env:GCP_PROJECT_ID="..."
-export GCP_LOCATION=us-central1                # 선택사항, 기본값 us-central1
-
-# 4. 실행
-python src/main.py --provider gemini
+# Anthropic
+set ANTHROPIC_API_KEY=your-key
+python src/main.py --provider anthropic --quality final --model-preset claude_opus --strict-provider
 ```
-
-> **참고**: Gemini API 단일 호출이 실패하면 자동으로 결정론적 모드로 폴백(fallback)하여 파이프라인 전체가 중단되지 않습니다.
 
 ---
 
 ## 12. 명령줄 옵션
 
-```bash
+```
 python src/main.py [옵션]
 
-  --processed-dir   강의 텍스트 파일 폴더 (기본: lecture_notes/processed)
-  --requirements    출제 기준 파일 경로   (기본: requirements.json)
-  --outputs-dir     결과물 저장 폴더     (기본: outputs)
-  --notes-db        강의 DB 파일 경로    (기본: outputs/processed_notes_db.json)
-  --max-refine      최대 재작성 반복 횟수 (기본: 2)
-  --provider        LLM 제공자           (기본: deterministic | gemini)
+  --quality           품질 프로파일: draft | final | final_low_cost (기본: draft)
+  --provider          LLM 제공자: deterministic | gemini | vertex | openai | anthropic
+  --strict-provider   폴백 없이 LLM 실패 시 즉시 중단
+  --max-refine        RefinementCoordinator 최대 반복 횟수 (기본: 2)
+  --max-agentic-judge-refine  AgenticJudge 최대 반복 횟수 (기본: 2)
+  --judge-model       judge 역할 모델 오버라이드 (예: gemini-2.5-flash)
+  --planner-model     planner 역할 모델 오버라이드
+  --writer-model      writer 역할 모델 오버라이드
+  --answer-model      answer_writer 역할 모델 오버라이드
+  --model-preset      model_policy.json에 정의된 프리셋 (lecture_flash, gpt, claude_opus 등)
+  --resume-from-judge outputs/questions.json에서 로드해 judge 단계만 실행 (2회 호출)
+  --batch-judge       수동으로 배치 judge 활성화 (기본: 자동 활성화)
+  --blueprint         exam_blueprint.json 경로 (존재하지 않는 경로 지정 시 LLM writer 실행)
+  --processed-dir     강의 텍스트 파일 폴더 (기본: lecture_notes/processed)
+  --requirements      출제 기준 파일 경로 (기본: requirements.json)
+  --outputs-dir       결과물 저장 폴더 (기본: outputs)
 ```
 
 ---
 
-## 13. 평가 실행
+## 13. API 호출 최적화
+
+전체 파이프라인을 무료 티어(하루 20회) 안에서 실행하기 위해 배치 API 호출을 구현했습니다.
+
+| 단계 | 기존 | 최적화 후 |
+|---|---|---|
+| 플래너 | 1회 | 1회 |
+| 문제 작성 (5토픽 × 4유형) | **20회** | **4회** (`batch_write_questions`) |
+| 답안 작성 | **11회** | **0회** (writer가 함께 생성) |
+| 문제·답안 심사 | **22회** | **2회** (`batch_judge_questions/answers`) |
+| **합계** | **54회** | **7회** |
+
+`batch_write_questions()`는 Gemini provider에만 구현되어 있습니다. 환경변수에서 provider가 자동 감지되므로 별도 플래그 없이 실행하면 됩니다.
+
+---
+
+## 14. 평가 실행
 
 시스템 품질을 측정하는 별도의 평가 하네스가 있습니다. 강의 M5.3.4의 3-method matrix를 구현합니다.
 
 ```bash
-python src/evaluation.py --simulate-trials 3
-# Gemini를 사용하는 경우
-python src/evaluation.py --provider gemini --simulate-trials 3
+python src/evaluation.py --provider gemini --quality final_low_cost --simulate-trials 1
 ```
 
 **3가지 평가 방법:**
 
-1. **Pilot Test (골든셋 테스트)**: 5개의 고정 테스트 케이스(Taylor 4원칙, DASSI 5단계, 혁신 프레임워크 등)에 대해 기대 키워드가 생성된 답안에 포함되었는지 확인합니다. → 정확도와 키워드 커버리지를 보고합니다.
+1. **Pilot Test (골든셋 테스트)**: 5개의 고정 테스트 케이스(Taylor 4원칙, DASSI 5단계 등)에 대해 기대 키워드가 포함되었는지 확인합니다.
 
-2. **LLM-as-Judge**: 새로 생성된 시험지에 대해 QuestionJudge + AnswerJudge를 실행합니다. → 판정 분포(GOOD/ACCEPTABLE/POOR)와 평균 루브릭 점수를 집계합니다.
+2. **LLM-as-Judge**: `QuestionJudgeAgent` + `AnswerJudgeAgent`를 실행해 판정 분포(GOOD/ACCEPTABLE/POOR)와 평균 루브릭 점수를 집계합니다.
 
-3. **Simulation**: 파이프라인을 N번 반복 실행합니다. → 평균 실행 시간, 분당 시험지 생성 수, 비용(추정)을 측정합니다.
+3. **Simulation**: 파이프라인을 N번 반복 실행해 평균 실행 시간과 비용을 측정합니다.
 
 결과: `outputs/evaluation_report.json`
 
 ---
 
-## 14. 사람이 개입해야 하는 지점 (Human-in-the-Loop)
+## 15. 사람이 개입해야 하는 지점 (Human-in-the-Loop)
 
 이 시스템은 시험 생성의 약 80%를 자동화하지만, 다음 4가지는 반드시 사람이 확인해야 합니다.
 
 1. **범위 확인**: M3.1.1 Therbligs가 실제 시험 범위에 포함되는지 교수님께 확인
 2. **공정성 검토**: 생성된 문제가 편향 없이 공정한지, 교수님의 출제 스타일과 맞는지 확인
-3. **재작성 한계 초과 항목**: 2회 재작성 후에도 POOR 판정이면 사람이 직접 수정
+3. **재작성 한계 초과 항목**: 반복 후에도 미흡 판정이면 사람이 직접 수정
 4. **최종 배점 확정**: 자동 생성된 배점은 참고용이며, 최종 배점은 교수가 승인
 
 ---
 
-## 15. 에이전트 패턴과 강의 매핑
-
-이 프로젝트는 AI Agent 강의(M5.3.x)에서 배운 패턴들을 실제로 구현한 예시입니다.
+## 16. 에이전트 패턴과 강의 매핑
 
 | 구현된 패턴 | 강의 참조 | 이 프로젝트에서 |
 |------------|---------|----------------|
 | `BaseAgentWorker` 인터페이스 | M5.3.1.2 §11 | `src/agents.py` 모든 에이전트의 기반 클래스 |
-| Local tools + JSON DB | M5.3.2 ApplicationCollector | `LectureNoteCollectorAgent` + `processed_notes_db.json` |
-| Planner-Executor | M5.3.3 `plan_and_accept` | `CoveragePlannerAgent` → 4개 Writer 에이전트 |
+| Local tools + JSON DB | M5.3.2 ApplicationCollector | `LectureNoteCollectorAgent` + JSON DB |
+| Planner-Executor | M5.3.3 `plan_and_accept` | `CoveragePlannerAgent` → 4개 Writer |
 | Parallel Fan-out | M5.3.3 `parallel_screening` | `ThreadPoolExecutor`로 4개 Writer 동시 실행 |
 | ReAct-inspired Retrieval | M5.3.1.2 §8 + M5.3.2 | `AnswerWriterAgent` + `search_lecture_notes` |
-| LLM-as-Judge-compatible JSON rubric | M5.3.4 `JUDGE_*_PROMPT` | `QuestionJudgeAgent`, `AnswerJudgeAgent`; deterministic 제출 산출물은 규칙 기반 provider 결과 |
+| LLM-as-Judge JSON Rubric | M5.3.4 `JUDGE_*_PROMPT` | `QuestionJudgeAgent`, `AnswerJudgeAgent` |
 | Supervisor-Evaluator Loop | M5.3.3 reflective | `RefinementCoordinator` (최대 2회 반복) |
-| Agentic Judge Closed Loop | M5.3.4 LLM-as-Judge | `AgenticJudgeSystemAgent` (PASS/REVISE/FAIL 판정 → 재작성, 최대 2회) |
+| Agentic Judge Closed Loop | M5.3.4 | `AgenticJudgeSystemAgent` (6개 전문 심사관 + 집계) |
 | 3-method Evaluation | M5.3.4 §3-method matrix | `src/evaluation.py` |
 
 ---
 
-## 16. 자주 묻는 질문
+## 17. 자주 묻는 질문
 
 **Q. API 키 없이도 실행됩니까?**
-A. 예. 기본 모드(deterministic)는 API 키 없이 실행됩니다. 미리 준비된 문제 은행에서 문제를 선택하므로 실제 AI가 창의적으로 문제를 만들지는 않지만, 파이프라인 전체 흐름을 테스트할 수 있습니다.
-
-**Q. 강의 노트가 영어가 아니어도 됩니까?**
-A. `requirements.json`의 `"language": "English"` 설정에 따라 출력이 영어로 생성됩니다. 강의 노트는 한국어여도 되지만, Gemini 모드에서 번역 품질에 영향이 있을 수 있습니다.
+A. 예. `--provider deterministic` 모드는 API 키 없이 실행됩니다. 미리 준비된 문제 은행에서 문제를 선택하므로 실제 AI가 창의적으로 문제를 만들지는 않지만, 파이프라인 전체 흐름을 테스트할 수 있습니다.
 
 **Q. 문제 수나 배점을 바꾸려면 어떻게 합니까?**
 A. `requirements.json`의 `question_mix`와 `coverage_weights` 값을 수정하면 됩니다. 코드를 바꿀 필요 없습니다.
 
+**Q. 강의 노트가 한국어여도 됩니까?**
+A. `requirements.json`의 `"language": "English"` 설정에 따라 출력이 영어로 생성됩니다. 강의 노트는 한국어여도 Gemini가 처리합니다.
+
 **Q. 생성된 문제가 마음에 들지 않으면 어떻게 합니까?**
-A. `outputs/review.md`를 확인하면 각 문제의 심사 점수와 재작성 이력이 있습니다. POOR 판정 이유를 보고 `requirements.json`을 조정하거나, 직접 `outputs/exam.md`를 편집하면 됩니다.
+A. `outputs/review.md`를 확인하면 각 문제의 심사 점수와 재작성 이력이 있습니다. 또는 `outputs/questions.json`이 남아 있으므로 `--resume-from-judge`로 judge 단계만 다시 돌릴 수 있습니다.
+
+**Q. judge 단계만 다시 실행하고 싶습니다.**
+A. `outputs/questions.json`이 있으면 아래 커맨드로 2회 호출만으로 재실행 가능합니다.
+```bash
+python src/main.py --resume-from-judge --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
+```
 
 ---
 
-## 17. 최신 보강 사항
+## 18. 실제 실행 결과 (제출 산출물)
 
-이번 버전은 다음 다섯 가지 약점을 보강했습니다.
+현재 `outputs/` 폴더는 아래 조건으로 생성된 실제 LLM 산출물입니다.
 
-### 17.1 다양한 입력 자료 처리
-
-기존 `scripts/extract_pdf_text.py`는 PDF 중심이었지만, 이제 `scripts/ingest_materials.py`가 원본 자료를 통합 처리합니다.
-
-```bash
-python scripts/ingest_materials.py
+```
+provider:  GeminiApiKeyProvider (Google AI Studio 무료 API)
+model:     gemini-2.5-flash (7회 전부)
+API 호출:  7회 (1 planner + 4 batch_writers + 2 batch_judges)
+비용:      $0.006620
 ```
 
-지원/분류 방식:
+### 생성된 시험지 구성
 
-- `.pdf`: PDF 텍스트 추출
-- `.txt`, `.md`: 그대로 텍스트 처리
-- `.docx`: Word XML에서 텍스트 추출
-- `.pptx`: slide XML에서 텍스트 추출
-- `.png`, `.jpg`, 스캔 PDF 의심 자료: OCR 필요 자료로 표시
-- `.mp3`, `.mp4`, `.m4a`: transcription 필요 자료로 표시
+| 번호 | 유형 | 주제 | 배점 |
+|---|---|---|---|
+| Q1 | Short Answer | Work and Work Systems | 5점 |
+| Q2 | Short Answer | Scientific Management | 5점 |
+| Q3 | Short Answer | Problem Solving and Ideation | 5점 |
+| Q4 | Short Answer | Five Innovation Frameworks | 5점 |
+| Q5 | Short Answer | Motion Study and Therbligs | 5점 |
+| Q6 | Short Answer | Work and Work Systems | 5점 |
+| Q7 | Concept Comparison | Scientific Management | 10점 |
+| Q8 | Concept Comparison | Problem Solving and Ideation | 10점 |
+| Q9 | Application | Five Innovation Frameworks | 15점 |
+| Q10 | Application | Motion Study and Therbligs | 15점 |
+| Q11 | Essay | Scientific Management | 20점 |
 
-실행 후 다음 파일이 생성됩니다.
+### 품질 평가 결과 (`outputs/agentic_judge_report.json`)
 
-- `outputs/materials_manifest.json`
-- `outputs/unsupported_materials_report.md`
+| 항목 | 값 |
+|---|---|
+| AgenticJudge 최종 판정 | **FAIL** (9 PASS / 2 REVISE / 1 FAIL) |
+| FAIL 대상 | EXAM — 토픽 커버리지 가중치 불일치, 난이도 분포(전체 Medium) |
+| REVISE 대상 | Q3 (weak_lecture_specificity), Q9 (overlong_prompt) |
+| Bloom 분포 | Remember/Understand 4, Analyze 3, Analyzing 2, Application 2 |
+| 난이도 분포 | Medium 11문항 (Easy·Hard 0) |
+| 고차원 사고 비율 | 27.3% (3/11) |
+| 예상 소요 시간 | 75분 (목표 75분 일치) |
+| 출처 근거 검증 | PASS (전 문항 source_refs 있음) |
 
-### 17.2 모델 선택 정책
-
-역할별 모델을 코드에 고정하지 않고 `model_policy.json`으로 분리했습니다.
-
-```bash
-python src/main.py --provider deterministic --quality draft
-python src/main.py --provider gemini --quality draft
-python src/main.py --blueprint nonexistent_path --provider gemini --quality final --strict-provider
-```
-
-- `draft`: 빠르고 저렴한 생성용
-- `final`: 최종 시험지 생성용
-- `--strict-provider`: 선택한 LLM provider가 실패하면 deterministic fallback 없이 중단
-
-`openai`, `anthropic` provider 이름은 실제 provider wrapper로 구현되어 있습니다. 각각 `openai`, `anthropic` SDK와 API key가 필요하며, `--strict-provider`를 켜면 해당 provider 초기화 실패 시 deterministic fallback 없이 중단됩니다.
-
-### 17.3 토큰/비용 추적
-
-각 실행은 토큰 및 비용 추정 파일을 생성합니다.
-
-- `outputs/chunk_index.json`: 강의자료 chunk index와 token estimate
-- `outputs/cost_report.json`: provider 사용량, static token estimate, 예상 비용
-
-Deterministic mode는 실제 API 호출이 없으므로 비용이 0으로 기록됩니다. Gemini mode에서는 `model_policy.json`의 가격표를 기준으로 역할별 예상 비용을 기록합니다.
-
-### 17.4 평가 강화
-
-`src/evaluation.py`는 기존 pilot test와 LLM-as-Judge 외에 structural tests를 추가로 수행합니다.
-
-```bash
-python src/evaluation.py --provider deterministic --quality draft --simulate-trials 3
-```
-
-추가 점검:
-
-- duplicate prompt
-- source reference gap
-- lecture-note 기반 out-of-scope 의심 문항
-- cost report 연계
-
-### 17.5 Human-in-the-Loop 산출물
-
-최종 검토자가 바로 사용할 수 있도록 다음 파일을 자동 생성합니다.
-
-- `outputs/human_review_checklist.md`
-- `outputs/run_trace.json`
-
-`human_review_checklist.md`는 범위 확인, 문항 품질, 답안 정확성, provider/비용 확인, 최종 제출 전 체크 항목을 포함합니다.
----
-
-## Gemini Cost Modes
-
-The project supports both lecture-style Vertex AI runs and API-key runs.
-For the course setup, prefer the Vertex AI / Agent Platform API path:
-
-```bat
-cd /d "C:\Users\iy579\Documents\New project 2\exam-agent-project"
-set GCP_PROJECT_ID=your-project-id
-set GCP_LOCATION=us-central1
-gcloud auth application-default login
-python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final_low_cost --strict-provider
-```
-
-`--provider vertex` forces the same `genai.Client(vertexai=True, project=..., location=...)`
-pattern used in `M5.3.1.1_gpc_setup.ipynb`. See
-`docs/vertex_ai_agent_platform_setup.md`.
-
-The project also supports both high-quality and low-cost Gemini model choices.
-
-## Evaluation Evidence
-
-The final run now produces instructor-facing evidence for the four evaluation
-criteria:
-
-- `outputs/assessment_validity_report.md`: Bloom level, difficulty, estimated
-  time, learning objective, assessed skill, source references, and rubric for
-  every question.
-- `outputs/human_review_notes_template.json`: structured human review protocol
-  for the final professor/team gate.
-- `outputs/critical_discussion.md`: limitations, LLM-as-judge bias,
-  cost-quality trade-off, and automation boundary.
-- `outputs/agentic_judge_report.json`: specialist judge findings and revision
-  instructions.
-
-Before a final live demo, run the local setup checker:
-
-```bat
-python .\scripts\doctor.py
-```
-
-See `docs/evaluation_criteria_alignment.md` for the professor-facing mapping.
-
-## Model Toggle
-
-The lecture-aligned default is Gemini 2.5 Flash:
-
-```bat
-python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final --model-preset lecture_flash --strict-provider
-```
-
-The same pipeline can also be toggled to GPT or Claude when those API keys are
-available:
-
-```bat
-python -m pip install openai
-set OPENAI_API_KEY=your-key
-python .\src\main.py --provider openai --quality final --model-preset gpt --strict-provider
-
-python -m pip install anthropic
-set ANTHROPIC_API_KEY=your-key
-python .\src\main.py --provider anthropic --quality final --model-preset claude_opus --strict-provider
-```
-
-Supported presets include `lecture_flash`, `cheap`, `balanced`, `pro`, `gpt`,
-`gpt_low_cost`, `claude_opus`, and `claude_sonnet`. Individual roles can also
-be overridden with `--planner-model`, `--writer-model`, `--answer-model`,
-`--judge-model`, and `--final-rewriter-model`.
-
-See `docs/model_toggle_guide.md`.
-
-### Low-cost final run
-
-Use this for the cheapest live-LLM final check on the API-key backup path.
-For the lecture Agent Platform path, replace `--provider gemini` with
-`--provider vertex` after setting `GCP_PROJECT_ID`.
-
-```bash
-python src/main.py --blueprint nonexistent_path --provider gemini --quality final_low_cost --strict-provider
-python src/evaluation.py --blueprint nonexistent_path --provider gemini --quality final_low_cost --strict-provider --simulate-trials 1
-```
-
-### High-quality final run
-
-Use this for the default lecture-aligned live-LLM run. The built-in `final`
-quality profile uses Gemini Flash for planner/writer/answering and Flash-Lite
-for repeated judge calls. Prefer `--provider vertex` for the course setup; use
-`--provider gemini` only as an API-key backup path. Use `--model-preset pro`
-only when you intentionally want the higher-cost Pro preset.
-
-```bash
-python src/main.py --blueprint nonexistent_path --provider vertex --quality final --strict-provider
-python src/evaluation.py --blueprint nonexistent_path --provider vertex --quality final --strict-provider --simulate-trials 1
-```
-
-The provider retries after 429/resource-exhausted errors and can fall back to
-configured lower-cost models such as `gemini-2.5-flash-lite` when the selected
-model hits a retryable quota/model error.
-
-For API-key setup without GCP Project ID or `gcloud`, see
-`docs/gemini_api_key_setup.md`.
+> **FAIL 판정의 의미**: `CoverageJudgeAgent`가 난이도 단조(전체 Medium)와 커버리지 가중치 불일치를 정확히 탐지했습니다. 이는 품질 검증 계층이 실제로 동작하고 있음을 보여주는 증거입니다. 최종 제출 전 난이도 분포 조정과 Q3·Q9 수정이 권장됩니다.
