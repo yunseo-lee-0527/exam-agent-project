@@ -121,6 +121,31 @@ def normalize_filename(name: str) -> str:
     return " ".join(name.split())
 
 
+_TOPIC_KEY_ALIASES = {
+    "work_work_systems": "work_and_work_systems",
+    "work_and_work_systems_fundamentals": "work_and_work_systems",
+    "foundations_principles_scientific_management": "scientific_management",
+    "foundations_and_principles_of_scientific_management": "scientific_management",
+    "engineering_problem_solving_ideation_techniques": "problem_solving_and_ideation",
+    "engineering_problem_solving_and_ideation_techniques": "problem_solving_and_ideation",
+    "engineering_problem_solving_and_ideation": "problem_solving_and_ideation",
+    "problem_solving_ideation": "problem_solving_and_ideation",
+    "systematic_innovation_frameworks": "innovation_frameworks",
+    "systematic_innovation_methods": "innovation_frameworks",
+    "five_innovation_frameworks": "innovation_frameworks",
+    "micro_level_motion_study_therbligs": "motion_study_and_therbligs",
+    "micro_level_motion_study_and_therbligs": "motion_study_and_therbligs",
+    "motion_study_therbligs": "motion_study_and_therbligs",
+}
+
+
+def normalize_topic_key(topic: str) -> str:
+    """Map display titles and minor LLM wording drift to requirement keys."""
+
+    key = re.sub(r"[^a-z0-9]+", "_", topic.lower()).strip("_")
+    return _TOPIC_KEY_ALIASES.get(key, key)
+
+
 def parse_json_block(raw: str) -> dict[str, Any]:
     """Extract the first JSON object inside a (possibly fenced) string.
 
@@ -207,7 +232,12 @@ class DeterministicProvider:
         }
 
     def write_questions(
-        self, kind: str, topic: Topic, count: int, notes: dict[str, str]
+        self,
+        kind: str,
+        topic: Topic,
+        count: int,
+        notes: dict[str, str],
+        revision_instruction: str | None = None,
     ) -> list[dict[str, str]]:
         return _DETERMINISTIC_BANK.draw(kind, topic, count, notes)
 
@@ -220,7 +250,12 @@ class DeterministicProvider:
 
         return _DETERMINISTIC_BANK.all_for(kind, topic)
 
-    def write_answer(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
+    def write_answer(
+        self,
+        question: Question,
+        notes: dict[str, str],
+        revision_instruction: str | None = None,
+    ) -> dict[str, Any]:
         if question.answer and question.source_refs:
             return {"answer": question.answer, "source_refs": question.source_refs}
         return {
@@ -288,7 +323,7 @@ class _Bank:
          "A work system's outputs depend on interactions among participants, processes, technology, information, environment, and customers. Improving one component in isolation rarely improves the whole, because emergent performance arises from the configuration and coordination of all components."),
         ("Work and Work Systems",
          "List the major component categories Alter uses to describe a work system.",
-         "Alter's framework names participants, processes and activities, information, technology, products and services, customers, environment, infrastructure, and strategies."),
+         "Alter's framework names participants, processes and activities, information, technology, products and services, customers, environment, infrastructure, and strategies. Considering these categories together prevents a redesign team from treating technology as the only source of performance improvement."),
         ("Scientific Management",
          "List Taylor's four principles of scientific management.",
          "Develop a science for each element of work, scientifically select and train workers, promote cooperation through aligned incentives, and divide planning from execution responsibilities."),
@@ -297,7 +332,7 @@ class _Bank:
          "Soldiering is deliberate underperformance at work. Natural soldiering is the human tendency to conserve effort, while systematic soldiering is deliberate output restriction shaped by mistrust, fear of wage cuts, missing standards, and flawed organization."),
         ("Problem Solving and Ideation",
          "What are the five steps of the DASSI engineering problem-solving process?",
-         "Define the problem, Analyze with data, Search for alternatives, Select the best alternative through comparison, Implement with follow-up."),
+         "DASSI has five steps: Define the problem clearly, Analyze causes with data, Search for alternatives, Select the best option through comparison, and Implement it with follow-up monitoring. The sequence keeps teams from jumping to a preferred solution before understanding the problem."),
         ("Problem Solving and Ideation",
          "State two fundamental principles of brainstorming and explain why they matter.",
          "Delayed judgment prevents premature criticism from blocking creativity, and focus on quantity increases the chance of useful ideas surfacing among many alternatives."),
@@ -354,7 +389,7 @@ class _Bank:
          "Analyze a familiar service such as a coffee shop using Alter's work system framework, identifying at least four components and one emergent performance issue.",
          "Components include participants (baristas, customers), processes (order, brew, deliver), technology (espresso machines, POS), information (menu, queue state), and customers (walk-in, mobile order). An emergent issue is queue backup at peak times that cannot be fixed by speeding any single station because it arises from the interaction between order placement, brew time, and pickup capacity."),
         ("Five Innovation Frameworks",
-         "Pick a generative-AI product feature and explain it using two of the five innovation frameworks.",
+         "Apply two of the five innovation frameworks to analyze a generative-AI product feature.",
          "An AI summarization feature combines a language model with a productivity app (combination) and replaces manual reading and note-taking with model-generated summaries (alternate means). Using two frameworks clarifies that the innovation is both an integration choice and a substitution choice."),
         ("Scientific Management",
          "Apply scientific management thinking to redesign a packing job at an e-commerce warehouse, listing two principles you use and one risk you must guard against.",
@@ -485,7 +520,13 @@ class CoveragePlannerAgent(BaseAgentWorker):
         requirements = payload["requirements"]
         notes = payload["notes"]
         plan = self.provider.plan(requirements, notes)
-        topics = [Topic(**t) for t in plan["topics"]]
+        normalized_topics: list[dict[str, Any]] = []
+        for raw_topic in plan["topics"]:
+            topic = dict(raw_topic)
+            topic["key"] = normalize_topic_key(str(topic["key"]))
+            normalized_topics.append(topic)
+        plan["topics"] = normalized_topics
+        topics = [Topic(**t) for t in normalized_topics]
         return {
             "plan": plan,
             "topics": topics,
@@ -510,16 +551,20 @@ class _BaseQuestionWriter(BaseAgentWorker):
         count: int = payload["count"]
         start_number: int = payload.get("start_number", 1)
         per_topic_points: int = payload["points_per_question"]
+        slots: list[dict[str, Any]] = list(payload.get("slots", []))
 
         # Fast path: one API call for all questions of this kind across all topics.
         if hasattr(self.provider, "batch_write_questions"):
             try:
-                drafts = self.provider.batch_write_questions(self.KIND, topics, count, notes)
+                drafts = self.provider.batch_write_questions(
+                    self.KIND, topics, count, notes, slots=slots
+                )
                 questions: list[Question] = []
                 for draft in drafts:
                     p = str(draft.get("prompt", "")).strip()
                     if not p or len(questions) >= count:
                         continue
+                    slot = slots[len(questions)] if len(slots) > len(questions) else {}
                     questions.append(Question(
                         number=start_number + len(questions),
                         kind=self.KIND,
@@ -528,20 +573,75 @@ class _BaseQuestionWriter(BaseAgentWorker):
                         points=per_topic_points,
                         answer=str(draft.get("answer", "")).strip(),
                         source_refs=list(draft.get("source_refs", [])),
-                        difficulty=str(draft.get("difficulty", "")),
+                        difficulty=str(slot.get("target_difficulty") or draft.get("difficulty", "")),
                         learning_objective=str(draft.get("learning_objective", "")),
                         bloom_level=str(draft.get("bloom_level", "")),
                         estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
                         exam_intent=str(draft.get("exam_intent", "")),
                         assessed_skill=str(draft.get("assessed_skill", "")),
                         rubric=list(draft.get("rubric", [])),
+                        coverage_contribution={
+                            str(k): int(v)
+                            for k, v in (draft.get("coverage_contribution") or {}).items()
+                        },
                     ))
                 if len(questions) >= count:
                     return questions[:count]
                 if questions:
                     return questions  # partial but acceptable — LLM returned fewer than asked
             except Exception as exc:
+                if getattr(self.provider, "strict", False):
+                    raise
                 print(f"[{self.name}] batch_write_questions failed ({exc}); using pool mode.")
+
+        if slots:
+            topic_by_key = {t.key: t for t in topics}
+            seen_prompts: set[str] = set()
+            questions: list[Question] = []
+            for slot in slots:
+                topic = topic_by_key.get(str(slot["topic_key"]))
+                if topic is None:
+                    continue
+                candidates = list(self.provider.pool_questions(self.KIND, topic, notes))
+                draft = next(
+                    (item for item in candidates if item.get("prompt") not in seen_prompts),
+                    None,
+                )
+                if draft is None:
+                    fresh = self.provider.write_questions(self.KIND, topic, 1, notes)
+                    draft = next(
+                        (item for item in fresh if item.get("prompt") not in seen_prompts),
+                        None,
+                    )
+                if draft is None:
+                    continue
+                prompt = str(draft.get("prompt", "")).strip()
+                if not prompt:
+                    continue
+                questions.append(
+                    Question(
+                        number=start_number + len(questions),
+                        kind=self.KIND,
+                        topic=str(draft.get("topic", topic.title)),
+                        prompt=prompt,
+                        points=per_topic_points,
+                        answer=str(draft.get("answer", "")).strip(),
+                        source_refs=list(draft.get("source_refs", [])),
+                        difficulty=str(slot.get("target_difficulty") or draft.get("difficulty", "")),
+                        learning_objective=str(draft.get("learning_objective", "")),
+                        bloom_level=str(draft.get("bloom_level", "")),
+                        estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
+                        exam_intent=str(draft.get("exam_intent", "")),
+                        assessed_skill=str(draft.get("assessed_skill", "")),
+                        rubric=list(draft.get("rubric", [])),
+                        coverage_contribution={
+                            str(k): int(v)
+                            for k, v in (slot.get("coverage_contribution") or {}).items()
+                        },
+                    )
+                )
+                seen_prompts.add(prompt)
+            return questions
 
         ordered = sorted(topics, key=lambda t: -t.weight)
         # Pre-fetch a pool of candidates per topic so we can dedup deterministically.
@@ -653,6 +753,8 @@ def fan_out_question_writers(
             try:
                 results[idx] = future.result()
             except Exception as exc:
+                if getattr(writers[idx].provider, "strict", False):
+                    raise
                 results[idx] = []
                 print(f"[fan_out] writer {writers[idx].name} failed: {exc}")
     flat: list[Question] = []
@@ -792,7 +894,7 @@ def _point_contribution(questions: list[Question]) -> dict[str, int]:
             for key, points in q.coverage_contribution.items():
                 contribution[key] = contribution.get(key, 0) + int(points)
         else:
-            key = q.topic.lower().replace(" and ", "_").replace(" ", "_")
+            key = normalize_topic_key(q.topic)
             contribution[key] = contribution.get(key, 0) + q.points
     return contribution
 
@@ -882,6 +984,20 @@ class CoverageJudgeAgent(BaseAgentWorker):
 class SourceGroundingJudgeAgent(BaseAgentWorker):
     """Checks whether every question has valid lecture-note grounding."""
 
+    INNOVATION_FRAMEWORK_TERMS = {
+        "addition",
+        "subtraction",
+        "alternate",
+        "combination",
+        "transposition",
+    }
+    EXTERNAL_INNOVATION_FRAMEWORK_TERMS = {
+        "lean startup",
+        "design thinking",
+        "triz",
+        "scamper",
+        "blue ocean",
+    }
     STOPWORDS = {
         "what",
         "from",
@@ -965,9 +1081,49 @@ class SourceGroundingJudgeAgent(BaseAgentWorker):
                 evidence.append("valid_refs=" + ", ".join(matched_refs))
             if hits:
                 evidence.append("matched_terms=" + ", ".join(hits[:6]))
+            if normalize_topic_key(q.topic) == "innovation_frameworks":
+                answer_lc = q.answer.lower()
+                lecture_frameworks = sorted(
+                    term for term in self.INNOVATION_FRAMEWORK_TERMS if term in answer_lc
+                )
+                external_frameworks = sorted(
+                    term
+                    for term in self.EXTERNAL_INNOVATION_FRAMEWORK_TERMS
+                    if term in answer_lc
+                )
+                evidence.append(
+                    "lecture_innovation_frameworks_in_answer="
+                    + (", ".join(lecture_frameworks) or "(none)")
+                )
+                if external_frameworks:
+                    evidence.append(
+                        "external_innovation_frameworks_in_answer="
+                        + ", ".join(external_frameworks)
+                    )
+                if not lecture_frameworks:
+                    failed.append("innovation_framework_out_of_scope")
 
             if failed:
-                verdict = "HARD_FAIL" if "missing_source_refs" in failed or "invalid_source_refs" in failed else "SOFT_FAIL"
+                verdict = (
+                    "HARD_FAIL"
+                    if any(
+                        check in failed
+                        for check in {
+                            "missing_source_refs",
+                            "invalid_source_refs",
+                            "innovation_framework_out_of_scope",
+                        }
+                    )
+                    else "SOFT_FAIL"
+                )
+                revision_instruction = (
+                    "Use only the lecture's five innovation frameworks: Addition, Subtraction, "
+                    "Alternate, Combination, and Transposition. Rewrite the prompt and answer "
+                    "around at least one of them."
+                    if "innovation_framework_out_of_scope" in failed
+                    else "Attach valid lecture-note source_refs and rewrite the prompt/answer "
+                    "so the cited notes directly support the tested concept."
+                )
                 findings.append(
                     AgenticJudgeFinding(
                         target_id=f"Q{q.number}",
@@ -975,7 +1131,7 @@ class SourceGroundingJudgeAgent(BaseAgentWorker):
                         verdict=verdict,
                         failed_checks=failed,
                         evidence=evidence,
-                        revision_instruction="Attach valid lecture-note source_refs and rewrite the prompt/answer so the cited notes directly support the tested concept.",
+                        revision_instruction=revision_instruction,
                     )
                 )
             else:
@@ -1059,6 +1215,29 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
     TF-IDF-derived terms; falls back to _FALLBACK_LECTURE_TERMS otherwise.
     """
 
+    TOPIC_SPECIFIC_TERMS = {
+        "work_and_work_systems": ["work system", "alter", "socio-technical", "task"],
+        "scientific_management": ["scientific management", "taylor", "gilbreth", "soldiering"],
+        "problem_solving_and_ideation": [
+            "problem-solving",
+            "problem solving",
+            "engineering",
+            "ideation",
+            "brainstorm",
+            "dassi",
+            "affinity",
+        ],
+        "innovation_frameworks": [
+            "innovation",
+            "addition",
+            "subtraction",
+            "alternate",
+            "combination",
+            "transposition",
+        ],
+        "motion_study_and_therbligs": ["motion", "therblig", "reach", "grasp", "transport"],
+    }
+
     def __init__(self, lecture_terms: list[str] | None = None):
         super().__init__("Pedagogical Quality Judge", "Task 4g")
         self.lecture_terms: list[str] = lecture_terms or list(_FALLBACK_LECTURE_TERMS)
@@ -1073,10 +1252,25 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
             if not q.learning_objective:
                 failed.append("missing_learning_objective")
             if q.kind in {"Application", "Essay", "Concept Comparison"}:
-                higher_order_terms = ["apply", "compare", "discuss", "analyze", "redesign", "propose", "why"]
-                if not any(term in prompt_lc for term in higher_order_terms):
+                higher_order_stems = [
+                    "appl",
+                    "compar",
+                    "discuss",
+                    "analy",
+                    "redesign",
+                    "propos",
+                    "recommend",
+                    "justif",
+                    "evaluat",
+                    "critiqu",
+                    "suggest",
+                    "why",
+                ]
+                if not any(stem in prompt_lc for stem in higher_order_stems):
                     failed.append("weak_higher_order_demand")
-            if not any(term in prompt_lc or term in q.answer.lower() for term in self.lecture_terms):
+            topic_terms = self.TOPIC_SPECIFIC_TERMS.get(normalize_topic_key(q.topic), [])
+            lecture_terms = list(dict.fromkeys(self.lecture_terms + topic_terms))
+            if not any(term in prompt_lc or term in q.answer.lower() for term in lecture_terms):
                 failed.append("weak_lecture_specificity")
             evidence.append(f"kind={q.kind}; difficulty={q.difficulty or 'unspecified'}")
             if q.learning_objective:
@@ -1450,8 +1644,8 @@ class FormatterAgent(BaseAgentWorker):
             )
         lines += ["", "## Human-in-the-loop", ""]
         lines += [
-            "- Verify whether M3.1.1 Therbligs is officially in the midterm scope.",
+            "- Confirm the official midterm scope, including whether M3.1.1 Therbligs is included.",
             "- Confirm point allocation, language, and exam length with the instructor.",
-            "- Replace deterministic provider with the LLM provider before final submission.",
+            "- For final submission, run a strict LLM provider and preserve the cost evidence.",
         ]
         return "\n".join(lines)

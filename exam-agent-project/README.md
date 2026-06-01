@@ -423,7 +423,7 @@ set GEMINI_API_KEY=여기에_API_키_입력
 $env:GEMINI_API_KEY="여기에_API_키_입력"
 ```
 
-Google AI Studio(https://aistudio.google.com/apikey)에서 무료 발급 가능합니다. 하루 20회 호출 한도 내에서 무료입니다.
+Google AI Studio(https://aistudio.google.com/apikey)에서 발급 가능합니다. 무료 티어 제공 여부와 호출 한도는 변경될 수 있으므로 AI Studio의 현재 안내를 확인하세요.
 
 ### Step 2. 강의 자료 준비
 
@@ -440,7 +440,7 @@ python scripts/extract_pdf_text.py
 ### Step 4. 시험 생성
 
 ```bash
-# LLM 전체 경로 (권장 — 7회 호출, ~$0.007)
+# LLM 전체 경로 (권장 — 최초 검사 기준 7회 호출, 재작성 시 추가 호출)
 python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 1
 
 # API 키 없이 파이프라인 구조만 테스트 (결정론적, 문제 은행 사용)
@@ -464,8 +464,8 @@ set GEMINI_API_KEY=your-key
 python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 1
 ```
 
-- 무료 한도: 모델당 하루 20회(RPD), 분당 10회(RPM)
-- `batch_write_questions` + `batch_judge` 자동 활성화로 전체 7회 호출에 완료 가능
+- 무료 티어와 호출 한도는 변경될 수 있으므로 Google AI Studio의 현재 안내를 확인
+- `batch_write_questions` + `batch_judge` 자동 활성화로 최초 검사까지 7회 호출에 완료 가능
 
 ### Vertex AI 모드 (GCP 강의 경로)
 
@@ -525,7 +525,7 @@ python src/main.py [옵션]
 
 ## 13. API 호출 최적화
 
-전체 파이프라인을 무료 티어(하루 20회) 안에서 실행하기 위해 배치 API 호출을 구현했습니다.
+전체 파이프라인의 호출 수를 낮추기 위해 배치 API 호출을 구현했습니다.
 
 | 단계 | 기존 | 최적화 후 |
 |---|---|---|
@@ -563,7 +563,7 @@ python src/evaluation.py --provider gemini --quality final_low_cost --simulate-t
 
 이 시스템은 시험 생성의 약 80%를 자동화하지만, 다음 4가지는 반드시 사람이 확인해야 합니다.
 
-1. **범위 확인**: M3.1.1 Therbligs가 실제 시험 범위에 포함되는지 교수님께 확인
+1. **범위 확인**: 이번 제출본은 M3.1.1 Therbligs를 시험 범위에 포함함. 최종 검토자가 합의된 범위를 다시 확인
 2. **공정성 검토**: 생성된 문제가 편향 없이 공정한지, 교수님의 출제 스타일과 맞는지 확인
 3. **재작성 한계 초과 항목**: 반복 후에도 미흡 판정이면 사람이 직접 수정
 4. **최종 배점 확정**: 자동 생성된 배점은 참고용이며, 최종 배점은 교수가 승인
@@ -614,38 +614,38 @@ python src/main.py --resume-from-judge --max-refine 0 --max-agentic-judge-refine
 
 ```
 provider:  GeminiApiKeyProvider (Google AI Studio 무료 API)
-model:     gemini-2.5-flash (7회 전부)
+model:     gemini-2.5-flash 5회 + gemini-2.5-flash-lite 2회
 API 호출:  7회 (1 planner + 4 batch_writers + 2 batch_judges)
-비용:      $0.006620
+비용:      $0.005436
 ```
 
 ### 생성된 시험지 구성
 
 | 번호 | 유형 | 주제 | 배점 |
 |---|---|---|---|
-| Q1 | Short Answer | Work and Work Systems | 5점 |
-| Q2 | Short Answer | Scientific Management | 5점 |
-| Q3 | Short Answer | Problem Solving and Ideation | 5점 |
-| Q4 | Short Answer | Five Innovation Frameworks | 5점 |
-| Q5 | Short Answer | Motion Study and Therbligs | 5점 |
-| Q6 | Short Answer | Work and Work Systems | 5점 |
-| Q7 | Concept Comparison | Scientific Management | 10점 |
-| Q8 | Concept Comparison | Problem Solving and Ideation | 10점 |
-| Q9 | Application | Five Innovation Frameworks | 15점 |
-| Q10 | Application | Motion Study and Therbligs | 15점 |
-| Q11 | Essay | Scientific Management | 20점 |
+| Q1 | Short Answer | Introduction to Work and Work Systems | 5점 |
+| Q2 | Short Answer | Engineering Problem-Solving and Ideation | 5점 |
+| Q3 | Short Answer | Introduction to Work and Work Systems | 5점 |
+| Q4 | Short Answer | Introduction to Work and Work Systems | 5점 |
+| Q5 | Short Answer | Engineering Problem-Solving and Ideation | 5점 |
+| Q6 | Short Answer | Engineering Problem-Solving and Ideation | 5점 |
+| Q7 | Concept Comparison | Introduction to Work and Work Systems | 10점 |
+| Q8 | Concept Comparison | Engineering Problem-Solving and Ideation | 10점 |
+| Q9 | Application | Systematic Innovation Methods | 15점 |
+| Q10 | Application | Micro-level Motion Study and Therbligs | 15점 |
+| Q11 | Essay | Scientific Management as Work System Redesign | 20점 |
 
 ### 품질 평가 결과 (`outputs/agentic_judge_report.json`)
 
 | 항목 | 값 |
 |---|---|
-| AgenticJudge 최종 판정 | **FAIL** (9 PASS / 2 REVISE / 1 FAIL) |
-| FAIL 대상 | EXAM — 토픽 커버리지 가중치 불일치, 난이도 분포(전체 Medium) |
-| REVISE 대상 | Q3 (weak_lecture_specificity), Q9 (overlong_prompt) |
-| Bloom 분포 | Remember/Understand 4, Analyze 3, Analyzing 2, Application 2 |
-| 난이도 분포 | Medium 11문항 (Easy·Hard 0) |
-| 고차원 사고 비율 | 27.3% (3/11) |
+| AgenticJudge 최종 판정 | **PASS** (12 PASS / 0 REVISE / 0 FAIL) |
+| 토픽 배점 | 25 / 20 / 25 / 15 / 15점, 요구사항과 일치 |
+| 난이도 배점 | Easy 25 / Medium 50 / Hard 25점, 요구사항과 일치 |
+| Bloom 분포 | Remember/Understand 6, Analyze 2, Apply/Analyze 2, Evaluate/Create 1 |
+| 난이도 문항 수 | Easy 5, Medium 4, Hard 2 |
+| 고차원 사고 비율 | 45.5% (5/11) |
 | 예상 소요 시간 | 75분 (목표 75분 일치) |
 | 출처 근거 검증 | PASS (전 문항 source_refs 있음) |
 
-> **FAIL 판정의 의미**: `CoverageJudgeAgent`가 난이도 단조(전체 Medium)와 커버리지 가중치 불일치를 정확히 탐지했습니다. 이는 품질 검증 계층이 실제로 동작하고 있음을 보여주는 증거입니다. 최종 제출 전 난이도 분포 조정과 Q3·Q9 수정이 권장됩니다.
+> **검증 이력**: Gemini strict-provider 실행으로 문항·답안과 API 비용 기록을 생성했습니다. 이후 강의 범위 밖 혁신 프레임워크를 차단하는 scope guard와 토픽 정규화를 보강하고, 동일 문항을 최신 로컬 agentic judge로 재검증했습니다. 추가 LLM 호출 없이 최종 `12/12 PASS`를 확인했습니다.

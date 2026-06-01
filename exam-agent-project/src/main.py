@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from functools import lru_cache
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,7 @@ from agents import (
     ShortAnswerWriterAgent,
     Topic,
     fan_out_question_writers,
+    normalize_topic_key,
 )
 from costing import estimate_tokens
 from providers import load_model_policy, make_provider
@@ -91,6 +93,167 @@ def _points_for(kind: str, total: int = 100, mix: dict[str, int] | None = None) 
 
     weights = {"short_answer": 5, "concept_comparison": 10, "application": 15, "essay": 20}
     return weights.get(kind, 10)
+
+
+_QUESTION_KIND_LABELS = {
+    "short_answer": "Short Answer",
+    "concept_comparison": "Concept Comparison",
+    "application": "Application",
+    "essay": "Essay",
+}
+
+
+def build_question_slots(
+    question_mix: dict[str, int],
+    coverage_weights: dict[str, int],
+    difficulty_weights: dict[str, int],
+    topics: list[Topic],
+) -> list[dict[str, Any]]:
+    """Allocate coverage before writing so LLMs only fill validated exam slots.
+
+    Prefer whole-question assignments. If a future requirement cannot be expressed
+    with the configured point values, split a slot's contribution across topics
+    while retaining the largest contribution as its primary writing topic.
+    """
+
+    slots: list[dict[str, Any]] = []
+    for kind_key, kind_label in _QUESTION_KIND_LABELS.items():
+        for index in range(int(question_mix.get(kind_key, 0))):
+            slots.append(
+                {
+                    "slot_id": f"{kind_key}:{index + 1}",
+                    "kind_key": kind_key,
+                    "kind": kind_label,
+                    "points": _points_for(kind_key),
+                }
+            )
+
+    target = {normalize_topic_key(str(k)): int(v) for k, v in coverage_weights.items()}
+    total_points = sum(int(slot["points"]) for slot in slots)
+    target_points = sum(target.values())
+    if total_points != target_points:
+        raise ValueError(
+            f"Question slots total {total_points} points but coverage weights total {target_points}. "
+            "Adjust requirements.json so both totals match."
+        )
+
+    topic_title_by_key = {normalize_topic_key(t.key): t.title for t in topics}
+    target_order = list(target)
+    remaining = dict(target)
+    slot_order = sorted(range(len(slots)), key=lambda idx: -int(slots[idx]["points"]))
+
+    for slot_index in slot_order:
+        points_left = int(slots[slot_index]["points"])
+        contributions: dict[str, int] = {}
+
+        exact = [key for key in target_order if remaining.get(key, 0) == points_left]
+        fitting = [key for key in target_order if remaining.get(key, 0) >= points_left]
+        if exact:
+            key = exact[0]
+            contributions[key] = points_left
+            remaining[key] -= points_left
+            points_left = 0
+        elif fitting:
+            key = max(fitting, key=lambda item: remaining[item])
+            contributions[key] = points_left
+            remaining[key] -= points_left
+            points_left = 0
+
+        while points_left:
+            available = [key for key in target_order if remaining.get(key, 0) > 0]
+            if not available:
+                raise ValueError("Unable to allocate coverage contribution for every question slot.")
+            key = max(available, key=lambda item: remaining[item])
+            assigned = min(points_left, remaining[key])
+            contributions[key] = contributions.get(key, 0) + assigned
+            remaining[key] -= assigned
+            points_left -= assigned
+
+        primary_topic = max(
+            contributions,
+            key=lambda key: (contributions[key], -target_order.index(key)),
+        )
+        slots[slot_index].update(
+            {
+                "topic_key": primary_topic,
+                "topic_title": topic_title_by_key.get(
+                    primary_topic, primary_topic.replace("_", " ").title()
+                ),
+                "coverage_contribution": contributions,
+            }
+        )
+
+    if any(remaining.values()):
+        raise ValueError(f"Unallocated coverage weights remain: {remaining}")
+
+    difficulty_target = {
+        str(key).strip().lower(): int(value) for key, value in difficulty_weights.items()
+    }
+    if sum(difficulty_target.values()) != total_points:
+        raise ValueError(
+            f"Question slots total {total_points} points but difficulty weights total "
+            f"{sum(difficulty_target.values())}. Adjust requirements.json so both totals match."
+        )
+    levels = ("easy", "medium", "hard")
+    kind_penalty = {
+        "short_answer": {"easy": 0, "medium": 1, "hard": 2},
+        "concept_comparison": {"easy": 2, "medium": 0, "hard": 1},
+        "application": {"easy": 2, "medium": 0, "hard": 1},
+        "essay": {"easy": 4, "medium": 2, "hard": 0},
+    }
+
+    @lru_cache(maxsize=None)
+    def assign_difficulty(
+        slot_index: int,
+        easy_left: int,
+        medium_left: int,
+        hard_left: int,
+    ) -> tuple[int, tuple[str, ...]] | None:
+        if slot_index == len(slots):
+            return (0, ()) if (easy_left, medium_left, hard_left) == (0, 0, 0) else None
+        remaining_by_level = {
+            "easy": easy_left,
+            "medium": medium_left,
+            "hard": hard_left,
+        }
+        slot = slots[slot_index]
+        points = int(slot["points"])
+        best: tuple[int, tuple[str, ...]] | None = None
+        for level in levels:
+            if remaining_by_level[level] < points:
+                continue
+            next_remaining = dict(remaining_by_level)
+            next_remaining[level] -= points
+            suffix = assign_difficulty(
+                slot_index + 1,
+                next_remaining["easy"],
+                next_remaining["medium"],
+                next_remaining["hard"],
+            )
+            if suffix is None:
+                continue
+            candidate = (
+                kind_penalty[str(slot["kind_key"])][level] + suffix[0],
+                (level,) + suffix[1],
+            )
+            if best is None or candidate[0] < best[0]:
+                best = candidate
+        return best
+
+    difficulty_assignment = assign_difficulty(
+        0,
+        difficulty_target.get("easy", 0),
+        difficulty_target.get("medium", 0),
+        difficulty_target.get("hard", 0),
+    )
+    if difficulty_assignment is None:
+        raise ValueError(
+            "Unable to allocate exact difficulty weights across the configured question slots. "
+            "Adjust question points or requirements.json difficulty weights."
+        )
+    for slot, level in zip(slots, difficulty_assignment[1]):
+        slot["target_difficulty"] = level.title()
+    return slots
 
 
 def extract_lecture_terms(notes: dict[str, str], top_n: int = 30) -> list[str]:
@@ -265,7 +428,7 @@ def build_coverage_matrix(requirements: dict[str, Any], questions: list[Question
                 actual[key] = actual.get(key, 0) + int(points)
     else:
         for q in questions:
-            key = q.topic.lower().replace(" and ", "_").replace(" ", "_")
+            key = normalize_topic_key(q.topic)
             actual[key] = actual.get(key, 0) + q.points
 
     deltas = {key: actual.get(key, 0) - expected for key, expected in target.items()}
@@ -350,17 +513,26 @@ def enrich_assessment_metadata(questions: list[Question]) -> list[Question]:
             known = {
                 "remember": "Remember/Understand",
                 "understand": "Remember/Understand",
+                "knowledge": "Remember/Understand",
+                "comprehension": "Remember/Understand",
                 "remember/understand": "Remember/Understand",
                 "analyze": "Analyze",
+                "analysis": "Analyze",
                 "apply": "Apply/Analyze",
+                "application": "Apply/Analyze",
                 "apply/analyze": "Apply/Analyze",
                 "evaluate": "Evaluate/Create",
                 "create": "Evaluate/Create",
+                "synthesis": "Evaluate/Create",
                 "evaluate/create": "Evaluate/Create",
             }
             q.bloom_level = known.get(normalized_bloom.lower(), normalized_bloom)
-        # Always recalculate: LLM often returns uniform "Medium" for all questions.
-        q.difficulty = _infer_difficulty(q)
+        normalized_difficulty = q.difficulty.strip().title()
+        q.difficulty = (
+            normalized_difficulty
+            if normalized_difficulty in {"Easy", "Medium", "Hard"}
+            else _infer_difficulty(q)
+        )
         if not q.estimated_time_minutes:
             q.estimated_time_minutes = _infer_estimated_time(q)
         if not q.learning_objective:
@@ -851,7 +1023,7 @@ def render_critical_discussion(
         "Before submission, the team should preserve assessment_validity_report.md, agentic_judge_report.json, cost_report.json, and a completed human_review_notes file. "
         "Together these show not only that the program ran, but why the resulting exam is aligned, grounded, gradeable, and still appropriately human-supervised.",
         "",
-        "The most important next validation step is to run the final pipeline with a live LLM provider in strict mode and compare the generated exam with human reviewer notes.",
+        "The most important next validation step is to compare strict-provider generation evidence with completed human reviewer notes.",
         "",
     ]
     return "\n".join(lines)
@@ -955,6 +1127,22 @@ def run_pipeline(
         state["plan"] = planned["plan"]
         topics = planned["topics"]
 
+    question_slots = (
+        build_question_slots(
+            mix,
+            requirements.get("coverage_weights", {}),
+            requirements.get("difficulty", {}),
+            topics,
+        )
+        if topics
+        else []
+    )
+    slots_by_kind = {
+        kind_key: [slot for slot in question_slots if slot["kind_key"] == kind_key]
+        for kind_key in _QUESTION_KIND_LABELS
+    }
+    state["question_slots"] = question_slots
+
     if not resume_from_judge:
         pass  # writer block follows
 
@@ -993,6 +1181,7 @@ def run_pipeline(
                 "count": mix.get("short_answer", 6),
                 "points_per_question": _points_for("short_answer"),
                 "start_number": 1,
+                "slots": slots_by_kind["short_answer"],
             },
             {
                 "topics": topics,
@@ -1000,6 +1189,7 @@ def run_pipeline(
                 "count": mix.get("concept_comparison", 2),
                 "points_per_question": _points_for("concept_comparison"),
                 "start_number": 1,
+                "slots": slots_by_kind["concept_comparison"],
             },
             {
                 "topics": topics,
@@ -1007,6 +1197,7 @@ def run_pipeline(
                 "count": mix.get("application", 2),
                 "points_per_question": _points_for("application"),
                 "start_number": 1,
+                "slots": slots_by_kind["application"],
             },
             {
                 "topics": topics,
@@ -1014,6 +1205,7 @@ def run_pipeline(
                 "count": mix.get("essay", 1),
                 "points_per_question": _points_for("essay"),
                 "start_number": 1,
+                "slots": slots_by_kind["essay"],
             },
         ]
         _batch_capable = hasattr(provider, "batch_write_questions")
@@ -1062,28 +1254,40 @@ def run_pipeline(
     answer_judge = AnswerJudgeAgent(provider, batch=batch_judge)
 
     def regen_question(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
-        topic = next((t for t in topics if t.title == q.topic), None)
+        topic = next(
+            (
+                t
+                for t in topics
+                if t.title == q.topic or normalize_topic_key(t.key) == normalize_topic_key(q.topic)
+            ),
+            None,
+        )
         if topic is None:
             topic = Topic(
-                key=q.topic.lower().replace(" ", "_"),
+                key=normalize_topic_key(q.topic),
                 title=q.topic,
                 weight=0,
                 keywords=q.topic.split(),
                 source_files=[],
             )
-        regenerated = provider.write_questions(q.kind, topic, 1, notes_)
+        regenerated = provider.write_questions(
+            q.kind,
+            topic,
+            1,
+            notes_,
+            revision_instruction=suggestion,
+        )
         if regenerated:
             q.prompt = regenerated[0].get("prompt", q.prompt)
             q.answer = regenerated[0].get("answer", q.answer)
-            if suggestion:
-                q.answer = (q.answer + f"\n\nRevision focus: {suggestion}").strip()
+            q.source_refs = list(
+                dict.fromkeys(regenerated[0].get("source_refs", []) or q.source_refs)
+            )
         return q
 
     def regen_answer(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
-        result = provider.write_answer(q, notes_)
+        result = provider.write_answer(q, notes_, revision_instruction=suggestion)
         q.answer = result["answer"].strip()
-        if suggestion:
-            q.answer += f"\n\nRevision focus addressed: {suggestion}"
         q.source_refs = result.get("source_refs", []) or q.source_refs
         return q
 
@@ -1159,10 +1363,10 @@ def run_pipeline(
                     EssayWriterAgent(provider),
                 ]
                 regen_payloads = [
-                    {"topics": topics, "notes": notes, "count": mix.get("short_answer", 6), "points_per_question": _points_for("short_answer"), "start_number": 1},
-                    {"topics": topics, "notes": notes, "count": mix.get("concept_comparison", 2), "points_per_question": _points_for("concept_comparison"), "start_number": 1},
-                    {"topics": topics, "notes": notes, "count": mix.get("application", 2), "points_per_question": _points_for("application"), "start_number": 1},
-                    {"topics": topics, "notes": notes, "count": mix.get("essay", 1), "points_per_question": _points_for("essay"), "start_number": 1},
+                    {"topics": topics, "notes": notes, "count": mix.get("short_answer", 6), "points_per_question": _points_for("short_answer"), "start_number": 1, "slots": slots_by_kind["short_answer"]},
+                    {"topics": topics, "notes": notes, "count": mix.get("concept_comparison", 2), "points_per_question": _points_for("concept_comparison"), "start_number": 1, "slots": slots_by_kind["concept_comparison"]},
+                    {"topics": topics, "notes": notes, "count": mix.get("application", 2), "points_per_question": _points_for("application"), "start_number": 1, "slots": slots_by_kind["application"]},
+                    {"topics": topics, "notes": notes, "count": mix.get("essay", 1), "points_per_question": _points_for("essay"), "start_number": 1, "slots": slots_by_kind["essay"]},
                 ]
                 regen_qs = fan_out_question_writers(regen_writers, regen_payloads, max_workers=1 if _batch_capable else 4)
                 if regen_qs:

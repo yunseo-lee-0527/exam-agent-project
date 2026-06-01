@@ -22,7 +22,14 @@ import time
 from pathlib import Path
 from typing import Any
 
-from agents import DeterministicProvider, Question, Topic, parse_json_block, search_lecture_notes
+from agents import (
+    DeterministicProvider,
+    Question,
+    Topic,
+    normalize_topic_key,
+    parse_json_block,
+    search_lecture_notes,
+)
 from costing import UsageTracker
 
 
@@ -311,14 +318,22 @@ class GeminiProvider:
             return self._fallback_or_raise(exc, "plan", lambda: self.fallback.plan(requirements, notes))
 
     def write_questions(
-        self, kind: str, topic: Topic, count: int, notes: dict[str, str]
+        self,
+        kind: str,
+        topic: Topic,
+        count: int,
+        notes: dict[str, str],
+        revision_instruction: str | None = None,
     ) -> list[dict[str, str]]:
         system = (
             f"You are the {kind} writer for a university midterm. "
             "Return JSON only: a list of objects with keys topic, prompt, answer, "
             "learning_objective, bloom_level, difficulty, estimated_time_minutes, "
             "exam_intent, assessed_skill, rubric. "
-            "Anchor every question in the lecture notes; do not invent historical facts."
+            "Anchor every question in the lecture notes; do not invent historical facts. "
+            "For innovation-framework questions, use only the lecture frameworks: "
+            "Addition, Subtraction, Alternate, Combination, and Transposition. "
+            "Do not substitute external frameworks such as Lean Startup or Design Thinking."
         )
         ctx, _ = self._retrieval_context(notes, topic.keywords, limit=3)
         prompt = (
@@ -333,6 +348,12 @@ class GeminiProvider:
             "\"estimated_time_minutes\":..., \"exam_intent\":..., "
             "\"assessed_skill\":..., \"rubric\":[...]}, ...]"
         )
+        if revision_instruction:
+            prompt += (
+                "\n\nRevision instruction from the previous judge: "
+                + revision_instruction
+                + "\nRewrite the question so it directly addresses this instruction."
+            )
         try:
             raw = self._generate_for_role("writer", prompt, system, stage=f"question_writer:{kind}")
             cleaned = raw.replace("```json", "").replace("```", "").strip()
@@ -375,53 +396,74 @@ class GeminiProvider:
         per_kind = {"Short Answer": 3, "Concept Comparison": 2, "Application": 2, "Essay": 1}
         return self.write_questions(kind, topic, per_kind.get(kind, 2), notes)
 
-    def batch_write_questions(self, kind: str, topics: list, count: int, notes: dict[str, str]) -> list[dict[str, Any]]:
+    def batch_write_questions(
+        self,
+        kind: str,
+        topics: list,
+        count: int,
+        notes: dict[str, str],
+        slots: list[dict[str, Any]] | None = None,
+    ) -> list[dict[str, Any]]:
         """Generate all `count` questions of `kind` across all topics in ONE API call.
 
         Replaces the 5 separate pool_questions calls (one per topic) with a single
         call, reducing the question-writing phase from 20 calls to 4.
         """
-        # Compute per-topic question counts proportional to topic weights.
-        total_weight = sum(getattr(t, "weight", 1) for t in topics) or 1
-        raw_counts = {t.key: max(1, round(count * getattr(t, "weight", 1) / total_weight)) for t in topics}
-        # Adjust so counts sum to exactly `count`.
-        diff = count - sum(raw_counts.values())
-        if diff != 0:
-            sorted_topics = sorted(topics, key=lambda t: -getattr(t, "weight", 1))
-            for t in sorted_topics:
-                if diff == 0:
-                    break
-                raw_counts[t.key] += 1 if diff > 0 else -1
-                diff += -1 if diff > 0 else 1
+        topic_by_key = {t.key: t for t in topics}
+        if not slots:
+            ordered = sorted(topics, key=lambda t: -getattr(t, "weight", 1))
+            slots = [
+                {
+                    "slot_id": f"{kind.lower().replace(' ', '_')}:{index + 1}",
+                    "topic_key": ordered[index % len(ordered)].key,
+                    "topic_title": ordered[index % len(ordered)].title,
+                    "coverage_contribution": {},
+                }
+                for index in range(count)
+            ]
+        slots = list(slots)
 
         system = (
             f"You are the {kind} specialist writer for a university midterm on Scientific Management. "
             "Return a JSON ARRAY. Each element must have exactly these keys: "
-            "topic (string — MUST be one of the exact topic_key values listed below), "
+            "slot_id (string — copy it exactly from the requested slot), "
+            "topic (string — copy the slot's exact topic_key), "
             "prompt (string), answer (string ≤120 words), "
             "source_refs (list of lecture filenames that support this question), "
             "learning_objective, bloom_level, difficulty (Easy|Medium|Hard), "
             "estimated_time_minutes (int), exam_intent, assessed_skill, "
             "rubric (list of 2-4 grading criteria). "
-            "Use the exact topic_key strings for the topic field — do NOT invent new names."
+            "Write one question for each requested slot. Use the slot's target_difficulty. "
+            "Do not invent or merge slots. For innovation-framework slots, use only the "
+            "lecture frameworks: Addition, Subtraction, Alternate, Combination, and "
+            "Transposition. Do not substitute external frameworks such as Lean Startup "
+            "or Design Thinking."
         )
         topic_blocks: list[str] = []
         for t in topics:
             ctx, srcs = self._retrieval_context(notes, t.keywords, limit=2)
-            n = raw_counts.get(t.key, 1)
             topic_blocks.append(
-                f"topic_key: {t.key}  (write {n} question(s))\n"
+                f"topic_key: {t.key}\n"
                 f"  title: {t.title}\n"
                 f"  source files: {srcs}\n"
                 f"  context: {(ctx or '(none)')[:300]}"
             )
-        distribution = ", ".join(f"{t.key}: {raw_counts.get(t.key,1)}q" for t in topics)
+        slot_lines = [
+            (
+                f"slot_id: {slot['slot_id']}; topic_key: {slot['topic_key']}; "
+                f"title: {slot.get('topic_title', slot['topic_key'])}; "
+                f"coverage_contribution: {slot.get('coverage_contribution', {})}; "
+                f"target_difficulty: {slot.get('target_difficulty', '')}"
+            )
+            for slot in slots
+        ]
         prompt = (
-            f"Write exactly {count} {kind} exam questions with this distribution: {distribution}\n\n"
+            f"Write exactly {count} {kind} exam questions, one per requested slot.\n\n"
+            + "Requested slots:\n"
+            + "\n".join(slot_lines)
+            + "\n\nLecture context by topic:\n"
             + "\n\n".join(topic_blocks)
-            + f"\n\nIMPORTANT: The 'topic' field of each object must be exactly one of: "
-            + ", ".join(t.key for t in topics)
-            + f"\n\nReturn a JSON array of exactly {count} objects."
+            + f"\n\nReturn a JSON array of exactly {count} objects in requested slot order."
         )
         try:
             raw = self._generate_for_role("writer", prompt, system, stage=f"batch_writer:{kind}")
@@ -430,31 +472,49 @@ class GeminiProvider:
             if not data:
                 m = re.search(r"\[.*\]", cleaned, re.DOTALL)
                 data = json.loads(m.group(0)) if m else []
-            results: list[dict[str, Any]] = []
+            slot_by_id = {str(slot["slot_id"]): slot for slot in slots}
+            unused_slot_ids = [str(slot["slot_id"]) for slot in slots]
+            results_by_slot: dict[str, dict[str, Any]] = {}
             for item in data:
                 p = str(item.get("prompt", "")).strip()
                 if not p:
                     continue
-                # Normalise topic: prefer key if LLM returned key, otherwise use raw value.
-                raw_topic = str(item.get("topic", topics[0].key if topics else kind))
-                valid_keys = {t.key for t in topics}
-                valid_titles = {t.title: t.key for t in topics}
-                topic_out = raw_topic if raw_topic in valid_keys else valid_titles.get(raw_topic, raw_topic)
-                results.append({
-                    "topic": topic_out,
+                requested_slot_id = str(item.get("slot_id", ""))
+                if requested_slot_id not in unused_slot_ids:
+                    if not unused_slot_ids:
+                        continue
+                    requested_slot_id = unused_slot_ids[0]
+                unused_slot_ids.remove(requested_slot_id)
+                slot = slot_by_id[requested_slot_id]
+                topic = topic_by_key.get(str(slot["topic_key"]))
+                topic_title = topic.title if topic else str(slot.get("topic_title", slot["topic_key"]))
+                results_by_slot[requested_slot_id] = {
+                    "slot_id": requested_slot_id,
+                    "topic": topic_title,
                     "prompt": p,
                     "answer": str(item.get("answer", "")).strip(),
                     "source_refs": list(item.get("source_refs", [])),
                     "learning_objective": str(item.get("learning_objective", "")).strip(),
                     "bloom_level": str(item.get("bloom_level", "")).strip(),
-                    "difficulty": str(item.get("difficulty", "")).strip(),
+                    "difficulty": str(
+                        slot.get("target_difficulty") or item.get("difficulty", "")
+                    ).strip(),
                     "estimated_time_minutes": int(item.get("estimated_time_minutes", 0) or 0),
                     "exam_intent": str(item.get("exam_intent", "")).strip(),
                     "assessed_skill": str(item.get("assessed_skill", "")).strip(),
                     "rubric": list(item.get("rubric", [])),
-                })
-            if not results:
-                raise ValueError("no questions returned from batch writer")
+                    "coverage_contribution": {
+                        normalize_topic_key(str(k)): int(v)
+                        for k, v in (slot.get("coverage_contribution") or {}).items()
+                    },
+                }
+            results = [
+                results_by_slot[str(slot["slot_id"])]
+                for slot in slots
+                if str(slot["slot_id"]) in results_by_slot
+            ]
+            if len(results) != count:
+                raise ValueError(f"Expected {count} questions from batch writer, got {len(results)}")
             return results
         except Exception as exc:
             return self._fallback_or_raise(
@@ -467,7 +527,12 @@ class GeminiProvider:
                 ][:count],
             )
 
-    def write_answer(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
+    def write_answer(
+        self,
+        question: Question,
+        notes: dict[str, str],
+        revision_instruction: str | None = None,
+    ) -> dict[str, Any]:
         keywords = [w for w in question.topic.split() if len(w) > 3] + question.prompt.split()[:3]
         ctx, sources = self._retrieval_context(notes, keywords, limit=3)
         system = (
@@ -481,6 +546,12 @@ class GeminiProvider:
             f"Lecture context:\n{ctx or '(no direct hits — answer conservatively)'}\n\n"
             "Return JSON only."
         )
+        if revision_instruction:
+            prompt += (
+                "\n\nRevision instruction from the previous judge: "
+                + revision_instruction
+                + "\nRewrite the answer so it directly addresses this instruction."
+            )
         try:
             raw = self._generate_for_role("answer_writer", prompt, system, stage="answer_writer")
             data = parse_json_block(raw) or {}

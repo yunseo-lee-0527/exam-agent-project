@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-Based on the M1.5 lecture on "Anatomy and Taxonomy of Work Systems," explain why taxonomies are important for characterizing work systems and list the three complementary taxonomies discussed.
+Explain why the study of 'work' is considered important in engineering and organizational contexts.
 
 ## Q2. Short Answer (5 points)
 
-According to the M1.4 lecture, Frederick W. Taylor observed several key issues in industrial work that motivated his development of Scientific Management. Briefly describe three specific observations Taylor made that highlighted inefficiency.
+List the typical main stages of a general engineering problem-solving process.
 
 ## Q3. Short Answer (5 points)
 
-In the context of the M2.1.1 lecture, "Engineering Problem-Solving Process," how is this process conceptually similar to other improvement cycles? Provide an example of another improvement cycle that shares this similarity.
+Define 'work' from an engineering perspective, highlighting its key attributes.
 
 ## Q4. Short Answer (5 points)
 
-From the M2.1.5 lecture on "Systematic Innovation Methods," select and briefly describe two of the five innovation frameworks mentioned.
+Identify and briefly describe two fundamental components typically found in any work system.
 
 ## Q5. Short Answer (5 points)
 
-Discuss the main contributions of Frank and Lillian Gilbreth to Scientific Management, specifically focusing on their extension of "time study" and the concept of "Therbligs," as described in the M1.4 lecture.
+What is the primary goal of the ideation phase in the engineering problem-solving process?
 
 ## Q6. Short Answer (5 points)
 
-Beyond merely observing inefficiencies, Frederick W. Taylor's Scientific Management proposed a systematic approach to work system redesign. Based on the M1.4 lecture, describe two core principles or aspects of this systematic redesign that Taylor advocated.
+Compare and contrast the KJ Method and Brainstorming as techniques used in engineering problem-solving, focusing on their distinct purposes and typical application points within the process.
 
 ## Q7. Concept Comparison (10 points)
 
-As discussed in M1.5, three complementary taxonomies characterize work systems. Compare and contrast the primary purpose and key dimensions of the *structure-based taxonomy* with the *complexity-based taxonomy* for analyzing work systems.
+Compare and contrast the concept of 'work' as an activity with a 'work system' as a structured entity, in the context of industrial engineering.
 
 ## Q8. Concept Comparison (10 points)
 
-Based on Frederick W. Taylor's observations described in M1.4, compare a typical work system *before* Scientific Management intervention with a work system *after* being redesigned according to Scientific Management principles. Focus your comparison on work methods and knowledge management.
+Compare and contrast the primary purpose and application of the KJ Method (Affinity Diagram) with brainstorming, in the context of engineering problem-solving and ideation.
 
 ## Q9. Application (15 points)
 
-Based on the lecture's discussion of work system taxonomies, consider a large online retail company that uses automated sorting machines, human package handlers, and a complex IT inventory system to fulfill customer orders. Which of the three complementary taxonomies mentioned in 'M1.5 Anatomy and Taxonomy of Work Systems' would be most effective for understanding the inherent complexity and interdependencies within this order fulfillment process? Explain how you would apply this chosen taxonomy to characterize the system.
+A university cafeteria currently offers a standard 'meal deal' that includes a main dish, a side, and a drink. To reduce waste and offer more flexibility, the cafeteria management wants to innovate using the Subtraction framework. Describe how the Subtraction framework could be applied to this meal deal concept, providing a specific example of a new offering, and explain the potential benefits for both the cafeteria and the students.
 
 ## Q10. Application (15 points)
 
-Imagine a university's registrar's office facing persistent issues with long student wait times for transcript requests, frequent errors in document processing, and new staff learning tasks inconsistently from different senior colleagues. Referencing Frederick W. Taylor's observations and the principles of Scientific Management discussed in 'M1.4 Scientific Management as Work System Redesign,' propose how these issues could be addressed.
+A worker at a packaging station is tasked with placing small items into boxes. The current process involves: 1) Reaching for an item from a bin, 2) Grasping the item, 3) Transporting the item to the box, 4) Releasing the item into the box, and 5) Reaching for the next item. Identify at least three distinct Therbligs present in this sequence of operations and suggest one specific modification to the workstation layout or process that could eliminate or reduce a Therblig, thereby improving efficiency.
 
 ## Q11. Essay (20 points)
 
-Based on the M1.4 lecture 'Scientific Management as Work System Redesign,' Frederick W. Taylor observed several key issues in industrial settings, including a lack of standardized methods and output restriction. Explain how these initial observations led to the foundational principles of Scientific Management, and briefly describe one core principle Taylor proposed to address these problems.
+Critically evaluate how Scientific Management, with its aims to reduce variability, standardize methods, and separate planning from execution, serves as an *early attempt at work system redesign*. Discuss its core contributions to operational efficiency and identify its primary limitations when viewed through the lens of modern, adaptable work systems that often emphasize flexibility and employee empowerment. Provide examples where its principles remain effective and where they fall short.

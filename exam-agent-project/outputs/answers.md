@@ -2,226 +2,247 @@
 
 ## Q1. Short Answer
 
-Taxonomies are important because they provide structured ways to characterize work systems along different dimensions, enabling better understanding, analysis, and comparison. As discussed in the M1.5 lecture, three complementary taxonomies are used: a three-axis structure-based taxonomy, a two-axis complexity-based taxonomy, and an operation-based work system taxonomy. These frameworks allow for a comprehensive classification, aiding in design and improvement efforts by providing a common language and framework for evaluation.
+Understanding work is crucial because it directly impacts productivity, efficiency, safety, and employee well-being. By systematically studying work, engineers and organizations can identify bottlenecks, optimize processes, design better tools, and create safer working environments. This leads to improved output, reduced costs, and enhanced job satisfaction, ultimately contributing to organizational success and societal progress.
 
-Learning objective: Understand the fundamental concepts of work systems and their classification.
+Learning objective: Students will be able to articulate the fundamental importance of studying work in engineering and organizational settings.
 
-Exam intent: Assess basic knowledge of work system classification and its purpose.
+Exam intent: Assess basic understanding of foundational concepts.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
 
-Assessed skill: Recall and comprehension.
+Assessed skill: Explaining core concepts.
 
 Rubric:
 
-- Clearly explains the importance of taxonomies (e.g., understanding, analysis).
-- Accurately lists the three complementary taxonomies (structure-based, complexity-based, operation-based).
+- Clearly states at least two reasons for studying work.
+- Mentions impact on efficiency, productivity, or safety.
+- Provides a concise explanation of its overall importance.
 
-Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Coverage contribution: work_and_work_systems: 5
+
+Sources: M1.2 Why Work Matters_260312.txt
 
 ## Q2. Short Answer
 
-As discussed in the M1.4 lecture, Taylor observed significant inefficiencies during his early career. First, he noted a lack of standardized methods, with workers using varied, often inefficient, techniques. Second, there was a heavy reliance on tacit worker knowledge, meaning skilled workers held undocumented expertise that wasn't systematically shared. Third, Taylor observed informal supervision and widespread output restriction, where workers intentionally limited production due to a lack of incentives or fear of increased demands. These observations underscored the need for a systematic, scientific approach to work design.
+A general engineering problem-solving process typically involves several main stages. These stages commonly include: defining the problem, gathering information, generating potential solutions (ideation), evaluating and selecting the best solution, implementing the chosen solution, and finally, testing and verifying the solution's effectiveness, often followed by iteration or refinement.
 
-Learning objective: Identify the historical context and foundational observations that led to Scientific Management.
+Learning objective: Students will be able to recall the primary stages of the engineering problem-solving process.
 
-Exam intent: Test comprehension of Taylor's motivations for developing Scientific Management.
+Exam intent: Assess recall of fundamental process steps.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
 
-Assessed skill: Recall and application of lecture material.
-
-Rubric:
-
-- Identifies at least three specific observations made by Taylor (e.g., no standardized methods, tacit worker knowledge, informal supervision, output restriction).
-- Briefly explains how each observation contributed to inefficiency.
-
-Sources: M1.4 Scientific Management as Work System Redesign.txt
-
-## Q3. Short Answer
-
-The engineering problem-solving process, as outlined in M2.1.1, is conceptually similar to other improvement cycles because they all follow iterative stages of defining a problem, analyzing it, generating solutions, implementing them, and evaluating results to refine or solve the problem. This cyclical nature emphasizes continuous learning and adjustment, rather than a linear, one-time fix. A common example of another improvement cycle that shares this similarity is the Plan-Do-Check-Act (PDCA) cycle, which also involves systematic planning, execution, monitoring, and corrective action to drive continuous improvement.
-
-Learning objective: Relate the engineering problem-solving process to broader continuous improvement methodologies.
-
-Exam intent: Assess understanding of the iterative nature of problem-solving and its connection to other methodologies.
-
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=6 minutes
-
-Assessed skill: Comparison and exemplification.
+Assessed skill: Listing process steps.
 
 Rubric:
 
-- Explains the conceptual similarity (e.g., iterative stages, continuous learning).
-- Provides a correct example of another improvement cycle (e.g., PDCA, Six Sigma DMAIC).
+- Lists at least 4-5 distinct stages of the process.
+- Stages are logically ordered.
+- Description of stages is accurate and concise.
+
+Coverage contribution: problem_solving_and_ideation: 5
 
 Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
-## Q4. Short Answer
+## Q3. Short Answer
 
-As covered in the M2.1.5 lecture, two systematic innovation frameworks include the Addition framework and the Subtraction framework. The Addition framework involves identifying a component within a system that performs a critical function and then adding an additional component or feature to enhance its capabilities or create new benefits. Conversely, the Subtraction framework focuses on removing an essential component from a product or process, then finding an alternative way to perform its function or rethinking the system without it, often leading to simplification, cost reduction, or novel design.
+From an engineering perspective, "work" refers to purposeful human activity directed towards achieving a specific outcome or transforming inputs into outputs. Key attributes include its intentional nature, the application of effort (physical or cognitive), the use of tools or resources, and the goal of creating value or solving a problem. It often involves a structured process and can be analyzed for efficiency and effectiveness.
 
-Learning objective: Understand different systematic approaches to innovation.
+Learning objective: Students will be able to define 'work' within an engineering context.
 
-Exam intent: Evaluate knowledge of specific systematic innovation methods.
+Exam intent: Test definitional understanding of a core concept.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
 
-Assessed skill: Recall and description.
+Assessed skill: Defining terms.
 
 Rubric:
 
-- Identifies two distinct innovation frameworks from the lecture (e.g., Addition, Subtraction, Multiplication, Division, Task Unification).
-- Provides a concise and accurate description for each chosen framework.
+- Provides a clear, concise definition of work.
+- Includes at least two key attributes (e.g., purposeful, transformative, value-creating).
+- Reflects an engineering or systematic viewpoint.
 
-Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
+Coverage contribution: work_and_work_systems: 5
+
+Sources: M1.2 Why Work Matters_260312.txt
+
+## Q4. Short Answer
+
+Two fundamental components of a work system are inputs and outputs. Inputs are the resources, information, or materials that enter the system to be processed, such as raw materials, human effort, or data. Outputs are the products, services, or information that result from the system's operations, representing the desired outcomes or transformations. Other components often include processes, people, tools, and environment.
+
+Learning objective: Students will be able to identify and briefly describe key components of a work system.
+
+Exam intent: Check understanding of basic work system structure.
+
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+
+Assessed skill: Identifying and describing components.
+
+Rubric:
+
+- Identifies two distinct fundamental components.
+- Provides a brief and accurate description for each component.
+- Description reflects their role within a work system.
+
+Coverage contribution: work_and_work_systems: 5
+
+Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ## Q5. Short Answer
 
-The Gilbreths significantly extended Scientific Management beyond Taylor's time studies by introducing motion study, as highlighted in the M1.4 lecture. They developed micromotion analysis, using film to meticulously record and analyze worker movements. Their most notable contribution was the creation of "Therbligs," a set of 18 fundamental elements of motion (like search, grasp, move, assemble, inspect). By breaking down tasks into these elemental motions, the Gilbreths enabled precise analysis and redesign of work to eliminate wasteful movements and optimize efficiency, as dramatically demonstrated in their bricklaying experiments, thereby improving worker productivity and reducing fatigue.
+The primary goal of the ideation phase is to generate a wide range of diverse potential solutions or approaches to a defined problem without immediate judgment or evaluation. This phase emphasizes quantity and creativity, aiming to explore numerous possibilities and avoid premature convergence on a single idea. It seeks to break free from conventional thinking and uncover innovative or unconventional solutions.
 
-Learning objective: Explain the role of the Gilbreths in the development of motion study and its key concepts.
+Learning objective: Students will be able to state the main objective of the ideation stage in problem-solving.
 
-Exam intent: Assess understanding of the Gilbreths' specific contributions and key terminology within Scientific Management.
+Exam intent: Assess understanding of a specific phase's purpose.
 
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=7 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
 
-Assessed skill: Explaining concepts and historical contributions.
+Assessed skill: Stating primary objectives.
 
 Rubric:
 
-- Explains the Gilbreths' extension from time study to motion study/micromotion analysis.
-- Defines "Therbligs" as fundamental elements of motion.
-- Mentions the purpose or impact of their work (e.g., eliminating waste, improving efficiency).
+- Clearly states the goal is to generate many diverse solutions.
+- Mentions the importance of quantity/creativity over quality/judgment at this stage.
+- Connects it to exploring possibilities or avoiding premature convergence.
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
+Coverage contribution: problem_solving_and_ideation: 5
+
+Sources: M2.1.3 Solution Generation (Brainstorming).txt, M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q6. Short Answer
 
-Taylor's Scientific Management, as detailed in M1.4, moved beyond observation to systematic redesign based on core principles. One principle was **scientifically studying tasks** to determine the "one best way." This involved using time and motion studies to analyze and standardize work processes, replacing inefficient rule-of-thumb methods with empirically derived procedures. Another principle was the **scientific selection and training of workers**. Taylor advocated for carefully matching workers to tasks based on their aptitudes and then providing thorough training in the standardized best methods, ensuring both worker and organizational efficiency, thereby fostering maximum prosperity.
+The KJ Method and Brainstorming serve distinct purposes. Brainstorming is primarily a divergent technique used for generating a large quantity of diverse solutions or ideas to a known problem, typically applied during the solution generation phase. It prioritizes free association and volume. In contrast, the KJ Method (Affinity Diagram) is a convergent technique used for structuring and understanding complex, unstructured information or problems, often applied during problem definition or information gathering. It groups seemingly disparate ideas or data points into natural relationships to reveal underlying patterns or root causes.
 
-Learning objective: Identify and explain the core principles underlying Scientific Management.
+Learning objective: Students will be able to differentiate between ideation and problem-structuring techniques based on their purpose and application.
 
-Exam intent: Test comprehension of Taylor's proactive solutions and core tenets of Scientific Management.
+Exam intent: Require analytical comparison and understanding of tool application.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=6 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=7 minutes
 
-Assessed skill: Recalling and explaining core tenets.
+Assessed skill: Comparing and contrasting methods; identifying application contexts.
 
 Rubric:
 
-- Identifies two distinct core principles or aspects of Taylor's systematic redesign (e.g., scientific task study, scientific selection/training, cooperation between management/workers, division of labor).
-- Briefly explains each principle, demonstrating understanding.
+- Clearly distinguishes Brainstorming as a solution generation technique.
+- Clearly distinguishes the KJ Method as a problem structuring/understanding technique.
+- Accurately describes their typical application points within the problem-solving process.
+- Highlights the difference between divergent and convergent thinking in their application.
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt
+Coverage contribution: problem_solving_and_ideation: 5
+
+Sources: M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt, M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q7. Concept Comparison
 
-The structure-based taxonomy's primary purpose is to characterize work systems by their hierarchical components: enterprise, work system, and business process, providing an organizational view. Its key dimensions are these layers of decomposition. In contrast, the complexity-based taxonomy aims to assess the inherent difficulty and variability within a work system. Its key dimensions are 'variety' (the heterogeneity of inputs and outputs) and 'analyzability' (the predictability and clarity of the work process). While the structure-based taxonomy describes 'what it is made of,' the complexity-based taxonomy describes 'how difficult it is to manage or predict.'
+Work refers to purposeful human effort or tasks performed to produce value or achieve a specific outcome. It's the 'what' is being done. A work system, conversely, is a complex, structured entity comprising interacting components—people, information, technology, and customers—organized to perform work and achieve specific goals. While work is the direct action or output, a work system provides the overarching structure, environment, and process within which that work is carried out, emphasizing efficiency and effectiveness through design and management.
 
-Learning objective: Students should be able to differentiate between various taxonomic approaches to work systems and understand their specific analytical contributions.
+Learning objective: Differentiate between the fundamental concept of work and the systemic view of work systems in industrial engineering.
 
-Exam intent: To assess the student's ability to distinguish between different frameworks for classifying work systems and understand their respective applications and dimensions.
+Exam intent: Assess foundational understanding of core terminology and distinctions in work systems.
 
-Assessment metadata: Bloom=Analyzing, difficulty=Medium, estimated_time=6 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Medium, estimated_time=6 minutes
 
-Assessed skill: Conceptual comparison, analytical distinction, understanding of taxonomies.
+Assessed skill: Conceptual differentiation, synthesis of definitions
 
 Rubric:
 
-- Accurately identifies the primary purpose of the structure-based taxonomy.
-- Accurately identifies the primary purpose of the complexity-based taxonomy.
-- Clearly describes the key dimensions/components of each taxonomy.
-- Provides a concise comparison highlighting their distinct contributions to work system characterization.
+- Accurately defines 'work' as purposeful activity/effort.
+- Accurately defines 'work system' as a structured entity with interacting components.
+- Clearly articulates a key difference between the two concepts (e.g., action vs. structure/context).
+- Provides a concise and coherent explanation within the word limit.
 
-Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Coverage contribution: work_and_work_systems: 10
+
+Sources: M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ## Q8. Concept Comparison
 
-Before Scientific Management, work systems, as observed by Taylor, were characterized by "no standardized methods" and reliance on "tacit worker knowledge." Workers developed individualized, often inefficient techniques, leading to "informal supervision" and "output restriction." Post-Scientific Management redesign aimed to standardize methods through systematic time and motion studies, replacing individual discretion with optimized, prescribed tasks. Tacit worker knowledge was extracted, analyzed, and codified into explicit, documented procedures, enabling systematic training and formal, data-driven supervision. This shift centralized control and aimed for maximum efficiency and predictability.
+The KJ Method is primarily a problem structuring and understanding technique. Its purpose is to organize disparate ideas, data, or observations into meaningful thematic groups to identify root causes, patterns, or key problem areas, often after initial data gathering. Brainstorming, conversely, is a solution generation technique. Its main application is to rapidly produce a large quantity of diverse potential solutions or ideas for a *defined* problem. While both involve group ideation, KJ focuses on structuring existing information to clarify the problem, whereas brainstorming focuses on generating novel solutions.
 
-Learning objective: Students should be able to describe the core changes Scientific Management brought to work systems, particularly concerning standardization and knowledge formalization.
+Learning objective: Distinguish between methodologies used for problem structuring and those for solution generation within the engineering problem-solving process.
 
-Exam intent: To assess understanding of the practical implications and transformative aspects of Scientific Management on work system design, leveraging Taylor's foundational observations.
+Exam intent: Evaluate the student's ability to differentiate specific problem-solving and ideation tools.
 
-Assessment metadata: Bloom=Analyzing, difficulty=Medium, estimated_time=7 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=7 minutes
 
-Assessed skill: Application of historical context to conceptual comparison, understanding of principles and their impact.
+Assessed skill: Methodological differentiation, analytical comparison
 
 Rubric:
 
-- Accurately describes characteristics of pre-Scientific Management work systems regarding methods and knowledge.
-- Accurately describes characteristics of Scientific Management redesigned work systems regarding methods and knowledge.
-- Clearly articulates the fundamental shift in work methods (standardization) and knowledge management (tacit to explicit).
-- Draws directly from Taylor's observations as mentioned in the lecture context.
+- Accurately explains the KJ Method's purpose (problem structuring/understanding).
+- Accurately explains brainstorming's purpose (solution generation).
+- Clearly identifies a key difference in their application or stage within problem-solving.
+- Provides a concise and coherent explanation within the word limit.
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt
+Coverage contribution: problem_solving_and_ideation: 10
+
+Sources: M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q9. Application
 
-To understand the complexity and interdependencies of the online retail order fulfillment process, the **three-axis structure-based taxonomy** would be most effective. This taxonomy examines a work system's **purpose**, **participants**, and **transformation**. Applying it: 
-*   **Purpose:** Efficiently and accurately fulfilling customer orders.
-*   **Participants:** Automated sorting machines, human package handlers, IT inventory systems, and potentially data analysts and maintenance staff. Each plays a distinct role.
-*   **Transformation:** Converting raw customer orders and inventoried goods into delivered packages. This involves inputs (orders, inventory), processes (sorting, packing, shipping), and outputs (fulfilled orders). Characterizing these elements reveals how technology, people, and processes integrate, highlighting potential areas for improvement or bottleneck analysis.
+Applying the Subtraction framework, the cafeteria could remove the 'drink' component from the standard meal deal. Instead of a fixed drink, students would purchase only the main dish and side, with drinks available separately if desired. This benefits the cafeteria by reducing waste from unwanted drinks and potentially lowering the base meal deal cost. Students benefit from greater flexibility to choose their preferred drink or opt out entirely, potentially saving money.
 
-Learning objective: Students should be able to apply work system taxonomies to characterize and analyze complex real-world work systems.
+Learning objective: Apply systematic innovation frameworks to real-world scenarios.
 
-Exam intent: Assess the ability to select and apply an appropriate theoretical framework (work system taxonomy) to a practical business scenario.
+Exam intent: Assess the ability to correctly identify and apply an innovation framework.
 
-Assessment metadata: Bloom=Application, difficulty=Medium, estimated_time=9 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=9 minutes
 
-Assessed skill: Analytical application of theoretical models; Problem decomposition.
+Assessed skill: Analytical application of innovation principles.
 
 Rubric:
 
-- Correctly identifies the structure-based taxonomy as most effective.
-- Clearly explains the three axes (purpose, participants, transformation).
-- Accurately maps elements of the retail fulfillment system to each of the three axes.
-- Explanation demonstrates understanding of how the taxonomy helps characterize complexity.
+- Correctly identifies and defines the Subtraction framework in the context of the problem.
+- Provides a clear, specific example of how Subtraction is applied to the meal deal.
+- Articulates plausible benefits for both the cafeteria and students resulting from the innovation.
 
-Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Coverage contribution: innovation_frameworks: 15
+
+Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 
 ## Q10. Application
 
-Taylor's observations noted 'no standardized methods,' 'tacit worker knowledge,' and 'informal supervision,' all evident in the registrar's office. A Scientific Management approach would address these by:
-1.  **Standardizing Methods:** Conduct time and motion studies on transcript processing to identify the 'one best way,' documenting precise steps to reduce errors and wait times.
-2.  **Formalizing Training:** Replace inconsistent learning with structured training programs based on the standardized methods, ensuring all staff perform tasks identically and efficiently.
-3.  **Performance Monitoring:** Implement formal supervision and measurement to ensure adherence to standardized procedures and identify individual performance discrepancies. This systematic redesign aims to replace individual discretion with scientifically determined optimal processes, improving consistency and efficiency.
+Three Therbligs present are: 'Reach (empty hand)', 'Grasp', and 'Transport Loaded'. A specific modification could be to implement a gravity-feed dispenser for the items, positioning it directly above the box. This would significantly reduce or eliminate the 'Transport Loaded' Therblig, as the item would drop directly into the box, and also reduce the 'Reach' distance for the next item, making the process more efficient by minimizing unnecessary movements.
 
-Learning objective: Students should be able to apply Frederick W. Taylor's principles of Scientific Management to diagnose and propose solutions for contemporary workplace inefficiencies.
+Learning objective: Analyze a work task using Therbligs to identify opportunities for efficiency improvement.
 
-Exam intent: Assess the ability to connect historical management principles to modern organizational challenges.
+Exam intent: Assess the ability to apply Therblig analysis to practical work scenarios and propose solutions.
 
-Assessment metadata: Bloom=Application, difficulty=Medium, estimated_time=9 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=9 minutes
 
-Assessed skill: Problem diagnosis; Application of historical management theories to current scenarios.
+Assessed skill: Analytical problem-solving and process optimization.
 
 Rubric:
 
-- Correctly identifies at least two of Taylor's observations relevant to the scenario (e.g., lack of standardization, tacit knowledge, informal supervision).
-- Proposes at least two specific Scientific Management solutions (e.g., time/motion studies, standardized procedures, formal training, performance monitoring).
-- Explains how the proposed solutions directly address the identified issues (wait times, errors, inconsistency).
-- Answer demonstrates a clear understanding of Scientific Management principles.
+- Correctly identifies at least three distinct Therbligs from the described process.
+- Proposes a specific and plausible modification to the workstation or process.
+- Clearly explains how the proposed modification eliminates or reduces an identified Therblig.
+- Articulates how this reduction leads to improved efficiency.
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt
+Coverage contribution: motion_study_and_therbligs: 15
+
+Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ## Q11. Essay
 
-Taylor's observations, detailed in M1.4 (p.7), included a prevalent lack of standardized methods, reliance on tacit worker knowledge, informal supervision, and significant output restriction. These issues indicated widespread inefficiency and a non-systematic approach to work. His diagnosis of these 'inef[ficiencies]' (M1.4, p.7) motivated him to seek a scientific, data-driven approach. This directly led to the foundational principles of Scientific Management. One core principle Taylor proposed was 'Science, not rule-of-thumb.' This principle advocated for systematic study of tasks through time and motion studies to identify the 'one best way' to perform work, replacing individual, unscientific methods with standardized, empirically derived processes to optimize efficiency and productivity.
+Scientific Management (SM) remains relevant for its foundational emphasis on efficiency through work system redesign. Principles like reducing variability and standardizing methods still enhance productivity, especially in repeatable tasks or large-scale operations. For instance, lean manufacturing draws heavily on these concepts. However, SM's inherent limitations emerge in dynamic, knowledge-based environments. Its strict separation of planning from execution and emphasis on rigid standardization can stifle innovation, limit employee autonomy, and reduce adaptability, leading to dissatisfaction and decreased engagement. Contemporary work systems often prioritize flexibility, continuous improvement, and empowered teams, which conflict with SM's hierarchical and prescriptive nature. While SM provides a baseline for operational efficiency, it requires significant adaptation to address the human and dynamic aspects crucial for modern organizational performance.
 
-Learning objective: Understand the historical context and foundational principles of Scientific Management as proposed by Frederick W. Taylor.
+Learning objective: Critically evaluate Scientific Management's impact on work system design, recognizing its foundational contributions and inherent limitations in diverse organizational contexts.
 
-Exam intent: Assess student's ability to connect historical observations to the development of core management principles.
+Exam intent: Assess comprehensive understanding and critical thinking regarding foundational management theories and their modern applicability.
 
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=10 minutes
+Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=12 minutes
 
-Assessed skill: Analytical reasoning, historical context understanding, principle application.
+Assessed skill: Critical analysis, synthesis of theoretical concepts, application to contemporary scenarios
 
 Rubric:
 
-- Clearly identifies and explains Taylor's key observations from the lecture context.
-- Articulates how these observations led to the development of Scientific Management principles.
-- Accurately describes at least one core principle proposed by Taylor to address the identified problems.
-- Response is concise and adheres to the word limit.
+- Accurately identifies and explains Scientific Management's core principles (reducing variability, standardizing methods, separating planning/execution).
+- Clearly articulates Scientific Management's contributions to operational efficiency and its role in early work system redesign.
+- Critically discusses the primary limitations of Scientific Management in the context of modern, adaptable work systems (flexibility, employee empowerment).
+- Provides relevant examples that illustrate both the enduring effectiveness and shortcomings of Scientific Management principles.
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt
+Coverage contribution: scientific_management: 20
+
+Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt

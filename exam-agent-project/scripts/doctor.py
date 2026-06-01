@@ -31,13 +31,25 @@ def main() -> None:
         "src/main.py",
         "src/providers.py",
         "requirements.json",
-        "exam_blueprint.json",
         "model_policy.json",
         "lecture_notes/processed",
     ]
     for rel in required_files:
         path = root / rel
         results.append(check(rel, path.exists(), str(path)))
+
+    blueprint_path = root / "exam_blueprint.json"
+    results.append(
+        check(
+            "exam_blueprint.json (optional)",
+            True,
+            (
+                f"{blueprint_path} found; Task 2 will use reproducible blueprint mode."
+                if blueprint_path.exists()
+                else "Not present; Task 2 will use the specialist writer path."
+            ),
+        )
+    )
 
     results.append(
         check(

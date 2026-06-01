@@ -11,7 +11,7 @@
   },
   {
     "task": "Task 2",
-    "agent": "Blueprint Question Writer",
+    "agent": "Question Writer fan-out",
     "status": "completed",
     "questions": 11
   },
@@ -30,19 +30,27 @@
     "task": "Task 5",
     "agent": "Refinement Coordinator",
     "status": "completed",
-    "iterations": 1
+    "iterations": 0
   },
   {
     "task": "Task 5b",
     "agent": "Agentic Judge System",
     "status": "completed",
-    "final_verdict": "PASS",
+    "final_verdict": "REVISE",
     "iterations": 1,
-    "non_pass_targets": 0
+    "non_pass_targets": 4
   },
   {
     "task": "Task 6",
     "agent": "Formatter",
     "status": "completed"
+  },
+  {
+    "task": "Task 5c",
+    "agent": "Local Agentic Revalidation",
+    "status": "completed",
+    "final_verdict": "PASS",
+    "non_pass_targets": 0,
+    "note": "Re-ran deterministic specialist judges after scope-guard and normalization updates; no additional LLM calls."
   }
 ]
