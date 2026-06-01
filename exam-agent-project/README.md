@@ -413,14 +413,11 @@ python src/main.py
 
 완료되면 `outputs/` 폴더에 3개 파일이 생성됩니다.
 
-> **주의 — `exam_blueprint.json`**: 프로젝트 루트에 이 파일이 존재하면 Task 1(Coverage Planner)은 실행되지만, 실제 문항 선택과 구성은 blueprint가 통제하고 Task 2의 4개 specialist Writer는 우회됩니다. 현재 제출 산출물은 이 재현용 blueprint 경로로 생성되어 LLM API 호출이 0회입니다. Writer 경로를 확인하려면 `--blueprint` 인자를 존재하지 않는 경로로 지정하세요.
+> **참고 — `exam_blueprint.json`**: 로컬에 이 파일이 있으면 Task 2의 LLM Writer가 우회되고 경고 메시지가 출력됩니다. **현재 제출 산출물(`outputs/`)은 `exam_blueprint.json` 없이 전체 LLM 파이프라인으로 생성됐습니다** (GeminiApiKeyProvider, 7회 호출, $0.0066, `outputs/cost_report.json` 참조). 재현 시에도 blueprint 없이 아래 커맨드를 사용하세요.
 >
 > ```bash
-> # blueprint를 무시하고 writer 경로를 실행
-> python src/main.py --blueprint nonexistent_path
->
-> # 실제 LLM 기반 writer/judge 경로를 strict 모드로 실행(강의자료 Vertex 경로)
-> python src/main.py --blueprint nonexistent_path --provider vertex --quality final_low_cost --strict-provider
+> # LLM 전체 경로 실행 (현재 제출 산출물과 동일한 방식)
+> python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
 > ```
 
 ---
