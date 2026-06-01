@@ -41,6 +41,6 @@ The low-cost Vertex/Gemini path is appropriate for iteration, metadata filling, 
 
 ## Evidence Required For The Final Claim
 
-Before submission, the team should preserve assessment_validity_report.md, agentic_judge_report.json, cost_report.json, and a completed human_review_notes file. Together these show not only that the program ran, but why the resulting exam is aligned, grounded, gradeable, and still appropriately human-supervised.
+Before submission, the team should preserve assessment_validity_report.md, agentic_judge_report.json, run_trace.json, and a completed human_review_notes file. Together these show not only that the program ran, but why the resulting exam is aligned, grounded, gradeable, and still appropriately human-supervised.
 
-The most important next validation step is to compare strict-provider generation evidence with completed human reviewer notes.
+The most important next validation step is to compare the generated exam and judge reports with completed human reviewer notes.

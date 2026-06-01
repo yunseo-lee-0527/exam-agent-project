@@ -239,9 +239,10 @@ class GeminiProvider:
 
     def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
         model = self._strip_provider_prefix(model)
-        config = None
+        config_kwargs: dict[str, Any] = {"response_mime_type": "application/json"}
         if system:
-            config = self._types.GenerateContentConfig(system_instruction=system)
+            config_kwargs["system_instruction"] = system
+        config = self._types.GenerateContentConfig(**config_kwargs)
         max_retries = 5
         for attempt in range(max_retries):
             try:
