@@ -138,7 +138,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Differentiate between a narrow IT-focused definition of 'system' and the broader 'work system thinking' from an Information Systems perspective, identifying its core components."
+        "learning_objective=Students will be able to differentiate between various disciplinary perspectives on work."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -162,7 +162,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to explain the importance of generating alternatives in the engineering problem-solving process and recall a specific ideation technique."
+        "learning_objective=Understand the differences between traditional physical work and knowledge work, and the applicability of historical management principles to modern contexts."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -267,7 +267,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=35"
+        "prompt_words=17"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -289,7 +289,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=27"
+        "prompt_words=21"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -490,7 +490,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=system, work, information, systems, perspective, common"
+        "matched_terms=work, system, describe, distinct, perspectives, focus"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -513,8 +513,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=problem, process, technique, discussed, facilitates, generating"
+        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=scientific, management, taylor, work, principles, shovel"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -599,7 +599,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer lists 'Processes', 'Information', 'Technology', and 'Customers' as key components of a work system. The provided lecture excerpts define a work system as an 'organized socio-technical system in which processes occur' but do not explicitly list these specific elements as its components."
+        "Warning (HARD_FAIL): The model answer lists 'Information', 'Technology', and 'Customers' as key components of a work system. The provided lecture excerpts do not explicitly list these as components. The excerpts define a work system as an 'organized socio-technical system in which processes occur' and discuss various perspectives (economic, sociological, psychological) and elements related to work (labor, division of labor, roles, rules, authority, norms, autonomy, feedback, task meaning), but do not provide a definitive list of components in the way the answer does."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -611,8 +611,8 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer states that at least three alternatives should be generated, but the lecture notes do not specify a minimum number of alternatives.",
-        "Warning (HARD_FAIL): The model answer describes 'Bodystorming' as a technique for solution generation, but 'Bodystorming' is not mentioned in the provided lecture excerpts. The excerpts describe a five-step process (DASSI) for engineering problem-solving, including 'Search for possible alternatives', but do not detail specific techniques for generating those alternatives."
+        "Warning (HARD_FAIL): The model answer states that the importance of generating multiple alternatives is to ensure at least three are generated. The lecture notes state that engineers should examine multiple alternatives but do not specify a minimum number like three.",
+        "Warning (HARD_FAIL): The model answer identifies Bodystorming as a technique for solution generation covered in the lectures. The provided lecture excerpts do not mention Bodystorming."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -624,7 +624,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer states that the common mistake in defining \"system\" is treating it as merely Information Technology (IT). The provided lecture excerpts do not mention this specific mistake or contrast it with a broader definition of \"system.\""
+        "Warning (HARD_FAIL): The model answer incorrectly attributes the \"Information Systems Perspective\" to the lecture. The lecture excerpts describe an \"Economic Perspective\" and a \"Sociological Perspective\" but not an \"Information Systems Perspective.\""
       ],
       "revision_instruction": "",
       "stage": 2
@@ -646,8 +646,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (SOFT_FAIL): The model answer states that \"the lectures state at least three alternatives should be explored, including the existing method.\" This specific requirement is not mentioned in the provided lecture excerpts."
+        "sources_checked=2"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -659,7 +658,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (SOFT_FAIL): The model answer states that at least three alternatives should be explored whenever possible, but this specific number (three) is not mentioned in the provided lecture excerpts."
+        "Warning (HARD_FAIL): The model answer states that \"at least three alternatives should be explored whenever possible.\" The provided lecture excerpts do not specify a minimum number of alternatives to explore."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -670,8 +669,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=3",
-        "Warning (HARD_FAIL): The model answer states that 'work' is the fundamental element, but the lecture notes (M1.1) describe 'work system' as a level of describing work, alongside action/motion, task, and process. This implies 'work system' is at least as fundamental, or more so, than 'work' itself in the context of analysis and redesign."
+        "sources_checked=3"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -683,9 +681,9 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=4",
-        "Warning (HARD_FAIL): The model answer states that the KJ Method is used to organize disparate ideas into thematic groups, but the lecture excerpts only state that the KJ Method (Affinity Diagram) is a tool that gathers large amounts of language data and organizes them into groupings based on their natural relationships, and that it can help define/understand problems by unearthing facts, discovering unseen connections, and building common understanding or causal structure. It does not explicitly mention organizing 'disparate ideas into thematic groups' as its primary objective or method.",
-        "Warning (HARD_FAIL): The model answer claims the Concept Fan broadens or narrows problem definitions, but the provided lecture excerpts for the Concept Fan do not support this claim. The excerpts describe the Concept Fan as focusing on the co-evolution of the problem and solution and exploring concepts from the problem statement, but not specifically broadening or narrowing definitions.",
-        "Warning (HARD_FAIL): The model answer implies that brainstorming is done without immediate evaluation, but the lecture excerpt for Brainstorming describes a 'Phase III: Idea Evaluation & Solution Recommendation Phase' which occurs 'in its final stage of a brainstorming session', suggesting evaluation is part of the process, not entirely absent."
+        "Warning (HARD_FAIL): The model answer claims that the KJ Method is used to organize disparate ideas into thematic groups. The lecture notes describe the KJ Method (Affinity Diagramming) as a tool that gathers language data and organizes it into groupings based on natural relationships, but it does not specifically mention organizing 'disparate' ideas.",
+        "Warning (HARD_FAIL): The model answer states that the Concept Fan broadens or narrows problem definitions. The lecture notes on the Concept Fan describe it as a tool for the co-evolution of the problem and solution, and the example illustrates how it can lead to refining a problem definition and exploring concepts, but it does not explicitly state it is used to broaden or narrow definitions.",
+        "Warning (HARD_FAIL): The model answer states that brainstorming focuses on generating a wide array of potential answers without immediate evaluation. While the lecture notes emphasize delayed judgment and focusing on quantity, Phase III of a classical brainstorming session, as described, involves Idea Evaluation & Solution Recommendation, which implies some level of evaluation happens within the session structure itself, not strictly after all generation is complete."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -697,7 +695,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer claims the Subtraction framework involves removing the \"rigid plastic bottle body\". The provided lecture excerpts do not detail the specific components to be subtracted for the Subtraction framework, only that it is one of the five innovation frameworks."
+        "Warning (HARD_FAIL): The model answer claims the Subtraction framework involves removing the rigid plastic bottle body. However, the provided lecture excerpts only define the Subtraction framework as one of five methods of innovation and do not provide details on its application or specific components to be subtracted from a product."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -709,7 +707,8 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer claims that 'identifying the correct screw head' corresponds to the Therblig 'Search (SH)'. However, the provided lecture excerpts do not define or mention 'Search (SH)' as a Therblig, nor do they associate 'identifying the correct screw head' with any specific Therblig. The excerpts do list 'RE (Reach)' and 'G (Grasp)' as Therbligs, among others, but not 'Search'."
+        "Warning (HARD_FAIL): The model incorrectly identifies 'Search (SH)' as a Therblig. The provided lecture excerpts define Therbligs as basic motion elements developed by Gilbreth and list 'RE (Reach)', 'G (Grasp)', 'M (Move)', and 'RL (Release)' among others, but 'Search' is not explicitly defined or listed as a Therblig. The description of 'identifying the correct screw head' might be related to mental or visual processes, not a defined Therblig.",
+        "Warning (HARD_FAIL): While 'Reach (R)' is correctly identified as a Therblig, the lecture excerpt for 'Reach' defines it as 'Motion performed with an empty hand' and provides an example of 'Reaching for a pen'. The model's application of 'reaching for a screwdriver from a bin' aligns with this definition. However, the lecture notes do not provide specific improvement ideas for 'Reach' related to a 'screwdriver dispenser or holder within the worker's immediate grasp or normal working area', 'spring-loaded tool balancer', or 'gravity-feed system'. These suggested modifications, while potentially valid in practice, are not supported by the provided lecture excerpts."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -721,8 +720,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (SOFT_FAIL): The model answer states that Taylor's Scientific Management included reducing variability. However, the lecture excerpts provided do not explicitly mention Taylor's work in relation to 'reducing variability' as a core principle. While standardization implies reduction of variability, it's not directly stated in the text concerning Taylor's specific principles.",
-        "Warning (SOFT_FAIL): The model answer claims Taylor aimed to reduce variability. The provided lecture excerpts do not contain information about Taylor's aim to 'reduce variability'."
+        "Warning (SOFT_FAIL): The answer claims that Taylor's aim was to find the \"one best way\" for each task. While Taylor sought to optimize tasks, the lecture excerpts do not explicitly state his aim was to find the \"one best way\" as a direct quote or paraphrased goal. The excerpts focus on applying scientific reasoning, measurement, and standardization to work. The concept of \"one best way\" is strongly associated with Taylor but is not directly present in the provided text, which might be considered a SOFT_FAIL if \"one best way\" is a core tenet missing from direct citation."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -746,7 +744,7 @@
       "failed_checks": [],
       "evidence": [
         "answer_words=88",
-        "rubric_items=4"
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -757,8 +755,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=62",
-        "rubric_items=3"
+        "answer_words=95",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -781,8 +779,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=76",
-        "rubric_items=4"
+        "answer_words=71",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -830,7 +828,7 @@
       "failed_checks": [],
       "evidence": [
         "answer_words=114",
-        "rubric_items=5"
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -876,7 +874,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[3.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -887,7 +885,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[1.0, 1.0, 3.0]"
+        "rubric_items=4; rubric_pts_parsed=[1.0, 2.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -909,7 +907,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -953,7 +951,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=5; rubric_pts_parsed=[3.0, 4.0, 3.0, 2.0, 3.0]"
+        "rubric_items=4; rubric_pts_parsed=[4.0, 4.0, 4.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3

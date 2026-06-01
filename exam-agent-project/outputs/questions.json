@@ -41,22 +41,9 @@
     "exam_intent": "Test knowledge of the first phase of problem-solving.",
     "assessed_skill": "Knowledge recall",
     "rubric": [
-      {
-        "criterion": "Explains the importance of generating multiple alternatives (e.g., why 'at least three' or comprehensive exploration).",
-        "points": 2
-      },
-      {
-        "criterion": "Mentions that the existing method should be treated as an alternative.",
-        "points": 1
-      },
-      {
-        "criterion": "Correctly names Bodystorming as a solution generation technique.",
-        "points": 1
-      },
-      {
-        "criterion": "Accurately describes Bodystorming as physically experiencing a situation.",
-        "points": 1
-      }
+      "Explains the importance of generating multiple alternatives (e.g., comprehensive exploration, preventing premature commitment, treating existing method as one alternative). (3 pts)",
+      "Correctly names a specific solution generation technique discussed in the lectures. (1 pt)",
+      "Accurately describes how that technique works. (1 pt)"
     ],
     "coverage_contribution": {
       "problem_solving_and_ideation": 5
@@ -66,22 +53,23 @@
     "number": 3,
     "kind": "Short Answer",
     "topic": "Work And Work Systems",
-    "prompt": "From the Information Systems Perspective discussed in the lecture, identify the common mistake made when defining \"system\" and then describe the proper unit of analysis according to \"work system thinking,\" listing its five core components.",
+    "prompt": "Describe two distinct disciplinary perspectives on work discussed in the lecture, detailing their primary focus or characteristics.",
     "points": 5,
-    "answer": "From the Information Systems Perspective, the common mistake when defining \"system\" is treating it as merely Information Technology (IT). According to \"work system thinking,\" the proper unit of analysis is the \"work system\" itself. This comprehensive approach recognizes that a system encompasses more than just technology. The five core components that constitute a work system are People, Processes, Information, Technology, and Customers.",
+    "answer": "The lecture discusses two distinct disciplinary perspectives on work. First, the **Information Systems Perspective** defines work using a \"work system\" as its unit of analysis, encompassing people, processes, information, technology, and customers. This perspective focuses on how these integrated elements operate, explaining that IT projects fail when non-IT components like roles and procedures are not redesigned alongside software. Second, the **Psychological Perspective on Work** distinguishes between outcomes and performance. Its primary focus is on performance as observable, measurable, and controllable behaviors relevant to goals, emphasizing that these behaviors are more controllable than ultimate work outcomes.",
     "source_refs": [
       "M1.1 What is Work_Revised 260312.txt"
     ],
     "difficulty": "Easy",
-    "learning_objective": "Differentiate between a narrow IT-focused definition of 'system' and the broader 'work system thinking' from an Information Systems perspective, identifying its core components.",
+    "learning_objective": "Students will be able to differentiate between various disciplinary perspectives on work.",
     "bloom_level": "Remember/Understand",
     "estimated_time_minutes": 3,
     "exam_intent": "Assess understanding of basic terminology in work systems.",
     "assessed_skill": "Knowledge recall",
     "rubric": [
-      "Identifies the common mistake: treating \"system\" as just IT (1 pt)",
-      "States the proper unit of analysis as \"work system\" (1 pt)",
-      "Lists all five core components: People, Processes, Information, Technology, and Customers (3 pts)"
+      "Identifies the Information Systems Perspective (1 pt)",
+      "Accurately describes the Information Systems Perspective's focus on the 'work system' unit (people, processes, information, technology, customers) and its implication for IT project success/failure (2 pts)",
+      "Identifies the Psychological Perspective on Work (1 pt)",
+      "Accurately describes the Psychological Perspective's focus on performance as observable, measurable, and controllable behaviors, distinguishing it from outcomes (1 pt)"
     ],
     "coverage_contribution": {
       "work_and_work_systems": 5
@@ -126,33 +114,30 @@
     "number": 5,
     "kind": "Short Answer",
     "topic": "Problem Solving And Ideation",
-    "prompt": "According to the Engineering Problem Solving Process, explain the significance of \"searching for alternatives\" and identify one technique discussed in the lectures that facilitates generating new ideas.",
+    "prompt": "Explain why the principles of Scientific Management, exemplified by Taylor's Shovel Studies, are challenging to apply directly to modern \"knowledge work.\"",
     "points": 5,
-    "answer": "Step 3, \"Search for Alternatives,\" is crucial because engineers must generate multiple options before selecting one to ensure a systematic approach to improvement. This prevents premature commitment to a single solution and broadens the solution space. The lectures state at least three alternatives should be explored, including the existing method. One technique mentioned for generating new ideas is Bodystorming, which involves physically experiencing a situation, complete with artifacts and people, to stimulate new insights and solutions.",
+    "answer": "Scientific Management, as seen in Taylor's Shovel Studies, focused on optimizing physical tasks through precise measurement and standardization, like determining an optimal shovel load. However, these principles are challenging to apply to modern \"knowledge work\" because it is fundamentally different. Knowledge work is characterized as being \"less visible,\" \"more variable,\" and \"more cognitively intensive,\" making it inherently \"harder to measure\" and standardize using the same methods applied to repetitive physical labor.",
     "source_refs": [
-      "M2.1.3 Solution Generation (Brainstorming).txt"
+      "M1.2 Why Work Matters_260312.txt",
+      "M1.4 Scientific Management as Work System Redesign.txt"
     ],
     "difficulty": "Easy",
-    "learning_objective": "Students will be able to explain the importance of generating alternatives in the engineering problem-solving process and recall a specific ideation technique.",
+    "learning_objective": "Understand the differences between traditional physical work and knowledge work, and the applicability of historical management principles to modern contexts.",
     "bloom_level": "Remember/Understand",
     "estimated_time_minutes": 3,
     "exam_intent": "Evaluate understanding of a common ideation technique.",
     "assessed_skill": "Knowledge recall",
     "rubric": [
       {
-        "criterion": "Explains the significance of generating multiple alternatives (e.g., systematic approach, avoiding premature commitment, broadening solution space).",
+        "criterion": "Describes Scientific Management's focus on standardizing visible, physical tasks and measurement (e.g., optimal loads).",
         "points": 2
       },
       {
-        "criterion": "Mentions the lecture's guidance on exploring at least three alternatives, including the existing method.",
-        "points": 1
+        "criterion": "Identifies at least two key characteristics of knowledge work (e.g., less visible, more variable, cognitively intensive, harder to measure).",
+        "points": 2
       },
       {
-        "criterion": "Identifies \"Bodystorming\" as a technique for generating new ideas.",
-        "points": 1
-      },
-      {
-        "criterion": "Provides a brief, accurate description of Bodystorming (physically experiencing a situation).",
+        "criterion": "Clearly explains that the challenge lies in the fundamental mismatch between these characteristics and the principles of Scientific Management.",
         "points": 1
       }
     ],
@@ -259,11 +244,10 @@
     "exam_intent": "Assess understanding of systematic innovation frameworks and ability to apply them.",
     "assessed_skill": "Application of theoretical frameworks to practical scenarios, creative problem-solving.",
     "rubric": [
-      "Clearly identifies the rigid plastic bottle body as the component subtracted (3 pts)",
-      "Describes the novel product concept as a durable, collapsible, reusable water pouch with an integrated spout (4 pts)",
-      "Explains how the new concept is superior through benefits like material reduction, portability, and environmental consciousness (3 pts)",
-      "Justifies the innovation by explaining how it redefines the traditional bottle form factor (2 pts)",
-      "Explains how the new concept addresses company goals of being appealing, environmentally conscious, and a reusable container (3 pts)"
+      "Correctly identifies a specific component of the water bottle to be subtracted, with justification for why it is an essential component. (4 pts)",
+      "Describes a coherent novel product concept that functions without the subtracted component. (4 pts)",
+      "Explains at least two concrete user or business benefits of the new concept. (4 pts)",
+      "Connects the innovation to HydrateX company goals (environmental consciousness, reusability, appeal). (3 pts)"
     ],
     "coverage_contribution": {
       "innovation_frameworks": 15

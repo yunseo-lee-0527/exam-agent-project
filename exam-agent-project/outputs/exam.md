@@ -19,7 +19,7 @@ Describe the importance of generating multiple alternatives in the engineering p
 
 ## Q3. Short Answer (5 points)
 
-From the Information Systems Perspective discussed in the lecture, identify the common mistake made when defining "system" and then describe the proper unit of analysis according to "work system thinking," listing its five core components.
+Describe two distinct disciplinary perspectives on work discussed in the lecture, detailing their primary focus or characteristics.
 
 ## Q4. Short Answer (5 points)
 
@@ -27,7 +27,7 @@ What is the fundamental distinction between 'work' and a 'work system'?
 
 ## Q5. Short Answer (5 points)
 
-According to the Engineering Problem Solving Process, explain the significance of "searching for alternatives" and identify one technique discussed in the lectures that facilitates generating new ideas.
+Explain why the principles of Scientific Management, exemplified by Taylor's Shovel Studies, are challenging to apply directly to modern "knowledge work."
 
 ## Q6. Short Answer (5 points)
 

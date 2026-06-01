@@ -47,7 +47,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 3 minutes
-- Learning objective: Differentiate between a narrow IT-focused definition of 'system' and the broader 'work system thinking' from an Information Systems perspective, identifying its core components.
+- Learning objective: Students will be able to differentiate between various disciplinary perspectives on work.
 - Assessed skill: Knowledge recall
 - Exam intent: Assess understanding of basic terminology in work systems.
 - Sources: M1.1 What is Work_Revised 260312.txt
@@ -69,10 +69,10 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 3 minutes
-- Learning objective: Students will be able to explain the importance of generating alternatives in the engineering problem-solving process and recall a specific ideation technique.
+- Learning objective: Understand the differences between traditional physical work and knowledge work, and the applicability of historical management principles to modern contexts.
 - Assessed skill: Knowledge recall
 - Exam intent: Evaluate understanding of a common ideation technique.
-- Sources: M2.1.3 Solution Generation (Brainstorming).txt
+- Sources: M1.2 Why Work Matters_260312.txt, M1.4 Scientific Management as Work System Redesign.txt
 
 ### Q6
 

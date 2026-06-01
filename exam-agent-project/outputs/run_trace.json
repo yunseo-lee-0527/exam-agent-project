@@ -28,10 +28,19 @@
     "notes": 2
   },
   {
+    "task": "regen-questions",
+    "agent": "TargetedRegenAgent",
+    "status": "completed",
+    "regenerated": [
+      3,
+      5
+    ]
+  },
+  {
     "task": "Task 5",
     "agent": "Refinement Coordinator",
     "status": "completed",
-    "iterations": 2
+    "iterations": 1
   },
   {
     "task": "Task 5b",
