@@ -334,7 +334,15 @@ class GeminiProvider:
             "Anchor every question in the lecture notes; do not invent historical facts. "
             "For innovation-framework questions, use only the lecture frameworks: "
             "Addition, Subtraction, Alternate, Combination, and Transposition. "
-            "Do not substitute external frameworks such as Lean Startup or Design Thinking."
+            "Do not substitute external frameworks such as Lean Startup or Design Thinking. "
+            # Rubric-answer consistency constraint (root-cause fix for mismatch):
+            "CRITICAL — rubric consistency rule: write the 'prompt' and 'answer' fields "
+            "first, then derive the 'rubric' criteria DIRECTLY from the concepts covered "
+            "in your 'answer'. Every rubric criterion must be achievable by a student who "
+            "reads and understands your model answer. Never write rubric criteria that "
+            "require content absent from your model answer. Point values in each rubric "
+            "item must be integers (no fractions) and must sum exactly to the question's "
+            "total point value."
         )
         ctx, _ = self._retrieval_context(notes, topic.keywords, limit=3)
         prompt = (
@@ -438,7 +446,14 @@ class GeminiProvider:
             "Do not invent or merge slots. For innovation-framework slots, use only the "
             "lecture frameworks: Addition, Subtraction, Alternate, Combination, and "
             "Transposition. Do not substitute external frameworks such as Lean Startup "
-            "or Design Thinking."
+            "or Design Thinking. "
+            # Root-cause fix: rubric must be derived from the answer, not written independently.
+            "CRITICAL — rubric consistency rule: for each question, write 'prompt' and "
+            "'answer' first, then derive every 'rubric' criterion DIRECTLY from concepts "
+            "present in your 'answer'. Every criterion must be satisfiable by a student "
+            "who understands your model answer. Never introduce rubric criteria requiring "
+            "content absent from your answer. Rubric point values must be integers "
+            "(no fractions) summing exactly to the question's total points."
         )
         topic_blocks: list[str] = []
         for t in topics:
@@ -453,6 +468,7 @@ class GeminiProvider:
             (
                 f"slot_id: {slot['slot_id']}; topic_key: {slot['topic_key']}; "
                 f"title: {slot.get('topic_title', slot['topic_key'])}; "
+                f"total_points: {slot.get('points', '?')}; "
                 f"coverage_contribution: {slot.get('coverage_contribution', {})}; "
                 f"target_difficulty: {slot.get('target_difficulty', '')}"
             )

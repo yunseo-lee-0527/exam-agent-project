@@ -10,8 +10,7 @@
   "bloom_distribution": {
     "Remember/Understand": 5,
     "Apply/Analyze": 3,
-    "Analyze": 2,
-    "Analyze, Evaluate": 1
+    "Analyze": 3
   },
   "difficulty_distribution": {
     "Easy": 5,
@@ -21,8 +20,8 @@
   "estimated_total_time_minutes": 75,
   "target_duration_minutes": 75,
   "time_within_target": true,
-  "higher_order_question_count": 5,
-  "higher_order_question_share": 0.455,
+  "higher_order_question_count": 6,
+  "higher_order_question_share": 0.545,
   "coverage_passed": true,
   "source_grounding_passed": true,
   "chunk_grounding_passed": true,

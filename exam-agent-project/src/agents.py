@@ -1382,9 +1382,32 @@ class AnswerConsistencyJudgeAgent(BaseAgentWorker):
         self.provider = provider
 
     @staticmethod
-    def _parse_rubric_points(rubric: list[str]) -> list[float]:
+    def _rubric_to_str(item: Any) -> str:
+        """Normalise a rubric entry that may be a string or a dict."""
+        if isinstance(item, dict):
+            # Common LLM output shapes: {"criterion": "...", "points": 2}
+            # or {"description": "...", "points": 2}
+            text = str(item.get("criterion") or item.get("description") or "")
+            pts = item.get("points") or item.get("point") or item.get("value")
+            if pts is not None:
+                text += f" ({pts} points)"
+            return text
+        return str(item)
+
+    @staticmethod
+    def _parse_rubric_points(rubric: list[Any]) -> list[float]:
         vals: list[float] = []
-        for item in rubric:
+        for raw in rubric:
+            item = AnswerConsistencyJudgeAgent._rubric_to_str(raw)
+            # Also try direct numeric value from dict
+            if isinstance(raw, dict):
+                pts = raw.get("points") or raw.get("point") or raw.get("value")
+                if pts is not None:
+                    try:
+                        vals.append(float(pts))
+                        continue
+                    except (TypeError, ValueError):
+                        pass
             m = AnswerConsistencyJudgeAgent._POINT_RE.search(item)
             if m:
                 vals.append(float(m.group(1)))
@@ -1432,11 +1455,14 @@ class AnswerConsistencyJudgeAgent(BaseAgentWorker):
             )
 
             if failed:
-                # rubric_sum_mismatch is HARD_FAIL — a grader following the rubric
-                # would award the wrong number of points.
+                # answer_rubric_mismatch: the answer addresses a different concept
+                # than the rubric — this is a semantic error that a grader would notice
+                # immediately, so it warrants HARD_FAIL and full regen.
+                # rubric_sum_mismatch / rubric_fractional_points: formatting issues;
+                # SOFT_FAIL so the pipeline can still pass without infinite regen loops.
                 verdict = (
                     "HARD_FAIL"
-                    if "rubric_sum_mismatch" in failed or "answer_rubric_mismatch" in failed
+                    if "answer_rubric_mismatch" in failed
                     else "SOFT_FAIL"
                 )
                 findings.append(

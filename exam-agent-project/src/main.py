@@ -1401,9 +1401,20 @@ def run_pipeline(
                 continue
             instruction = " ".join(decision.get("revision_instructions", []))
             failed_checks = " ".join(decision.get("failed_checks", []))
-            if any(key in failed_checks for key in ["rubric", "model_answer", "source"]):
+            # answer_rubric_mismatch means the question, answer, and rubric were
+            # generated inconsistently.  Regenerating only the answer cannot fix a
+            # rubric that was written independently of the answer (a known LLM batch
+            # generation failure mode).  Always regen question+answer together so
+            # the rubric is also regenerated from scratch and stays consistent.
+            answer_only_checks = {"missing_model_answer", "thin_model_answer",
+                                   "missing_source_refs", "invalid_source_refs"}
+            failed_set = set(decision.get("failed_checks", []))
+            if failed_set <= answer_only_checks:
+                # Only answer-level issues — no need to touch the question/rubric.
                 questions[idx] = regen_answer(questions[idx], instruction, notes)
             else:
+                # Any structural or consistency issue → regenerate question+answer
+                # so rubric, prompt, and answer are produced together and stay aligned.
                 questions[idx] = regen_question(questions[idx], instruction, notes)
                 questions[idx] = regen_answer(questions[idx], instruction, notes)
             revised_any = True
