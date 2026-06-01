@@ -1025,11 +1025,43 @@ class DifficultyBalanceJudgeAgent(BaseAgentWorker):
         return [_pass("EXAM", self.name, evidence)]
 
 
-class PedagogicalQualityJudgeAgent(BaseAgentWorker):
-    """Checks learning objective, cognitive demand, and lecture-specificity."""
+# ---------------------------------------------------------------------------
+# Fallback lecture-term list for PedagogicalQualityJudgeAgent.
+# Used when the pipeline has not supplied TF-IDF-derived terms.
+# Updated automatically by extract_lecture_terms() in main.py; edit here
+# only if you need a hard override for a specific course iteration.
+# ---------------------------------------------------------------------------
+_FALLBACK_LECTURE_TERMS: list[str] = [
+    "taylor",
+    "gilbreth",
+    "therblig",
+    "dassi",
+    "kj method",
+    "brainstorm",
+    "innovation",
+    "work system",
+    "soldiering",
+    "emergence",
+    "pig iron",
+    "time study",
+    "motion study",
+    "shovel",
+    "pdca",
+    "concept fan",
+]
 
-    def __init__(self):
+
+class PedagogicalQualityJudgeAgent(BaseAgentWorker):
+    """Checks learning objective, cognitive demand, and lecture-specificity.
+
+    lecture_terms: course-specific signal terms used to detect weak lecture
+    grounding.  Pass the output of extract_lecture_terms() (main.py) for
+    TF-IDF-derived terms; falls back to _FALLBACK_LECTURE_TERMS otherwise.
+    """
+
+    def __init__(self, lecture_terms: list[str] | None = None):
         super().__init__("Pedagogical Quality Judge", "Task 4g")
+        self.lecture_terms: list[str] = lecture_terms or list(_FALLBACK_LECTURE_TERMS)
 
     def run(self, payload: dict[str, Any]) -> list[AgenticJudgeFinding]:
         questions: list[Question] = payload["questions"]
@@ -1044,31 +1076,7 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
                 higher_order_terms = ["apply", "compare", "discuss", "analyze", "redesign", "propose", "why"]
                 if not any(term in prompt_lc for term in higher_order_terms):
                     failed.append("weak_higher_order_demand")
-            # Lecture-specific signal terms for this course (Scientific Management).
-            # Covers Taylor/Gilbreth cases, DASSI family, innovation tools, and
-            # work-system concepts.  "therblig" matches the plural "therbligs" as a
-            # substring.  "work system" matches "work systems" (plural) likewise.
-            # Added: emergence, pig iron, time study, motion study, shovel, pdca,
-            # concept fan — all course-specific but absent from the original 9-term list.
-            lecture_terms = [
-                "taylor",
-                "gilbreth",
-                "therblig",
-                "dassi",
-                "kj method",
-                "brainstorm",
-                "innovation",
-                "work system",
-                "soldiering",
-                "emergence",
-                "pig iron",
-                "time study",
-                "motion study",
-                "shovel",
-                "pdca",
-                "concept fan",
-            ]
-            if not any(term in prompt_lc or term in q.answer.lower() for term in lecture_terms):
+            if not any(term in prompt_lc or term in q.answer.lower() for term in self.lecture_terms):
                 failed.append("weak_lecture_specificity")
             evidence.append(f"kind={q.kind}; difficulty={q.difficulty or 'unspecified'}")
             if q.learning_objective:
@@ -1217,15 +1225,19 @@ class JudgeAggregatorAgent(BaseAgentWorker):
 
 
 class AgenticJudgeSystemAgent(BaseAgentWorker):
-    """Runs specialist judges, then aggregates their evidence and verdicts."""
+    """Runs specialist judges, then aggregates their evidence and verdicts.
 
-    def __init__(self):
+    lecture_terms: passed through to PedagogicalQualityJudgeAgent.  Supply
+    the output of extract_lecture_terms() from main.py for data-driven terms.
+    """
+
+    def __init__(self, lecture_terms: list[str] | None = None):
         super().__init__("Agentic Judge System", "Task 5b")
         self.judges = [
             CoverageJudgeAgent(),
             SourceGroundingJudgeAgent(),
             DifficultyBalanceJudgeAgent(),
-            PedagogicalQualityJudgeAgent(),
+            PedagogicalQualityJudgeAgent(lecture_terms=lecture_terms),
             AnswerRubricJudgeAgent(),
             RedTeamJudgeAgent(),
         ]

@@ -93,6 +93,110 @@ def _points_for(kind: str, total: int = 100, mix: dict[str, int] | None = None) 
     return weights.get(kind, 10)
 
 
+def extract_lecture_terms(notes: dict[str, str], top_n: int = 30) -> list[str]:
+    """Return course-specific signal terms via TF-IDF over the lecture note corpus.
+
+    Algorithm (pure Python, no external dependency):
+      1. Tokenise each note into unigrams (≥8 chars) and bigrams (stop-word filtered).
+         The 8-char floor removes most generic English words while keeping specific
+         terms like "therbligs", "soldiering", "brainstorm", "emergence".
+         Bigrams are included without a length floor because two-word phrases are
+         already specific by nature (e.g. "affinity diagram", "work system").
+      2. Compute smoothed IDF = log((1+N)/(1+df))+1  (sklearn-style).
+      3. Score = sum(TF*IDF) across all documents.
+      4. Keep only terms that appear in 15–80 % of documents: rare single-doc
+         terms are likely noise; near-universal terms are too generic.
+      5. Merge TF-IDF ranking with _FALLBACK_LECTURE_TERMS (union, TF-IDF first).
+         This guarantees short but highly specific terms like "taylor" and "dassi"
+         are always present even if they don't reach the 8-char floor.
+
+    Falls back to _FALLBACK_LECTURE_TERMS if the corpus is empty.
+    """
+    import math
+    from collections import Counter
+
+    from agents import _FALLBACK_LECTURE_TERMS
+
+    # Generic academic/engineering vocabulary that adds no signal for
+    # "is this question grounded in *this* course's lecture content?".
+    _STOPWORDS = {
+        "the", "and", "for", "with", "this", "that", "from", "are", "was",
+        "were", "have", "has", "been", "being", "will", "would", "could",
+        "should", "may", "might", "can", "not", "also", "their", "they",
+        "each", "more", "most", "such", "than", "then", "there", "here",
+        "into", "through", "about", "over", "once",
+        # document metadata
+        "page", "source", "slide", "lecture", "chapter", "figure", "table",
+        "generated", "type",
+        # generic academic verbs / nouns that appear in any course
+        "used", "based", "using", "uses", "which", "both",
+        "problem", "problems", "system", "systems", "process", "processes",
+        "work", "design", "method", "methods", "data", "information",
+        "people", "ideas", "idea", "approach", "approaches",
+        "solution", "solutions", "model", "models",
+        "different", "important", "specific", "general", "various",
+        "focus", "level", "levels", "need", "needs",
+        "example", "examples", "analysis", "management",
+        "production", "manufacturing", "engineering",
+        "improvement", "framework", "frameworks",
+    }
+
+    def _tokens(text: str) -> list[str]:
+        words = re.findall(r"[a-zA-Z][a-zA-Z-]{3,}", text.lower())
+        # Keep unigrams only if ≥8 chars (filters generic short words);
+        # bigrams are built separately without this constraint.
+        return [w for w in words if w not in _STOPWORDS and len(w) >= 8]
+
+    def _all_ngrams(text: str) -> list[str]:
+        # Unigrams: 8+ char tokens (from _tokens)
+        # Bigrams: all pairs of consecutive 4+ char words (before the 8-char filter)
+        all_words = [
+            w for w in re.findall(r"[a-zA-Z][a-zA-Z-]{3,}", text.lower())
+            if w not in _STOPWORDS
+        ]
+        unigrams = [w for w in all_words if len(w) >= 8]
+        bigrams = [f"{all_words[i]} {all_words[i+1]}" for i in range(len(all_words) - 1)]
+        return unigrams + bigrams
+
+    docs = list(notes.values())
+    n_docs = len(docs)
+    if n_docs == 0:
+        return list(_FALLBACK_LECTURE_TERMS)
+
+    tokenized = [_all_ngrams(doc) for doc in docs]
+
+    df: dict[str, int] = {}
+    for terms in tokenized:
+        for term in set(terms):
+            df[term] = df.get(term, 0) + 1
+
+    scores: dict[str, float] = {}
+    for terms in tokenized:
+        tf = Counter(terms)
+        total = max(len(terms), 1)
+        for term, count in tf.items():
+            idf = math.log((1 + n_docs) / (1 + df[term])) + 1
+            scores[term] = scores.get(term, 0.0) + (count / total) * idf
+
+    min_df = max(1, int(n_docs * 0.15))
+    max_df = int(n_docs * 0.80)
+    scores = {t: s for t, s in scores.items() if min_df <= df[t] <= max_df}
+
+    # Take only half of top_n from TF-IDF so the fallback list has room.
+    # TF-IDF contributes corpus-derived bigrams/long-tokens (e.g. "affinity
+    # diagram", "therbligs", "basic motion"); fallback guarantees short but
+    # highly specific terms ("taylor", "dassi", "kj method") are always present.
+    tfidf_half = sorted(scores, key=lambda t: scores[t], reverse=True)[: top_n // 2]
+
+    seen: set[str] = set()
+    merged: list[str] = []
+    for term in tfidf_half + list(_FALLBACK_LECTURE_TERMS):
+        if term not in seen:
+            seen.add(term)
+            merged.append(term)
+    return merged[:top_n]
+
+
 def build_chunk_index(notes: dict[str, str], max_chars: int = 1800) -> list[dict[str, Any]]:
     return [
         {
@@ -803,6 +907,8 @@ def run_pipeline(
     state["run_trace"].append({"task": collector.task_id, "agent": collector.name, "status": "completed"})
     state["collection"] = collected
     notes = collected["notes"]
+    lecture_terms = extract_lecture_terms(notes, top_n=30)
+    state["lecture_terms"] = {"count": len(lecture_terms), "top10": lecture_terms[:10]}
     chunk_index = build_chunk_index(notes)
     state["chunk_index"] = {
         "chunks": len(chunk_index),
@@ -998,7 +1104,7 @@ def run_pipeline(
     questions = enrich_assessment_metadata(questions)
 
     # --- Task 5b: Agentic judge closed-loop revision ---
-    agentic_judge = AgenticJudgeSystemAgent()
+    agentic_judge = AgenticJudgeSystemAgent(lecture_terms=lecture_terms)
     agentic_judge_history: list[dict[str, Any]] = []
     agentic_judge_report: dict[str, Any] = {}
     for iteration in range(1, max_agentic_judge_iterations + 2):

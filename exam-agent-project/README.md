@@ -257,7 +257,7 @@ Task 2의 batch writer가 이미 답안과 source_refs를 채워넣었다면 추
 |---------|------------|---------|
 | `CoverageJudgeAgent` | `HARD_FAIL` ±20pt 초과, `SOFT_FAIL` ±10pt | 100점 시험에서 1개 주제가 20pt 이상 편차나면 교육적으로 치명적. 10pt는 에이전트 계획 오차 허용 범위. |
 | `DifficultyBalanceJudgeAgent` | `tolerance_points = 10` | 배점 단위가 5/10/15/20pt이므로 단답형 1문항만 잘못 분류해도 5pt 이동. 허용값 5pt는 이 경우 정상 문항도 SOFT_FAIL시킴. 10pt는 1~2문항 라벨 오차를 허용하되 전체 쏠림(예: 전부 medium)은 잡아냄. |
-| `PedagogicalQualityJudgeAgent` | `lecture_terms` 16개 키워드 | 원래 9개("taylor", "gilbreth" 등)만 있어 "emergence", "pig iron", "time study", "motion study", "pdca" 등 강의 핵심 개념을 다루는 문항이 오탐(false positive)으로 SOFT_FAIL되었음. 16개로 확장해 오탐을 억제. |
+| `PedagogicalQualityJudgeAgent` | `lecture_terms` 30개 (TF-IDF + fallback 합집합) | 원래 9개 수작업 키워드로는 "emergence", "pig iron", "affinity diagram" 등을 다루는 정상 문항이 오탐으로 SOFT_FAIL됨. 파이프라인 실행 시 `extract_lecture_terms()`(main.py)가 실제 강의 노트에서 TF-IDF 상위 15개를 추출하고, 여기에 고유명사·약어처럼 TF-IDF로 잘 잡히지 않는 단어("taylor", "dassi", "kj method" 등 16개 fallback)를 합집합하여 30개를 구성. TF-IDF 기준: 스무딩 IDF = log((1+N)/(1+df))+1, 단어 최소 8자(짧은 범용어 배제), 문서 출현율 15–80% 필터. fallback 목록은 `agents.py`의 `_FALLBACK_LECTURE_TERMS`에서 관리. |
 | `AnswerRubricJudgeAgent` | 10pt 이상 문항에 rubric 3개 이상 | 부분점수 채점 가능성을 보장하는 최소 기준. 5pt 단답형은 2개로도 충분. |
 | `RedTeamJudgeAgent` (overlong_prompt) | Essay 제외 **90단어** 초과 시 경고 | 기존 70단어 기준은 적용형(Application) 문항이 시나리오를 충분히 기술할 수 없게 만듦(Q9: 76단어 정상 문항이 SOFT_FAIL). Application·Concept Comparison은 복합 요구사항 서술에 70~85단어가 자연스러움. 90단어는 진짜 장황한 단답형만 잡아냄. |
 | `SourceGroundingJudgeAgent` | source_refs 없음 → HARD_FAIL | 강의 근거 없는 문항은 할루시네이션 위험이 있어 엄격하게 유지. |
