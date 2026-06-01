@@ -1570,6 +1570,88 @@ class JudgeAggregatorAgent(BaseAgentWorker):
         }
 
 
+class FactualGroundingJudgeAgent(BaseAgentWorker):
+    """Verifies that factual claims in model answers are supported by
+    the cited lecture notes — semantic entailment, not just lexical matching.
+
+    Why this is needed:
+    SourceGroundingJudgeAgent checks that lecture keywords appear in the
+    cited files.  It would PASS an answer saying "Taylor developed Therbligs"
+    because both "Taylor" and "Therbligs" exist in the notes — but the claim
+    is factually wrong (Therbligs were developed by Gilbreth).  This agent
+    sends the actual lecture chunk text to an LLM judge and asks it to find
+    claims that contradict or are unsupported by the lecture content.
+
+    Deterministic fallback: PASS — factual accuracy cannot be checked without
+    an LLM that can reason about the lecture text.
+    LLM-backed: provider.judge_factual_grounding(question, notes) retrieves
+    the cited lecture chunks, then asks the LLM to flag errors.
+
+    Verdict levels:
+    - HARD_FAIL: clear factual error (wrong attribution, incorrect definition)
+    - SOFT_FAIL: claim that is plausible but not substantiated by cited notes
+    - PASS:      all factual claims consistent with lecture content
+    """
+
+    # Max characters extracted per source_ref to keep prompt size manageable.
+    _CHARS_PER_SOURCE = 900
+
+    def __init__(self, provider: Any = None):
+        super().__init__("Factual Grounding Judge", "Task 4m")
+        self.provider = provider
+
+    def run(self, payload: dict[str, Any]) -> list[AgenticJudgeFinding]:
+        questions: list[Question] = payload["questions"]
+        notes: dict[str, str] = payload["notes"]
+        findings: list[AgenticJudgeFinding] = []
+
+        for q in questions:
+            failed: list[str] = []
+            evidence: list[str] = [f"sources_checked={len(q.source_refs)}"]
+
+            if self.provider and hasattr(self.provider, "judge_factual_grounding"):
+                try:
+                    result = self.provider.judge_factual_grounding(
+                        q, notes, chars_per_source=self._CHARS_PER_SOURCE
+                    )
+                    if not result.get("factually_accurate", True):
+                        for err in (result.get("errors") or [])[:3]:
+                            if err:
+                                failed.append("factual_error")
+                                evidence.append(f"Error: {err}")
+                    # Use the LLM's own verdict if it says HARD_FAIL
+                    if result.get("verdict") == "HARD_FAIL" and not failed:
+                        failed.append("factual_error")
+                        evidence.append("LLM judge returned HARD_FAIL without specific error list.")
+                except Exception as exc:
+                    evidence.append(f"Factual check skipped: {exc}")
+
+            if failed:
+                # Single error → SOFT_FAIL (may be minor paraphrase issue).
+                # Multiple distinct errors → HARD_FAIL (clearly wrong content).
+                distinct_errors = len(set(evidence) - {"sources_checked=" + str(len(q.source_refs))})
+                verdict = "HARD_FAIL" if distinct_errors >= 2 else "SOFT_FAIL"
+                findings.append(
+                    AgenticJudgeFinding(
+                        target_id=f"Q{q.number}",
+                        judge=self.name,
+                        verdict=verdict,
+                        failed_checks=list(dict.fromkeys(failed)),
+                        evidence=evidence,
+                        revision_instruction=(
+                            "The model answer contains factual claims that are not supported "
+                            "by or contradict the cited lecture notes. Rewrite the answer "
+                            "using only information explicitly present in the lecture materials. "
+                            "Do not invent dates, names, or experiments not mentioned in the notes."
+                        ),
+                    )
+                )
+            else:
+                findings.append(_pass(f"Q{q.number}", self.name, evidence))
+
+        return findings
+
+
 class OverlapJudgeAgent(BaseAgentWorker):
     """Detects conceptual overlap between pairs of questions (Criterion 5).
 
@@ -1700,6 +1782,7 @@ class AgenticJudgeSystemAgent(BaseAgentWorker):
             AnswerRubricJudgeAgent(),
             RedTeamJudgeAgent(),
             AnswerConsistencyJudgeAgent(provider=provider),
+            FactualGroundingJudgeAgent(provider=provider),
             OverlapJudgeAgent(provider=provider),
         ]
         self.aggregator = JudgeAggregatorAgent()

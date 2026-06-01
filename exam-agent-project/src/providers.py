@@ -703,6 +703,68 @@ class GeminiProvider:
         except Exception as exc:
             return self._fallback_or_raise(exc, "judge_answer", lambda: self.fallback.judge_answer(question, notes))
 
+    def judge_factual_grounding(
+        self,
+        question: Question,
+        notes: dict[str, str],
+        chars_per_source: int = 900,
+    ) -> dict[str, Any]:
+        """Semantic factual accuracy check against cited lecture chunks.
+
+        Retrieves actual text from source_refs, then asks the LLM whether
+        any claim in the model answer contradicts or is unsupported by that
+        content.  This catches errors that lexical keyword matching misses,
+        such as wrong attributions (e.g., crediting Taylor for Therbligs).
+        """
+        # Build lecture context from source_refs only (keeps prompt focused).
+        context_blocks: list[str] = []
+        for ref in question.source_refs:
+            if ref in notes:
+                excerpt = notes[ref][:chars_per_source].replace("\n", " ")
+                context_blocks.append(f"[{ref}]\n{excerpt}")
+        if not context_blocks:
+            return {"factually_accurate": True, "errors": [], "verdict": "PASS"}
+
+        system = (
+            "You are a factual accuracy reviewer for a university exam. "
+            "Given a question, its model answer, and excerpts from the lecture notes "
+            "the answer cites, identify factual errors: claims in the answer that are "
+            "incorrect according to the lecture content, or wrong attributions "
+            "(e.g., crediting the wrong person for a concept or discovery). "
+            "Return JSON only: "
+            "{\"factually_accurate\": true|false, "
+            "\"errors\": [\"concise description of each error\"], "
+            "\"verdict\": \"PASS\"|\"SOFT_FAIL\"|\"HARD_FAIL\"}. "
+            "HARD_FAIL: clear factual error or wrong attribution. "
+            "SOFT_FAIL: claim that cannot be verified from the provided excerpts "
+            "but may still be correct. "
+            "PASS: all factual claims are consistent with the lecture content. "
+            "Do NOT flag correct paraphrasing, reasonable simplification, or "
+            "claims you personally doubt but cannot disprove from the excerpts."
+        )
+        lecture_ctx = "\n\n".join(context_blocks)
+        prompt = (
+            f"Question ({question.kind}, Q{question.number}):\n{question.prompt}\n\n"
+            f"Model Answer:\n{question.answer}\n\n"
+            f"Cited lecture excerpts:\n{lecture_ctx}"
+        )
+        try:
+            raw = self._generate_for_role(
+                "judge", prompt, system, stage="factual_grounding_judge"
+            )
+            data = parse_json_block(raw) or {}
+            return {
+                "factually_accurate": bool(data.get("factually_accurate", True)),
+                "errors": [str(e) for e in (data.get("errors") or []) if e],
+                "verdict": str(data.get("verdict", "PASS")),
+            }
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "judge_factual_grounding",
+                lambda: {"factually_accurate": True, "errors": [], "verdict": "PASS"},
+            )
+
     def judge_question_overlap_batch(
         self, candidates: list[tuple[Any, Any, float]]
     ) -> list[dict[str, Any]]:
