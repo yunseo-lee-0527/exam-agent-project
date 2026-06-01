@@ -1570,12 +1570,124 @@ class JudgeAggregatorAgent(BaseAgentWorker):
         }
 
 
+class OverlapJudgeAgent(BaseAgentWorker):
+    """Detects conceptual overlap between pairs of questions (Criterion 5).
+
+    Two questions overlap when a student who correctly answers one would almost
+    certainly answer the other correctly, wasting assessment bandwidth.
+
+    Detection pipeline:
+    1. Pre-filter: pairs must share at least one source_ref (same lecture file).
+    2. Deterministic: Jaccard keyword similarity on prompt tokens ≥ THRESHOLD.
+    3. LLM-backed (optional): provider.judge_question_overlap_batch() confirms
+       or rejects each candidate pair in a single API call.
+
+    The lower-points question in each confirmed pair is flagged SOFT_FAIL with a
+    revision instruction telling the LLM to test a different concept or aspect.
+    The revision loop then regenerates just that question.
+    """
+
+    STOPWORDS = {
+        "what", "how", "why", "when", "where", "which", "who", "does",
+        "describe", "explain", "define", "discuss", "compare", "contrast",
+        "identify", "provide", "give", "state", "list", "name", "brief",
+        "briefly", "example", "illustrate", "using", "based", "according",
+        "your", "their", "this", "that", "from", "with", "and", "the",
+        "for", "are", "were", "was", "have", "each", "both", "also",
+    }
+    JACCARD_THRESHOLD = 0.40
+
+    def __init__(self, provider: Any = None):
+        super().__init__("Overlap Judge", "Task 4l")
+        self.provider = provider
+
+    def _prompt_keywords(self, text: str) -> set[str]:
+        words = re.findall(r"[a-zA-Z][a-zA-Z-]{3,}", text.lower())
+        return {w for w in words if w not in self.STOPWORDS}
+
+    @staticmethod
+    def _jaccard(a: set, b: set) -> float:
+        if not a or not b:
+            return 0.0
+        return len(a & b) / len(a | b)
+
+    def run(self, payload: dict[str, Any]) -> list[AgenticJudgeFinding]:
+        questions: list[Question] = payload["questions"]
+        n = len(questions)
+
+        # --- Step 1 + 2: pre-filter and keyword check ---
+        candidates: list[tuple[Question, Question, float]] = []
+        for i in range(n):
+            for j in range(i + 1, n):
+                q1, q2 = questions[i], questions[j]
+                shared_srcs = set(q1.source_refs) & set(q2.source_refs)
+                if not shared_srcs:
+                    continue
+                kw1 = self._prompt_keywords(q1.prompt)
+                kw2 = self._prompt_keywords(q2.prompt)
+                score = self._jaccard(kw1, kw2)
+                if score >= self.JACCARD_THRESHOLD:
+                    candidates.append((q1, q2, score))
+
+        # --- Step 3: LLM batch confirmation ---
+        confirmed: list[tuple[Question, Question, str]] = []
+        if candidates and self.provider and hasattr(self.provider, "judge_question_overlap_batch"):
+            try:
+                results = self.provider.judge_question_overlap_batch(candidates)
+                for (q1, q2, score), res in zip(candidates, results):
+                    if res.get("overlapping", False):
+                        reason = res.get("reason", f"keyword overlap={score:.2f}")
+                        confirmed.append((q1, q2, reason))
+            except Exception:
+                # Deterministic fallback
+                for q1, q2, score in candidates:
+                    confirmed.append((q1, q2, f"keyword overlap={score:.2f}"))
+        elif candidates:
+            # No LLM — use deterministic results only
+            for q1, q2, score in candidates:
+                confirmed.append((q1, q2, f"keyword overlap={score:.2f}"))
+
+        # --- Build findings ---
+        flagged: dict[int, list[str]] = {}
+        for q1, q2, reason in confirmed:
+            # Flag the lower-points question for regeneration
+            target = q1 if q1.points <= q2.points else q2
+            other = q2 if target is q1 else q1
+            flagged.setdefault(target.number, []).append(
+                f"Overlaps with Q{other.number} ({other.kind}, {other.points}pts): {reason}"
+            )
+
+        findings: list[AgenticJudgeFinding] = []
+        for q in questions:
+            if q.number in flagged:
+                reasons = flagged[q.number]
+                other_nums = [r.split("Q")[1].split(" ")[0] for r in reasons]
+                findings.append(
+                    AgenticJudgeFinding(
+                        target_id=f"Q{q.number}",
+                        judge=self.name,
+                        verdict="SOFT_FAIL",
+                        failed_checks=["question_overlap"],
+                        evidence=reasons,
+                        revision_instruction=(
+                            f"Q{q.number} overlaps with Q{', Q'.join(other_nums)}. "
+                            "Rewrite this question to test a clearly different concept, "
+                            "aspect, or cognitive operation from the same topic area. "
+                            "Do not re-use the same framework or method as the question(s) it overlaps with."
+                        ),
+                    )
+                )
+            else:
+                findings.append(_pass(f"Q{q.number}", self.name))
+        return findings
+
+
 class AgenticJudgeSystemAgent(BaseAgentWorker):
     """Runs specialist judges, then aggregates their evidence and verdicts.
 
     lecture_terms: passed through to PedagogicalQualityJudgeAgent.
-    provider: passed through to AnswerConsistencyJudgeAgent for LLM-backed
-              answer-rubric semantic consistency checks.
+    provider: passed through to AnswerConsistencyJudgeAgent (answer-rubric
+              semantic check) and OverlapJudgeAgent (cross-question overlap check).
     """
 
     def __init__(self, lecture_terms: list[str] | None = None, provider: Any = None):
@@ -1588,6 +1700,7 @@ class AgenticJudgeSystemAgent(BaseAgentWorker):
             AnswerRubricJudgeAgent(),
             RedTeamJudgeAgent(),
             AnswerConsistencyJudgeAgent(provider=provider),
+            OverlapJudgeAgent(provider=provider),
         ]
         self.aggregator = JudgeAggregatorAgent()
 

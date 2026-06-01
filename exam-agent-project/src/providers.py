@@ -703,6 +703,61 @@ class GeminiProvider:
         except Exception as exc:
             return self._fallback_or_raise(exc, "judge_answer", lambda: self.fallback.judge_answer(question, notes))
 
+    def judge_question_overlap_batch(
+        self, candidates: list[tuple[Any, Any, float]]
+    ) -> list[dict[str, Any]]:
+        """Check all candidate question pairs for overlap in a single API call.
+
+        A pair overlaps when answering one question correctly would practically
+        guarantee answering the other correctly (they test the same knowledge).
+        Batching avoids one LLM call per pair — typically 1 call covers all.
+        """
+        if not candidates:
+            return []
+        system = (
+            "You are an exam quality reviewer checking for question overlap. "
+            "Two questions overlap when a student who correctly answers one "
+            "would almost certainly answer the other correctly. "
+            "Return a JSON ARRAY — one entry per pair — with this schema: "
+            "[{\"pair_index\": 0, \"overlapping\": true|false, \"reason\": \"...\"}]. "
+            "Set overlapping=true ONLY when the questions test substantially the same "
+            "knowledge or framework. Different cognitive depths (recall vs application) "
+            "of the SAME concept still count as overlap."
+        )
+        pair_blocks = []
+        for i, (q1, q2, score) in enumerate(candidates):
+            pair_blocks.append(
+                f"Pair {i} — Q{q1.number} ({q1.kind}, {q1.points}pts) vs "
+                f"Q{q2.number} ({q2.kind}, {q2.points}pts):\n"
+                f"  Q{q1.number}: {q1.prompt}\n"
+                f"  Q{q2.number}: {q2.prompt}"
+            )
+        prompt = "\n\n".join(pair_blocks) + "\n\nReturn the JSON array."
+        try:
+            raw = self._generate_for_role("judge", prompt, system, stage="overlap_judge")
+            cleaned = raw.strip().replace("```json", "").replace("```", "").strip()
+            import re as _re
+            data = json.loads(cleaned) if cleaned.startswith("[") else None
+            if not data:
+                match = _re.search(r"\[.*\]", cleaned, _re.DOTALL)
+                data = json.loads(match.group(0)) if match else []
+            results = []
+            for entry in data:
+                results.append({
+                    "overlapping": bool(entry.get("overlapping", False)),
+                    "reason": str(entry.get("reason", "")),
+                })
+            # Pad if LLM returned fewer entries than pairs
+            while len(results) < len(candidates):
+                results.append({"overlapping": False, "reason": ""})
+            return results[: len(candidates)]
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "judge_question_overlap_batch",
+                lambda: [{"overlapping": False, "reason": ""} for _ in candidates],
+            )
+
     def judge_answer_consistency(self, question: Question) -> dict[str, Any]:
         """LLM-backed semantic consistency check for AnswerConsistencyJudgeAgent.
 

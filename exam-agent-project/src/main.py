@@ -1058,6 +1058,7 @@ def run_pipeline(
     strict_provider: bool = False,
     resume_from_judge: bool = False,
     batch_judge: bool = False,
+    regen_question_numbers: list[int] | None = None,
 ) -> dict[str, Any]:
     """Sequential orchestrator with parallel fan-out and a refinement loop.
 
@@ -1303,6 +1304,27 @@ def run_pipeline(
         q.answer = result["answer"].strip()
         q.source_refs = result.get("source_refs", []) or q.source_refs
         return q
+
+    # --- Targeted regen (--regen-questions flag) ---
+    # Applied before the refinement loop so the regen'd questions also go
+    # through Task 4a/4b and Task 5b quality checks.
+    if regen_question_numbers:
+        print(f"[regen-questions] Regenerating Q{sorted(regen_question_numbers)}...")
+        for q_num in sorted(regen_question_numbers):
+            idx = q_num - 1
+            if not (0 <= idx < len(questions)):
+                print(f"[regen-questions] Q{q_num} out of range, skipping.")
+                continue
+            questions[idx] = regen_question(questions[idx], "", notes)
+            questions[idx] = regen_answer(questions[idx], "", notes)
+            print(f"[regen-questions] Q{q_num} regenerated.")
+        questions = answer_writer.run({"questions": questions, "notes": notes})
+        state["run_trace"].append({
+            "task": "regen-questions",
+            "agent": "TargetedRegenAgent",
+            "status": "completed",
+            "regenerated": sorted(regen_question_numbers),
+        })
 
     coordinator = RefinementCoordinator(
         question_judge=question_judge,
@@ -1576,6 +1598,19 @@ def main() -> None:
     parser.add_argument("--judge-model", default=None, help="Override judge model for this run.")
     parser.add_argument("--final-rewriter-model", default=None, help="Override final rewriter model for this run.")
     parser.add_argument("--blueprint", default="exam_blueprint.json")
+    parser.add_argument(
+        "--regen-questions",
+        default=None,
+        metavar="Q_NUMS",
+        help=(
+            "Comma-separated question numbers to regenerate (e.g. '2,6'). "
+            "Loads outputs/questions.json, regenerates only the specified questions "
+            "using the active LLM provider, then runs the full judge suite. "
+            "Best combined with --provider gemini for real LLM regeneration. "
+            "Example: python src/main.py --regen-questions 6,9 --provider gemini "
+            "--quality final_low_cost --strict-provider"
+        ),
+    )
     parser.add_argument("--quality", choices=["draft", "final", "final_low_cost"], default="draft")
     parser.add_argument("--strict-provider", action="store_true")
     parser.add_argument(
@@ -1619,6 +1654,10 @@ def main() -> None:
         strict_provider=args.strict_provider,
         resume_from_judge=args.resume_from_judge,
         batch_judge=args.batch_judge,
+        regen_question_numbers=(
+            [int(n.strip()) for n in args.regen_questions.split(",") if n.strip().isdigit()]
+            if args.regen_questions else None
+        ),
     )
 
     print(f"Provider: {state['provider']}")
