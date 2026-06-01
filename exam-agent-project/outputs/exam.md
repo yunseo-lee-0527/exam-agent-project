@@ -15,7 +15,7 @@ From an Information Systems perspective, define a 'work system' and list its key
 
 ## Q2. Short Answer (5 points)
 
-Describe the importance of generating multiple alternatives in the engineering problem-solving process, and name and explain one specific technique for solution generation covered in the lectures.
+In the engineering problem-solving process, why is it crucial to generate multiple alternatives before selecting a solution? Additionally, describe one specific solution generation technique discussed in the lectures.
 
 ## Q3. Short Answer (5 points)
 
@@ -35,7 +35,7 @@ Explain the primary purpose of the Engineering Problem-Solving Process and detai
 
 ## Q7. Concept Comparison (10 points)
 
-Compare and contrast the concepts of 'work' and 'work system' within the context of scientific management, highlighting their relationship.
+The lecture introduces multiple taxonomic frameworks for characterizing work systems. Compare and contrast the structure-based taxonomy and the complexity-based taxonomy: identify the key dimensions each uses, explain what analytical insight each provides, and discuss one situation where each taxonomy would be more useful than the other.
 
 ## Q8. Concept Comparison (10 points)
 

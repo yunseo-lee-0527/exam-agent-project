@@ -528,7 +528,7 @@ A. `requirements.json`의 `question_mix`와 `coverage_weights`를 수정하세�
 | Q4 | Short Answer | Work and Work Systems | 5점 | Easy |
 | Q5 | Short Answer | Scientific Management | 5점 | Easy |
 | Q6 | Short Answer | Problem Solving and Ideation | 5점 | Hard |
-| Q7 | Concept Comparison | Work and Work Systems | 10점 | Medium |
+| Q7 | Concept Comparison | Work and Work Systems (Taxonomy) | 10점 | Medium |
 | Q8 | Concept Comparison | Problem Solving and Ideation | 10점 | Medium |
 | Q9 | Application | Innovation Frameworks | 15점 | Medium |
 | Q10 | Application | Motion Study and Therbligs | 15점 | Medium |

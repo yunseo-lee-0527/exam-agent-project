@@ -36,10 +36,10 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 3 minutes
-- Learning objective: Understand the principles of the engineering problem-solving process, specifically regarding alternative generation, and recognize specific ideation techniques.
+- Learning objective: Understand the importance of comprehensive solution generation and be able to recall and describe a specific technique for it within the engineering problem-solving framework.
 - Assessed skill: Knowledge recall
 - Exam intent: Test knowledge of the first phase of problem-solving.
-- Sources: M2.1.1 Engineering Problem-Solving Process.txt
+- Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt
 
 ### Q3
 
@@ -91,10 +91,10 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Analyze
 - Difficulty: Medium
 - Estimated time: 8 minutes
-- Learning objective: Students should be able to differentiate between the concepts of work and a work system and explain their relationship.
+- Learning objective: Compare and contrast different taxonomic frameworks for analyzing work systems.
 - Assessed skill: Conceptual differentiation and integration.
 - Exam intent: Assess understanding of foundational concepts in scientific management related to work and systems.
-- Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+- Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
 
 ### Q8
 

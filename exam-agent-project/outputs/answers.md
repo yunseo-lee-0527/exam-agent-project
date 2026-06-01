@@ -24,9 +24,9 @@ Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q2. Short Answer
 
-The engineering problem-solving process emphasizes generating multiple alternatives, ideally at least three, before selecting a final solution. This approach is crucial because it ensures a comprehensive exploration of possibilities, preventing engineers from settling for the first viable option and allowing for more robust improvements. It also treats the existing method as one alternative to be critically evaluated. A specific technique for generating new ideas is Bodystorming, which involves physically experiencing a situation, complete with necessary artifacts and people, to stimulate insights and generate novel solutions through immersive interaction.
+Generating multiple alternatives is crucial in the engineering problem-solving process to ensure a systematic search for the *best* possible solution, rather than settling for an immediate or obvious one. Engineers should explore various options, ideally at least three, including the existing method, to increase the likelihood of discovering more effective or innovative improvements. One specific solution generation technique discussed is **Bodystorming**. This technique involves physically experiencing a situation by setting up an experience with necessary artifacts and people. Through physically "testing" different interactions, new ideas and solutions are generated from direct engagement.
 
-Learning objective: Understand the principles of the engineering problem-solving process, specifically regarding alternative generation, and recognize specific ideation techniques.
+Learning objective: Understand the importance of comprehensive solution generation and be able to recall and describe a specific technique for it within the engineering problem-solving framework.
 
 Exam intent: Test knowledge of the first phase of problem-solving.
 
@@ -36,13 +36,14 @@ Assessed skill: Knowledge recall
 
 Rubric:
 
-- Explains the importance of generating multiple alternatives (e.g., comprehensive exploration, preventing premature commitment, treating existing method as one alternative). (3 pts)
-- Correctly names a specific solution generation technique discussed in the lectures. (1 pt)
-- Accurately describes how that technique works. (1 pt)
+- Explains why generating multiple alternatives is crucial (e.g., systematic search, finding the best solution, avoiding settling) (2 pts)
+- Mentions exploring at least three alternatives or considering the existing method (1 pt)
+- Identifies 'Bodystorming' as a solution generation technique (1 pt)
+- Accurately describes Bodystorming (e.g., physically experiencing a situation, setting up experience with artifacts/people, physically testing interactions) (1 pt)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
-Sources: M2.1.1 Engineering Problem-Solving Process.txt
+Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q3. Short Answer
 
@@ -136,9 +137,11 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q7. Concept Comparison
 
-Work refers to human activity performed to create value, often involving effort towards a purpose. It's the fundamental element. A work system, however, is a broader, structured framework comprising inputs (e.g., people, information, materials), processes (how work is transformed), outputs (products/services), and outcomes, all operating within an environment and guided by management. While work is the activity, a work system is the organized context within which work is performed. Scientific management often focuses on redesigning the work system to optimize individual work activities, reducing variability and standardizing methods to improve efficiency and output.
+The structure-based taxonomy characterizes work systems by their **common components**, such as people, processes, information, technology, and context (M1.3, p.10). It provides analytical insight into a system's overall composition and boundaries, which is crucial for **holistic problem diagnosis**, explaining failures like IT projects where non-technical elements (e.g., roles) are neglected (M1.1, p.25). This taxonomy is most useful for **initial system design** or identifying comprehensive structural deficiencies. 
 
-Learning objective: Students should be able to differentiate between the concepts of work and a work system and explain their relationship.
+Conversely, the complexity-based taxonomy categorizes work based on dimensions like **variability, uncertainty, and interdependencies** (inferred from "task complexity varies," M1.1, p.22). Its analytical insight lies in explaining **dynamic performance and sources of unpredictability**, helping distinguish necessary from unnecessary variability (M1.1, p.22). This taxonomy is more useful for **optimizing dynamic systems** or predicting performance under fluctuating conditions, such as managing emergency responses.
+
+Learning objective: Compare and contrast different taxonomic frameworks for analyzing work systems.
 
 Exam intent: Assess understanding of foundational concepts in scientific management related to work and systems.
 
@@ -148,13 +151,14 @@ Assessed skill: Conceptual differentiation and integration.
 
 Rubric:
 
-- Accurate definition of 'work' (3 points)
-- Accurate definition and key components of a 'work system' (4 points)
-- Clear explanation of the relationship and distinction between the two, particularly in the context of scientific management (3 points)
+- Identifies key dimensions for both taxonomies (structure: common components; complexity: variability/uncertainty/interdependencies). (3 pts)
+- Explains the analytical insight provided by both taxonomies (structure: composition/boundaries/diagnosis; complexity: dynamic performance/unpredictability). (3 pts)
+- Provides a relevant situation where the structure-based taxonomy is more useful (e.g., initial system design or holistic diagnosis like IT project failures). (2 pts)
+- Provides a relevant situation where the complexity-based taxonomy is more useful (e.g., optimizing dynamic systems or predicting performance under fluctuating conditions). (2 pts)
 
 Coverage contribution: work_and_work_systems: 10
 
-Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
 
 ## Q8. Concept Comparison
 
