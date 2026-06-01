@@ -907,7 +907,8 @@ def run_pipeline(
                 "start_number": 1,
             },
         ]
-        questions = fan_out_question_writers(writers, payloads, max_workers=4)
+        _batch_capable = hasattr(provider, "batch_write_questions")
+        questions = fan_out_question_writers(writers, payloads, max_workers=1 if _batch_capable else 4)
         state["run_trace"].append(
             {
                 "task": "Task 2",

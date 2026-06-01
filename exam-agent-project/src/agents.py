@@ -511,6 +511,36 @@ class _BaseQuestionWriter(BaseAgentWorker):
         start_number: int = payload.get("start_number", 1)
         per_topic_points: int = payload["points_per_question"]
 
+        # Fast path: one API call for all questions of this kind across all topics.
+        if hasattr(self.provider, "batch_write_questions"):
+            try:
+                drafts = self.provider.batch_write_questions(self.KIND, topics, count, notes)
+                questions: list[Question] = []
+                for draft in drafts:
+                    p = str(draft.get("prompt", "")).strip()
+                    if not p or len(questions) >= count:
+                        continue
+                    questions.append(Question(
+                        number=start_number + len(questions),
+                        kind=self.KIND,
+                        topic=str(draft.get("topic", topics[0].title if topics else self.KIND)),
+                        prompt=p,
+                        points=per_topic_points,
+                        answer=str(draft.get("answer", "")).strip(),
+                        source_refs=list(draft.get("source_refs", [])),
+                        difficulty=str(draft.get("difficulty", "")),
+                        learning_objective=str(draft.get("learning_objective", "")),
+                        bloom_level=str(draft.get("bloom_level", "")),
+                        estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
+                        exam_intent=str(draft.get("exam_intent", "")),
+                        assessed_skill=str(draft.get("assessed_skill", "")),
+                        rubric=list(draft.get("rubric", [])),
+                    ))
+                if questions:
+                    return questions
+            except Exception as exc:
+                print(f"[{self.name}] batch_write_questions failed ({exc}); using pool mode.")
+
         ordered = sorted(topics, key=lambda t: -t.weight)
         # Pre-fetch a pool of candidates per topic so we can dedup deterministically.
         # Each call returns the topic's full available set (deterministic) or a
@@ -648,6 +678,11 @@ class AnswerWriterAgent(BaseAgentWorker):
     def run(self, payload: dict[str, Any]) -> list[Question]:
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
+        # Skip entirely when batch writer already filled both answer and source_refs.
+        if all(q.answer and q.source_refs for q in questions):
+            for q in questions:
+                q.source_refs = list(dict.fromkeys(q.source_refs))
+            return questions
         for q in questions:
             if q.answer and q.source_refs:
                 q.source_refs = list(dict.fromkeys(q.source_refs))

@@ -375,6 +375,73 @@ class GeminiProvider:
         per_kind = {"Short Answer": 3, "Concept Comparison": 2, "Application": 2, "Essay": 1}
         return self.write_questions(kind, topic, per_kind.get(kind, 2), notes)
 
+    def batch_write_questions(self, kind: str, topics: list, count: int, notes: dict[str, str]) -> list[dict[str, Any]]:
+        """Generate all `count` questions of `kind` across all topics in ONE API call.
+
+        Replaces the 5 separate pool_questions calls (one per topic) with a single
+        call, reducing the question-writing phase from 20 calls to 4.
+        """
+        system = (
+            f"You are the {kind} specialist writer for a university midterm on Scientific Management. "
+            "Return a JSON ARRAY. Each element must have exactly these keys: "
+            "topic (string), prompt (string), answer (string ≤120 words), "
+            "source_refs (list of lecture filenames that support this question), "
+            "learning_objective, bloom_level, difficulty, estimated_time_minutes (int), "
+            "exam_intent, assessed_skill, rubric (list of 2-4 grading criteria). "
+            "Anchor every question in the lecture context provided."
+        )
+        topic_blocks: list[str] = []
+        for t in topics:
+            ctx, srcs = self._retrieval_context(notes, t.keywords, limit=2)
+            topic_blocks.append(
+                f"Topic: {t.title}\n"
+                f"  Source files available: {srcs}\n"
+                f"  Lecture context: {(ctx or '(none)')[:350]}"
+            )
+        prompt = (
+            f"Write exactly {count} {kind} exam questions distributed across these topics:\n\n"
+            + "\n\n".join(topic_blocks)
+            + f"\n\nReturn a JSON array of exactly {count} objects."
+        )
+        try:
+            raw = self._generate_for_role("writer", prompt, system, stage=f"batch_writer:{kind}")
+            cleaned = raw.replace("```json", "").replace("```", "").strip()
+            data = json.loads(cleaned) if cleaned.startswith("[") else None
+            if not data:
+                m = re.search(r"\[.*\]", cleaned, re.DOTALL)
+                data = json.loads(m.group(0)) if m else []
+            results: list[dict[str, Any]] = []
+            for item in data:
+                p = str(item.get("prompt", "")).strip()
+                if not p:
+                    continue
+                results.append({
+                    "topic": str(item.get("topic", topics[0].title if topics else kind)),
+                    "prompt": p,
+                    "answer": str(item.get("answer", "")).strip(),
+                    "source_refs": list(item.get("source_refs", [])),
+                    "learning_objective": str(item.get("learning_objective", "")).strip(),
+                    "bloom_level": str(item.get("bloom_level", "")).strip(),
+                    "difficulty": str(item.get("difficulty", "")).strip(),
+                    "estimated_time_minutes": int(item.get("estimated_time_minutes", 0) or 0),
+                    "exam_intent": str(item.get("exam_intent", "")).strip(),
+                    "assessed_skill": str(item.get("assessed_skill", "")).strip(),
+                    "rubric": list(item.get("rubric", [])),
+                })
+            if not results:
+                raise ValueError("no questions returned from batch writer")
+            return results
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "batch_write_questions",
+                lambda: [
+                    q
+                    for t in (topics or [])
+                    for q in self.fallback.write_questions(kind, t, max(1, count // max(1, len(topics))), notes)
+                ][:count],
+            )
+
     def write_answer(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
         keywords = [w for w in question.topic.split() if len(w) > 3] + question.prompt.split()[:3]
         ctx, sources = self._retrieval_context(notes, keywords, limit=3)
