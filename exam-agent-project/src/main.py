@@ -1294,6 +1294,15 @@ def run_pipeline(
         if regenerated:
             q.prompt = regenerated[0].get("prompt", q.prompt)
             q.answer = regenerated[0].get("answer", q.answer)
+            # Also update rubric so it stays consistent with the new prompt.
+            # Without this, a new prompt is generated but the old rubric remains,
+            # causing AnswerConsistencyJudgeAgent to HARD_FAIL every iteration.
+            new_rubric = regenerated[0].get("rubric")
+            if new_rubric:
+                q.rubric = list(new_rubric)
+            new_lo = regenerated[0].get("learning_objective", "")
+            if new_lo:
+                q.learning_objective = new_lo
             q.source_refs = list(
                 dict.fromkeys(regenerated[0].get("source_refs", []) or q.source_refs)
             )
@@ -1303,6 +1312,22 @@ def run_pipeline(
         result = provider.write_answer(q, notes_, revision_instruction=suggestion)
         q.answer = result["answer"].strip()
         q.source_refs = result.get("source_refs", []) or q.source_refs
+        return q
+
+    def regen_rubric(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
+        """Regenerate ONLY the rubric, keeping question prompt and answer intact.
+
+        Stage-3 failures (rubric doesn't match answer) should not touch the
+        prompt or the answer — only the rubric needs to be rewritten to
+        reflect what the existing model answer actually covers.
+        """
+        if hasattr(provider, "write_rubric"):
+            try:
+                new_rubric = provider.write_rubric(q, notes_, revision_instruction=suggestion)
+                if new_rubric:
+                    q.rubric = new_rubric
+            except Exception:
+                pass
         return q
 
     # --- Targeted regen (--regen-questions flag) ---
@@ -1422,23 +1447,20 @@ def run_pipeline(
             if not (0 <= idx < len(questions)):
                 continue
             instruction = " ".join(decision.get("revision_instructions", []))
-            failed_checks = " ".join(decision.get("failed_checks", []))
-            # answer_rubric_mismatch means the question, answer, and rubric were
-            # generated inconsistently.  Regenerating only the answer cannot fix a
-            # rubric that was written independently of the answer (a known LLM batch
-            # generation failure mode).  Always regen question+answer together so
-            # the rubric is also regenerated from scratch and stays consistent.
-            answer_only_checks = {"missing_model_answer", "thin_model_answer",
-                                   "missing_source_refs", "invalid_source_refs"}
-            failed_set = set(decision.get("failed_checks", []))
-            if failed_set <= answer_only_checks:
-                # Only answer-level issues — no need to touch the question/rubric.
-                questions[idx] = regen_answer(questions[idx], instruction, notes)
-            else:
-                # Any structural or consistency issue → regenerate question+answer
-                # so rubric, prompt, and answer are produced together and stay aligned.
+            # Use earliest_failing_stage to pick minimum-scope regeneration:
+            #   Stage 1 (question problem) → regen question + answer + rubric
+            #   Stage 2 (answer problem)   → regen answer only
+            #   Stage 3 (rubric problem)   → regen rubric only
+            # This prevents rubric issues from needlessly changing the question prompt,
+            # and prevents answer issues from overwriting a good question.
+            stage = decision.get("earliest_failing_stage", 3)
+            if stage == 1:
                 questions[idx] = regen_question(questions[idx], instruction, notes)
                 questions[idx] = regen_answer(questions[idx], instruction, notes)
+            elif stage == 2:
+                questions[idx] = regen_answer(questions[idx], instruction, notes)
+            else:
+                questions[idx] = regen_rubric(questions[idx], instruction, notes)
             revised_any = True
 
         if not revised_any:

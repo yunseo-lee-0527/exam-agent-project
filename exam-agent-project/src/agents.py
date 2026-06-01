@@ -83,6 +83,11 @@ class AgenticJudgeFinding:
       - PASS: no actionable issue found.
       - SOFT_FAIL: revise before final submission.
       - HARD_FAIL: regenerate or block final submission.
+
+    stage: which regeneration stage this finding belongs to.
+      1 = Question quality  → regen question + answer + rubric
+      2 = Answer quality    → regen answer only
+      3 = Rubric quality    → regen rubric only
     """
 
     target_id: str
@@ -91,6 +96,7 @@ class AgenticJudgeFinding:
     failed_checks: list[str] = field(default_factory=list)
     evidence: list[str] = field(default_factory=list)
     revision_instruction: str = ""
+    stage: int = 3
 
 
 # ---------------------------------------------------------------------------
@@ -1534,7 +1540,14 @@ class RedTeamJudgeAgent(BaseAgentWorker):
 
 
 class JudgeAggregatorAgent(BaseAgentWorker):
-    """Aggregates specialist judge findings into final decisions."""
+    """Aggregates specialist judge findings into final decisions.
+
+    Also computes earliest_failing_stage so the revision loop knows the
+    minimum-scope regeneration needed:
+      stage 1 → regen question + answer + rubric (question itself is wrong)
+      stage 2 → regen answer only              (answer doesn't match question)
+      stage 3 → regen rubric only              (rubric doesn't match answer)
+    """
 
     def __init__(self):
         super().__init__("Judge Aggregator", "Task 4j")
@@ -1550,10 +1563,16 @@ class JudgeAggregatorAgent(BaseAgentWorker):
             hard = [f for f in target_findings if f.verdict == "HARD_FAIL"]
             soft = [f for f in target_findings if f.verdict == "SOFT_FAIL"]
             final = "FAIL" if hard else "REVISE" if soft else "PASS"
+            failing = hard + soft
+            # earliest_failing_stage: the lowest stage among all failing findings.
+            # The revision loop should fix problems from the earliest stage first
+            # so downstream stages are not checked against a broken upstream.
+            earliest_stage = min((f.stage for f in failing), default=3) if failing else 3
             target_decisions[target_id] = {
                 "final_verdict": final,
-                "failed_checks": [check for f in hard + soft for check in f.failed_checks],
-                "revision_instructions": [f.revision_instruction for f in hard + soft if f.revision_instruction],
+                "failed_checks": [check for f in failing for check in f.failed_checks],
+                "revision_instructions": [f.revision_instruction for f in failing if f.revision_instruction],
+                "earliest_failing_stage": earliest_stage,
             }
 
         verdicts = [item["final_verdict"] for item in target_decisions.values()]
@@ -1593,8 +1612,10 @@ class FactualGroundingJudgeAgent(BaseAgentWorker):
     - PASS:      all factual claims consistent with lecture content
     """
 
-    # Max characters extracted per source_ref to keep prompt size manageable.
-    _CHARS_PER_SOURCE = 900
+    # Max characters extracted per source_ref.
+    # 2500 chars ≈ 4-5 lecture slides — large enough to avoid false positives
+    # from claims that are correct but appear later in the file.
+    _CHARS_PER_SOURCE = 2500
 
     def __init__(self, provider: Any = None):
         super().__init__("Factual Grounding Judge", "Task 4m")
@@ -1614,15 +1635,19 @@ class FactualGroundingJudgeAgent(BaseAgentWorker):
                     result = self.provider.judge_factual_grounding(
                         q, notes, chars_per_source=self._CHARS_PER_SOURCE
                     )
-                    if not result.get("factually_accurate", True):
-                        for err in (result.get("errors") or [])[:3]:
-                            if err:
-                                failed.append("factual_error")
-                                evidence.append(f"Error: {err}")
-                    # Use the LLM's own verdict if it says HARD_FAIL
-                    if result.get("verdict") == "HARD_FAIL" and not failed:
-                        failed.append("factual_error")
-                        evidence.append("LLM judge returned HARD_FAIL without specific error list.")
+                    verdict_llm = result.get("verdict", "PASS")
+                    errors = [str(e) for e in (result.get("errors") or []) if e]
+                    if verdict_llm == "HARD_FAIL":
+                        # Clear factual error → trigger regeneration
+                        for err in errors[:3]:
+                            failed.append("factual_error")
+                            evidence.append(f"Error: {err}")
+                    elif verdict_llm == "SOFT_FAIL":
+                        # Unsupported but plausible → log only, no regeneration.
+                        # SOFT_FAIL often means the excerpt was too short to confirm
+                        # a correct paraphrase. Warning is recorded for human review.
+                        for err in errors[:3]:
+                            evidence.append(f"Warning (unverified): {err}")
                 except Exception as exc:
                     evidence.append(f"Factual check skipped: {exc}")
 
@@ -1772,35 +1797,76 @@ class AgenticJudgeSystemAgent(BaseAgentWorker):
               semantic check) and OverlapJudgeAgent (cross-question overlap check).
     """
 
+    # Judge → stage mapping.  Stage determines what gets regenerated on failure:
+    #   1 = Question quality  → regen question + answer + rubric
+    #   2 = Answer quality    → regen answer only (question stays)
+    #   3 = Rubric quality    → regen rubric only (question + answer stay)
+    _JUDGE_STAGES: dict[str, int] = {
+        "Coverage Judge": 1,
+        "Difficulty Balance Judge": 1,
+        "Pedagogical Quality Judge": 1,
+        "Red-Team Judge": 1,
+        "Overlap Judge": 1,
+        "Source Grounding Judge": 2,
+        "Factual Grounding Judge": 2,
+        "Answer Rubric Judge": 3,
+        "Answer Consistency Judge": 3,
+    }
+
     def __init__(self, lecture_terms: list[str] | None = None, provider: Any = None):
         super().__init__("Agentic Judge System", "Task 5b")
-        self.judges = [
+        # Stage 1: Is the question itself well-formed?
+        self._stage1_judges = [
             CoverageJudgeAgent(),
-            SourceGroundingJudgeAgent(),
             DifficultyBalanceJudgeAgent(),
             PedagogicalQualityJudgeAgent(lecture_terms=lecture_terms),
-            AnswerRubricJudgeAgent(),
             RedTeamJudgeAgent(),
-            AnswerConsistencyJudgeAgent(provider=provider),
-            FactualGroundingJudgeAgent(provider=provider),
             OverlapJudgeAgent(provider=provider),
         ]
+        # Stage 2: Does the answer match the question and lecture content?
+        self._stage2_judges = [
+            SourceGroundingJudgeAgent(),
+            FactualGroundingJudgeAgent(provider=provider),
+        ]
+        # Stage 3: Is the rubric consistent with the answer?
+        self._stage3_judges = [
+            AnswerRubricJudgeAgent(),
+            AnswerConsistencyJudgeAgent(provider=provider),
+        ]
         self.aggregator = JudgeAggregatorAgent()
+
+    def _run_stage(
+        self, stage: int, judges: list[BaseAgentWorker], payload: dict[str, Any]
+    ) -> tuple[list[AgenticJudgeFinding], list[dict[str, Any]]]:
+        findings: list[AgenticJudgeFinding] = []
+        trace: list[dict[str, Any]] = []
+        for judge in judges:
+            judge_findings = judge.run(payload)
+            # Tag each finding with its stage so the revision loop can pick
+            # the minimum-scope regen (question / answer / rubric only).
+            for f in judge_findings:
+                f.stage = stage
+            findings.extend(judge_findings)
+            trace.append({
+                "stage": stage,
+                "task": judge.task_id,
+                "agent": judge.name,
+                "findings": len(judge_findings),
+                "non_pass": sum(1 for f in judge_findings if f.verdict != "PASS"),
+            })
+        return findings, trace
 
     def run(self, payload: dict[str, Any]) -> dict[str, Any]:
         findings: list[AgenticJudgeFinding] = []
         trace: list[dict[str, Any]] = []
-        for judge in self.judges:
-            judge_findings = judge.run(payload)
-            findings.extend(judge_findings)
-            trace.append(
-                {
-                    "task": judge.task_id,
-                    "agent": judge.name,
-                    "findings": len(judge_findings),
-                    "non_pass": sum(1 for f in judge_findings if f.verdict != "PASS"),
-                }
-            )
+        for stage, judges in [
+            (1, self._stage1_judges),
+            (2, self._stage2_judges),
+            (3, self._stage3_judges),
+        ]:
+            stage_findings, stage_trace = self._run_stage(stage, judges, payload)
+            findings.extend(stage_findings)
+            trace.extend(stage_trace)
         aggregate = self.aggregator.run({"findings": findings})
         trace.append(
             {

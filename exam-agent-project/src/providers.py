@@ -703,6 +703,50 @@ class GeminiProvider:
         except Exception as exc:
             return self._fallback_or_raise(exc, "judge_answer", lambda: self.fallback.judge_answer(question, notes))
 
+    def write_rubric(
+        self,
+        question: Question,
+        notes: dict[str, str],
+        revision_instruction: str | None = None,
+    ) -> list[str]:
+        """Regenerate ONLY the grading rubric for an existing question+answer.
+
+        Called by regen_rubric() when stage-3 judges flag a rubric problem.
+        The prompt and answer remain unchanged; only the rubric is rewritten
+        so its criteria are directly derivable from the existing model answer.
+        """
+        system = (
+            "You are a grading rubric writer for a university exam. "
+            "Given a question and its model answer, write 2-4 specific, objectively "
+            "gradeable criteria that a grader can apply consistently. "
+            "Every criterion must be directly achievable from the model answer. "
+            "Point values must be integers summing exactly to the question's total points. "
+            "Return a JSON ARRAY of strings, each formatted as "
+            "'criterion description (N pts)'. "
+            "Do NOT return any other text."
+        )
+        hint = f"\nRevision note: {revision_instruction}" if revision_instruction else ""
+        prompt = (
+            f"Question ({question.kind}, {question.points} pts total):\n{question.prompt}\n\n"
+            f"Model Answer:\n{question.answer}{hint}\n\n"
+            "Write rubric criteria that sum to the question's total points."
+        )
+        try:
+            raw = self._generate_for_role("judge", prompt, system, stage="rubric_writer")
+            cleaned = raw.strip().replace("```json", "").replace("```", "").strip()
+            import re as _re
+            data = json.loads(cleaned) if cleaned.startswith("[") else None
+            if not data:
+                match = _re.search(r"\[.*\]", cleaned, _re.DOTALL)
+                data = json.loads(match.group(0)) if match else []
+            return [str(item) for item in data if item]
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "write_rubric",
+                lambda: list(question.rubric),
+            )
+
     def judge_factual_grounding(
         self,
         question: Question,

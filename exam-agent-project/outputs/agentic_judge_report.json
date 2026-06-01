@@ -1,71 +1,118 @@
 {
-  "final_verdict": "PASS",
+  "final_verdict": "FAIL",
   "summary": {
     "targets": 12,
-    "pass": 12,
+    "pass": 5,
     "revise": 0,
-    "fail": 0
+    "fail": 7
   },
   "target_decisions": {
     "EXAM": {
       "final_verdict": "PASS",
       "failed_checks": [],
-      "revision_instructions": []
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q1": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
+      ],
+      "revision_instructions": [
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both."
+      ],
+      "earliest_failing_stage": 3
     },
     "Q10": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "factual_error",
+        "answer_rubric_mismatch"
+      ],
+      "revision_instructions": [
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both."
+      ],
+      "earliest_failing_stage": 2
     },
     "Q11": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
+      ],
+      "revision_instructions": [
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both."
+      ],
+      "earliest_failing_stage": 3
     },
     "Q2": {
       "final_verdict": "PASS",
       "failed_checks": [],
-      "revision_instructions": []
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q3": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "rubric_sum_mismatch",
+        "answer_rubric_mismatch",
+        "factual_error"
+      ],
+      "revision_instructions": [
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
+      ],
+      "earliest_failing_stage": 2
     },
     "Q4": {
       "final_verdict": "PASS",
       "failed_checks": [],
-      "revision_instructions": []
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q5": {
       "final_verdict": "PASS",
       "failed_checks": [],
-      "revision_instructions": []
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q6": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch",
+        "factual_error"
+      ],
+      "revision_instructions": [
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
+      ],
+      "earliest_failing_stage": 2
     },
     "Q7": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
+      ],
+      "revision_instructions": [
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both."
+      ],
+      "earliest_failing_stage": 3
     },
     "Q8": {
       "final_verdict": "PASS",
       "failed_checks": [],
-      "revision_instructions": []
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q9": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": []
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "revision_instructions": [
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
+      ],
+      "earliest_failing_stage": 2
     }
   },
   "findings": [
@@ -80,129 +127,8 @@
         "total_points=100",
         "hard_fail_threshold=±20pt, soft_fail_threshold=±10pt"
       ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q1",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, three, complementary, taxonomies, characterize"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q2",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=engineering, problem-solving, process, problem, step, because"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q3",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, system, define, which, human, machine"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q4",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, taxonomy, systems, characterize, understand, along"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, goal, ideation, phase, generate, large"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
-        "matched_terms=concept, back, generate, better, problem, example"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q7",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, structure-based, taxonomy, complexity-based, systems, along"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q8",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=method, brainstorming, tools, affinity, diagram, structured"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q9",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=subtraction, innovation, company, developing, line, smart",
-        "lecture_innovation_frameworks_in_answer=subtraction"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q10",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, task, identify, involved, placing, into"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q11",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=scientific, management, taylor, work, system, analyze"
-      ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "EXAM",
@@ -213,7 +139,8 @@
         "target_difficulty={'easy': 25, 'medium': 50, 'hard': 25}",
         "actual_difficulty={'easy': 25, 'medium': 50, 'hard': 25, 'unspecified': 0}"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q1",
@@ -222,9 +149,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Understand the different ways work systems are characterized."
+        "learning_objective=Explain the significance of work system taxonomies."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q2",
@@ -233,9 +161,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Explain the importance of problem definition in the problem-solving process."
+        "learning_objective=Students will be able to explain the significance of key initial steps in the DASSI Engineering Problem Solving Process."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q3",
@@ -244,9 +173,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Define the concept of a work system."
+        "learning_objective=Understand the key components and rationale behind the 'work system thinking' approach from an Information Systems perspective."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q4",
@@ -255,9 +185,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Explain the importance of work system taxonomies."
+        "learning_objective=Connect Scientific Management to the broader concept of work system redesign."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q5",
@@ -266,9 +197,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Identify the purpose of brainstorming in problem-solving."
+        "learning_objective=Describe the objective and key characteristics of brainstorming."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q6",
@@ -277,9 +209,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Explain the Concept Fan technique and apply it to a problem context."
+        "learning_objective=Apply systematic innovation frameworks to generate solutions."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q7",
@@ -288,9 +221,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Compare and contrast different taxonomies for characterizing work systems."
+        "learning_objective=Differentiate between various taxonomies for characterizing work systems and explain their distinct purposes."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q8",
@@ -299,9 +233,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Compare and contrast different problem-solving and ideation methods."
+        "learning_objective=Distinguish between the initial problem definition and subsequent solution ideation stages of the engineering problem-solving process."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q9",
@@ -310,9 +245,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Apply systematic innovation frameworks to generate new product/service ideas."
+        "learning_objective=Apply systematic innovation frameworks to generate novel product or service ideas."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q10",
@@ -321,9 +257,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Analyze common tasks using Therbligs to identify inefficiencies and propose improvements."
+        "learning_objective=Analyze a work sequence using therbligs and propose efficiency improvements based on motion study principles."
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q11",
@@ -332,130 +269,10 @@
       "failed_checks": [],
       "evidence": [
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Analyze the core principles and evolution of Scientific Management, evaluating its impact on work system design and its inherent strengths and limitations."
+        "learning_objective=Analyze the historical context, principles, and enduring impact of Scientific Management, recognizing its strengths and limitations in various work system designs."
       ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q1",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=49",
-        "rubric_items=3"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q2",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=59",
-        "rubric_items=3"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q3",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=52",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q4",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=66",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=71",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=89",
-        "rubric_items=3"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q7",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=100",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q8",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=98",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q9",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=88",
-        "rubric_items=3"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q10",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=142",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q11",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=114",
-        "rubric_items=4"
-      ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q1",
@@ -463,9 +280,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=9"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q2",
@@ -473,9 +291,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=16"
+        "prompt_words=23"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q3",
@@ -483,9 +302,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=7"
+        "prompt_words=36"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q4",
@@ -493,9 +313,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=19"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q5",
@@ -503,9 +324,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=13"
+        "prompt_words=12"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q6",
@@ -513,9 +335,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=25"
+        "prompt_words=20"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q7",
@@ -523,9 +346,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=14"
+        "prompt_words=27"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q8",
@@ -533,9 +357,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=29"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q9",
@@ -543,9 +368,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=55"
+        "prompt_words=60"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q10",
@@ -553,9 +379,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=67"
+        "prompt_words=74"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
     },
     {
       "target_id": "Q11",
@@ -563,19 +390,526 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=57"
+        "prompt_words=49"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Overlap Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, system, taxonomies, systems, these, along"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
+        "matched_terms=dassi, both, define, problem, search, alternatives"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, system, information, systems, perspective, core"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=work, scientific, management, system, redesign, taylor"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, goal, solution, generation, technique, focus"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
+        "matched_terms=subtraction, innovation, framework, systematic, methods, applied"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, used, systems, focus, they, other"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=compare, understanding, structuring, problems, phase, solution"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
+        "matched_terms=innovation, frameworks, subtraction, common, smartphone, allows"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=therbligs, task, worker, desk, short, placing"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt",
+        "matched_terms=scientific, management, work, taylor, impact, systems"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1",
+        "Warning (unverified): The model answer states that taxonomies are important because they allow for the description of systems along various dimensions. While this is a reasonable inference, the provided lecture excerpts do not explicitly state this as the reason for their importance. The excerpts state that a useful taxonomy distinguishes work systems in ways that guide analysis and design, and helps reveal meaningful differences."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Factual Grounding Judge",
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "evidence": [
+        "sources_checked=1",
+        "Error: The model answer lists 'customers' as one of the five core components of a work system. The provided lecture excerpts do not explicitly list 'customers' as one of the core components when defining a work system from an Information Systems perspective."
+      ],
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "stage": 2
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Factual Grounding Judge",
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "evidence": [
+        "sources_checked=1",
+        "Error: The model answer incorrectly states that the 'Subtraction' framework is used to simplify processes and provides an example of using generative AI in software development automation. The provided lecture excerpts define the 'Subtraction' framework but do not elaborate on its application or provide any examples. The examples given in the excerpts (ChatGPT, Midjourney, Adobe Photoshop with Firefly) are all associated with the 'Addition' framework, not 'Subtraction'."
+      ],
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "stage": 2
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Factual Grounding Judge",
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "evidence": [
+        "sources_checked=1",
+        "Error: The lecture notes only describe the Addition, Subtraction, Alternate, Combination, and Transposition frameworks in general terms and provide examples primarily related to software and AI. The explanation for the Combination framework, stating 'similar to how the iPhone combined previous features with a better user interface,' is not supported by the provided lecture excerpts.",
+        "Error: The explanation for the Combination framework, stating it integrates 'new, specialized medical diagnostic capabilities' into a smartphone, is a specific application not detailed or exemplified in the provided lecture notes on innovation frameworks."
+      ],
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "stage": 2
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Factual Grounding Judge",
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "evidence": [
+        "sources_checked=2",
+        "Error: The model answer incorrectly states that the lecture context does not define or list specific therbligs. The provided excerpts from M3.1.1 clearly define and list several therbligs, including Reach (RE), Grasp (G), Move (M), and Release (RL), and provide examples for each.",
+        "Error: The model answer claims it is not possible to identify three distinct therbligs and explain their roles based solely on the provided materials, which is contradicted by the lecture excerpts that define these therbligs and their functions within motion study."
+      ],
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "stage": 2
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2",
+        "Warning (unverified): The model answer claims that Scientific Management's shortcomings include neglecting \"worker autonomy in job design (methods, pacing), feedback, and task meaning (significance, identity, skill variety)\". While the lecture notes (M1.1, page 9) do discuss \"autonomy\", \"feedback\", and \"task meaning\" as factors influencing motivation and performance in job design research, they do not explicitly link these concepts as shortcomings of Scientific Management itself. The excerpts provided do not contain enough information to verify this specific critique of Scientific Management's shortcomings regarding these psychological aspects."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=42",
+        "rubric_items=4"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=65",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=67",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=80",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=48",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=54",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=76",
+        "rubric_items=4"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=86",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=110",
+        "rubric_items=4"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=191",
+        "rubric_items=5"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=86",
+        "rubric_items=5"
+      ],
+      "revision_instruction": "",
+      "stage": 3
     },
     {
       "target_id": "Q1",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "The model answer does not provide a definition of taxonomy in the context of work systems, which is worth 1 point in the rubric.",
+        "The model answer mentions structure-based taxonomy and complexity-based taxonomy but does not explain their purposes, only mentioning them as examples of how work systems can be understood.",
+        "The rubric asks for the purpose of structure-based taxonomy, but the answer only states it helps understand how a work system is organized. This is a partial explanation.",
+        "rubric_items=4; rubric_pts_parsed=[1.0, 2.0, 1.0, 1.0]"
+      ],
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "stage": 3
     },
     {
       "target_id": "Q2",
@@ -585,17 +919,24 @@
       "evidence": [
         "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 3
     },
     {
       "target_id": "Q3",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "rubric_sum_mismatch",
+        "answer_rubric_mismatch"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "Rubric sums to 10.0 but question is worth 5 pts",
+        "The model answer does not articulate that a holistic view enables effective analysis, measurement, and redesign of work, which is the third criterion in the rubric.",
+        "rubric_items=3; rubric_pts_parsed=[5.0, 2.0, 3.0]"
+      ],
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "stage": 3
     },
     {
       "target_id": "Q4",
@@ -603,9 +944,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 3
     },
     {
       "target_id": "Q5",
@@ -613,29 +955,42 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 3
     },
     {
       "target_id": "Q6",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "The model answer fails to define 'Subtraction' as removing an essential component. Instead, it describes simplification through generative AI in software development.",
+        "The example provided (generative AI simplifying coding) does not illustrate the 'Subtraction' framework of removing an essential component, but rather automation and simplification.",
+        "The explanation of the purpose of Subtraction is missing; the answer focuses on the benefits of AI in coding instead of the purpose of removing components.",
+        "rubric_items=3; rubric_pts_parsed=[1.0, 2.0, 2.0]"
+      ],
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "stage": 3
     },
     {
       "target_id": "Q7",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
+      ],
       "evidence": [
+        "The model answer states that the lecture context does not contain the information required to answer the question, failing to address any part of the rubric.",
+        "The rubric requires identification and explanation of two specific taxonomies, which the model answer explicitly states are not present in the provided context.",
+        "The model answer does not identify the axes or primary focus of either taxonomy.",
         "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 2.0, 2.0]"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "stage": 3
     },
     {
       "target_id": "Q8",
@@ -643,9 +998,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 2.0, 2.0]"
+        "rubric_items=3; rubric_pts_parsed=[4.0, 4.0, 2.0]"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 3
     },
     {
       "target_id": "Q9",
@@ -653,78 +1009,111 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[5.0, 5.0, 5.0]"
+        "rubric_items=4; rubric_pts_parsed=[5.0, 3.0, 5.0, 2.0]"
       ],
-      "revision_instruction": ""
+      "revision_instruction": "",
+      "stage": 3
     },
     {
       "target_id": "Q10",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[3.0, 6.0, 3.0, 3.0]"
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "The model answer claims it's not possible to identify specific therbligs from the provided materials, but the question explicitly asks to identify three distinct therbligs and the rubric lists 'Search', 'Grasp', and 'Use' as expected therbligs to be identified and explained.",
+        "The model answer does not identify or explain the role of 'Search', 'Grasp', or 'Use' therbligs as required by the rubric, making it impossible to award points for these criteria.",
+        "The proposed improvement is justified by general principles of motion study and scientific management (standardization, tool optimization) rather than by clearly linking it to the elimination or reduction of *identified* therbligs, as the therbligs were not identified in the answer.",
+        "rubric_items=5; rubric_pts_parsed=[3.0, 3.0, 3.0, 3.0, 3.0]"
+      ],
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "stage": 3
     },
     {
       "target_id": "Q11",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[6.0, 6.0, 4.0, 4.0]"
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
       ],
-      "revision_instruction": ""
+      "evidence": [
+        "The model answer does not discuss the Gilbreths' extension through motion study and Therbligs, which is a specific criterion in the rubric.",
+        "The model answer mentions limitations in complex, dynamic environments but does not cite specific challenges as requested by the rubric.",
+        "rubric_items=5; rubric_pts_parsed=[5.0, 3.0, 5.0, 4.0, 3.0]"
+      ],
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "stage": 3
     }
   ],
   "trace": [
     {
+      "stage": 1,
       "task": "Task 4d",
       "agent": "Coverage Judge",
       "findings": 1,
       "non_pass": 0
     },
     {
-      "task": "Task 4e",
-      "agent": "Source Grounding Judge",
-      "findings": 11,
-      "non_pass": 0
-    },
-    {
+      "stage": 1,
       "task": "Task 4f",
       "agent": "Difficulty Balance Judge",
       "findings": 1,
       "non_pass": 0
     },
     {
+      "stage": 1,
       "task": "Task 4g",
       "agent": "Pedagogical Quality Judge",
       "findings": 11,
       "non_pass": 0
     },
     {
-      "task": "Task 4h",
-      "agent": "Answer Rubric Judge",
-      "findings": 11,
-      "non_pass": 0
-    },
-    {
+      "stage": 1,
       "task": "Task 4i",
       "agent": "Red-Team Judge",
       "findings": 11,
       "non_pass": 0
     },
     {
-      "task": "Task 4k",
-      "agent": "Answer Consistency Judge",
+      "stage": 1,
+      "task": "Task 4l",
+      "agent": "Overlap Judge",
       "findings": 11,
       "non_pass": 0
     },
     {
+      "stage": 2,
+      "task": "Task 4e",
+      "agent": "Source Grounding Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "stage": 2,
+      "task": "Task 4m",
+      "agent": "Factual Grounding Judge",
+      "findings": 11,
+      "non_pass": 4
+    },
+    {
+      "stage": 3,
+      "task": "Task 4h",
+      "agent": "Answer Rubric Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "stage": 3,
+      "task": "Task 4k",
+      "agent": "Answer Consistency Judge",
+      "findings": 11,
+      "non_pass": 6
+    },
+    {
       "task": "Task 4j",
       "agent": "Judge Aggregator",
-      "final_verdict": "PASS"
+      "final_verdict": "FAIL"
     }
   ]
 }

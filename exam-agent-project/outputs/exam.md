@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-What are the three complementary taxonomies used to characterize work systems?
+Explain why taxonomies are important in characterizing work systems.
 
 ## Q2. Short Answer (5 points)
 
-According to the engineering problem-solving process, why is defining the problem considered a crucial first step?
+Explain why both the "Define the problem" and "Search for alternatives" steps are considered critical in the Five-Step Engineering Problem Solving Process (DASSI).
 
 ## Q3. Short Answer (5 points)
 
-Briefly define what a 'work system' encompasses.
+From the Information Systems perspective presented in the lecture, what are the five core components that constitute a 'work system' and why is it important to adopt 'work system thinking' rather than just focusing on IT?
 
 ## Q4. Short Answer (5 points)
 
-Why is having a robust taxonomy for work systems considered important?
+In the context of work systems, how is Scientific Management reinterpreted as an early attempt at work system redesign?
 
 ## Q5. Short Answer (5 points)
 
-What is the primary goal of brainstorming in the ideation phase of problem-solving?
+What is the primary goal of brainstorming as a solution generation technique?
 
 ## Q6. Short Answer (5 points)
 
-Describe the Concept Fan technique. How does stepping back to a higher-level concept help generate better solutions to a problem? Illustrate with a brief example.
+Explain how the 'Subtraction' framework from systematic innovation methods can be applied as a solution generation technique. Provide an example.
 
 ## Q7. Concept Comparison (10 points)
 
-Compare and contrast the structure-based taxonomy and the complexity-based taxonomy for characterizing work systems.
+Compare and contrast the three-axis structure-based taxonomy and the two-axis complexity-based taxonomy used to characterize work systems. Highlight their primary focus and how they complement each other.
 
 ## Q8. Concept Comparison (10 points)
 
-Compare and contrast the KJ Method and Brainstorming as problem-solving tools.
+Compare and contrast the 'Understanding and Structuring Problems' phase with the 'Solution Generation' phase within the engineering problem-solving process. Explain the primary objective and typical activities of each phase.
 
 ## Q9. Application (15 points)
 
-A company is developing a new line of smart home devices and wants to innovate on the traditional alarm clock. Using the **Subtraction** innovation framework, propose a novel alarm clock concept. Describe what core component is removed and how the device would still fulfill its primary function of waking a user, explaining the user benefit.
+A common smartphone allows users to make calls, send messages, browse the internet, and take photos. Using two distinct systematic innovation frameworks from the lecture (Addition, Subtraction, Alternate, Combination, Transposition), propose two separate innovative improvements or new features for a smartphone. For each proposed innovation, clearly name the framework used and briefly explain how it applies to generate your idea.
 
 ## Q10. Application (15 points)
 
-Imagine a common household task: loading a dishwasher. Identify three distinct Therbligs involved in placing a plate into the dishwasher, providing a brief description of each as it applies to this task. For one of these identified Therbligs, propose a simple modification to the workstation (e.g., kitchen layout, dishwasher design, plate storage) that could reduce its duration or improve efficiency, explaining how this modification achieves the improvement.
+Consider the common task of an office worker picking up a pen from a desk, writing a short note, and then placing the pen back. Identify three distinct therbligs that occur during this specific sequence of actions. For each therblig identified, explain its role in the action sequence. Then, propose one specific practical improvement to make this process more efficient, justifying your suggestion by referring to the identified therbligs or principles of motion economy.
 
 ## Q11. Essay (20 points)
 
-Critically analyze how the foundational principles of Scientific Management, particularly Taylor's approach to standardization and separation of planning, fundamentally redefined work system design. Elaborate on how the Gilbreths' contributions, such as motion study and Therbligs, extended these initial efforts to optimize work processes. Discuss both the significant strengths and inherent limitations of this approach to organizational efficiency.
+Critically evaluate the enduring impact of Scientific Management on modern work systems. Discuss how its foundational principles, as articulated by Taylor and extended by the Gilbreths, continue to influence operational efficiency and design, while also identifying its primary shortcomings in addressing human factors and adaptability within complex, dynamic environments.
