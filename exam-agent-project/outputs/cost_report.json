@@ -1,86 +1,28 @@
 {
-  "provider": "GeminiApiKeyProvider",
-  "quality": "final_low_cost",
+  "provider": "ConfiguredDeterministicProvider",
+  "quality": "draft",
   "model_preset": null,
   "models": {
     "planner": "gemini-2.5-flash",
     "writer": "gemini-2.5-flash",
     "answer_writer": "gemini-2.5-flash",
-    "judge": "gemini-2.5-flash",
+    "judge": "gemini-2.5-flash-lite",
     "final_rewriter": "gemini-2.5-flash"
   },
-  "strict_provider": true,
+  "strict_provider": false,
   "usage": {
-    "calls": 7,
-    "estimated_input_tokens": 8535,
-    "estimated_output_tokens": 8900,
-    "estimated_cost_usd": 0.00662,
-    "by_model": {
-      "gemini-2.5-flash": {
-        "calls": 7,
-        "input_tokens": 8535,
-        "output_tokens": 8900,
-        "estimated_cost_usd": 0.006620249999999999
-      }
-    },
-    "records": [
-      {
-        "stage": "planner",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 409,
-        "output_tokens": 1046,
-        "estimated_cost_usd": 0.00068895
-      },
-      {
-        "stage": "batch_writer:Short Answer",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 837,
-        "output_tokens": 2527,
-        "estimated_cost_usd": 0.00164175
-      },
-      {
-        "stage": "batch_writer:Concept Comparison",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 840,
-        "output_tokens": 1100,
-        "estimated_cost_usd": 0.000786
-      },
-      {
-        "stage": "batch_writer:Application",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 836,
-        "output_tokens": 1292,
-        "estimated_cost_usd": 0.0009005999999999999
-      },
-      {
-        "stage": "batch_writer:Essay",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 833,
-        "output_tokens": 581,
-        "estimated_cost_usd": 0.00047354999999999994
-      },
-      {
-        "stage": "batch_question_judge",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 2411,
-        "output_tokens": 1270,
-        "estimated_cost_usd": 0.0011236500000000001
-      },
-      {
-        "stage": "batch_answer_judge",
-        "model": "gemini-2.5-flash",
-        "input_tokens": 2369,
-        "output_tokens": 1084,
-        "estimated_cost_usd": 0.00100575
-      }
-    ],
-    "auth_mode": "api_key",
-    "model_fallback_events": []
+    "calls": 0,
+    "estimated_input_tokens": 0,
+    "estimated_output_tokens": 0,
+    "estimated_cost_usd": 0.0,
+    "by_model": {},
+    "records": [],
+    "note": "Deterministic provider uses local static generation and makes no billable model calls."
   },
   "static_estimates": {
     "lecture_note_tokens": 34123,
-    "question_prompt_tokens": 784,
-    "answer_tokens": 1939,
+    "question_prompt_tokens": 409,
+    "answer_tokens": 1364,
     "note": "Static estimates use len(text)//4 and complement provider usage records."
   },
   "chunk_index": {

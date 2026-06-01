@@ -1,6 +1,30 @@
 {
-  "risk_count": 1,
+  "risk_count": 5,
   "risks": [
+    {
+      "risk": "deterministic_provider",
+      "severity": "high",
+      "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
+      "mitigation": "Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider using the lecture Agent Platform setup, or --provider gemini with GEMINI_API_KEY as a backup path. Add --blueprint nonexistent_path when evidence from the specialist writer path is required."
+    },
+    {
+      "risk": "blueprint_dependency",
+      "severity": "medium",
+      "evidence": "exam_blueprint.json controls the current exam draft.",
+      "mitigation": "Frame it as a team-authored, requirement-aligned blueprint or run with --blueprint nonexistent_path and a live provider in strict mode before final submission."
+    },
+    {
+      "risk": "provider_fallback_hidden",
+      "severity": "medium",
+      "evidence": "Strict provider mode is off, so live provider failures can fall back during development.",
+      "mitigation": "Use --strict-provider for final generation."
+    },
+    {
+      "risk": "self_evaluation_bias",
+      "severity": "medium",
+      "evidence": "The same system family generates and judges the exam.",
+      "mitigation": "Add human_review_notes.json and compare human findings against agentic_judge_report.json."
+    },
     {
       "risk": "chunk_grounding_is_not_entailment",
       "severity": "low",
@@ -8,6 +32,6 @@
       "mitigation": "Upgrade SourceGroundingJudgeAgent to compare answer claims against cited chunks with a live LLM judge."
     }
   ],
-  "agentic_judge_final_verdict": "FAIL",
+  "agentic_judge_final_verdict": "PASS",
   "chunk_grounding_passed": true
 }

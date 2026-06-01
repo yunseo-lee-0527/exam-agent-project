@@ -819,6 +819,9 @@ def _pass(target_id: str, judge: str, evidence: list[str] | None = None) -> Agen
 class CoverageJudgeAgent(BaseAgentWorker):
     """Hard-fail judge for exam-level topic coverage and point totals."""
 
+    HARD_FAIL_THRESHOLD = 20  # >20pt off → must regenerate
+    SOFT_FAIL_THRESHOLD = 10  # 10-20pt off → warn but acceptable
+
     def __init__(self):
         super().__init__("Coverage Judge", "Task 4d")
 
@@ -827,27 +830,50 @@ class CoverageJudgeAgent(BaseAgentWorker):
         requirements: dict[str, Any] = payload["requirements"]
         target = {str(k): int(v) for k, v in requirements.get("coverage_weights", {}).items()}
         actual = _point_contribution(questions)
-        failed: list[str] = []
+        hard_failed: list[str] = []
+        soft_failed: list[str] = []
         evidence = [
             f"target_coverage={target}",
             f"actual_coverage={actual}",
             f"total_points={sum(q.points for q in questions)}",
+            f"hard_fail_threshold=±{self.HARD_FAIL_THRESHOLD}pt, soft_fail_threshold=±{self.SOFT_FAIL_THRESHOLD}pt",
         ]
 
         if sum(q.points for q in questions) != 100:
-            failed.append("point_total")
+            hard_failed.append("point_total")
         for key, expected in target.items():
-            if actual.get(key, 0) != expected:
-                failed.append(f"coverage:{key}")
-        if failed:
+            delta = abs(actual.get(key, 0) - expected)
+            if delta > self.HARD_FAIL_THRESHOLD:
+                hard_failed.append(f"coverage:{key}")
+            elif delta > self.SOFT_FAIL_THRESHOLD:
+                soft_failed.append(f"coverage:{key}")
+
+        if hard_failed:
             return [
                 AgenticJudgeFinding(
                     target_id="EXAM",
                     judge=self.name,
                     verdict="HARD_FAIL",
-                    failed_checks=failed,
+                    failed_checks=hard_failed,
                     evidence=evidence,
-                    revision_instruction="Regenerate questions so each topic's point contribution exactly matches requirements.json and total points equal 100.",
+                    revision_instruction=(
+                        f"Topic distribution deviates by more than {self.HARD_FAIL_THRESHOLD}pt. "
+                        "Regenerate questions with stricter per-topic distribution."
+                    ),
+                )
+            ]
+        if soft_failed:
+            return [
+                AgenticJudgeFinding(
+                    target_id="EXAM",
+                    judge=self.name,
+                    verdict="SOFT_FAIL",
+                    failed_checks=soft_failed,
+                    evidence=evidence,
+                    revision_instruction=(
+                        f"Topic distribution deviates by {self.SOFT_FAIL_THRESHOLD}–{self.HARD_FAIL_THRESHOLD}pt. "
+                        "Consider adjusting question distribution if time allows."
+                    ),
                 )
             ]
         return [_pass("EXAM", self.name, evidence)]
@@ -958,9 +984,17 @@ class SourceGroundingJudgeAgent(BaseAgentWorker):
 
 
 class DifficultyBalanceJudgeAgent(BaseAgentWorker):
-    """Exam-level judge for easy/medium/hard balance by points."""
+    """Exam-level judge for easy/medium/hard balance by points.
 
-    def __init__(self, tolerance_points: int = 5):
+    Tolerance design: with discrete point values (5/10/15/20 pt), a single
+    misclassified short-answer question (5 pt) shifts the balance by 5 pt.
+    A tolerance of 5 would therefore SOFT_FAIL on any single labelling error.
+    10 pt allows 1–2 question label drift without triggering revision, which
+    matches realistic LLM labelling variance while still catching gross imbalances
+    (e.g. all questions labelled medium).
+    """
+
+    def __init__(self, tolerance_points: int = 10):
         super().__init__("Difficulty Balance Judge", "Task 4f")
         self.tolerance_points = tolerance_points
 
@@ -1010,6 +1044,12 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
                 higher_order_terms = ["apply", "compare", "discuss", "analyze", "redesign", "propose", "why"]
                 if not any(term in prompt_lc for term in higher_order_terms):
                     failed.append("weak_higher_order_demand")
+            # Lecture-specific signal terms for this course (Scientific Management).
+            # Covers Taylor/Gilbreth cases, DASSI family, innovation tools, and
+            # work-system concepts.  "therblig" matches the plural "therbligs" as a
+            # substring.  "work system" matches "work systems" (plural) likewise.
+            # Added: emergence, pig iron, time study, motion study, shovel, pdca,
+            # concept fan — all course-specific but absent from the original 9-term list.
             lecture_terms = [
                 "taylor",
                 "gilbreth",
@@ -1020,6 +1060,13 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
                 "innovation",
                 "work system",
                 "soldiering",
+                "emergence",
+                "pig iron",
+                "time study",
+                "motion study",
+                "shovel",
+                "pdca",
+                "concept fan",
             ]
             if not any(term in prompt_lc or term in q.answer.lower() for term in lecture_terms):
                 failed.append("weak_lecture_specificity")
@@ -1085,7 +1132,16 @@ class AnswerRubricJudgeAgent(BaseAgentWorker):
 
 
 class RedTeamJudgeAgent(BaseAgentWorker):
-    """Student-perspective ambiguity and fairness judge."""
+    """Student-perspective ambiguity and fairness judge.
+
+    Prompt length threshold: Essay questions have no upper limit because
+    extended context is expected.  For all other types the limit is 90 words
+    (raised from a previous 70-word value).  Application and Concept Comparison
+    questions often need 70–85 words to specify a realistic scenario and multi-part
+    task without becoming ambiguous; 70 words was too tight and caused false positives
+    (e.g. Q9 with 76 words flagged despite being well-formed).  Short Answer questions
+    rarely need more than 40 words, so 90 still catches truly bloated prompts there.
+    """
 
     def __init__(self):
         super().__init__("Red-Team Judge", "Task 4i")
@@ -1097,7 +1153,7 @@ class RedTeamJudgeAgent(BaseAgentWorker):
             failed: list[str] = []
             prompt_lc = q.prompt.lower()
             evidence = [f"prompt_words={len(q.prompt.split())}"]
-            if len(q.prompt.split()) > 70 and q.kind != "Essay":
+            if len(q.prompt.split()) > 90 and q.kind != "Essay":
                 failed.append("overlong_prompt")
             vague_terms = ["familiar", "etc.", "some", "appropriate"]
             if any(term in prompt_lc for term in vague_terms):

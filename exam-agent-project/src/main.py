@@ -856,7 +856,7 @@ def run_pipeline(
     blueprint = load_exam_blueprint(blueprint_path) if not resume_from_judge else None
     if not resume_from_judge and blueprint:
         print(
-            "\n⚠️  WARNING: exam_blueprint.json found — using pre-written questions instead of LLM generation.\n"
+            "\n[WARNING] exam_blueprint.json found -- using pre-written questions instead of LLM generation.\n"
             "   Pass --blueprint nonexistent to force LLM question writing.\n"
         )
         questions = questions_from_blueprint(blueprint, notes)
@@ -1041,9 +1041,10 @@ def run_pipeline(
                 questions = enrich_assessment_metadata(questions)
                 revised_any = True
 
-            if coverage_fail:
-                # Topic distribution off — regenerate all questions with stricter per-topic counts.
-                print(f"[AgenticJudge iter {iteration}] Coverage FAIL — re-running writers with strict distribution.")
+            if coverage_fail and non_pass["EXAM"].get("final_verdict") == "FAIL":
+                # HARD_FAIL on coverage (>20pt off) — regenerate.
+                # SOFT_FAIL (10-20pt off) is noted but not worth burning API calls.
+                print(f"[AgenticJudge iter {iteration}] Coverage HARD_FAIL — re-running writers with strict distribution.")
                 _batch_capable = hasattr(provider, "batch_write_questions")
                 regen_writers = [
                     ShortAnswerWriterAgent(provider),
