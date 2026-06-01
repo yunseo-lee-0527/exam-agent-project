@@ -1,6 +1,6 @@
 {
-  "provider": "ConfiguredDeterministicProvider",
-  "quality": "draft",
+  "provider": "GeminiApiKeyProvider",
+  "quality": "final_low_cost",
   "model_preset": null,
   "models": {
     "planner": "gemini-2.5-flash",
@@ -9,15 +9,199 @@
     "judge": "gemini-2.5-flash-lite",
     "final_rewriter": "gemini-2.5-flash"
   },
-  "strict_provider": false,
+  "strict_provider": true,
   "usage": {
-    "calls": 0,
-    "estimated_input_tokens": 0,
-    "estimated_output_tokens": 0,
-    "estimated_cost_usd": 0.0,
-    "by_model": {},
-    "records": [],
-    "note": "Deterministic provider uses local static generation and makes no billable model calls."
+    "calls": 23,
+    "estimated_input_tokens": 13441,
+    "estimated_output_tokens": 3873,
+    "estimated_cost_usd": 0.00321,
+    "by_model": {
+      "gemini-2.5-flash": {
+        "calls": 2,
+        "input_tokens": 936,
+        "output_tokens": 1348,
+        "estimated_cost_usd": 0.0009491999999999999
+      },
+      "gemini-2.5-flash-lite": {
+        "calls": 21,
+        "input_tokens": 12505,
+        "output_tokens": 2525,
+        "estimated_cost_usd": 0.0022605000000000004
+      }
+    },
+    "records": [
+      {
+        "stage": "planner",
+        "model": "gemini-2.5-flash",
+        "input_tokens": 409,
+        "output_tokens": 1227,
+        "estimated_cost_usd": 0.00079755
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 516,
+        "output_tokens": 186,
+        "estimated_cost_usd": 0.000126
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 349,
+        "output_tokens": 59,
+        "estimated_cost_usd": 5.85e-05
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 735,
+        "output_tokens": 63,
+        "estimated_cost_usd": 9.87e-05
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 570,
+        "output_tokens": 107,
+        "estimated_cost_usd": 9.980000000000001e-05
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 732,
+        "output_tokens": 86,
+        "estimated_cost_usd": 0.0001076
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 518,
+        "output_tokens": 179,
+        "estimated_cost_usd": 0.00012340000000000002
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 380,
+        "output_tokens": 59,
+        "estimated_cost_usd": 6.16e-05
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 762,
+        "output_tokens": 189,
+        "estimated_cost_usd": 0.0001518
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 627,
+        "output_tokens": 250,
+        "estimated_cost_usd": 0.0001627
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 810,
+        "output_tokens": 165,
+        "estimated_cost_usd": 0.000147
+      },
+      {
+        "stage": "question_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 494,
+        "output_tokens": 59,
+        "estimated_cost_usd": 7.3e-05
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 516,
+        "output_tokens": 140,
+        "estimated_cost_usd": 0.0001076
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 345,
+        "output_tokens": 79,
+        "estimated_cost_usd": 6.61e-05
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 728,
+        "output_tokens": 54,
+        "estimated_cost_usd": 9.44e-05
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 566,
+        "output_tokens": 98,
+        "estimated_cost_usd": 9.580000000000001e-05
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 727,
+        "output_tokens": 144,
+        "estimated_cost_usd": 0.00013030000000000002
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 522,
+        "output_tokens": 135,
+        "estimated_cost_usd": 0.0001062
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 375,
+        "output_tokens": 162,
+        "estimated_cost_usd": 0.00010229999999999999
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 782,
+        "output_tokens": 61,
+        "estimated_cost_usd": 0.00010260000000000001
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 636,
+        "output_tokens": 196,
+        "estimated_cost_usd": 0.000142
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 815,
+        "output_tokens": 54,
+        "estimated_cost_usd": 0.0001031
+      },
+      {
+        "stage": "answer_judge",
+        "model": "gemini-2.5-flash",
+        "input_tokens": 527,
+        "output_tokens": 121,
+        "estimated_cost_usd": 0.00015164999999999997
+      }
+    ],
+    "auth_mode": "api_key",
+    "model_fallback_events": [
+      {
+        "stage": "answer_judge",
+        "role": "judge",
+        "failed_model": "gemini-2.5-flash-lite",
+        "fallback_model": "gemini-2.5-flash",
+        "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\\nPlease retry in 43.929589051s.', 'status': 'RESOURCE_EXHA"
+      }
+    ]
   },
   "static_estimates": {
     "lecture_note_tokens": 34123,

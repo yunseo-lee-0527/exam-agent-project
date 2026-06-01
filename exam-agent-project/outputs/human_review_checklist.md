@@ -26,7 +26,7 @@ Use this before submitting the final generated exam.
 
 ## Provider and Cost
 
-- [ ] Provider mode is correct for final generation. Estimated cost: $0.000000.
+- [ ] Provider mode is correct for final generation. Estimated cost: $0.003210.
 - [ ] If using Gemini/OpenAI/Anthropic, confirm strict provider mode for the final run.
 - [ ] Confirm no private API keys or credentials are committed.
 
@@ -46,6 +46,11 @@ Use this before submitting the final generated exam.
 
 ## Coverage Audit Notes
 
+- Coverage gap: no question targets Introduction to Work and Work Systems.
+- Coverage gap: no question targets Foundations of Scientific Management.
+- Coverage gap: no question targets Engineering Problem Solving and Ideation Methods.
+- Coverage gap: no question targets Systematic Innovation Frameworks.
+- Coverage gap: no question targets Micro-level Motion Study and Therbligs.
 - Coverage contribution by topic key: {'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}.
 - Question type mix: {'Short Answer': 6, 'Concept Comparison': 2, 'Application': 2, 'Essay': 1}.
 

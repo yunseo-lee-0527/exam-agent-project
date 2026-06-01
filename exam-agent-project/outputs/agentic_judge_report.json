@@ -219,7 +219,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=Easy",
+        "kind=Short Answer; difficulty=easy",
         "learning_objective=Check whether students can distinguish nested levels of work analysis."
       ],
       "revision_instruction": ""
@@ -230,7 +230,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=Easy",
+        "kind=Short Answer; difficulty=easy",
         "learning_objective=Check recall of Taylor's canonical scientific management principles."
       ],
       "revision_instruction": ""
@@ -241,7 +241,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=Easy",
+        "kind=Short Answer; difficulty=easy",
         "learning_objective=Check recall and sequencing of the DASSI process."
       ],
       "revision_instruction": ""
@@ -252,7 +252,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=Easy",
+        "kind=Short Answer; difficulty=easy",
         "learning_objective=Check whether students can identify the systematic innovation methods from lecture."
       ],
       "revision_instruction": ""
@@ -263,7 +263,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=Easy",
+        "kind=Short Answer; difficulty=easy",
         "learning_objective=Check whether students understand micro-level motion analysis."
       ],
       "revision_instruction": ""
@@ -274,7 +274,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Short Answer; difficulty=Hard",
+        "kind=Short Answer; difficulty=hard",
         "learning_objective=Check system-level reasoning rather than isolated task reasoning."
       ],
       "revision_instruction": ""
@@ -285,7 +285,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Concept Comparison; difficulty=Medium",
+        "kind=Concept Comparison; difficulty=medium",
         "learning_objective=Check whether students can explain Taylor's diagnosis of inefficiency."
       ],
       "revision_instruction": ""
@@ -296,7 +296,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Concept Comparison; difficulty=Medium",
+        "kind=Concept Comparison; difficulty=medium",
         "learning_objective=Check whether students can place ideation tools inside a structured problem-solving process."
       ],
       "revision_instruction": ""
@@ -307,7 +307,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Application; difficulty=Medium",
+        "kind=Application; difficulty=medium",
         "learning_objective=Check whether students can use innovation frameworks as a problem-solving tool, not only recite them."
       ],
       "revision_instruction": ""
@@ -318,7 +318,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Application; difficulty=Medium",
+        "kind=Application; difficulty=medium",
         "learning_objective=Check whether students can move from motion diagnosis to work-system redesign."
       ],
       "revision_instruction": ""
@@ -329,7 +329,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "kind=Essay; difficulty=Hard",
+        "kind=Essay; difficulty=hard",
         "learning_objective=Check synthesis across scientific management, work systems, and disciplined problem solving."
       ],
       "revision_instruction": ""
