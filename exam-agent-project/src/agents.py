@@ -639,7 +639,7 @@ def fan_out_question_writers(
 
 
 class AnswerWriterAgent(BaseAgentWorker):
-    """ReAct: Thought (locate keyword) -> Action (search_lecture_notes) -> Observation -> answer."""
+    """ReAct-inspired retrieval: choose keyword -> search_lecture_notes -> answer from observations."""
 
     def __init__(self, provider: Any = None):
         super().__init__("Answer Writer", "Task 3")

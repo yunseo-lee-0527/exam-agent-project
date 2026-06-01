@@ -208,15 +208,28 @@ class GeminiProvider:
 
     @staticmethod
     def _rate_limit_delay(exc: Exception) -> int:
-        m = re.search(r"retry.*?(\d+)s", str(exc).lower())
-        return int(m.group(1)) + 3 if m else 30
+        msg = str(exc).lower()
+        # "please retry in 18.88s" — from human-readable API message
+        m = re.search(r"please retry in (\d+(?:\.\d+)?)s", msg)
+        if m:
+            return min(int(float(m.group(1))) + 3, 120)
+        # "retryDelay": "18s" — from proto RetryInfo field (cap to avoid absurd values)
+        m = re.search(r'"retrydelay":\s*"(\d+)s"', msg)
+        if m:
+            return min(int(m.group(1)) + 3, 120)
+        return 30
+
+    @staticmethod
+    def _is_transient_error(exc: Exception) -> bool:
+        msg = str(exc).lower()
+        return any(k in msg for k in ["429", "resource_exhausted", "quota", "503", "unavailable", "overloaded"])
 
     def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
         model = self._strip_provider_prefix(model)
         config = None
         if system:
             config = self._types.GenerateContentConfig(system_instruction=system)
-        max_retries = 3
+        max_retries = 5
         for attempt in range(max_retries):
             try:
                 response = self.client.models.generate_content(
@@ -226,10 +239,11 @@ class GeminiProvider:
                 self.usage.record(stage, model, (system or "") + "\n" + prompt, text)
                 return text
             except Exception as exc:
-                is_rate_limit = "429" in str(exc) or "resource_exhausted" in str(exc).lower()
-                if is_rate_limit and attempt < max_retries - 1:
-                    delay = self._rate_limit_delay(exc)
-                    print(f"[{self.__class__.__name__}] Rate-limited on {model}, waiting {delay}s (attempt {attempt + 1}/{max_retries})...")
+                if self._is_transient_error(exc) and attempt < max_retries - 1:
+                    is_503 = "503" in str(exc) or "unavailable" in str(exc).lower()
+                    delay = 20 if is_503 else self._rate_limit_delay(exc)
+                    label = "Server overload (503)" if is_503 else "Rate-limited (429)"
+                    print(f"[{self.__class__.__name__}] {label} on {model}, waiting {delay}s (attempt {attempt + 1}/{max_retries})...")
                     time.sleep(delay)
                     continue
                 raise
@@ -363,9 +377,9 @@ class GeminiProvider:
         keywords = [w for w in question.topic.split() if len(w) > 3] + question.prompt.split()[:3]
         ctx, sources = self._retrieval_context(notes, keywords, limit=3)
         system = (
-            "You are the Answer Writer. Use ReAct: think briefly about which "
-            "lecture concept the question targets, then write the model answer "
-            "anchored to the supplied context. <=120 words. Return JSON: "
+            "You are the Answer Writer. Use the supplied retrieval context as "
+            "your observation, then write the model answer anchored to that "
+            "context. Do not output hidden reasoning. <=120 words. Return JSON: "
             "{\"answer\":..., \"source_refs\":[...]}"
         )
         prompt = (

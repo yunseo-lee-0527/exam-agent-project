@@ -12,6 +12,13 @@ def check(name: str, passed: bool, detail: str) -> dict[str, object]:
     return {"name": name, "passed": passed, "detail": detail}
 
 
+def has_module(module_name: str) -> bool:
+    try:
+        return importlib.util.find_spec(module_name) is not None
+    except ModuleNotFoundError:
+        return False
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Check local setup for the exam-agent project.")
     parser.add_argument("--project-root", default=Path(__file__).resolve().parents[1])
@@ -35,7 +42,7 @@ def main() -> None:
     results.append(
         check(
             "google-genai package",
-            importlib.util.find_spec("google.genai") is not None,
+            has_module("google.genai"),
             "Install with: python -m pip install google-genai",
         )
     )

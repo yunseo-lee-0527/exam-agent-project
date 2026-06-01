@@ -160,19 +160,18 @@ flowchart TD
 ---
 
 ### Task 3 — AnswerWriterAgent
-**역할**: 각 문제에 대한 모범 답안을 작성합니다. 단순히 LLM에게 "답을 써 달라"고 요청하는 것이 아니라, **ReAct 패턴**을 사용해 실제 강의 자료에서 근거를 찾아 인용합니다.
+**역할**: 각 문제에 대한 모범 답안을 작성합니다. 단순히 LLM에게 "답을 써 달라"고 요청하는 것이 아니라, **ReAct-inspired retrieval flow**를 사용해 실제 강의 자료에서 근거를 찾아 인용합니다.
 
-**ReAct 패턴이란?**
+**ReAct-inspired retrieval flow란?**
 ```
-Thought:  "테일러의 4원칙에 대한 답안을 작성하려면 관련 강의 내용을 찾아야 한다"
 Action:   search_lecture_notes(keyword="Taylor 4원칙")
 Observation: "[M5.1 강의 노트] 과업 관리, 과학적 선발..."
 Answer:   관찰된 내용을 바탕으로 답안 작성 + 출처(source_refs) 기록
 ```
 
-Thought → Action → Observation 사이클을 반복해 답안의 근거를 강의 자료에서 직접 확보합니다.
+현재 구현은 엄밀한 다단계 Thought → Action → Observation 로그를 남기지는 않지만, 검색 도구 호출 결과를 `Lecture context`로 주입해 답안의 근거를 강의 자료에 정박시킵니다.
 
-- **패턴**: ReAct + Retrieval Tool (강의 M5.3.1.2 §8)
+- **패턴**: ReAct-inspired Retrieval Tool (강의 M5.3.1.2 §8)
 
 ---
 
@@ -414,11 +413,14 @@ python src/main.py
 
 완료되면 `outputs/` 폴더에 3개 파일이 생성됩니다.
 
-> **주의 — `exam_blueprint.json`**: 프로젝트 루트에 이 파일이 존재하면 Task 1(Coverage Planner)과 Task 2(4개 Writer 에이전트)가 **전부 우회**되고 blueprint에 미리 정의된 문제가 그대로 사용됩니다. 에이전트 파이프라인 전체를 실행하려면 이 파일을 삭제하거나 `--blueprint` 인자를 다른 경로로 지정하세요.
+> **주의 — `exam_blueprint.json`**: 프로젝트 루트에 이 파일이 존재하면 Task 1(Coverage Planner)은 실행되지만, 실제 문항 선택과 구성은 blueprint가 통제하고 Task 2의 4개 specialist Writer는 우회됩니다. 현재 제출 산출물은 이 재현용 blueprint 경로로 생성되어 LLM API 호출이 0회입니다. Writer 경로를 확인하려면 `--blueprint` 인자를 존재하지 않는 경로로 지정하세요.
 >
 > ```bash
-> # blueprint를 무시하고 에이전트가 직접 문제를 생성하도록 실행
+> # blueprint를 무시하고 writer 경로를 실행
 > python src/main.py --blueprint nonexistent_path
+>
+> # 실제 LLM 기반 writer/judge 경로를 strict 모드로 실행(강의자료 Vertex 경로)
+> python src/main.py --blueprint nonexistent_path --provider vertex --quality final_low_cost --strict-provider
 > ```
 
 ---
@@ -441,8 +443,8 @@ python src/main.py --provider deterministic
 
 Google Cloud의 Gemini 모델을 사용해 진짜 AI가 문제를 작성합니다.
 
-- 계획자(Task 1): `gemini-2.5-pro` — 가장 강력한 모델로 정확한 출제 계획
-- 작성자(Task 2,3): `gemini-2.5-flash` — 빠르고 저렴하게 문제/답안 작성
+- 계획자(Task 1): 기본 `gemini-2.5-flash` — `--model-preset pro` 사용 시 `gemini-2.5-pro`로 격상 가능
+- 작성자(Task 2,3): 기본 `gemini-2.5-flash` — 빠르고 저렴하게 문제/답안 작성
 - 심사자(Task 4a,4b): `gemini-2.5-flash-lite` — 반복 호출이 많으므로 가장 경량 모델 사용
 
 ```bash
@@ -522,8 +524,8 @@ python src/evaluation.py --provider gemini --simulate-trials 3
 | Local tools + JSON DB | M5.3.2 ApplicationCollector | `LectureNoteCollectorAgent` + `processed_notes_db.json` |
 | Planner-Executor | M5.3.3 `plan_and_accept` | `CoveragePlannerAgent` → 4개 Writer 에이전트 |
 | Parallel Fan-out | M5.3.3 `parallel_screening` | `ThreadPoolExecutor`로 4개 Writer 동시 실행 |
-| ReAct + Retrieval | M5.3.1.2 §8 + M5.3.2 | `AnswerWriterAgent`의 Thought→Action→Observation |
-| LLM-as-Judge | M5.3.4 `JUDGE_*_PROMPT` | `QuestionJudgeAgent`, `AnswerJudgeAgent` |
+| ReAct-inspired Retrieval | M5.3.1.2 §8 + M5.3.2 | `AnswerWriterAgent` + `search_lecture_notes` |
+| LLM-as-Judge-compatible JSON rubric | M5.3.4 `JUDGE_*_PROMPT` | `QuestionJudgeAgent`, `AnswerJudgeAgent`; deterministic 제출 산출물은 규칙 기반 provider 결과 |
 | Supervisor-Evaluator Loop | M5.3.3 reflective | `RefinementCoordinator` (최대 2회 반복) |
 | Agentic Judge Closed Loop | M5.3.4 LLM-as-Judge | `AgenticJudgeSystemAgent` (PASS/REVISE/FAIL 판정 → 재작성, 최대 2회) |
 | 3-method Evaluation | M5.3.4 §3-method matrix | `src/evaluation.py` |
@@ -579,14 +581,14 @@ python scripts/ingest_materials.py
 ```bash
 python src/main.py --provider deterministic --quality draft
 python src/main.py --provider gemini --quality draft
-python src/main.py --provider gemini --quality final --strict-provider
+python src/main.py --blueprint nonexistent_path --provider gemini --quality final --strict-provider
 ```
 
 - `draft`: 빠르고 저렴한 생성용
 - `final`: 최종 시험지 생성용
 - `--strict-provider`: 선택한 LLM provider가 실패하면 deterministic fallback 없이 중단
 
-`openai`, `anthropic` provider 이름은 premium final-generation hook으로 예약되어 있습니다. 실제 API client와 key를 붙이면 같은 provider interface로 확장할 수 있습니다.
+`openai`, `anthropic` provider 이름은 실제 provider wrapper로 구현되어 있습니다. 각각 `openai`, `anthropic` SDK와 API key가 필요하며, `--strict-provider`를 켜면 해당 provider 초기화 실패 시 deterministic fallback 없이 중단됩니다.
 
 ### 17.3 토큰/비용 추적
 
@@ -632,7 +634,7 @@ cd /d "C:\Users\iy579\Documents\New project 2\exam-agent-project"
 set GCP_PROJECT_ID=your-project-id
 set GCP_LOCATION=us-central1
 gcloud auth application-default login
-python .\src\main.py --provider vertex --quality final_low_cost --strict-provider
+python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final_low_cost --strict-provider
 ```
 
 `--provider vertex` forces the same `genai.Client(vertexai=True, project=..., location=...)`
@@ -669,7 +671,7 @@ See `docs/evaluation_criteria_alignment.md` for the professor-facing mapping.
 The lecture-aligned default is Gemini 2.5 Flash:
 
 ```bat
-python .\src\main.py --provider vertex --quality final --model-preset lecture_flash --strict-provider
+python .\src\main.py --blueprint nonexistent_path --provider vertex --quality final --model-preset lecture_flash --strict-provider
 ```
 
 The same pipeline can also be toggled to GPT or Claude when those API keys are
@@ -694,26 +696,31 @@ See `docs/model_toggle_guide.md`.
 
 ### Low-cost final run
 
-Use this when `gemini-2.5-pro` quota is unavailable or too expensive.
+Use this for the cheapest live-LLM final check on the API-key backup path.
+For the lecture Agent Platform path, replace `--provider gemini` with
+`--provider vertex` after setting `GCP_PROJECT_ID`.
 
 ```bash
-python src/main.py --provider gemini --quality final_low_cost --strict-provider
-python src/evaluation.py --provider gemini --quality final_low_cost --strict-provider --simulate-trials 1
+python src/main.py --blueprint nonexistent_path --provider gemini --quality final_low_cost --strict-provider
+python src/evaluation.py --blueprint nonexistent_path --provider gemini --quality final_low_cost --strict-provider --simulate-trials 1
 ```
 
 ### High-quality final run
 
-Use this when the account has quota/billing for higher-quality models.
+Use this for the default lecture-aligned live-LLM run. The built-in `final`
+quality profile uses Gemini Flash for planner/writer/answering and Flash-Lite
+for repeated judge calls. Prefer `--provider vertex` for the course setup; use
+`--provider gemini` only as an API-key backup path. Use `--model-preset pro`
+only when you intentionally want the higher-cost Pro preset.
 
 ```bash
-python src/main.py --provider gemini --quality final --strict-provider
-python src/evaluation.py --provider gemini --quality final --strict-provider --simulate-trials 1
+python src/main.py --blueprint nonexistent_path --provider vertex --quality final --strict-provider
+python src/evaluation.py --blueprint nonexistent_path --provider vertex --quality final --strict-provider --simulate-trials 1
 ```
 
-`final` tries the higher-quality model first, but the provider now retries
-lower-cost models such as `gemini-2.5-flash` and `gemini-2.5-flash-lite` when a
-retryable quota/model error occurs. `final_low_cost` starts directly with the
-lower-cost models.
+The provider retries after 429/resource-exhausted errors and can fall back to
+configured lower-cost models such as `gemini-2.5-flash-lite` when the selected
+model hits a retryable quota/model error.
 
 For API-key setup without GCP Project ID or `gcloud`, see
 `docs/gemini_api_key_setup.md`.
