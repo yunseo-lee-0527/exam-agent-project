@@ -408,6 +408,77 @@ class GeminiProvider:
                 lambda: self._fallback_answer(question, notes, sources),
             )
 
+    def batch_judge_questions(self, questions: list[Question], notes: dict[str, str]) -> list[dict[str, Any]]:
+        """Judge ALL questions in a single API call (11 questions → 1 call)."""
+        system = (
+            "You are the Question Judge. Score EACH question on a 0-5 rubric: "
+            "scope_alignment, difficulty_appropriateness, clarity_no_ambiguity, answerable_from_lecture. "
+            "Return a JSON ARRAY — one object per question — each with: "
+            "target_id, rubric:{...}, total, verdict (GOOD|ACCEPTABLE|POOR), suggestion. "
+            "GOOD if total>=17, ACCEPTABLE if total>=13, else POOR. "
+            "The array length MUST equal the number of questions."
+        )
+        items = []
+        for q in questions:
+            ctx, _ = self._retrieval_context(notes, q.topic.split(), limit=1)
+            items.append(
+                f"Q{q.number} | {q.kind} | {q.topic}\n"
+                f"  prompt: {q.prompt}\n"
+                f"  answer: {q.answer[:200]}\n"
+                f"  context: {(ctx or '(none)')[:250]}"
+            )
+        prompt = "Score these questions and return a JSON array:\n\n" + "\n\n".join(items)
+        try:
+            raw = self._generate_for_role("judge", prompt, system, stage="batch_question_judge")
+            parsed = parse_json_block(raw)
+            results: list[dict[str, Any]] = parsed if isinstance(parsed, list) else []
+            if len(results) != len(questions):
+                raise ValueError(f"Expected {len(questions)} verdicts, got {len(results)}")
+            for i, data in enumerate(results):
+                self._normalize_verdict(data, prefix="Q", number=questions[i].number)
+            return results
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc, "batch_judge_questions",
+                lambda: [self.fallback.judge_question(q, notes) for q in questions],
+            )
+
+    def batch_judge_answers(self, questions: list[Question], notes: dict[str, str]) -> list[dict[str, Any]]:
+        """Judge ALL answers in a single API call (11 answers → 1 call)."""
+        system = (
+            "You are the Answer Judge. Score EACH model answer on a 0-5 rubric: "
+            "factual_accuracy, completeness, lecture_grounded, concise_pedagogical. "
+            "Return a JSON ARRAY — one object per answer — each with: "
+            "target_id, rubric:{...}, total, verdict (GOOD|ACCEPTABLE|POOR), suggestion. "
+            "GOOD if total>=17, ACCEPTABLE if total>=13, else POOR. "
+            "The array length MUST equal the number of questions."
+        )
+        items = []
+        for q in questions:
+            ctx, _ = self._retrieval_context(notes, q.topic.split(), limit=1)
+            items.append(
+                f"A{q.number} | {q.topic}\n"
+                f"  question: {q.prompt[:150]}\n"
+                f"  answer: {q.answer[:300]}\n"
+                f"  source_refs: {q.source_refs}\n"
+                f"  context: {(ctx or '(none)')[:200]}"
+            )
+        prompt = "Score these answers and return a JSON array:\n\n" + "\n\n".join(items)
+        try:
+            raw = self._generate_for_role("judge", prompt, system, stage="batch_answer_judge")
+            parsed = parse_json_block(raw)
+            results = parsed if isinstance(parsed, list) else []
+            if len(results) != len(questions):
+                raise ValueError(f"Expected {len(questions)} verdicts, got {len(results)}")
+            for i, data in enumerate(results):
+                self._normalize_verdict(data, prefix="A", number=questions[i].number)
+            return results
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc, "batch_judge_answers",
+                lambda: [self.fallback.judge_answer(q, notes) for q in questions],
+            )
+
     def judge_question(self, question: Question, notes: dict[str, str]) -> dict[str, Any]:
         system = (
             "You are the Question Judge. Score each question on a 0-5 rubric: "

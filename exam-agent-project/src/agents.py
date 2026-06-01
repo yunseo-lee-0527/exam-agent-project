@@ -665,13 +665,17 @@ class AnswerWriterAgent(BaseAgentWorker):
 
 
 class QuestionJudgeAgent(BaseAgentWorker):
-    def __init__(self, provider: Any = None):
+    def __init__(self, provider: Any = None, batch: bool = False):
         super().__init__("Question Judge", "Task 4a")
         self.provider = provider or DeterministicProvider()
+        self.batch = batch
 
     def run(self, payload: dict[str, Any]) -> list[JudgeVerdict]:
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
+        if self.batch and hasattr(self.provider, "batch_judge_questions"):
+            raws = self.provider.batch_judge_questions(questions, notes)
+            return [JudgeVerdict(**{k: r[k] for k in ("target_id", "rubric", "total", "verdict", "suggestion")}) for r in raws]
         verdicts: list[JudgeVerdict] = []
         for q in questions:
             raw = self.provider.judge_question(q, notes)
@@ -680,13 +684,17 @@ class QuestionJudgeAgent(BaseAgentWorker):
 
 
 class AnswerJudgeAgent(BaseAgentWorker):
-    def __init__(self, provider: Any = None):
+    def __init__(self, provider: Any = None, batch: bool = False):
         super().__init__("Answer Judge", "Task 4b")
         self.provider = provider or DeterministicProvider()
+        self.batch = batch
 
     def run(self, payload: dict[str, Any]) -> list[JudgeVerdict]:
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
+        if self.batch and hasattr(self.provider, "batch_judge_answers"):
+            raws = self.provider.batch_judge_answers(questions, notes)
+            return [JudgeVerdict(**{k: r[k] for k in ("target_id", "rubric", "total", "verdict", "suggestion")}) for r in raws]
         verdicts: list[JudgeVerdict] = []
         for q in questions:
             raw = self.provider.judge_answer(q, notes)

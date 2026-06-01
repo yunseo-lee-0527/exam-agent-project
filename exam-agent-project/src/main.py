@@ -769,6 +769,7 @@ def run_pipeline(
     quality: str = "draft",
     strict_provider: bool = False,
     resume_from_judge: bool = False,
+    batch_judge: bool = False,
 ) -> dict[str, Any]:
     """Sequential orchestrator with parallel fan-out and a refinement loop.
 
@@ -943,8 +944,8 @@ def run_pipeline(
     state["run_trace"].append({"task": auditor.task_id, "agent": auditor.name, "status": "completed", "notes": len(coverage_notes)})
 
     # --- Task 4a + 4b inside Task 5: Supervisor-Evaluator loop ---
-    question_judge = QuestionJudgeAgent(provider)
-    answer_judge = AnswerJudgeAgent(provider)
+    question_judge = QuestionJudgeAgent(provider, batch=batch_judge)
+    answer_judge = AnswerJudgeAgent(provider, batch=batch_judge)
 
     def regen_question(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
         topic = next((t for t in topics if t.title == q.topic), None)
@@ -1195,6 +1196,11 @@ def main() -> None:
         help="Skip Tasks 1-3; load questions from outputs/questions.json and run only the judge phase.",
     )
     parser.add_argument(
+        "--batch-judge",
+        action="store_true",
+        help="Send all 11 questions in one API call per judge (2 calls total instead of 22).",
+    )
+    parser.add_argument(
         "--provider",
         choices=["deterministic", "gemini", "vertex", "openai", "gpt", "anthropic", "claude"],
         default=None,
@@ -1224,6 +1230,7 @@ def main() -> None:
         quality=args.quality,
         strict_provider=args.strict_provider,
         resume_from_judge=args.resume_from_judge,
+        batch_judge=args.batch_judge,
     )
 
     print(f"Provider: {state['provider']}")
