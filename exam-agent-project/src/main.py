@@ -790,6 +790,10 @@ def run_pipeline(
     )
     state["model_policy"] = model_policy
 
+    if resume_from_judge and not batch_judge:
+        batch_judge = True
+        print("[run_pipeline] --resume-from-judge implies batch judge mode (2 calls instead of 22).")
+
     provider = make_provider(provider_name, model_policy=model_policy, strict=strict_provider)
     state["provider"] = provider.__class__.__name__
     state["strict_provider"] = strict_provider
