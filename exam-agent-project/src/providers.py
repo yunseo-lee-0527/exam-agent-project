@@ -723,6 +723,13 @@ def make_provider(
         elif os.environ.get("ANTHROPIC_API_KEY"):
             explicit = "anthropic"
         else:
+            if strict:
+                raise RuntimeError(
+                    "--strict-provider requires live provider credentials or an explicit "
+                    "--provider. No supported API credentials were detected in this process. "
+                    "Set GEMINI_API_KEY, GCP_PROJECT_ID, OPENAI_API_KEY, or ANTHROPIC_API_KEY; "
+                    "or pass --provider deterministic intentionally."
+                )
             explicit = "deterministic"
         print(f"[make_provider] Auto-detected provider: {explicit}")
     chosen = explicit.lower()
