@@ -80,10 +80,10 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Apply/Analyze
 - Difficulty: Hard
 - Estimated time: 5 minutes
-- Learning objective: Apply the Subtraction innovation framework to a practical example.
+- Learning objective: Explain the Concept Fan technique and apply it to a problem context.
 - Assessed skill: Application and Explanation
 - Exam intent: Evaluate the ability to explain and exemplify a specific innovation framework.
-- Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
+- Sources: M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt
 
 ### Q7
 

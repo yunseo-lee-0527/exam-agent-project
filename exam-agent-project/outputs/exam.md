@@ -31,7 +31,7 @@ What is the primary goal of brainstorming in the ideation phase of problem-solvi
 
 ## Q6. Short Answer (5 points)
 
-Explain the 'Subtraction' innovation framework and provide a brief example of how it might be applied in a product or service context.
+Describe the Concept Fan technique. How does stepping back to a higher-level concept help generate better solutions to a problem? Illustrate with a brief example.
 
 ## Q7. Concept Comparison (10 points)
 

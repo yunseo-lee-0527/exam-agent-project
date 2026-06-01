@@ -14,9 +14,9 @@ Assessed skill: Recall and Comprehension
 
 Rubric:
 
-- {'criterion': 'Identifies the three-axis structure-based taxonomy.', 'points': 2}
-- {'criterion': 'Identifies the two-axis complexity-based taxonomy.', 'points': 2}
-- {'criterion': 'Identifies the operation-based work system taxonomy.', 'points': 1}
+- Identifies the three-axis structure-based taxonomy. (2 pts)
+- Identifies the two-axis complexity-based taxonomy. (2 pts)
+- Identifies the operation-based work system taxonomy. (1 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -36,9 +36,9 @@ Assessed skill: Comprehension
 
 Rubric:
 
-- {'criterion': "States that a well-defined problem is 'half solved'.", 'points': 2}
-- {'criterion': "Explains that it clarifies 'what is wrong, for whom, and under what conditions'.", 'points': 2}
-- {'criterion': 'Mentions that it guides subsequent steps or effective solutions.', 'points': 1}
+- States that a well-defined problem is 'half solved'. (2 pts)
+- Explains that it clarifies 'what is wrong, for whom, and under what conditions'. (2 pts)
+- Mentions that it guides subsequent steps or effective solutions. (1 pts)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -58,10 +58,10 @@ Assessed skill: Recall
 
 Rubric:
 
-- {'criterion': 'Identifies participants (human/machine) and the performance of processes/activities.', 'points': 2}
-- {'criterion': 'Mentions resources used (information, technology, etc.).', 'points': 1}
-- {'criterion': 'States the purpose: producing products/services for customers.', 'points': 1}
-- {'criterion': 'Describes it as a structured arrangement for organizational goals.', 'points': 1}
+- Identifies participants (human/machine) and the performance of processes/activities. (2 pts)
+- Mentions resources used (information, technology, etc.). (1 pts)
+- States the purpose: producing products/services for customers. (1 pts)
+- Describes it as a structured arrangement for organizational goals. (1 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -81,10 +81,10 @@ Assessed skill: Comprehension
 
 Rubric:
 
-- {'criterion': 'Explains it provides a structured way to characterize and understand work systems.', 'points': 2}
-- {'criterion': 'Mentions it helps in analyzing, comparing, or designing work systems.', 'points': 1}
-- {'criterion': 'States it facilitates communication or identifies best practices.', 'points': 1}
-- {'criterion': 'Connects it to improvements, redesign efforts, or better performance.', 'points': 1}
+- Explains it provides a structured way to characterize and understand work systems. (2 pts)
+- Mentions it helps in analyzing, comparing, or designing work systems. (1 pts)
+- States it facilitates communication or identifies best practices. (1 pts)
+- Connects it to improvements, redesign efforts, or better performance. (1 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -104,10 +104,10 @@ Assessed skill: Comprehension
 
 Rubric:
 
-- {'criterion': 'States the goal is to generate a large quantity of diverse ideas.', 'points': 2}
-- {'criterion': 'Mentions the absence of initial judgment or criticism.', 'points': 1}
-- {'criterion': 'Explains the focus on quantity over quality.', 'points': 1}
-- {'criterion': 'Connects it to stimulating creativity or finding innovative solutions.', 'points': 1}
+- States the goal is to generate a large quantity of diverse ideas. (2 pts)
+- Mentions the absence of initial judgment or criticism. (1 pts)
+- Explains the focus on quantity over quality. (1 pts)
+- Connects it to stimulating creativity or finding innovative solutions. (1 pts)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -115,9 +115,9 @@ Sources: M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q6. Short Answer
 
-The Subtraction innovation framework involves removing an essential or seemingly indispensable component from a product or service, then redesigning the system to compensate for its absence. This often leads to unexpected new benefits, simplified designs, or reduced costs. For example, removing the soap dispenser from a traditional mop bucket and integrating the soap directly into the mop head itself (like a Swiffer WetJet) exemplifies Subtraction. The user no longer needs to measure and add soap separately, simplifying the cleaning process and creating a more convenient, self-contained tool.
+The Concept Fan technique expands the solution space by moving from a specific problem to the underlying purpose it serves. When obvious solutions seem insufficient, you ask "Why is this needed?" to identify the core concept. New solutions at that higher level then become visible. For example, addressing late office arrivals: instead of fining or marking absences, the Concept Fan asks "Why come on time?" revealing the true need is coordination. This opens solutions such as flexible hours with a fixed daily overlap window, rather than rigid start times.
 
-Learning objective: Apply the Subtraction innovation framework to a practical example.
+Learning objective: Explain the Concept Fan technique and apply it to a problem context.
 
 Exam intent: Evaluate the ability to explain and exemplify a specific innovation framework.
 
@@ -127,13 +127,13 @@ Assessed skill: Application and Explanation
 
 Rubric:
 
-- {'criterion': 'Accurately defines Subtraction as removing an essential component.', 'points': 2}
-- {'criterion': 'Explains the goal of redesigning to compensate or achieving new benefits.', 'points': 1}
-- {'criterion': 'Provides a clear and relevant example of Subtraction in a product or service context.', 'points': 2}
+- Explains the core mechanism: moving from a specific problem to a higher-level concept or purpose by asking "Why?" (2 pts)
+- Explains why this generates better solutions: it reveals a wider solution space at a higher abstraction level (2 pts)
+- Provides a relevant example demonstrating the technique applied to a real or hypothetical problem (1 pt)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
-Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
+Sources: M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt
 
 ## Q7. Concept Comparison
 
@@ -149,10 +149,10 @@ Assessed skill: Conceptual Understanding; Comparison
 
 Rubric:
 
-- {'criterion': 'Accurately describes the three axes and purpose of the structure-based taxonomy.', 'points': 3}
-- {'criterion': 'Accurately describes the two axes and purpose of the complexity-based taxonomy.', 'points': 3}
-- {'criterion': 'Clearly articulates a key difference in focus or dimension between the two taxonomies.', 'points': 2}
-- {'criterion': 'Explains how the two taxonomies complement each other in understanding work systems.', 'points': 2}
+- Accurately describes the three axes and purpose of the structure-based taxonomy. (3 pts)
+- Accurately describes the two axes and purpose of the complexity-based taxonomy. (3 pts)
+- Clearly articulates a key difference in focus or dimension between the two taxonomies. (2 pts)
+- Explains how the two taxonomies complement each other in understanding work systems. (2 pts)
 
 Coverage contribution: work_and_work_systems: 10
 
@@ -172,10 +172,10 @@ Assessed skill: Conceptual Understanding; Comparison
 
 Rubric:
 
-- {'criterion': "Accurately describes the KJ Method's process and purpose (structuring problems, grouping ideas).", 'points': 3}
-- {'criterion': "Accurately describes Brainstorming's process and purpose (generating diverse solutions, divergent thinking).", 'points': 3}
-- {'criterion': 'Clearly articulates the primary difference in application or outcome between the two methods.', 'points': 2}
-- {'criterion': 'Explains that both methods are valuable but serve different purposes in the problem-solving process.', 'points': 2}
+- Accurately describes the KJ Method's process and purpose (structuring problems, grouping ideas). (3 pts)
+- Accurately describes Brainstorming's process and purpose (generating diverse solutions, divergent thinking). (3 pts)
+- Clearly articulates the primary difference in application or outcome between the two methods. (2 pts)
+- Explains that both methods are valuable but serve different purposes in the problem-solving process. (2 pts)
 
 Coverage contribution: problem_solving_and_ideation: 10
 
@@ -195,9 +195,9 @@ Assessed skill: Application of innovation frameworks, creative problem-solving.
 
 Rubric:
 
-- {'criterion': 'Identifies a core component of an alarm clock to be subtracted.', 'points': 5}
-- {'criterion': 'Proposes an alternative mechanism to fulfill the primary function (waking the user) without the subtracted component.', 'points': 5}
-- {'criterion': 'Explains a clear user benefit resulting from this specific innovation.', 'points': 5}
+- Identifies a core component of an alarm clock to be subtracted. (5 pts)
+- Proposes an alternative mechanism to fulfill the primary function (waking the user) without the subtracted component. (5 pts)
+- Explains a clear user benefit resulting from this specific innovation. (5 pts)
 
 Coverage contribution: innovation_frameworks: 15
 
@@ -222,10 +222,10 @@ Assessed skill: Micro-level process analysis, identification of inefficiencies, 
 
 Rubric:
 
-- {'criterion': 'Identifies three distinct Therbligs relevant to the task.', 'points': 3}
-- {'criterion': 'Provides correct and context-specific descriptions for each of the three identified Therbligs.', 'points': 6}
-- {'criterion': 'Proposes a relevant modification to the workstation (kitchen/dishwasher/storage) for a chosen Therblig.', 'points': 3}
-- {'criterion': 'Clearly explains how the proposed modification reduces duration or improves efficiency for the chosen Therblig.', 'points': 3}
+- Identifies three distinct Therbligs relevant to the task. (3 pts)
+- Provides correct and context-specific descriptions for each of the three identified Therbligs. (6 pts)
+- Proposes a relevant modification to the workstation (kitchen/dishwasher/storage) for a chosen Therblig. (3 pts)
+- Clearly explains how the proposed modification reduces duration or improves efficiency for the chosen Therblig. (3 pts)
 
 Coverage contribution: motion_study_and_therbligs: 15
 
@@ -245,10 +245,10 @@ Assessed skill: Critical Analysis, Synthesis, Application of Historical Concepts
 
 Rubric:
 
-- {'criterion': "Explain Taylor's foundational principles of Scientific Management and their impact on work system redesign.", 'points': 6}
-- {'criterion': "Describe the Gilbreths' contributions to Scientific Management and how they extended Taylor's original ideas.", 'points': 6}
-- {'criterion': 'Identify and discuss key strengths of the Scientific Management approach to organizational efficiency.', 'points': 4}
-- {'criterion': 'Identify and discuss inherent limitations of the Scientific Management approach.', 'points': 4}
+- Explain Taylor's foundational principles of Scientific Management and their impact on work system redesign. (6 pts)
+- Describe the Gilbreths' contributions to Scientific Management and how they extended Taylor's original ideas. (6 pts)
+- Identify and discuss key strengths of the Scientific Management approach to organizational efficiency. (4 pts)
+- Identify and discuss inherent limitations of the Scientific Management approach. (4 pts)
 
 Coverage contribution: scientific_management: 20
 

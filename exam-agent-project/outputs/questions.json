@@ -186,31 +186,22 @@
     "number": 6,
     "kind": "Short Answer",
     "topic": "Problem Solving And Ideation",
-    "prompt": "Explain the 'Subtraction' innovation framework and provide a brief example of how it might be applied in a product or service context.",
+    "prompt": "Describe the Concept Fan technique. How does stepping back to a higher-level concept help generate better solutions to a problem? Illustrate with a brief example.",
     "points": 5,
-    "answer": "The Subtraction innovation framework involves removing an essential or seemingly indispensable component from a product or service, then redesigning the system to compensate for its absence. This often leads to unexpected new benefits, simplified designs, or reduced costs. For example, removing the soap dispenser from a traditional mop bucket and integrating the soap directly into the mop head itself (like a Swiffer WetJet) exemplifies Subtraction. The user no longer needs to measure and add soap separately, simplifying the cleaning process and creating a more convenient, self-contained tool.",
+    "answer": "The Concept Fan technique expands the solution space by moving from a specific problem to the underlying purpose it serves. When obvious solutions seem insufficient, you ask \"Why is this needed?\" to identify the core concept. New solutions at that higher level then become visible. For example, addressing late office arrivals: instead of fining or marking absences, the Concept Fan asks \"Why come on time?\" revealing the true need is coordination. This opens solutions such as flexible hours with a fixed daily overlap window, rather than rigid start times.",
     "source_refs": [
-      "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
+      "M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt"
     ],
     "difficulty": "Hard",
-    "learning_objective": "Apply the Subtraction innovation framework to a practical example.",
+    "learning_objective": "Explain the Concept Fan technique and apply it to a problem context.",
     "bloom_level": "Apply/Analyze",
     "estimated_time_minutes": 5,
     "exam_intent": "Evaluate the ability to explain and exemplify a specific innovation framework.",
     "assessed_skill": "Application and Explanation",
     "rubric": [
-      {
-        "criterion": "Accurately defines Subtraction as removing an essential component.",
-        "points": 2
-      },
-      {
-        "criterion": "Explains the goal of redesigning to compensate or achieving new benefits.",
-        "points": 1
-      },
-      {
-        "criterion": "Provides a clear and relevant example of Subtraction in a product or service context.",
-        "points": 2
-      }
+      "Explains the core mechanism: moving from a specific problem to a higher-level concept or purpose by asking \"Why?\" (2 pts)",
+      "Explains why this generates better solutions: it reveals a wider solution space at a higher abstraction level (2 pts)",
+      "Provides a relevant example demonstrating the technique applied to a real or hypothetical problem (1 pt)"
     ],
     "coverage_contribution": {
       "problem_solving_and_ideation": 5

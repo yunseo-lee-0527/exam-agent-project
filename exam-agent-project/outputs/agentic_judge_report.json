@@ -143,8 +143,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=subtraction, innovation, system, framework, provide, example"
+        "valid_refs=M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+        "matched_terms=concept, back, generate, better, problem, example"
       ],
       "revision_instruction": ""
     },
@@ -277,7 +277,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Apply the Subtraction innovation framework to a practical example."
+        "learning_objective=Explain the Concept Fan technique and apply it to a problem context."
       ],
       "revision_instruction": ""
     },
@@ -397,7 +397,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=87",
+        "answer_words=89",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -513,7 +513,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=22"
+        "prompt_words=25"
       ],
       "revision_instruction": ""
     },
@@ -623,7 +623,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 1.0, 2.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": ""
     },

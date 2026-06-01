@@ -1766,7 +1766,13 @@ class FormatterAgent(BaseAgentWorker):
                 lines += [f"Assessed skill: {q.assessed_skill}", ""]
             if q.rubric:
                 lines += ["Rubric:", ""]
-                lines += [f"- {item}" for item in q.rubric]
+                for item in q.rubric:
+                    if isinstance(item, dict):
+                        text = item.get("criterion") or item.get("description") or str(item)
+                        pts = item.get("points")
+                        lines.append(f"- {text} ({pts} pts)" if pts is not None else f"- {text}")
+                    else:
+                        lines.append(f"- {item}")
                 lines.append("")
             if q.coverage_contribution:
                 coverage = ", ".join(f"{k}: {v}" for k, v in q.coverage_contribution.items())
