@@ -130,7 +130,11 @@ class GeminiProvider:
             vertexai=True,
             project=project,
             location=loc,
-            http_options=HttpOptions(api_version="v1"),
+            http_options=HttpOptions(
+                api_version="v1",
+                timeout=60_000,
+                retry_options=genai_types.HttpRetryOptions(attempts=1),
+            ),
         )
         self.auth_mode = "vertex_ai"
         self.fallback = fallback or DeterministicProvider()
@@ -222,6 +226,8 @@ class GeminiProvider:
     @staticmethod
     def _is_transient_error(exc: Exception) -> bool:
         msg = str(exc).lower()
+        if "generaterequestsperdayperprojectpermodel" in msg:
+            return False
         return any(k in msg for k in ["429", "resource_exhausted", "quota", "503", "unavailable", "overloaded"])
 
     def _generate(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_call") -> str:
@@ -506,7 +512,13 @@ class GeminiApiKeyProvider(GeminiProvider):
         from google.genai import types as genai_types  # type: ignore
 
         self._types = genai_types
-        self.client = genai.Client(api_key=key)
+        self.client = genai.Client(
+            api_key=key,
+            http_options=genai_types.HttpOptions(
+                timeout=60_000,
+                retry_options=genai_types.HttpRetryOptions(attempts=1),
+            ),
+        )
         self.auth_mode = "api_key"
         self.fallback = fallback or DeterministicProvider()
         self.model_policy = model_policy or load_model_policy(None)
@@ -661,10 +673,10 @@ def make_provider(
                 return GeminiProvider(model_policy=model_policy, strict=strict)
             if auth_mode in {"api_key", "apikey", "ai_studio"}:
                 return GeminiApiKeyProvider(model_policy=model_policy, strict=strict)
-            if has_project:
-                return GeminiProvider(model_policy=model_policy, strict=strict)
             if has_api_key:
                 return GeminiApiKeyProvider(model_policy=model_policy, strict=strict)
+            if has_project:
+                return GeminiProvider(model_policy=model_policy, strict=strict)
             return GeminiProvider(model_policy=model_policy, strict=strict)
         except Exception as exc:
             if strict:

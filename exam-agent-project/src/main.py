@@ -865,7 +865,7 @@ def run_pipeline(
                 "questions": len(questions),
             }
         )
-    else:
+    elif not resume_from_judge:
         writers = [
             ShortAnswerWriterAgent(provider),
             ComparisonWriterAgent(provider),
@@ -908,6 +908,15 @@ def run_pipeline(
                 "task": "Task 2",
                 "agent": "Question Writer fan-out",
                 "status": "completed",
+                "questions": len(questions),
+            }
+        )
+    else:
+        state["run_trace"].append(
+            {
+                "task": "Task 2",
+                "agent": "Skipped (resume-from-judge)",
+                "status": "skipped",
                 "questions": len(questions),
             }
         )
@@ -979,7 +988,7 @@ def run_pipeline(
     agentic_judge = AgenticJudgeSystemAgent()
     agentic_judge_history: list[dict[str, Any]] = []
     agentic_judge_report: dict[str, Any] = {}
-    for iteration in range(1, max_agentic_judge_iterations + 1):
+    for iteration in range(1, max_agentic_judge_iterations + 2):
         agentic_judge_report = agentic_judge.run(
             {
                 "questions": questions,
@@ -1000,7 +1009,7 @@ def run_pipeline(
                 "non_pass_targets": sorted(non_pass),
             }
         )
-        if not non_pass:
+        if not non_pass or iteration > max_agentic_judge_iterations:
             break
 
         revised_any = False
