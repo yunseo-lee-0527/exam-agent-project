@@ -261,6 +261,7 @@ Task 2의 batch writer가 이미 답안과 source_refs를 채워넣었다면 추
 | `AnswerRubricJudgeAgent` | 10pt 이상 문항에 rubric 3개 이상 | 부분점수 채점 가능성을 보장하는 최소 기준. 5pt 단답형은 2개로도 충분. |
 | `RedTeamJudgeAgent` (overlong_prompt) | Essay 제외 **90단어** 초과 시 경고 | 기존 70단어 기준은 적용형(Application) 문항이 시나리오를 충분히 기술할 수 없게 만듦(Q9: 76단어 정상 문항이 SOFT_FAIL). Application·Concept Comparison은 복합 요구사항 서술에 70~85단어가 자연스러움. 90단어는 진짜 장황한 단답형만 잡아냄. |
 | `SourceGroundingJudgeAgent` | source_refs 없음 → HARD_FAIL | 강의 근거 없는 문항은 할루시네이션 위험이 있어 엄격하게 유지. |
+| `AnswerConsistencyJudgeAgent` | 결정론적: 루브릭 비정수 배점 → SOFT_FAIL, 루브릭 합계 ≠ 문항 배점(±1pt) → HARD_FAIL. LLM: 모범답안이 루브릭 기준을 충족하지 않거나 다른 주제를 다루면 HARD_FAIL | LLM 생성 시 답안과 루브릭이 서로 다른 개념을 다루는 경우가 발생(예: Q7 답안은 심리적 관점, 루브릭은 Task/Process 정의 요구). 결정론적 체크로는 잡을 수 없어 LLM judge 레이어 추가. |
 
 ---
 

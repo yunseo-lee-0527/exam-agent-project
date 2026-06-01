@@ -1321,7 +1321,7 @@ def run_pipeline(
     questions = enrich_assessment_metadata(questions)
 
     # --- Task 5b: Agentic judge closed-loop revision ---
-    agentic_judge = AgenticJudgeSystemAgent(lecture_terms=lecture_terms)
+    agentic_judge = AgenticJudgeSystemAgent(lecture_terms=lecture_terms, provider=provider)
     agentic_judge_history: list[dict[str, Any]] = []
     agentic_judge_report: dict[str, Any] = {}
     for iteration in range(1, max_agentic_judge_iterations + 2):

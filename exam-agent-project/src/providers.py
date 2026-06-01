@@ -686,6 +686,48 @@ class GeminiProvider:
         except Exception as exc:
             return self._fallback_or_raise(exc, "judge_answer", lambda: self.fallback.judge_answer(question, notes))
 
+    def judge_answer_consistency(self, question: Question) -> dict[str, Any]:
+        """LLM-backed semantic consistency check for AnswerConsistencyJudgeAgent.
+
+        Verifies that (1) the model answer addresses what the question actually
+        asks, and (2) every rubric criterion is demonstrably covered by the
+        model answer.  Returns {consistent, issues, verdict}.
+        """
+        system = (
+            "You are an exam quality auditor checking internal consistency. "
+            "Given a question, its model answer, and its grading rubric, identify mismatches. "
+            "A mismatch is when the answer addresses a different topic than the question or rubric asks, "
+            "or when one or more rubric criteria cannot be awarded based on the answer given. "
+            "Return JSON only: "
+            "{\"consistent\": true|false, \"issues\": [\"short description of each mismatch\"], "
+            "\"verdict\": \"PASS\"|\"SOFT_FAIL\"|\"HARD_FAIL\"}. "
+            "HARD_FAIL if the answer discusses a completely different concept than the rubric. "
+            "SOFT_FAIL if the answer partially misses rubric criteria. "
+            "PASS if the answer and rubric are well-aligned."
+        )
+        rubric_text = "\n".join(f"- {r}" for r in question.rubric) or "(no rubric)"
+        prompt = (
+            f"Question ({question.kind}, {question.points} pts):\n{question.prompt}\n\n"
+            f"Model Answer:\n{question.answer}\n\n"
+            f"Rubric:\n{rubric_text}"
+        )
+        try:
+            raw = self._generate_for_role(
+                "judge", prompt, system, stage="consistency_judge"
+            )
+            data = parse_json_block(raw) or {}
+            return {
+                "consistent": bool(data.get("consistent", True)),
+                "issues": [str(i) for i in (data.get("issues") or []) if i],
+                "verdict": str(data.get("verdict", "PASS")),
+            }
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "judge_answer_consistency",
+                lambda: {"consistent": True, "issues": [], "verdict": "PASS"},
+            )
+
     @staticmethod
     def _normalize_verdict(data: dict[str, Any], prefix: str, number: int) -> None:
         data.setdefault("target_id", f"{prefix}{number}")

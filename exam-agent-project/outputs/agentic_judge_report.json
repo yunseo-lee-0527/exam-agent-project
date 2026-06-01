@@ -88,8 +88,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, motion, describe, three, distinct, levels"
+        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=scientific, management, work, system, redesign, goal"
       ],
       "revision_instruction": ""
     },
@@ -99,8 +99,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=objective, structured, engineering, problem-solving, process, challenges"
+        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, process, generate, large, quantity, diverse"
       ],
       "revision_instruction": ""
     },
@@ -110,8 +110,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=taylor, scientific, management, redesign, work, according"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, context, systems, between, necessary, unnecessary"
       ],
       "revision_instruction": ""
     },
@@ -121,8 +121,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, clear, definition, when, systems, boundaries"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=therbligs, work, gilbreth, introduced, context, study"
       ],
       "revision_instruction": ""
     },
@@ -132,8 +132,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, method, technique, used, during, solution"
+        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
+        "matched_terms=method, affinity, diagram, problem, structuring, gather"
       ],
       "revision_instruction": ""
     },
@@ -143,8 +143,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
-        "matched_terms=understanding, structuring, problems, engineering, problem-solving, even"
+        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
+        "matched_terms=innovation, frameworks, subtraction, combination, systematic, addition"
       ],
       "revision_instruction": ""
     },
@@ -155,7 +155,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, sociological, psychological, perspectives, design, systems"
+        "matched_terms=work, necessary, variability, unnecessary, within, context"
       ],
       "revision_instruction": ""
     },
@@ -165,8 +165,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=method, brainstorming, used, their, typical, affinity"
+        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+        "matched_terms=method, concept, their, understanding, structuring, problems"
       ],
       "revision_instruction": ""
     },
@@ -177,7 +177,8 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=subtraction, innovation, imagine, looking, process, student"
+        "matched_terms=subtraction, innovation, redesign, imagine, traditional, public",
+        "lecture_innovation_frameworks_in_answer=subtraction"
       ],
       "revision_instruction": ""
     },
@@ -187,8 +188,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=therbligs, task, into, sequence, motions"
+        "valid_refs=M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=worker, assembling, small, device, involves, orienting"
       ],
       "revision_instruction": ""
     },
@@ -198,8 +199,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=scientific, management, university, long, service, only"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M1.3 What is a Work System.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=scientific, management, taylor, motion, work, system"
       ],
       "revision_instruction": ""
     },
@@ -221,7 +222,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Recall and define the different levels at which work can be described."
+        "learning_objective=Understand the foundational principles and goals of scientific management."
       ],
       "revision_instruction": ""
     },
@@ -232,7 +233,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Explain the overarching purpose and benefits of a structured engineering problem-solving process."
+        "learning_objective=Describe common ideation techniques."
       ],
       "revision_instruction": ""
     },
@@ -243,7 +244,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Describe how Scientific Management influenced the redesign of work systems."
+        "learning_objective=Define and differentiate types of variability in work systems."
       ],
       "revision_instruction": ""
     },
@@ -254,7 +255,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Articulate the significance of defining 'work' in the context of work systems."
+        "learning_objective=Recall key concepts and figures in micro-level motion study."
       ],
       "revision_instruction": ""
     },
@@ -265,7 +266,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Identify a standard technique for generating solutions in problem-solving."
+        "learning_objective=Explain methods for structuring ill-defined problems."
       ],
       "revision_instruction": ""
     },
@@ -276,7 +277,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Analyze the critical role of problem definition and structuring in the engineering problem-solving process."
+        "learning_objective=Apply systematic innovation frameworks to generate novel solutions."
       ],
       "revision_instruction": ""
     },
@@ -287,7 +288,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Differentiate between various levels of describing work within a work system."
+        "learning_objective=Differentiate between necessary and unnecessary variability in work systems and explain their implications for efficiency and quality."
       ],
       "revision_instruction": ""
     },
@@ -298,7 +299,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Differentiate between problem structuring and solution generation techniques."
+        "learning_objective=Distinguish between different problem structuring techniques and identify their appropriate applications."
       ],
       "revision_instruction": ""
     },
@@ -309,7 +310,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Students will be able to apply systematic innovation frameworks to generate novel solutions in a given context."
+        "learning_objective=Apply systematic innovation frameworks to generate novel solutions or product/service ideas within a given context."
       ],
       "revision_instruction": ""
     },
@@ -320,7 +321,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Students will be able to identify and analyze basic human motions using Therbligs to propose efficiency improvements."
+        "learning_objective=Identify and analyze elementary motions (Therbligs) in a work process to propose specific improvements for efficiency."
       ],
       "revision_instruction": ""
     },
@@ -331,7 +332,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Students should be able to explain the foundational principles of Scientific Management, analyze its role in work system redesign, and critically evaluate its historical impact and contemporary relevance."
+        "learning_objective=Students will be able to critically analyze the historical development and practical application of Scientific Management principles, evaluating both their contributions to efficiency and their inherent limitations from a contemporary perspective of human factors and work system design."
       ],
       "revision_instruction": ""
     },
@@ -341,7 +342,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=67",
+        "answer_words=52",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -352,8 +353,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=62",
-        "rubric_items=4"
+        "answer_words=59",
+        "rubric_items=3"
       ],
       "revision_instruction": ""
     },
@@ -363,7 +364,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=79",
+        "answer_words=66",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -374,7 +375,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=70",
+        "answer_words=56",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -385,7 +386,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=45",
+        "answer_words=60",
         "rubric_items=3"
       ],
       "revision_instruction": ""
@@ -396,7 +397,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=87",
+        "answer_words=122",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -407,7 +408,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=103",
+        "answer_words=107",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -418,7 +419,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=88",
+        "answer_words=139",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -429,8 +430,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=66",
-        "rubric_items=4"
+        "answer_words=87",
+        "rubric_items=3"
       ],
       "revision_instruction": ""
     },
@@ -440,8 +441,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=66",
-        "rubric_items=4"
+        "answer_words=119",
+        "rubric_items=3"
       ],
       "revision_instruction": ""
     },
@@ -451,7 +452,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=126",
+        "answer_words=94",
         "rubric_items=4"
       ],
       "revision_instruction": ""
@@ -462,12 +463,32 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=20"
+        "prompt_words=12"
       ],
       "revision_instruction": ""
     },
     {
       "target_id": "Q2",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=12"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=12"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q4",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
@@ -477,32 +498,12 @@
       "revision_instruction": ""
     },
     {
-      "target_id": "Q3",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=18"
-      ],
-      "revision_instruction": ""
-    },
-    {
-      "target_id": "Q4",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=22"
-      ],
-      "revision_instruction": ""
-    },
-    {
       "target_id": "Q5",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=15"
+        "prompt_words=14"
       ],
       "revision_instruction": ""
     },
@@ -512,7 +513,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=32"
+        "prompt_words=38"
       ],
       "revision_instruction": ""
     },
@@ -522,7 +523,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=25"
+        "prompt_words=20"
       ],
       "revision_instruction": ""
     },
@@ -532,7 +533,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=23"
+        "prompt_words=27"
       ],
       "revision_instruction": ""
     },
@@ -542,7 +543,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=43"
+        "prompt_words=51"
       ],
       "revision_instruction": ""
     },
@@ -552,7 +553,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=55"
+        "prompt_words=72"
       ],
       "revision_instruction": ""
     },
@@ -562,7 +563,117 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=65"
+        "prompt_words=57"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q1",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q2",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=4; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=4; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=4; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+      ],
+      "revision_instruction": ""
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Answer Consistency Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "rubric_items=4; rubric_pts_parsed=(none parsed)"
       ],
       "revision_instruction": ""
     }
@@ -601,6 +712,12 @@
     {
       "task": "Task 4i",
       "agent": "Red-Team Judge",
+      "findings": 11,
+      "non_pass": 0
+    },
+    {
+      "task": "Task 4k",
+      "agent": "Answer Consistency Judge",
       "findings": 11,
       "non_pass": 0
     },

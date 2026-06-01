@@ -779,22 +779,48 @@ class AnswerWriterAgent(BaseAgentWorker):
         super().__init__("Answer Writer", "Task 3")
         self.provider = provider or DeterministicProvider()
 
+    @staticmethod
+    def _clean_refs(refs: list[str], notes: dict[str, str]) -> list[str]:
+        """Strip LLM-appended page suffixes (e.g. '--- Page 14') and
+        resolve each ref to a known note filename where possible."""
+        filenames = list(notes)
+        cleaned: list[str] = []
+        for ref in refs:
+            # Remove page suffix added by some LLM providers.
+            base = re.split(r"\s*---\s*[Pp]age\s*\d+", ref)[0].strip()
+            # Resolve to known note key.
+            if base in notes:
+                key = base
+            elif ref in notes:
+                key = ref
+            else:
+                base_lc = base.lower()
+                key = (
+                    next((f for f in filenames if base_lc.startswith(f.lower())), None)
+                    or next((f for f in filenames if f.lower().startswith(base_lc)), None)
+                    or next((f for f in filenames if base_lc in f.lower()), base)
+                )
+            if key not in cleaned:
+                cleaned.append(key)
+        return cleaned
+
     def run(self, payload: dict[str, Any]) -> list[Question]:
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
         # Skip entirely when batch writer already filled both answer and source_refs.
         if all(q.answer and q.source_refs for q in questions):
             for q in questions:
-                q.source_refs = list(dict.fromkeys(q.source_refs))
+                q.source_refs = self._clean_refs(q.source_refs, notes)
             return questions
         for q in questions:
             if q.answer and q.source_refs:
-                q.source_refs = list(dict.fromkeys(q.source_refs))
+                q.source_refs = self._clean_refs(q.source_refs, notes)
                 continue
             result = self.provider.write_answer(q, notes)
             if not q.answer:
                 q.answer = result.get("answer", "")
-            q.source_refs = list(dict.fromkeys(q.source_refs + (result.get("source_refs", []) or [])))
+            raw_refs = q.source_refs + (result.get("source_refs", []) or [])
+            q.source_refs = self._clean_refs(raw_refs, notes)
         return questions
 
 
@@ -1333,6 +1359,106 @@ class AnswerRubricJudgeAgent(BaseAgentWorker):
         return findings
 
 
+class AnswerConsistencyJudgeAgent(BaseAgentWorker):
+    """Checks structural and semantic consistency between question, answer, and rubric.
+
+    Two deterministic checks (always run, no LLM needed):
+    - rubric_fractional_points: rubric uses non-integer point values (e.g. 1.5 pts).
+      These are hard to grade consistently and suggest copy-paste from a draft.
+    - rubric_sum_mismatch: sum of parsed rubric point values differs from q.points
+      by more than 1. A grader following the rubric would give the wrong total.
+
+    One LLM-backed check (runs when the provider exposes judge_answer_consistency):
+    - answer_rubric_mismatch: the model answer does not address one or more rubric
+      criteria, or addresses a different topic than what the question asks.
+      This catches cases like Q7 where the answer discusses psychological perspectives
+      while the rubric asks for Task/Process definitions.
+    """
+
+    _POINT_RE = re.compile(r"\((\d+(?:\.\d+)?)\s*(?:bonus\s+)?(?:points?|pts?)\b", re.I)
+
+    def __init__(self, provider: Any = None):
+        super().__init__("Answer Consistency Judge", "Task 4k")
+        self.provider = provider
+
+    @staticmethod
+    def _parse_rubric_points(rubric: list[str]) -> list[float]:
+        vals: list[float] = []
+        for item in rubric:
+            m = AnswerConsistencyJudgeAgent._POINT_RE.search(item)
+            if m:
+                vals.append(float(m.group(1)))
+        return vals
+
+    def run(self, payload: dict[str, Any]) -> list[AgenticJudgeFinding]:
+        questions: list[Question] = payload["questions"]
+        findings: list[AgenticJudgeFinding] = []
+
+        for q in questions:
+            failed: list[str] = []
+            evidence: list[str] = []
+
+            # --- Deterministic check 1: fractional rubric points ---
+            rubric_pts = self._parse_rubric_points(q.rubric)
+            fractional = [v for v in rubric_pts if v != int(v)]
+            if fractional:
+                failed.append("rubric_fractional_points")
+                evidence.append(f"Non-integer rubric values: {fractional}")
+
+            # --- Deterministic check 2: rubric point sum ---
+            if rubric_pts:
+                total = sum(rubric_pts)
+                if abs(total - q.points) > 1:
+                    failed.append("rubric_sum_mismatch")
+                    evidence.append(
+                        f"Rubric sums to {total:.1f} but question is worth {q.points} pts"
+                    )
+
+            # --- LLM-backed check: semantic answer-rubric consistency ---
+            if self.provider and hasattr(self.provider, "judge_answer_consistency"):
+                try:
+                    result = self.provider.judge_answer_consistency(q)
+                    if not result.get("consistent", True):
+                        for issue in (result.get("issues") or [])[:3]:
+                            if issue:
+                                failed.append("answer_rubric_mismatch")
+                                evidence.append(issue)
+                except Exception as exc:
+                    evidence.append(f"LLM consistency check skipped: {exc}")
+
+            evidence.append(
+                f"rubric_items={len(q.rubric)}; "
+                f"rubric_pts_parsed={rubric_pts or '(none parsed)'}"
+            )
+
+            if failed:
+                # rubric_sum_mismatch is HARD_FAIL — a grader following the rubric
+                # would award the wrong number of points.
+                verdict = (
+                    "HARD_FAIL"
+                    if "rubric_sum_mismatch" in failed or "answer_rubric_mismatch" in failed
+                    else "SOFT_FAIL"
+                )
+                findings.append(
+                    AgenticJudgeFinding(
+                        target_id=f"Q{q.number}",
+                        judge=self.name,
+                        verdict=verdict,
+                        failed_checks=list(dict.fromkeys(failed)),
+                        evidence=evidence,
+                        revision_instruction=(
+                            "Rewrite the model answer so it explicitly addresses every rubric criterion. "
+                            "Ensure all rubric point values are integers that sum to the question's total points. "
+                            "If the answer discusses different concepts from the rubric, realign both."
+                        ),
+                    )
+                )
+            else:
+                findings.append(_pass(f"Q{q.number}", self.name, evidence))
+
+        return findings
+
+
 class RedTeamJudgeAgent(BaseAgentWorker):
     """Student-perspective ambiguity and fairness judge.
 
@@ -1421,11 +1547,12 @@ class JudgeAggregatorAgent(BaseAgentWorker):
 class AgenticJudgeSystemAgent(BaseAgentWorker):
     """Runs specialist judges, then aggregates their evidence and verdicts.
 
-    lecture_terms: passed through to PedagogicalQualityJudgeAgent.  Supply
-    the output of extract_lecture_terms() from main.py for data-driven terms.
+    lecture_terms: passed through to PedagogicalQualityJudgeAgent.
+    provider: passed through to AnswerConsistencyJudgeAgent for LLM-backed
+              answer-rubric semantic consistency checks.
     """
 
-    def __init__(self, lecture_terms: list[str] | None = None):
+    def __init__(self, lecture_terms: list[str] | None = None, provider: Any = None):
         super().__init__("Agentic Judge System", "Task 5b")
         self.judges = [
             CoverageJudgeAgent(),
@@ -1434,6 +1561,7 @@ class AgenticJudgeSystemAgent(BaseAgentWorker):
             PedagogicalQualityJudgeAgent(lecture_terms=lecture_terms),
             AnswerRubricJudgeAgent(),
             RedTeamJudgeAgent(),
+            AnswerConsistencyJudgeAgent(provider=provider),
         ]
         self.aggregator = JudgeAggregatorAgent()
 
