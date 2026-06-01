@@ -110,8 +110,11 @@ flowchart TD
     REGEN --> T5
     LOOP -- "아니오 또는 2회 초과" --> T5B["🟪 Task 5b — Agentic Judge System"]
     T5B --> LOOP2{non-PASS 항목?}
-    LOOP2 -- "예 (반복 횟수 < 2)" --> REGEN
-    LOOP2 -- "아니오 또는 2회 초과" --> T6["🟩 Task 6 — Formatter"]
+    LOOP2 -- "Q FAIL: 개별 문항" --> REGEN
+    LOOP2 -- "EXAM FAIL: 난이도" --> META["🟩 metadata 재정규화 (0 calls)"]
+    META --> T5B
+    LOOP2 -- "EXAM FAIL: 커버리지" --> T2A
+    LOOP2 -- "PASS 또는 반복 초과" --> T6["🟩 Task 6 — Formatter"]
     T4C --> T6
 
     T6 --> EXAM["outputs/exam.md"]
@@ -425,7 +428,7 @@ python scripts/extract_pdf_text.py
 
 ```bash
 # LLM 전체 경로 (권장 — 7회 호출, ~$0.007)
-python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
+python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 1
 
 # API 키 없이 파이프라인 구조만 테스트 (결정론적, 문제 은행 사용)
 python src/main.py --provider deterministic
@@ -445,7 +448,7 @@ python src/main.py --provider deterministic
 
 ```bash
 set GEMINI_API_KEY=your-key
-python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
+python src/main.py --quality final_low_cost --strict-provider --max-refine 0 --max-agentic-judge-refine 1
 ```
 
 - 무료 한도: 모델당 하루 20회(RPD), 분당 10회(RPM)
@@ -587,7 +590,7 @@ A. `outputs/review.md`를 확인하면 각 문제의 심사 점수와 재작성 
 **Q. judge 단계만 다시 실행하고 싶습니다.**
 A. `outputs/questions.json`이 있으면 아래 커맨드로 2회 호출만으로 재실행 가능합니다.
 ```bash
-python src/main.py --resume-from-judge --max-refine 0 --max-agentic-judge-refine 0 --judge-model gemini-2.5-flash
+python src/main.py --resume-from-judge --max-refine 0 --max-agentic-judge-refine 1
 ```
 
 ---

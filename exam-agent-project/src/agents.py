@@ -523,7 +523,7 @@ class _BaseQuestionWriter(BaseAgentWorker):
                     questions.append(Question(
                         number=start_number + len(questions),
                         kind=self.KIND,
-                        topic=str(draft.get("topic", topics[0].title if topics else self.KIND)),
+                        topic=str(draft.get("topic", topics[0].key if topics else self.KIND)),
                         prompt=p,
                         points=per_topic_points,
                         answer=str(draft.get("answer", "")).strip(),
@@ -847,7 +847,7 @@ class CoverageJudgeAgent(BaseAgentWorker):
                     verdict="HARD_FAIL",
                     failed_checks=failed,
                     evidence=evidence,
-                    revision_instruction="Regenerate the blueprint so topic contribution exactly matches requirements.json and total points equal 100.",
+                    revision_instruction="Regenerate questions so each topic's point contribution exactly matches requirements.json and total points equal 100.",
                 )
             ]
         return [_pass("EXAM", self.name, evidence)]

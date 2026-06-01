@@ -381,26 +381,46 @@ class GeminiProvider:
         Replaces the 5 separate pool_questions calls (one per topic) with a single
         call, reducing the question-writing phase from 20 calls to 4.
         """
+        # Compute per-topic question counts proportional to topic weights.
+        total_weight = sum(getattr(t, "weight", 1) for t in topics) or 1
+        raw_counts = {t.key: max(1, round(count * getattr(t, "weight", 1) / total_weight)) for t in topics}
+        # Adjust so counts sum to exactly `count`.
+        diff = count - sum(raw_counts.values())
+        if diff != 0:
+            sorted_topics = sorted(topics, key=lambda t: -getattr(t, "weight", 1))
+            for t in sorted_topics:
+                if diff == 0:
+                    break
+                raw_counts[t.key] += 1 if diff > 0 else -1
+                diff += -1 if diff > 0 else 1
+
         system = (
             f"You are the {kind} specialist writer for a university midterm on Scientific Management. "
             "Return a JSON ARRAY. Each element must have exactly these keys: "
-            "topic (string), prompt (string), answer (string ≤120 words), "
+            "topic (string — MUST be one of the exact topic_key values listed below), "
+            "prompt (string), answer (string ≤120 words), "
             "source_refs (list of lecture filenames that support this question), "
-            "learning_objective, bloom_level, difficulty, estimated_time_minutes (int), "
-            "exam_intent, assessed_skill, rubric (list of 2-4 grading criteria). "
-            "Anchor every question in the lecture context provided."
+            "learning_objective, bloom_level, difficulty (Easy|Medium|Hard), "
+            "estimated_time_minutes (int), exam_intent, assessed_skill, "
+            "rubric (list of 2-4 grading criteria). "
+            "Use the exact topic_key strings for the topic field — do NOT invent new names."
         )
         topic_blocks: list[str] = []
         for t in topics:
             ctx, srcs = self._retrieval_context(notes, t.keywords, limit=2)
+            n = raw_counts.get(t.key, 1)
             topic_blocks.append(
-                f"Topic: {t.title}\n"
-                f"  Source files available: {srcs}\n"
-                f"  Lecture context: {(ctx or '(none)')[:350]}"
+                f"topic_key: {t.key}  (write {n} question(s))\n"
+                f"  title: {t.title}\n"
+                f"  source files: {srcs}\n"
+                f"  context: {(ctx or '(none)')[:300]}"
             )
+        distribution = ", ".join(f"{t.key}: {raw_counts.get(t.key,1)}q" for t in topics)
         prompt = (
-            f"Write exactly {count} {kind} exam questions distributed across these topics:\n\n"
+            f"Write exactly {count} {kind} exam questions with this distribution: {distribution}\n\n"
             + "\n\n".join(topic_blocks)
+            + f"\n\nIMPORTANT: The 'topic' field of each object must be exactly one of: "
+            + ", ".join(t.key for t in topics)
             + f"\n\nReturn a JSON array of exactly {count} objects."
         )
         try:
@@ -415,8 +435,13 @@ class GeminiProvider:
                 p = str(item.get("prompt", "")).strip()
                 if not p:
                     continue
+                # Normalise topic: prefer key if LLM returned key, otherwise use raw value.
+                raw_topic = str(item.get("topic", topics[0].key if topics else kind))
+                valid_keys = {t.key for t in topics}
+                valid_titles = {t.title: t.key for t in topics}
+                topic_out = raw_topic if raw_topic in valid_keys else valid_titles.get(raw_topic, raw_topic)
                 results.append({
-                    "topic": str(item.get("topic", topics[0].title if topics else kind)),
+                    "topic": topic_out,
                     "prompt": p,
                     "answer": str(item.get("answer", "")).strip(),
                     "source_refs": list(item.get("source_refs", [])),

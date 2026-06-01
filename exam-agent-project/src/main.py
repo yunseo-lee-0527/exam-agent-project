@@ -189,11 +189,12 @@ def _infer_bloom_level(q: Question) -> str:
 
 
 def _infer_difficulty(q: Question) -> str:
+    # Returns "Easy/Medium/Hard" to match requirements.json difficulty keys.
     if q.points >= 20 or q.bloom_level in {"Evaluate/Create"}:
-        return "High"
+        return "Hard"
     if q.points >= 10 or q.bloom_level in {"Analyze", "Apply/Analyze"}:
         return "Medium"
-    return "Low"
+    return "Easy"
 
 
 def _infer_estimated_time(q: Question) -> int:
@@ -254,10 +255,8 @@ def enrich_assessment_metadata(questions: list[Question]) -> list[Question]:
                 "evaluate/create": "Evaluate/Create",
             }
             q.bloom_level = known.get(normalized_bloom.lower(), normalized_bloom)
-        if not q.difficulty:
-            q.difficulty = _infer_difficulty(q)
-        else:
-            q.difficulty = q.difficulty.strip().title()
+        # Always recalculate: LLM often returns uniform "Medium" for all questions.
+        q.difficulty = _infer_difficulty(q)
         if not q.estimated_time_minutes:
             q.estimated_time_minutes = _infer_estimated_time(q)
         if not q.learning_objective:
@@ -994,6 +993,10 @@ def run_pipeline(
     questions = refined["questions"]
     state["history"] = refined["history"]
 
+    # Normalise difficulty/bloom before the agentic judge so judges see
+    # Easy/Medium/Hard labels (not LLM's uniform "Medium").
+    questions = enrich_assessment_metadata(questions)
+
     # --- Task 5b: Agentic judge closed-loop revision ---
     agentic_judge = AgenticJudgeSystemAgent()
     agentic_judge_history: list[dict[str, Any]] = []
@@ -1023,6 +1026,46 @@ def run_pipeline(
             break
 
         revised_any = False
+        exam_coverage_rewritten = False  # track whether writers were re-run for coverage
+
+        # --- EXAM-level failure handling ---
+        # topics is empty in --resume-from-judge mode, so skip regeneration then.
+        if "EXAM" in non_pass and topics:
+            exam_checks = non_pass["EXAM"].get("failed_checks", [])
+            coverage_fail = any(c.startswith("coverage:") for c in exam_checks)
+            difficulty_fail = any(c.startswith("difficulty:") for c in exam_checks)
+
+            if difficulty_fail and not coverage_fail:
+                # Difficulty labels wrong — re-normalise (0 API calls).
+                print(f"[AgenticJudge iter {iteration}] Difficulty FAIL — re-normalising metadata.")
+                questions = enrich_assessment_metadata(questions)
+                revised_any = True
+
+            if coverage_fail:
+                # Topic distribution off — regenerate all questions with stricter per-topic counts.
+                print(f"[AgenticJudge iter {iteration}] Coverage FAIL — re-running writers with strict distribution.")
+                _batch_capable = hasattr(provider, "batch_write_questions")
+                regen_writers = [
+                    ShortAnswerWriterAgent(provider),
+                    ComparisonWriterAgent(provider),
+                    ApplicationWriterAgent(provider),
+                    EssayWriterAgent(provider),
+                ]
+                regen_payloads = [
+                    {"topics": topics, "notes": notes, "count": mix.get("short_answer", 6), "points_per_question": _points_for("short_answer"), "start_number": 1},
+                    {"topics": topics, "notes": notes, "count": mix.get("concept_comparison", 2), "points_per_question": _points_for("concept_comparison"), "start_number": 1},
+                    {"topics": topics, "notes": notes, "count": mix.get("application", 2), "points_per_question": _points_for("application"), "start_number": 1},
+                    {"topics": topics, "notes": notes, "count": mix.get("essay", 1), "points_per_question": _points_for("essay"), "start_number": 1},
+                ]
+                regen_qs = fan_out_question_writers(regen_writers, regen_payloads, max_workers=1 if _batch_capable else 4)
+                if regen_qs:
+                    questions = regen_qs
+                    questions = answer_writer.run({"questions": questions, "notes": notes})
+                    questions = enrich_assessment_metadata(questions)
+                    revised_any = True
+                    exam_coverage_rewritten = True
+
+        # --- Individual Q-level failure handling ---
         for target, decision in non_pass.items():
             if not target.startswith("Q"):
                 continue
@@ -1043,7 +1086,8 @@ def run_pipeline(
 
         if not revised_any:
             break
-        questions = answer_writer.run({"questions": questions, "notes": notes})
+        if not exam_coverage_rewritten:  # coverage retry already ran answer_writer internally
+            questions = answer_writer.run({"questions": questions, "notes": notes})
 
     state["agentic_judge_history"] = agentic_judge_history
     state["agentic_judge_report"] = agentic_judge_report
