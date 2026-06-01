@@ -924,8 +924,8 @@ def run_pipeline(
     state["draft_questions"] = len(questions)
 
     # --- Task 3: Answers (ReAct + retrieval) — skipped when resuming ---
+    answer_writer = AnswerWriterAgent(provider)
     if not resume_from_judge:
-        answer_writer = AnswerWriterAgent(provider)
         questions = answer_writer.run({"questions": questions, "notes": notes})
         state["run_trace"].append({"task": answer_writer.task_id, "agent": answer_writer.name, "status": "completed"})
     else:

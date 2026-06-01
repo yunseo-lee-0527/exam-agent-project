@@ -254,10 +254,6 @@ class GeminiProvider:
                     continue
                 raise
 
-    def _generate_json(self, model: str, prompt: str, system: str | None = None, stage: str = "llm_json") -> dict[str, Any]:
-        raw = self._generate(model, prompt, system, stage=stage)
-        return parse_json_block(raw) or {}
-
     def _fallback_or_raise(self, exc: Exception, method: str, fallback_call):
         if self.strict:
             raise RuntimeError(f"{self.__class__.__name__}.{method} failed in strict mode: {exc}") from exc

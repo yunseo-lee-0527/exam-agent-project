@@ -35,7 +35,6 @@
 
 ## Refinement History
 
-- iter 1: q_avg=19.5 a_avg=20.0 failed_q=[] failed_a=[]
 
 ## Human-in-the-loop
 
