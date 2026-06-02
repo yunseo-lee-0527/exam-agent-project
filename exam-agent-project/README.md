@@ -148,7 +148,7 @@ Stage 3 (루브릭 품질) SOFT_FAIL → 경고 기록, human review로 위임
 | `DifficultyBalanceJudgeAgent` | 1 | 난이도 분포 (tolerance ±10pt) | SOFT_FAIL |
 | `PedagogicalQualityJudgeAgent` | 1 | 학습목표·고차원 인지·강의 특화 용어 | SOFT_FAIL |
 | `RedTeamJudgeAgent` | 1 | 학생 관점 모호성·장황함 (임계값 90단어) | SOFT_FAIL |
-| `OverlapJudgeAgent` | 1 | 문항 간 개념 겹침 (Jaccard + LLM) | SOFT_FAIL |
+| `OverlapJudgeAgent` | 1 | 문항 간 개념 겹침 (Jaccard **0.40** + LLM 배치 확인) | SOFT_FAIL |
 | `SourceGroundingJudgeAgent` | 2 | 강의 출처 존재·어휘 검증 | HARD/SOFT_FAIL |
 | `FactualGroundingJudgeAgent` | 2 | 모범답안 사실 오류 (의미적 검증) | 경고만 |
 | `AnswerRubricJudgeAgent` | 3 | 답안 길이·루브릭 개수 | HARD/SOFT_FAIL |
