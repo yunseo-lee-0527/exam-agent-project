@@ -148,7 +148,7 @@ Stage 3 (루브릭 품질) SOFT_FAIL → 경고 기록, human review로 위임
 | `DifficultyBalanceJudgeAgent` | 1 | 난이도 분포 (tolerance ±10pt) | SOFT_FAIL |
 | `PedagogicalQualityJudgeAgent` | 1 | 학습목표·고차원 인지·강의 특화 용어 | SOFT_FAIL |
 | `RedTeamJudgeAgent` | 1 | 학생 관점 모호성·장황함 (임계값 90단어) | SOFT_FAIL |
-| `OverlapJudgeAgent` | 1 | 문항 간 개념 겹침 (Jaccard **0.40** + LLM 배치 확인) | SOFT_FAIL |
+| `OverlapJudgeAgent` | 1 | 문항 간 개념 겹침 (출처 공유 쌍 전체를 LLM 배치 확인) | SOFT_FAIL |
 | `SourceGroundingJudgeAgent` | 2 | 강의 출처 존재·어휘 검증 | HARD/SOFT_FAIL |
 | `FactualGroundingJudgeAgent` | 2 | 모범답안 사실 오류 (의미적 검증) | 경고만 |
 | `AnswerRubricJudgeAgent` | 3 | 답안 길이·루브릭 개수 | HARD/SOFT_FAIL |
@@ -165,6 +165,7 @@ Stage 3 (루브릭 품질) SOFT_FAIL → 경고 기록, human review로 위임
 | `AnswerConsistencyJudgeAgent` | SOFT_FAIL (경고만) | `write_answer_and_rubric()`으로 답안+루브릭이 함께 생성되면 일치성은 보장됨. HARD_FAIL은 무한 루프 유발 |
 | `FactualGroundingJudgeAgent` | SOFT_FAIL (경고만) | 2500자 excerpt 한계로 정상 paraphrase도 "미확인"으로 분류될 수 있음. human review가 적절 |
 | `SourceGroundingJudgeAgent` | source_refs 없음 → HARD_FAIL | 강의 근거 없는 문항은 할루시네이션 위험 |
+| `OverlapJudgeAgent` | 출처(source_refs) 공유 쌍 전체를 LLM이 의미 비교 | Jaccard 유사도는 참고용 점수로만 계산하고 필터로 쓰지 않음. 어휘가 달라도 같은 개념을 다루는 겹침(예: 표현이 다른 두 Subtraction 문항)을 놓치지 않기 위해, 같은 강의 파일을 인용한 모든 문항 쌍을 LLM 배치 호출로 확인. 생성 단계에서는 `build_question_slots()`가 같은 토픽 슬롯마다 서로 다른 세부주제(focus)를 배정해 겹침을 미리 차단 |
 
 ---
 
@@ -180,7 +181,7 @@ Stage 3 (루브릭 품질) SOFT_FAIL → 경고 기록, human review로 위임
 ---
 
 ### Task 1 — CoveragePlannerAgent
-**역할**: 강의 내용과 `requirements.json`을 분석해 "어떤 주제에서 몇 점 분량의 문제를 낼 것인가"를 담은 JSON 계획을 작성합니다. `build_question_slots()`로 문제 작성 전에 배점·토픽·난이도를 확정합니다.
+**역할**: 강의 내용과 `requirements.json`을 분석해 "어떤 주제에서 몇 점 분량의 문제를 낼 것인가"를 담은 JSON 계획을 작성합니다. `build_question_slots()`로 문제 작성 전에 배점·토픽·난이도를 확정하고, **같은 토픽에 속한 슬롯마다 서로 다른 세부주제(focus)를 round-robin으로 배정**합니다. 이로써 같은 주제의 두 문항이 같은 개념을 다루는 겹침을 생성 단계에서 미리 차단합니다.
 
 - **패턴**: Planner-Executor (강의 M5.3.3)
 
@@ -204,7 +205,11 @@ LLM provider에 `batch_write_questions()` 메서드가 있으면 토픽 전체�
 ---
 
 ### Task 3 — AnswerWriterAgent
-**역할**: `search_lecture_notes()` 도구로 강의 자료에서 근거를 찾아 `source_refs`에 기록합니다. Task 2의 batch writer가 이미 답안과 source_refs를 채워넣었다면 추가 API 호출 없이 건너뜁니다.
+**역할**: 강의 자료에서 근거 구절을 찾아 답안을 작성하고 `source_refs`에 기록합니다. Task 2의 batch writer가 이미 답안과 source_refs를 채워넣었다면 추가 API 호출 없이 건너뜁니다.
+
+**Retrieval 방식**:
+- **LLM provider (Gemini 등)**: 강의 노트를 페이지/슬라이드 단위 구절(passage)로 분할한 뒤 질문 키워드와의 관련도로 랭킹(`_ranked_passages` → `_select_passages`)하여 상위 구절만 컨텍스트로 사용합니다. 각 구절은 줄 번호 범위를 보존해 출처 추적이 가능합니다.
+- **Deterministic 모드**: 외부 의존성 없는 `search_lecture_notes()` 키워드 검색을 사용합니다.
 
 - **패턴**: ReAct-inspired Retrieval Tool (강의 M5.3.1.2 §8 + M5.3.2)
 
@@ -527,9 +532,9 @@ A. `requirements.json`의 `question_mix`와 `coverage_weights`를 수정하세�
 | Q2 | Short Answer | Problem Solving and Ideation | 5점 | Easy |
 | Q3 | Short Answer | Work and Work Systems | 5점 | Easy |
 | Q4 | Short Answer | Work and Work Systems | 5점 | Easy |
-| Q5 | Short Answer | Scientific Management | 5점 | Easy |
+| Q5 | Short Answer | Problem Solving and Ideation | 5점 | Easy |
 | Q6 | Short Answer | Problem Solving and Ideation | 5점 | Hard |
-| Q7 | Concept Comparison | Work and Work Systems (Taxonomy) | 10점 | Medium |
+| Q7 | Concept Comparison | Work and Work Systems | 10점 | Medium |
 | Q8 | Concept Comparison | Problem Solving and Ideation | 10점 | Medium |
 | Q9 | Application | Innovation Frameworks | 15점 | Medium |
 | Q10 | Application | Motion Study and Therbligs | 15점 | Medium |
@@ -543,4 +548,6 @@ A. `requirements.json`의 `question_mix`와 `coverage_weights`를 수정하세�
 | Coverage 검증 | 5개 토픽 모두 delta=0 |
 | 난이도 분포 | Easy:25 / Medium:50 / Hard:25 (정확 일치) |
 | 예상 시험 시간 | 75분 (목표 내) |
-| 고차원 인지 비율 | 45.5% (Analyze/Apply/Evaluate 포함) |
+| 고차원 인지 비율 | 54.5% (6/11, Analyze/Apply/Evaluate 포함) |
+
+> 위 표는 특정 실행의 산출물 예시이며, LLM 생성 특성상 매 실행마다 문항 내용은 달라질 수 있습니다. 구조적 제약(문항 수·배점·토픽 커버리지·난이도 분포)과 PASS 12/12 품질 게이트는 모든 실행에서 동일하게 보장됩니다.
