@@ -1,6 +1,24 @@
 {
-  "risk_count": 2,
+  "risk_count": 5,
   "risks": [
+    {
+      "risk": "deterministic_provider",
+      "severity": "high",
+      "evidence": "Current run used the local deterministic fallback, not a live LLM provider.",
+      "mitigation": "Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider using the lecture Agent Platform setup, or --provider gemini with GEMINI_API_KEY as a backup path. Add --blueprint nonexistent_path when evidence from the specialist writer path is required."
+    },
+    {
+      "risk": "blueprint_dependency",
+      "severity": "medium",
+      "evidence": "exam_blueprint.json controls the current exam draft.",
+      "mitigation": "Frame it as a team-authored, requirement-aligned blueprint or run with --blueprint nonexistent_path and a live provider in strict mode before final submission."
+    },
+    {
+      "risk": "provider_fallback_hidden",
+      "severity": "medium",
+      "evidence": "Strict provider mode is off, so live provider failures can fall back during development.",
+      "mitigation": "Use --strict-provider for final generation."
+    },
     {
       "risk": "self_evaluation_bias",
       "severity": "medium",

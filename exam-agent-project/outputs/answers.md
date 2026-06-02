@@ -108,25 +108,25 @@ Sources: M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ## Q6. Short Answer
 
-The hospital's failure exemplifies emergent performance, where system-level outcomes arise from the complex interactions of components, not isolated upgrades. Installing new diagnostic equipment (Technology) without addressing other critical work-system elements led to the failure. Key neglected components likely include **Participants** (staff), **Processes**, and **Information**. Staff (Participants) were overwhelmed because training, new roles, or incentives weren't updated for the new technology. Existing work **Processes** were probably not redesigned to optimize workflow with the new equipment, creating bottlenecks. Additionally, **Information** flows might not have adapted, causing data issues. These neglected interactions collectively resulted in the negative emergent outcome of stagnant throughput and overwhelmed staff.
+Performance is emergent because it arises from interactions among components rather than from one component alone. Participants, processes, technologies, information, customers, environment, infrastructure, and strategy jointly shape outputs. For example, faster technology may not improve service if information is missing, roles are unclear, or customer arrivals exceed process capacity. The system configuration matters more than any isolated improvement.
 
-Learning objective: Apply the concept of emergent performance to diagnose a real work-system improvement failure.
+Learning objective: Check system-level reasoning rather than isolated task reasoning.
 
 Exam intent: This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Hard, estimated_time=4 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Hard, estimated_time=4 minutes
 
-Assessed skill: framework application to a concrete work-system situation
+Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Applies the concept of emergent performance to explain the failure of an isolated technology upgrade (1 pt)
-- Identifies at least three specific, distinct neglected work-system components (e.g., Participants, Processes, Information) (2 pts)
-- Explains how the interactions between the new technology and the neglected components caused the observed system failure (e.g., overwhelmed staff, no throughput improvement) (2 pts)
+- 2 points for defining emergence.
+- 2 points for using at least three work-system components.
+- 1 point for explaining why isolated optimization can fail.
 
 Coverage contribution: work_and_work_systems: 5
 
-Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
+Sources: M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ## Q7. Concept Comparison
 
@@ -175,7 +175,7 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding an
 
 ## Q9. Application
 
-The university library aims to **Define** the problem as excessive student waiting times for study rooms, leading to reduced satisfaction. **Analysis** would involve collecting data on peak demand, no-show rates, and current booking system bottlenecks. To reduce waiting without new construction, two redesign ideas can be proposed. Using **Subtraction**, the library could eliminate the physical key pickup/return process by implementing QR code or student ID access for rooms, directly reducing check-in time. Alternatively, applying **Transposition**, the booking process could be reordered. Students could join a virtual queue for immediate access, with unutilized rooms automatically released after a short grace period, ensuring better resource utilization and less waiting.
+Define the problem as excessive waiting for scarce rooms during peak demand. Analyze booking logs, no-show rates, room sizes, and user types. One subtraction idea is to remove unlimited reservations by shortening default booking blocks or cancelling no-shows automatically. One combination idea is to combine room booking with occupancy sensing and real-time queue information so unused rooms return to the pool quickly. Selection should compare waiting-time impact, fairness, privacy, cost, and ease of implementation.
 
 Learning objective: Check whether students can use innovation frameworks as a problem-solving tool, not only recite them.
 
@@ -187,9 +187,10 @@ Assessed skill: framework application to a concrete work-system situation
 
 Rubric:
 
-- Briefly frames the problem using DASSI (Define and Analyze components). (4 pts)
-- Proposes a relevant redesign idea using one specified innovation framework (e.g., Subtraction). (5 pts)
-- Proposes a second relevant redesign idea using a *different* specified innovation framework (e.g., Transposition). (6 pts)
+- 3 points for framing the problem with DASSI.
+- 4 points for a valid first innovation framework and idea.
+- 4 points for a valid second framework and idea.
+- 4 points for evaluation criteria and practical feasibility.
 
 Coverage contribution: innovation_frameworks: 10, problem_solving_and_ideation: 5
 
@@ -197,7 +198,7 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt, M2.1.5 Systematic Innov
 
 ## Q10. Application
 
-Likely Therbligs include `Search` for parts, `Reach` across the bench, `Position` items, `Assemble` the kit, `Inspect` the kit, and `Disassemble` (implied by repacking defective kits). To improve motion efficiency, a redesigned U-shaped workstation with gravity-feed bins would minimize `Search` and `Reach`. Jigs and fixtures would facilitate quick and accurate `Position`ing and `Assemble`ing. For the surrounding work system, implementing Poka-Yoke devices would reduce `Inspect`ion needs and defect rates, decreasing `Disassemble`y. Furthermore, standardizing work methods, providing scientific worker training, and introducing performance-based incentives (following Scientific Management principles) would enhance overall system efficiency, worker engagement, and quality, reducing unnecessary physical and cognitive load.
+Likely Therbligs include search, find, select, reach, grasp, move, position, assemble, inspect, and rework-related motions. Motion improvements include fixed part locations, labels or color coding, point-of-use storage, jigs for positioning, and shorter reach distances. Work-system redesign should also change information and process flow: use a visual checklist, upstream quality signal, replenishment rule, and feedback loop so defects and missing parts are prevented rather than repeatedly discovered by the assembler.
 
 Learning objective: Check whether students can move from motion diagnosis to work-system redesign.
 
@@ -209,13 +210,14 @@ Assessed skill: framework application to a concrete work-system situation
 
 Rubric:
 
-- Identifies at least four relevant Therbligs (e.g., Search, Reach, Position, Inspect, Assemble, Disassemble). (5 pts)
-- Proposes specific design changes for motion efficiency that directly address identified Therbligs (e.g., workstation layout, jigs/fixtures). (5 pts)
-- Proposes specific design changes to the surrounding work system, beyond individual motions, incorporating broader principles (e.g., Poka-Yoke, standardization, training, incentives, load reduction). (5 pts)
+- 4 points for identifying plausible Therbligs.
+- 4 points for concrete motion-economy improvements.
+- 4 points for connecting micro-level motion to process, information, or layout.
+- 3 points for explaining how the redesign reduces rework or fatigue.
 
 Coverage contribution: motion_study_and_therbligs: 10, work_and_work_systems: 5
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.1 What is Work_Revised 260312.txt
+Sources: M1.1 What is Work_Revised 260312.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ## Q11. Essay
 

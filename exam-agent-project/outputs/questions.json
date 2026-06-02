@@ -125,23 +125,23 @@
     "number": 6,
     "kind": "Short Answer",
     "topic": "Work and Work Systems",
-    "prompt": "A hospital manager installs the latest diagnostic imaging equipment, but patient throughput does not improve and staff report feeling more overwhelmed. Using the concept of emergent performance in work systems, analyze why this isolated technology upgrade failed to improve overall performance. Identify at least three work-system components that were likely neglected, and explain how their interactions determine system-level outcomes.",
+    "prompt": "Why is performance described as an emergent property of a work system? Answer using at least three work-system components.",
     "points": 5,
-    "answer": "The hospital's failure exemplifies emergent performance, where system-level outcomes arise from the complex interactions of components, not isolated upgrades. Installing new diagnostic equipment (Technology) without addressing other critical work-system elements led to the failure. Key neglected components likely include **Participants** (staff), **Processes**, and **Information**. Staff (Participants) were overwhelmed because training, new roles, or incentives weren't updated for the new technology. Existing work **Processes** were probably not redesigned to optimize workflow with the new equipment, creating bottlenecks. Additionally, **Information** flows might not have adapted, causing data issues. These neglected interactions collectively resulted in the negative emergent outcome of stagnant throughput and overwhelmed staff.",
+    "answer": "Performance is emergent because it arises from interactions among components rather than from one component alone. Participants, processes, technologies, information, customers, environment, infrastructure, and strategy jointly shape outputs. For example, faster technology may not improve service if information is missing, roles are unclear, or customer arrivals exceed process capacity. The system configuration matters more than any isolated improvement.",
     "source_refs": [
-      "M1.1 What is Work_Revised 260312.txt",
-      "M1.3 What is a Work System.txt"
+      "M1.3 What is a Work System.txt",
+      "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
     ],
     "difficulty": "Hard",
-    "learning_objective": "Apply the concept of emergent performance to diagnose a real work-system improvement failure.",
-    "bloom_level": "Apply/Analyze",
+    "learning_objective": "Check system-level reasoning rather than isolated task reasoning.",
+    "bloom_level": "Remember/Understand",
     "estimated_time_minutes": 4,
     "exam_intent": "This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "framework application to a concrete work-system situation",
+    "assessed_skill": "concept recall and explanation",
     "rubric": [
-      "Applies the concept of emergent performance to explain the failure of an isolated technology upgrade (1 pt)",
-      "Identifies at least three specific, distinct neglected work-system components (e.g., Participants, Processes, Information) (2 pts)",
-      "Explains how the interactions between the new technology and the neglected components caused the observed system failure (e.g., overwhelmed staff, no throughput improvement) (2 pts)"
+      "2 points for defining emergence.",
+      "2 points for using at least three work-system components.",
+      "1 point for explaining why isolated optimization can fail."
     ],
     "coverage_contribution": {
       "work_and_work_systems": 5
@@ -206,7 +206,7 @@
     "topic": "Five Innovation Frameworks",
     "prompt": "A university library wants to reduce student waiting time for study rooms without building more rooms. Use DASSI briefly to frame the problem, then propose two redesign ideas using two different innovation frameworks.",
     "points": 15,
-    "answer": "The university library aims to **Define** the problem as excessive student waiting times for study rooms, leading to reduced satisfaction. **Analysis** would involve collecting data on peak demand, no-show rates, and current booking system bottlenecks. To reduce waiting without new construction, two redesign ideas can be proposed. Using **Subtraction**, the library could eliminate the physical key pickup/return process by implementing QR code or student ID access for rooms, directly reducing check-in time. Alternatively, applying **Transposition**, the booking process could be reordered. Students could join a virtual queue for immediate access, with unutilized rooms automatically released after a short grace period, ensuring better resource utilization and less waiting.",
+    "answer": "Define the problem as excessive waiting for scarce rooms during peak demand. Analyze booking logs, no-show rates, room sizes, and user types. One subtraction idea is to remove unlimited reservations by shortening default booking blocks or cancelling no-shows automatically. One combination idea is to combine room booking with occupancy sensing and real-time queue information so unused rooms return to the pool quickly. Selection should compare waiting-time impact, fairness, privacy, cost, and ease of implementation.",
     "source_refs": [
       "M2.1.1 Engineering Problem-Solving Process.txt",
       "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
@@ -218,9 +218,10 @@
     "exam_intent": "This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the application format.",
     "assessed_skill": "framework application to a concrete work-system situation",
     "rubric": [
-      "Briefly frames the problem using DASSI (Define and Analyze components). (4 pts)",
-      "Proposes a relevant redesign idea using one specified innovation framework (e.g., Subtraction). (5 pts)",
-      "Proposes a second relevant redesign idea using a *different* specified innovation framework (e.g., Transposition). (6 pts)"
+      "3 points for framing the problem with DASSI.",
+      "4 points for a valid first innovation framework and idea.",
+      "4 points for a valid second framework and idea.",
+      "4 points for evaluation criteria and practical feasibility."
     ],
     "coverage_contribution": {
       "innovation_frameworks": 10,
@@ -233,11 +234,10 @@
     "topic": "Motion Study and Therbligs",
     "prompt": "A worker assembling small kits repeatedly searches for parts, reaches across the bench, positions items by hand, inspects the kit, and repacks defective kits. Identify likely Therbligs and propose a redesign that improves both motion efficiency and the surrounding work system.",
     "points": 15,
-    "answer": "Likely Therbligs include `Search` for parts, `Reach` across the bench, `Position` items, `Assemble` the kit, `Inspect` the kit, and `Disassemble` (implied by repacking defective kits). To improve motion efficiency, a redesigned U-shaped workstation with gravity-feed bins would minimize `Search` and `Reach`. Jigs and fixtures would facilitate quick and accurate `Position`ing and `Assemble`ing. For the surrounding work system, implementing Poka-Yoke devices would reduce `Inspect`ion needs and defect rates, decreasing `Disassemble`y. Furthermore, standardizing work methods, providing scientific worker training, and introducing performance-based incentives (following Scientific Management principles) would enhance overall system efficiency, worker engagement, and quality, reducing unnecessary physical and cognitive load.",
+    "answer": "Likely Therbligs include search, find, select, reach, grasp, move, position, assemble, inspect, and rework-related motions. Motion improvements include fixed part locations, labels or color coding, point-of-use storage, jigs for positioning, and shorter reach distances. Work-system redesign should also change information and process flow: use a visual checklist, upstream quality signal, replenishment rule, and feedback loop so defects and missing parts are prevented rather than repeatedly discovered by the assembler.",
     "source_refs": [
-      "M1.4 Scientific Management as Work System Redesign.txt",
-      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-      "M1.1 What is Work_Revised 260312.txt"
+      "M1.1 What is Work_Revised 260312.txt",
+      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
     "difficulty": "Medium",
     "learning_objective": "Check whether students can move from motion diagnosis to work-system redesign.",
@@ -246,9 +246,10 @@
     "exam_intent": "This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the application format.",
     "assessed_skill": "framework application to a concrete work-system situation",
     "rubric": [
-      "Identifies at least four relevant Therbligs (e.g., Search, Reach, Position, Inspect, Assemble, Disassemble). (5 pts)",
-      "Proposes specific design changes for motion efficiency that directly address identified Therbligs (e.g., workstation layout, jigs/fixtures). (5 pts)",
-      "Proposes specific design changes to the surrounding work system, beyond individual motions, incorporating broader principles (e.g., Poka-Yoke, standardization, training, incentives, load reduction). (5 pts)"
+      "4 points for identifying plausible Therbligs.",
+      "4 points for concrete motion-economy improvements.",
+      "4 points for connecting micro-level motion to process, information, or layout.",
+      "3 points for explaining how the redesign reduces rework or fatigue."
     ],
     "coverage_contribution": {
       "motion_study_and_therbligs": 10,

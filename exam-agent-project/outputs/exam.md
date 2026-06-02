@@ -31,7 +31,7 @@ What are Therbligs? Give three examples of Therblig motions and explain why this
 
 ## Q6. Short Answer (5 points)
 
-A hospital manager installs the latest diagnostic imaging equipment, but patient throughput does not improve and staff report feeling more overwhelmed. Using the concept of emergent performance in work systems, analyze why this isolated technology upgrade failed to improve overall performance. Identify at least three work-system components that were likely neglected, and explain how their interactions determine system-level outcomes.
+Why is performance described as an emergent property of a work system? Answer using at least three work-system components.
 
 ## Q7. Concept Comparison (10 points)
 

@@ -9,12 +9,12 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Source grounding passed: `True`
 - Chunk grounding passed: `True`
 - Estimated total time: 75 / 75 minutes
-- Higher-order question share: 0.545
+- Higher-order question share: 0.455
 
 ## Distributions
 
 - Question kind: `{"Short Answer": 6, "Concept Comparison": 2, "Application": 2, "Essay": 1}`
-- Bloom level: `{"Remember/Understand": 5, "Apply/Analyze": 3, "Analyze": 2, "Evaluate/Create": 1}`
+- Bloom level: `{"Remember/Understand": 6, "Analyze": 2, "Apply/Analyze": 2, "Evaluate/Create": 1}`
 - Difficulty: `{"Easy": 5, "Hard": 2, "Medium": 4}`
 
 ## Item-Level Evidence
@@ -77,13 +77,13 @@ This report exists to defend generated exam quality, not merely pipeline complet
 ### Q6
 
 - Topic: Work and Work Systems
-- Bloom level: Apply/Analyze
+- Bloom level: Remember/Understand
 - Difficulty: Hard
 - Estimated time: 4 minutes
-- Learning objective: Apply the concept of emergent performance to diagnose a real work-system improvement failure.
-- Assessed skill: framework application to a concrete work-system situation
+- Learning objective: Check system-level reasoning rather than isolated task reasoning.
+- Assessed skill: concept recall and explanation
 - Exam intent: This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.
-- Sources: M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt
+- Sources: M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
 ### Q7
 
@@ -127,7 +127,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Learning objective: Check whether students can move from motion diagnosis to work-system redesign.
 - Assessed skill: framework application to a concrete work-system situation
 - Exam intent: This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the application format.
-- Sources: M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.1 What is Work_Revised 260312.txt
+- Sources: M1.1 What is Work_Revised 260312.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ### Q11
 
