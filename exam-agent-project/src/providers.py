@@ -453,7 +453,13 @@ class GeminiProvider:
             "present in your 'answer'. Every criterion must be satisfiable by a student "
             "who understands your model answer. Never introduce rubric criteria requiring "
             "content absent from your answer. Rubric point values must be integers "
-            "(no fractions) summing exactly to the question's total points."
+            "(no fractions) summing exactly to the question's total points. "
+            "CRITICAL — diversity rule: each slot begins with a line "
+            "'>>> MANDATORY TOPIC for this question: ... <<<'. The 'prompt' you write "
+            "for that slot MUST be specifically and exclusively about that exact "
+            "sub-topic. Do NOT drift to a neighbouring concept, even if it appears in "
+            "the lecture context. Two questions in this exam must never test the same "
+            "concept, so honouring each slot's MANDATORY TOPIC is essential."
         )
         topic_blocks: list[str] = []
         for t in topics:
@@ -464,16 +470,26 @@ class GeminiProvider:
                 f"  source files: {srcs}\n"
                 f"  context: {(ctx or '(none)')[:300]}"
             )
-        slot_lines = [
-            (
-                f"slot_id: {slot['slot_id']}; topic_key: {slot['topic_key']}; "
+        # Each slot already carries a distinct sub-topic 'focus' assigned globally
+        # in build_question_slots() (round-robin within each topic across all kinds).
+        # We embed it as REQUIRED_FOCUS so the LLM targets a different concept per
+        # slot, preventing overlap at generation time.
+        slot_lines = []
+        for slot in slots:
+            focus = slot.get("focus", "")
+            head = (
+                f">>> MANDATORY TOPIC for this question: {focus} <<<\n"
+                if focus else ""
+            )
+            slot_lines.append(
+                head
+                + f"slot_id: {slot['slot_id']}; topic_key: {slot['topic_key']}; "
                 f"title: {slot.get('topic_title', slot['topic_key'])}; "
                 f"total_points: {slot.get('points', '?')}; "
                 f"coverage_contribution: {slot.get('coverage_contribution', {})}; "
                 f"target_difficulty: {slot.get('target_difficulty', '')}"
             )
-            for slot in slots
-        ]
+
         prompt = (
             f"Write exactly {count} {kind} exam questions, one per requested slot.\n\n"
             + "Requested slots:\n"

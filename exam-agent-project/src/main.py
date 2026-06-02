@@ -116,6 +116,51 @@ _QUESTION_KIND_LABELS = {
 }
 
 
+# Distinct sub-topic foci per coverage topic. build_question_slots() assigns
+# these round-robin across ALL slots of a topic (regardless of question kind),
+# so no two questions on the same topic test the same concept. This prevents
+# overlap at generation time instead of catching it after the fact.
+_TOPIC_SUBTOPICS: dict[str, list[str]] = {
+    "work_and_work_systems": [
+        "levels of work — distinguishing action, task, process, and work-system",
+        "work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy)",
+        "work system taxonomy — structure-based (volume-variety, automation, temporality) vs complexity-based (interaction, domain complexity)",
+        "emergence — why system performance arises from component interaction, not isolated parts",
+        "disciplinary perspectives on work — economic, sociological, psychological, and engineering lenses",
+        "open vs closed system view of work systems",
+    ],
+    "scientific_management": [
+        "Taylor's four principles of scientific management and their managerial logic",
+        "soldiering — natural vs systematic, and Taylor's diagnosis of inefficiency",
+        "the Gilbreths' contributions — motion study, micromotion analysis, and Therbligs",
+        "pig iron handling or shovel experiments as evidence-based work redesign",
+        "scientific management as an early form of work-system redesign and its limitations",
+    ],
+    "problem_solving_and_ideation": [
+        "the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement)",
+        "the KJ Method / affinity diagramming for structuring messy problems",
+        "the Concept Fan technique for expanding the solution space via higher-level purpose",
+        "brainstorming principles — deferred judgment and quantity over quality",
+        "Bodystorming and other hands-on ideation techniques",
+        "comparing structured problem definition with divergent solution generation",
+    ],
+    "innovation_frameworks": [
+        "the Subtraction framework — removing an essential component to create value",
+        "the Addition framework — adding a new component or feature",
+        "the Alternate Means framework — replacing how a function is achieved",
+        "the Combination framework — merging existing systems or services",
+        "the Transposition framework — moving a solution pattern across domains",
+    ],
+    "motion_study_and_therbligs": [
+        "the definition and purpose of Therbligs in motion study",
+        "specific Therblig motions (search, reach, grasp, position) and their economy improvements",
+        "applying Therblig analysis to diagnose and redesign a manual task",
+        "motion economy principles — normal work area, two-handed work, gravity feed",
+        "connecting micro-level motion study to system-level work redesign",
+    ],
+}
+
+
 def build_question_slots(
     question_mix: dict[str, int],
     coverage_weights: dict[str, int],
@@ -266,6 +311,20 @@ def build_question_slots(
         )
     for slot, level in zip(slots, difficulty_assignment[1]):
         slot["target_difficulty"] = level.title()
+
+    # Assign a distinct sub-topic focus to each slot, round-robin within each
+    # topic across ALL question kinds. Because every slot on a topic gets a
+    # different focus, two questions can no longer test the same concept —
+    # overlap is prevented at generation time rather than caught afterward.
+    topic_focus_counter: dict[str, int] = {}
+    for slot in slots:
+        tk = str(slot.get("topic_key", ""))
+        foci = _TOPIC_SUBTOPICS.get(tk, [])
+        if foci:
+            idx = topic_focus_counter.get(tk, 0)
+            slot["focus"] = foci[idx % len(foci)]
+            topic_focus_counter[tk] = idx + 1
+
     return slots
 
 

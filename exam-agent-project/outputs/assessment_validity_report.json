@@ -9,9 +9,8 @@
   },
   "bloom_distribution": {
     "Remember/Understand": 5,
-    "Analyze": 3,
-    "Apply/Analyze": 2,
-    "Evaluate/Create": 1
+    "Analyze": 4,
+    "Apply/Analyze": 2
   },
   "difficulty_distribution": {
     "Easy": 5,
