@@ -1722,7 +1722,15 @@ class OverlapJudgeAgent(BaseAgentWorker):
         questions: list[Question] = payload["questions"]
         n = len(questions)
 
-        # --- Step 1 + 2: pre-filter and keyword check ---
+        # --- Step 1 + 2: pre-filter and keyword score ---
+        # Jaccard is computed for context only and is NO LONGER used as a filter.
+        # Root cause of prior miss: Q6 and Q9 both tested the Subtraction framework
+        # from the same source (M2.1.5) but used different surface vocabulary
+        # (Q6: "generate product ideas"; Q9: "smartphone component subtract"),
+        # giving Jaccard = 0.10 despite clear conceptual overlap.
+        # Fix: send ALL source-ref-sharing pairs to the LLM batch judge, which
+        # reasons about meaning, not word sets.  Cost is bounded by the number of
+        # shared-source pairs (typically 5–20 for an 11-question exam).
         candidates: list[tuple[Question, Question, float]] = []
         for i in range(n):
             for j in range(i + 1, n):
@@ -1733,8 +1741,9 @@ class OverlapJudgeAgent(BaseAgentWorker):
                 kw1 = self._prompt_keywords(q1.prompt)
                 kw2 = self._prompt_keywords(q2.prompt)
                 score = self._jaccard(kw1, kw2)
-                if score >= self.JACCARD_THRESHOLD:
-                    candidates.append((q1, q2, score))
+                # All source-sharing pairs are candidates; Jaccard is passed
+                # to the LLM as a hint but does not gate the check.
+                candidates.append((q1, q2, score))
 
         # --- Step 3: LLM batch confirmation ---
         confirmed: list[tuple[Question, Question, str]] = []
@@ -1769,6 +1778,18 @@ class OverlapJudgeAgent(BaseAgentWorker):
             if q.number in flagged:
                 reasons = flagged[q.number]
                 other_nums = [r.split("Q")[1].split(" ")[0] for r in reasons]
+                # Include the actual text of overlapping questions so the LLM
+                # knows precisely what concept/perspective/framework to avoid.
+                avoid_lines = []
+                for r in reasons:
+                    try:
+                        other_n = int(r.split("Q")[1].split(" ")[0])
+                        other_q = next((qq for qq in questions if qq.number == other_n), None)
+                        if other_q:
+                            avoid_lines.append(f'  Q{other_n}: "{other_q.prompt[:120]}"')
+                    except (ValueError, IndexError):
+                        pass
+                avoid_text = ("\nDo NOT produce a question similar to:\n" + "\n".join(avoid_lines)) if avoid_lines else ""
                 findings.append(
                     AgenticJudgeFinding(
                         target_id=f"Q{q.number}",
@@ -1777,10 +1798,13 @@ class OverlapJudgeAgent(BaseAgentWorker):
                         failed_checks=["question_overlap"],
                         evidence=reasons,
                         revision_instruction=(
-                            f"Q{q.number} overlaps with Q{', Q'.join(other_nums)}. "
-                            "Rewrite this question to test a clearly different concept, "
-                            "aspect, or cognitive operation from the same topic area. "
-                            "Do not re-use the same framework or method as the question(s) it overlaps with."
+                            f"Q{q.number} conceptually overlaps with Q{', Q'.join(other_nums)}. "
+                            "Rewrite this question to test a COMPLETELY DIFFERENT aspect, "
+                            "concept, or perspective within the same topic area. "
+                            "For example, if the overlapping questions are about IS-perspective "
+                            "definitions, ask instead about emergence, taxonomy, history, or "
+                            "a concrete application of work-system concepts."
+                            + avoid_text
                         ),
                     )
                 )

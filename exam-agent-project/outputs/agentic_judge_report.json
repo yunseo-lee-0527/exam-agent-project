@@ -1,9 +1,9 @@
 {
-  "final_verdict": "PASS",
+  "final_verdict": "REVISE",
   "summary": {
     "targets": 12,
-    "pass": 12,
-    "revise": 0,
+    "pass": 10,
+    "revise": 2,
     "fail": 0
   },
   "target_decisions": {
@@ -14,10 +14,16 @@
       "earliest_failing_stage": 3
     },
     "Q1": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": [],
-      "earliest_failing_stage": 3
+      "final_verdict": "REVISE",
+      "failed_checks": [
+        "question_overlap",
+        "answer_rubric_mismatch"
+      ],
+      "revision_instructions": [
+        "Q1 conceptually overlaps with Q3. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q3: \"According to the lecture's Information Systems perspective on work, what is a common mistake when conceptualizing a 'sys\"",
+        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both."
+      ],
+      "earliest_failing_stage": 1
     },
     "Q10": {
       "final_verdict": "PASS",
@@ -56,10 +62,14 @@
       "earliest_failing_stage": 3
     },
     "Q6": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": [],
-      "earliest_failing_stage": 3
+      "final_verdict": "REVISE",
+      "failed_checks": [
+        "question_overlap"
+      ],
+      "revision_instructions": [
+        "Q6 conceptually overlaps with Q11. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q11: \"From the perspective of work system redesign, explain the primary aims of Scientific Management as articulated in the le\""
+      ],
+      "earliest_failing_stage": 1
     },
     "Q7": {
       "final_verdict": "PASS",
@@ -114,7 +124,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students should be able to articulate the fundamental importance of understanding work and work systems."
+        "learning_objective=Understand the definition and components of a 'work system' from the Information Systems perspective as presented in the lecture."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -126,7 +136,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students should be able to identify and describe the first stage of the engineering problem-solving process."
+        "learning_objective=Identify the key phases of the engineering problem-solving process."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -138,7 +148,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students should be able to define a work system within the context of scientific management."
+        "learning_objective=Students will be able to identify a common misconception regarding 'systems' and enumerate the core components of a 'work system' from an Information Systems perspective, as presented in the lecture."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -150,7 +160,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students should be able to recall and state key objectives of Taylor's scientific management in work system redesign."
+        "learning_objective=Understand the importance and purpose of defining 'work' from an engineering and design perspective."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -162,7 +172,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students should be able to identify and explain key rules for effective brainstorming."
+        "learning_objective=Students will understand the rationale behind generating multiple alternatives in the systematic engineering problem-solving process."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -174,7 +184,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Students should be able to explain and exemplify the Subtraction innovation framework."
+        "learning_objective=Students will be able to describe historical examples of problem-solving in work systems and connect them to general engineering problem-solving principles."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -186,7 +196,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Students should be able to differentiate between the concepts of \"work\" and a \"work system\" and understand their interrelationship in an organizational context."
+        "learning_objective=Students should be able to differentiate between the Economic and Sociological disciplinary perspectives on work and their core tenets."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -198,7 +208,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Students should be able to differentiate between various ideation techniques and understand their appropriate application within the problem-solving process."
+        "learning_objective=Understand the relationship between problem-solving methodologies and specific ideation techniques."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -210,7 +220,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Apply systematic innovation frameworks to generate new product/service concepts."
+        "learning_objective=Apply systematic innovation frameworks to generate novel product or process improvements."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -222,7 +232,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Analyze work processes using Therbligs to identify and propose efficiency improvements."
+        "learning_objective=Analyze a work task using Therbligs and propose motion study improvements."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -234,7 +244,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Analyze how Scientific Management principles functioned as an early approach to work system redesign to improve efficiency and reduce variability."
+        "learning_objective=Students will be able to describe Scientific Management's core aims when reinterpreted as an early attempt at work system redesign, based on lecture content."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -245,7 +255,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=26"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -256,7 +266,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=10"
+        "prompt_words=12"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -267,7 +277,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=33"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -278,7 +288,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=15"
+        "prompt_words=24"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -289,7 +299,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=13"
+        "prompt_words=23"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -300,7 +310,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=18"
+        "prompt_words=24"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -311,7 +321,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=22"
+        "prompt_words=19"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -322,7 +332,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=25"
+        "prompt_words=20"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -333,7 +343,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=49"
+        "prompt_words=52"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -344,7 +354,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=49"
+        "prompt_words=62"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -355,7 +365,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=54"
+        "prompt_words=19"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -363,10 +373,14 @@
     {
       "target_id": "Q1",
       "judge": "Overlap Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [],
-      "revision_instruction": "",
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "question_overlap"
+      ],
+      "evidence": [
+        "Overlaps with Q3 (Short Answer, 5pts): Both questions ask to list the five key components of a 'work system' from the Information Systems perspective presented in the lecture, and both implicitly or explicitly frame the 'work system' as the unit of analysis. Q3 adds a question about a common mistake, but the core knowledge tested is identical."
+      ],
+      "revision_instruction": "Q1 conceptually overlaps with Q3. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q3: \"According to the lecture's Information Systems perspective on work, what is a common mistake when conceptualizing a 'sys\"",
       "stage": 1
     },
     {
@@ -408,10 +422,14 @@
     {
       "target_id": "Q6",
       "judge": "Overlap Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [],
-      "revision_instruction": "",
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "question_overlap"
+      ],
+      "evidence": [
+        "Overlaps with Q11 (Essay, 20pts): Q6 asks how Taylor's solution exemplified a key aspect of the Engineering Problem-Solving Process. Q11 asks about the primary aims of Scientific Management from a work system redesign perspective. Taylor's work is a foundational example of Scientific Management, and the 'Shovel Studies' are often used to illustrate the principles of Scientific Management and its connection to problem-solving and efficiency, making the underlying knowledge tested very similar."
+      ],
+      "revision_instruction": "Q6 conceptually overlaps with Q11. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q11: \"From the perspective of work system redesign, explain the primary aims of Scientific Management as articulated in the le\"",
       "stage": 1
     },
     {
@@ -465,8 +483,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, understanding, systems, because, human, productivity"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, system, information, systems, perspective, proper"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -477,8 +495,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=initial, step, engineering, problem-solving, process, define"
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
+        "matched_terms=initial, final, engineering, problem-solving, process, step"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -489,8 +507,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, management, components, materials, information"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, system, information, systems, perspective, common"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -501,8 +519,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=taylor, scientific, management, work, redesign, according"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, definition, engineering, design, disciplines, activities"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -513,8 +531,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, fundamental, rules, effective, session, solution"
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
+        "matched_terms=materials, engineering, problem-solving, process, generate, multiple"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -525,8 +543,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=subtraction, innovation, framework, applied, generate, product"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M2.1.1 Engineering Problem-Solving Process.txt",
+        "matched_terms=taylor, core, problem, identified, during, shovel"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -537,8 +555,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt",
-        "matched_terms=work, system, characteristics, human"
+        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.2 Why Work Matters_260312.txt",
+        "matched_terms=work, economic, sociological, perspectives, distinct, perspective"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -549,8 +567,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, method, ideation, their, goals, process"
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=compare, problem, solving, ideation, engineering, they"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -562,8 +580,8 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=subtraction, innovation, imagine, common, smartphone, systematic",
-        "lecture_innovation_frameworks_in_answer=subtraction"
+        "matched_terms=innovation, frameworks, subtraction, consider, common, product",
+        "lecture_innovation_frameworks_in_answer=addition, subtraction"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -575,7 +593,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, therblig, task, assembling, basic, body"
+        "matched_terms=factory, worker, task, involves, small, empty"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -587,7 +605,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=scientific, management, work, system, redesign, taylor"
+        "matched_terms=work, system, redesign, scientific, management, taylor"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -598,7 +616,9 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2"
+        "sources_checked=1",
+        "Warning (HARD_FAIL): The model answer incorrectly states that the unit of analysis is \"IT projects\" and that \"the concept of a 'system' is mistakenly confined to just IT\". The lecture notes define \"work system\" as an \"organized socio-technical system in which processes occur\" and do not mention IT projects as the unit of analysis or the common misconception of confining the system to just IT. The lecture notes also do not list the five key components of a work system.",
+        "Warning (HARD_FAIL): The model answer lists roles, procedures, incentives, training, and performance metrics as key components of a work system. This list is not present in the provided lecture excerpts."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -609,7 +629,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=4"
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -620,8 +640,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer claims scientific management primarily sought to optimize work systems by standardizing methods, clarifying roles, and minimizing variability. The lecture notes discuss standardization, role coordination, information flow, and feedback systems in the context of productivity and well-designed work systems generally, but do not specifically attribute these optimization goals to 'scientific management'."
+        "sources_checked=1",
+        "Warning (HARD_FAIL): The model answer states that the five key components of a work system are People, Processes, Information, Technology, and Customers. The provided lecture excerpts do not list these five components as defining a work system. The excerpts define 'work system' as an 'organized socio-technical system in which processes occur' and discuss other perspectives like economic, sociological, and psychological, but do not enumerate these specific components for a work system."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -632,8 +652,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer claims that a primary goal of Taylor's scientific management was to 'reduce variability' in how tasks were performed. The lecture notes mention 'quantification of variation' as a scientific principle established during the Scientific Revolution that Taylor applied, and the SEIPS model emphasizes 'interaction and variability'. However, the lecture notes do not explicitly state that reducing variability was a primary goal of Taylor's scientific management redesign. Instead, M1.4 highlights that Taylor observed 'no standardized methods' and 'tacit worker knowledge' leading to 'systematic soldiering' due to 'lack of objective standards', and his principles aimed to develop a 'science for each element of work' which involved 'time study, standardization, tool optimization'."
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -644,8 +663,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=4",
-        "Warning (SOFT_FAIL): The model answer claims that \"Defer Judgment/Criticism\" promotes a \"psychologically safe environment\" and \"encourages participants to share freely without fear of being judged\". While the lecture notes state that \"Delaying judgment is for generating as many ideas as possible\" and \"Delaying judgment eliminates fear (a mental barrier to creativity)\", and \"No criticism: think first-judge later\", and \"Support each other (never criticize)\", it does not explicitly link these principles to creating a \"psychologically safe environment\" or explicitly mention \"fear of being judged\"."
+        "sources_checked=1",
+        "Warning (HARD_FAIL): The model answer states that generating multiple alternatives is 'Step 3' in the DASSI framework, but the lecture materials (M2.1.1, Page 4) list 'Search for possible alternatives' as Step 3, and 'Select the best alternative through comparison' as Step 4. The answer conflates searching for alternatives with selecting the best alternative."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -656,8 +675,9 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer states that the 'Subtraction' innovation framework involves removing a core component and finding new ways to achieve the original function or derive new benefits. However, the provided lecture excerpts do not define or explain the 'Subtraction' framework at all. The excerpts only list it as one of five innovation frameworks."
+        "sources_checked=2",
+        "Warning (HARD_FAIL): The model answer states Taylor's \"Shovel Studies\" identified the core problem that workers used identical shovel sizes despite handling different materials that required varying optimal loads, leading to inefficiency. The provided lecture excerpts do not mention \"Shovel Studies\" or Taylor's work involving different shovel sizes for different materials. The excerpts state Taylor observed \"No standardized methods\" and \"tacit worker knowledge\" and that he \"Treated work as decomposable, measurable, optimizable.\" This implies a lack of standardization and measurement, but not specifically the shovel size issue.",
+        "Warning (HARD_FAIL): The model answer claims Taylor's solution exemplified the \"Analysis\" and \"Selection of Alternatives\" steps of the Engineering Problem-Solving Process, and that he \"experimentally determin[ed] an optimal shovel load of approximately 21 pounds per scoop.\" The lecture excerpts on the Engineering Problem-Solving Process (M2.1.1) describe these steps, but there is no mention of Taylor or his \"Shovel Studies\" in relation to these steps or the specific 21-pound figure within the provided materials."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -668,7 +688,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1"
+        "sources_checked=2"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -679,7 +699,9 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2"
+        "sources_checked=2",
+        "Warning (HARD_FAIL): The model answer states that ideation is a specific stage *within* the broader problem-solving process. The lecture notes describe ideation (brainstorming) as a technique to generate solutions to a problem, and this generation of ideas is part of the 'Search for possible alternatives' step within the problem-solving process. While ideation is a part of problem-solving, the phrasing \"specific stage *within*\" is not explicitly stated and could be interpreted as a distinct, singular step rather than a broader activity that could occur across steps or be a method used within a step.",
+        "Warning (HARD_FAIL): The model answer states that \"Scientific management often implied a problem-solving approach to optimize work, with ideation techniques used to generate new methods.\" The provided lecture excerpts do not mention scientific management or its relationship to problem-solving or ideation."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -691,7 +713,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The provided lecture excerpts only list the 'Subtraction framework' as one of five systematic innovation methods but do not describe its specific principles or how it should be applied. The model answer's description of the Subtraction framework and its application to a smartphone is therefore not supported by the provided text."
+        "Warning (HARD_FAIL): The Subtraction framework is described as \"removing an essential component.\" The lecture notes define the Addition framework as \"Modify an existing product by adding a feature to it\" and list Subtraction as one of the five frameworks, but do not explicitly define Subtraction in the provided excerpts, nor does it state it involves removing an essential component."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -703,7 +725,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (SOFT_FAIL): The model answer suggests 'Combine Grasp' by orienting pen bodies for simultaneous grasping of multiple bodies or using a specialized tool. The lecture notes on Therbligs mention ideas for improving 'Grasp' such as 'Contact grasp (without lifting)', 'Use of vacuum, magnets, conveyors', 'Modify surface material', and 'Utilize pre-positioning'. While the model's suggestions align with the goal of efficiency, they are not directly supported by the provided text for the specific Therblig 'Grasp'."
+        "Warning (HARD_FAIL): The model answer defines 'Search' as 'The worker looks for a suitable bottle in the bin.' However, the lecture notes define 'RE' (Reach) as 'Motion performed with an empty hand – From the start of movement to arrival/stop' and 'G' (Grasp) as 'Motion of closing the hand to take control of an object.' The term 'Search' is not explicitly defined as a Therblig in the provided excerpts, nor is its description as 'looking for a suitable bottle' directly supported. While searching might be implied, the lecture focuses on physical motions."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -721,42 +743,6 @@
     },
     {
       "target_id": "Q1",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=70",
-        "rubric_items=3"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q2",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=77",
-        "rubric_items=3"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q3",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=70",
-        "rubric_items=2"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q4",
       "judge": "Answer Rubric Judge",
       "verdict": "PASS",
       "failed_checks": [],
@@ -768,13 +754,49 @@
       "stage": 3
     },
     {
+      "target_id": "Q2",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=45",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=80",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=70",
+        "rubric_items=5"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
       "target_id": "Q5",
       "judge": "Answer Rubric Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=92",
-        "rubric_items=3"
+        "answer_words=86",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -785,7 +807,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=93",
+        "answer_words=90",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -797,7 +819,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=101",
+        "answer_words=109",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -809,7 +831,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=102",
+        "answer_words=104",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -821,8 +843,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=89",
-        "rubric_items=4"
+        "answer_words=81",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -833,7 +855,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=138",
+        "answer_words=91",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -845,8 +867,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=105",
-        "rubric_items=4"
+        "answer_words=81",
+        "rubric_items=5"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -854,12 +876,16 @@
     {
       "target_id": "Q1",
       "judge": "Answer Consistency Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "answer_rubric_mismatch"
       ],
-      "revision_instruction": "",
+      "evidence": [
+        "The question asks to identify the proper unit of analysis and list the five key components of a 'work system', but the model answer does not explicitly state the unit of analysis or list five components. It only mentions 'roles, procedures, incentives, training, and performance metrics' as examples of non-technological aspects that require redesign, implying these might be components, but it doesn't list them as the 'five key components' as requested.",
+        "The model answer does not explicitly identify the 'proper unit of analysis' as requested in the question.",
+        "rubric_items=3; rubric_pts_parsed=[2.0, 1.0, 2.0]"
+      ],
+      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
       "stage": 3
     },
     {
@@ -879,7 +905,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=2; rubric_pts_parsed=[3.0, 2.0]"
+        "rubric_items=3; rubric_pts_parsed=[1.0, 1.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -890,7 +916,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
+        "rubric_items=5; rubric_pts_parsed=[1.0, 1.0, 1.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -901,7 +927,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
+        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -912,7 +938,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 1.0, 2.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -923,7 +949,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[3.0, 3.0, 4.0]"
+        "rubric_items=3; rubric_pts_parsed=[3.0, 4.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -945,7 +971,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 5.0, 4.0]"
+        "rubric_items=3; rubric_pts_parsed=[7.0, 7.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -956,7 +982,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[6.0, 6.0, 3.0]"
+        "rubric_items=3; rubric_pts_parsed=[3.0, 9.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -967,7 +993,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[4.0, 5.0, 6.0, 5.0]"
+        "rubric_items=5; rubric_pts_parsed=[4.0, 4.0, 4.0, 4.0, 4.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -1007,7 +1033,7 @@
       "task": "Task 4l",
       "agent": "Overlap Judge",
       "findings": 11,
-      "non_pass": 0
+      "non_pass": 2
     },
     {
       "stage": 2,
@@ -1035,12 +1061,12 @@
       "task": "Task 4k",
       "agent": "Answer Consistency Judge",
       "findings": 11,
-      "non_pass": 0
+      "non_pass": 1
     },
     {
       "task": "Task 4j",
       "agent": "Judge Aggregator",
-      "final_verdict": "PASS"
+      "final_verdict": "REVISE"
     }
   ]
 }

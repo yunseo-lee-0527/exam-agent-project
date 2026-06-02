@@ -2,40 +2,44 @@
 
 ## Coverage Audit
 
+- Coverage gap: no question targets Work and Work Systems.
+- Coverage gap: no question targets Scientific Management Principles.
+- Coverage gap: no question targets Problem Solving and Ideation Methods.
+- Coverage gap: no question targets Motion Study and Therbligs.
 - Coverage contribution by topic key: {'work_and_work_systems': 25, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15, 'scientific_management': 20}.
 - Question type mix: {'Short Answer': 6, 'Concept Comparison': 2, 'Application': 2, 'Essay': 1}.
 
 ## Question Judge
 
-- Q1: total=20 verdict=GOOD suggestion=The prompt is clear and directly asks for the fundamental importance of understanding work and work systems. The provided answer effectively explains this importance by highlighting its role in human activity, productivity, and systematic analysis/improvement. The context provided is relevant, suggesting the information is available in the lecture materials.
-- Q2: total=17 verdict=GOOD suggestion=The prompt asks for the initial step in the engineering problem-solving process. The provided answer describes defining and understanding the problem. However, the context provided seems to be about 'Knowledge Work and the AI Frontier' and does not directly support the answer about engineering problem-solving steps. If the lecture material on problem-solving is separate and not linked here, this question might be answerable, but the context is misleading. Assuming the lecture covers engineering problem-solving, the question is good, but the context needs to be accurate.
-- Q3: total=20 verdict=GOOD suggestion=This question precisely asks for the definition of a 'work system' within the context of scientific management. The provided answer offers a clear and relevant definition, and the context indicates that this information is available in the lecture material. The question is well-scoped and unambiguous.
-- Q4: total=20 verdict=GOOD suggestion=The prompt clearly asks for two primary goals of redesigning work systems according to Taylor's scientific management. The answer identifies 'reduce variability' and 'standardize methods' (implied by 'ensuring consistent outcomes'), which are core principles. The context provided is relevant to 'What is Work' and likely contains this information. The question is specific and answerable.
-- Q5: total=17 verdict=GOOD suggestion=The prompt asks for two fundamental rules of brainstorming. The answer correctly lists 'Defer Judgment/Criticism' and 'Encourage Wild Ideas' (implied by 'welcomed without immediate evaluation or criticism' and 'no matter how unconventional'). However, the provided context is about 'Knowledge Work and the AI Frontier,' which is unlikely to contain information about brainstorming rules. If the lecture does cover brainstorming, the question is good, but the context needs to be a better match.
-- Q6: total=17 verdict=GOOD suggestion=The prompt asks to explain the 'Subtraction' innovation framework and provide an example. The answer explains the core idea of removing components and finding new ways to achieve functions. However, the context provided ('Knowledge Work and the AI Frontier') is not directly relevant to innovation frameworks like 'Subtraction'. The question itself is good and specific, assuming the lecture covers this framework. The context provided is the main weakness here.
-- Q7: total=20 verdict=GOOD suggestion=This question effectively asks for a comparison and contrast between 'work' and 'work system,' requiring an understanding of both concepts and their relationship. The answer provides a clear distinction and relationship. The context provided from 'M1.1 What is Work_Revised 260312.txt' directly supports this question. The question is well-formulated and relevant to the provided material.
-- Q8: total=17 verdict=GOOD suggestion=The prompt asks to compare and contrast Brainstorming and the KJ Method. The answer correctly distinguishes their primary goals (generating quantity vs. organizing ideas). However, the provided context ('Knowledge Work and the AI Frontier') is not directly relevant to ideation techniques like Brainstorming or the KJ Method. If the lecture material covers these specific methods, the question is appropriate, but the context is a mismatch.
-- Q9: total=18 verdict=GOOD suggestion=This is a good application question that requires understanding the 'Subtraction' framework and applying it to a new context (smartphone). The prompt is clear, though the explanation of the framework in the answer could be more detailed for a full application. The context provided ('M1.4 Scientific Management as Work System Redesign') is not directly relevant to the 'Subtraction' framework, which is typically discussed in innovation or design thinking contexts. Assuming the lecture covers the Subtraction framework elsewhere, the question is good, but context needs to be more accurate for the specific topic.
-- Q10: total=19 verdict=GOOD suggestion=This question is excellent for assessing the application of Therbligs to a practical task. It clearly asks for identification and modification suggestions for efficiency. The answer provides valid Therbligs (Search, Grasp) and suggests improvements. The context provided ('M1.1 What is Work_Revised 260312.txt') is highly relevant as it mentions 'Action / motion (e.g., reach, click)' and 'Task (e.g., assemble a part)', which are directly related to Therbligs. The question is specific and practical.
-- Q11: total=20 verdict=GOOD suggestion=This is a strong essay question that prompts an analytical discussion of scientific management as work system redesign. It asks for specific principles (separation of planning/execution, standardization) and their impact on redesign, benefits, and addressing variability. The answer effectively addresses these points. The context provided ('M1.3 What is a Work System.txt') is highly relevant, as it directly mentions reinterpreting scientific management as 'work system redesign' and lists Taylor's aims. The question is well-scoped and directly supported by the context.
+- Q1: total=20 verdict=GOOD suggestion=The answer is accurate and directly addresses the prompt based on the provided context. The length is appropriate for a short answer.
+- Q2: total=13 verdict=ACCEPTABLE suggestion=The provided context does not contain information about the general engineering problem-solving process, making this question unanswerable from the given material. The prompt is clear and the difficulty is appropriate if the context were relevant.
+- Q3: total=20 verdict=GOOD suggestion=The answer is well-aligned with the prompt and the provided context. It clearly explains the reinterpretation of Scientific Management in system terms.
+- Q4: total=20 verdict=GOOD suggestion=The answer accurately reflects Taylor's primary objective as stated in the context and directly addresses the prompt.
+- Q5: total=14 verdict=ACCEPTABLE suggestion=The provided context does not contain information about the 'Subtraction' innovation framework or examples. The prompt is clear and the difficulty appropriate, but the question is unanswerable from the given material.
+- Q6: total=14 verdict=ACCEPTABLE suggestion=The provided context does not contain information about the 'Addition' and 'Transposition' innovation frameworks or examples. The prompt is clear and the difficulty appropriate, but the question is unanswerable from the given material.
+- Q7: total=20 verdict=GOOD suggestion=The answer clearly distinguishes between 'Work' and 'Work System' based on the provided context, fulfilling the prompt's requirements.
+- Q8: total=14 verdict=ACCEPTABLE suggestion=The provided context does not contain sufficient information to compare 'Problem Solving' and 'Ideation' within the specified contexts. The prompt is clear and the difficulty is appropriate, but the question is unanswerable from the given material.
+- Q9: total=14 verdict=ACCEPTABLE suggestion=The provided context does not detail the 'Subtraction' or 'Addition' innovation frameworks or provide examples. While the prompt is clear and the application aspect is good, the question is unanswerable from the given material.
+- Q10: total=14 verdict=ACCEPTABLE suggestion=The provided context mentions 'motion (e.g., reach, click)' and 'task' but does not detail specific Therbligs or provide information for motion study improvements related to them. The prompt is clear and the difficulty appropriate, but the question is unanswerable from the given material.
+- Q11: total=15 verdict=ACCEPTABLE suggestion=The provided context mentions Taylor's principles and work system redesign but lacks details on the Gilbreths and a critical assessment of lasting impact. The prompt is clear and appropriately difficult, but the answerability is limited by the context.
 
 ## Answer Judge
 
-- A1: total=19 verdict=GOOD suggestion=The answer is well-supported by the lecture material and provides a clear, concise explanation of the importance of understanding work and work systems. It effectively highlights how this understanding leads to analysis, design, and improvement for enhanced efficiency and performance.
-- A2: total=20 verdict=GOOD suggestion=This answer accurately and comprehensively describes the initial step in the engineering problem-solving process. It is well-grounded in the provided context and clearly articulates the key actions involved in problem definition and understanding.
-- A3: total=20 verdict=GOOD suggestion=The answer provides a clear and accurate definition of a 'work system' within the context of scientific management. It effectively explains the integrated nature of components and the transformation process from inputs to outputs, drawing directly from the source material.
-- A4: total=20 verdict=GOOD suggestion=This answer correctly identifies and explains the two primary goals of redesigning work systems according to Taylor's scientific management principles: reducing variability and standardizing methods. It is concise, accurate, and well-supported by the provided context.
-- A5: total=20 verdict=GOOD suggestion=The answer accurately lists and explains two fundamental rules for effective brainstorming: deferring judgment and encouraging wild ideas. It is directly relevant to the question and provides a clear, pedagogical explanation grounded in the context of solution generation.
-- A6: total=20 verdict=GOOD suggestion=This response provides an excellent explanation of the 'Subtraction' innovation framework, including its core mechanism and its application. The inclusion of how it forces innovators to challenge existing assumptions is particularly insightful and pedagogically sound.
-- A7: total=20 verdict=GOOD suggestion=The answer effectively compares and contrasts 'work' and 'work system,' accurately highlighting their relationship and distinct characteristics. It clearly explains 'work' as individual effort and 'work system' as the encompassing, structured environment, drawing directly from the source.
-- A8: total=20 verdict=GOOD suggestion=This answer provides a clear and accurate comparison between Brainstorming and the KJ Method, effectively contrasting their primary goals and methodologies. It highlights Brainstorming's focus on quantity and divergence versus the KJ Method's structured problem organization.
-- A9: total=20 verdict=GOOD suggestion=The answer excellently applies the 'Subtraction' framework to a smartphone, providing a concrete and innovative example (a screen-less phone controlled by voice/haptics). It clearly explains the framework and its potential outcomes, demonstrating a strong understanding.
-- A10: total=20 verdict=GOOD suggestion=This answer correctly identifies three distinct Therbligs ('Search', 'Grasp', 'Assemble') involved in assembling a pen and provides clear examples for each. It is accurate, well-explained, and directly addresses the question by relating micro-level actions to a task.
-- A11: total=20 verdict=GOOD suggestion=The answer provides a strong analysis of how scientific management principles relate to work system redesign. It correctly links Taylor's core principles, such as the separation of planning from execution, to specific redesign actions that aimed for optimization and predictability.
+- A1: total=19 verdict=GOOD suggestion=The answer is good, but the user indicated that it was cut off.
+- A2: total=20 verdict=GOOD suggestion=None
+- A3: total=20 verdict=GOOD suggestion=None
+- A4: total=20 verdict=GOOD suggestion=None
+- A5: total=19 verdict=GOOD suggestion=The user indicated that this answer was cut off.
+- A6: total=19 verdict=GOOD suggestion=The user indicated that this answer was cut off.
+- A7: total=20 verdict=GOOD suggestion=None
+- A8: total=20 verdict=GOOD suggestion=None
+- A9: total=19 verdict=GOOD suggestion=The user indicated that this answer was cut off.
+- A10: total=19 verdict=GOOD suggestion=The user indicated that this answer was cut off.
+- A11: total=19 verdict=GOOD suggestion=The user indicated that this answer was cut off.
 
 ## Refinement History
 
-- iter 1: q_avg=18.6 a_avg=19.9 failed_q=[] failed_a=[]
+- iter 1: q_avg=16.2 a_avg=19.5 failed_q=[] failed_a=[]
 
 ## Human-in-the-loop
 

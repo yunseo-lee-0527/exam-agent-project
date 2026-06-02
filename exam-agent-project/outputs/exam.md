@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-What is the fundamental importance of understanding work and work systems?
+From the Information Systems perspective presented in the lecture, identify the proper unit of analysis and list the five key components that constitute a 'work system'.
 
 ## Q2. Short Answer (5 points)
 
-Briefly describe the initial step in the engineering problem-solving process.
+Identify the initial and final steps in the general engineering problem-solving process.
 
 ## Q3. Short Answer (5 points)
 
-What constitutes a 'work system' in the context of scientific management?
+According to the lecture's Information Systems perspective on work, what is a common mistake when conceptualizing a 'system,' and what five key components define a 'work system' as the proper unit of analysis?
 
 ## Q4. Short Answer (5 points)
 
-According to Taylor's scientific management principles, what were two primary goals for redesigning work systems?
+According to the lecture, why is a precise definition of 'work' critical for engineering and design disciplines, and what key activities does it support?
 
 ## Q5. Short Answer (5 points)
 
-List two fundamental rules that guide an effective brainstorming session for solution generation.
+According to the lecture materials on the engineering problem-solving process, explain why it is crucial to generate multiple alternatives before selecting a solution.
 
 ## Q6. Short Answer (5 points)
 
-Explain how the 'Subtraction' innovation framework can be applied to generate new product ideas, providing a brief example.
+Describe the core problem Taylor identified during his "Shovel Studies" and explain how his solution exemplified a key aspect of the Engineering Problem-Solving Process.
 
 ## Q7. Concept Comparison (10 points)
 
-Compare and contrast the general concept of 'work' with a 'work system', highlighting their relationship and distinct characteristics within an organizational context.
+Compare and contrast the Economic and Sociological perspectives on work, as discussed in the lecture, highlighting their distinct emphases.
 
 ## Q8. Concept Comparison (10 points)
 
-Compare and contrast Brainstorming and the KJ Method as ideation techniques, focusing on their primary goals and how they achieve them within the problem-solving process.
+Compare 'Problem Solving' and 'Ideation' within the context of engineering and scientific management, explaining how they relate to each other.
 
 ## Q9. Application (15 points)
 
-Imagine you are tasked with innovating a common smartphone using the 'Subtraction' systematic innovation framework. Describe the Subtraction framework and propose a new, innovative smartphone concept by applying this framework. Explain what essential component you would subtract and the resulting benefits or unique selling propositions of your new concept.
+Consider a common household product like a standard liquid soap dispenser with a pump. Apply *two* systematic innovation frameworks from the lecture — specifically, **Subtraction** and **Addition** — to propose distinct, innovative improvements or new product ideas for this dispenser. Briefly explain each framework and describe how your proposed change applies it.
 
 ## Q10. Application (15 points)
 
-Consider the task of assembling a basic pen (e.g., body, ink cartridge, cap). Identify at least three distinct Therbligs involved in this process. For each identified Therblig, suggest a specific modification or elimination that would improve the efficiency of the pen assembly, explaining the rationale behind each proposed change.
+Imagine a factory worker's task involves picking up a small, empty plastic bottle from a bin, orienting it, and then placing it onto a conveyor belt. Identify at least *three specific Therbligs* that are likely involved in this sequence. For each identified Therblig, describe its occurrence in this task and propose a specific motion study improvement that could reduce or optimize it.
 
 ## Q11. Essay (20 points)
 
-Scientific management is often reinterpreted as an early attempt at work system redesign. Analyze how Frederick Taylor's core principles, such as the separation of planning from execution and the standardization of methods, fundamentally sought to redesign work systems. Discuss the intended benefits of this redesign approach and how it addressed variability within industrial operations.
+From the perspective of work system redesign, explain the primary aims of Scientific Management as articulated in the lecture.
