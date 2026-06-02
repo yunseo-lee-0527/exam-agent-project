@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-From the Human Factors / Ergonomics perspective discussed in the lecture, define 'unnecessary variability' and explain why well-designed work systems prioritize its reduction.
+Define work, task, process, and work system. Explain how the four levels differ from one another.
 
 ## Q2. Short Answer (5 points)
 
-List the typical sequential stages of the engineering problem-solving process.
+List Taylor's four principles of scientific management and state the managerial logic behind them in one sentence.
 
 ## Q3. Short Answer (5 points)
 
-Why does understanding "work" matter in the context of scientific management?
+What are the five steps of the DASSI engineering problem-solving process? Give one phrase describing the purpose of each step.
 
 ## Q4. Short Answer (5 points)
 
-Briefly describe a "work system" by identifying its core components.
+Name the five innovation frameworks from the lecture and give a one-line meaning for any two of them.
 
 ## Q5. Short Answer (5 points)
 
-What is the primary goal of the "brainstorming" technique in the ideation phase of problem-solving?
+What are Therbligs? Give three examples of Therblig motions and explain why this vocabulary is useful for motion study.
 
 ## Q6. Short Answer (5 points)
 
-Explain why problem definition is the most critical first step in the engineering problem-solving process and what pitfalls can arise from an inadequate definition.
+A hospital manager installs the latest diagnostic imaging equipment, but patient throughput does not improve and staff report feeling more overwhelmed. Using the concept of emergent performance in work systems, analyze why this isolated technology upgrade failed to improve overall performance. Identify at least three work-system components that were likely neglected, and explain how their interactions determine system-level outcomes.
 
 ## Q7. Concept Comparison (10 points)
 
-The lecture introduces three complementary taxonomies for characterizing work systems. Compare and contrast the structure-based taxonomy and the complexity-based taxonomy: identify the key axes each uses, explain what analytical insight each provides, and discuss one situation where each taxonomy would be more useful than the other.
+Compare natural soldiering and systematic soldiering in Taylor's theory. Why does the distinction matter for scientific management?
 
 ## Q8. Concept Comparison (10 points)
 
-Compare and contrast the KJ Method and the Concept Fan as techniques for understanding and structuring problems.
+Compare DASSI, the KJ Method, and brainstorming. Where does each fit in a disciplined engineering problem-solving process?
 
 ## Q9. Application (15 points)
 
-A coffee shop is looking to innovate its customer experience during busy morning hours. Applying the **Subtraction** framework for systematic innovation, describe a specific change the coffee shop could implement. Explain how this change aligns with the principles of the Subtraction framework and predict one potential benefit and one challenge of this innovation.
+A university library wants to reduce student waiting time for study rooms without building more rooms. Use DASSI briefly to frame the problem, then propose two redesign ideas using two different innovation frameworks.
 
 ## Q10. Application (15 points)
 
-Imagine an office worker retrieving a staple gun from a desk drawer, then stapling three documents, and finally returning the staple gun to the drawer. Identify two distinct Therbligs involved in the act of 'retrieving the staple gun' and one distinct Therblig involved in the act of 'stapling the documents'. For each identified Therblig, provide its name and a brief definition. Then, suggest one specific improvement to this overall task based on motion study principles, explaining how it would reduce wasted motion.
+A worker assembling small kits repeatedly searches for parts, reaches across the bench, positions items by hand, inspects the kit, and repacks defective kits. Identify likely Therbligs and propose a redesign that improves both motion efficiency and the surrounding work system.
 
 ## Q11. Essay (20 points)
 
-Evaluate the core principles and aims of Frederick Winslow Taylor's Scientific Management, particularly as an early attempt at work system redesign. Discuss how these principles sought to transform industrial work processes and identify both its intended benefits and potential criticisms.
+Discuss scientific management as an early form of work-system redesign. Your answer must cover Taylor, the Gilbreths, benefits, limitations, and how a modern manager should adapt the approach using work-system thinking and DASSI.

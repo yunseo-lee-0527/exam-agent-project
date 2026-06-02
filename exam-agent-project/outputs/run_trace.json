@@ -38,7 +38,7 @@
     "agent": "Agentic Judge System",
     "status": "completed",
     "final_verdict": "PASS",
-    "iterations": 2,
+    "iterations": 3,
     "non_pass_targets": 0
   },
   {
