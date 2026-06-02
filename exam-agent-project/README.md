@@ -393,9 +393,12 @@ exam-agent-project/
 │   └── run_trace.json
 │
 └── docs/
-    ├── report_draft.md          # 보고서 초안
+    ├── architecture.md          # 시스템 아키텍처 설명
+    ├── project_plan.md          # 프로젝트 계획·과제 요건 정리
     └── scope.md                 # 시험 범위 요약
 ```
+
+> 참고: 보고서 초안(`docs/report_draft.md`)과 내부 개발 메모(API 키 설정, 모델 토글 가이드 등)는 제출 대상이 아니므로 `.gitignore`로 저장소에서 제외되어 있습니다.
 
 ---
 
