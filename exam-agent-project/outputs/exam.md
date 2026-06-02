@@ -11,44 +11,44 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-Distinguish between an 'action,' a 'task,' a 'process,' and a 'work-system' within the context of work organization.
+Describe the four hierarchical levels of work, from the most granular to the most encompassing, as presented in the context of scientific management.
 
 ## Q2. Short Answer (5 points)
 
-List and briefly explain each of the five steps in the DASSI engineering problem-solving process.
+Outline the five sequential steps of the DASSI engineering problem-solving process, briefly explaining the objective of each step.
 
 ## Q3. Short Answer (5 points)
 
-Identify and briefly describe five of the nine component categories that constitute the anatomy of a work system.
+Identify and briefly describe at least five of the key component categories that comprise a work system, as discussed in the provided materials.
 
 ## Q4. Short Answer (5 points)
 
-From a psychological perspective, as discussed in the lectures, identify and briefly explain three key elements that contribute to meaningful job design within work systems.
+Distinguish between structure-based and complexity-based dimensions used for classifying work systems, providing an example for each type.
 
 ## Q5. Short Answer (5 points)
 
-Describe the purpose of the KJ Method (Affinity Diagramming) and outline its core steps for structuring messy problems.
+Explain the primary purpose of the KJ Method (affinity diagramming) in the context of problem-solving and describe the general process of how it is used to structure complex or 'messy' problems.
 
 ## Q6. Short Answer (5 points)
 
-Explain Bodystorming as an ideation technique, including its purpose and how it differs from traditional brainstorming, as discussed in the lecture.
+Describe the Concept Fan technique and explain how it facilitates the expansion of the solution space by systematically moving from specific solutions to higher-level purposes.
 
 ## Q7. Concept Comparison (10 points)
 
-How does the concept of "emergence" explain why the overall performance of a work system cannot be simply understood by analyzing its individual components in isolation?
+Using the integrated definition of work provided in the lecture notes, explain how the concept of 'emergence' applies to the performance of a work system. Specifically, discuss how the interaction between human and/or machine activities, resources, and the social/organizational structures in which work is embedded contributes to emergent system performance, rather than performance arising solely from individual components.
 
 ## Q8. Concept Comparison (10 points)
 
-Explain the primary difference in approach between traditional Brainstorming and Bodystorming, as discussed in the lecture materials, and identify a unique benefit of Bodystorming.
+Explain the two core principles of brainstorming: deferred judgment and quantity over quality. Discuss why adhering to these principles is crucial for effective ideation, particularly when trying to generate novel solutions to complex problems. How might violating these principles hinder the creative process?
 
 ## Q9. Application (15 points)
 
-A common household vacuum cleaner typically includes a bag or dustbin for collecting debris. An innovative new vacuum model removes the need for a physical bag or dustbin entirely, instead integrating a powerful internal compression system that compacts dirt into a tiny, removable solid puck, which is then ejected directly into a small, sealed container when full. Which of the five systematic innovation frameworks (Addition, Subtraction, Alternate Means, Combination, or Transposition) best describes this innovation, and why? (10 points)
+Using the Subtraction framework for innovation, describe how removing an essential component from a common household appliance could potentially create new value or a new market niche.
 
 ## Q10. Application (15 points)
 
-A university's mailroom staff spends considerable time sorting and delivering internal mail. Imagine you are conducting a motion study to improve the efficiency of this process. Explain what Therbligs are and describe their fundamental purpose in this motion study. Provide two specific examples of how Therbligs would be applied to analyze the mail sorting process, clearly stating which Therblig(s) you would observe.
+Frank and Lillian Gilbreth introduced "Therbligs" as a fundamental component of their motion study. Explain the definition of Therbligs and elaborate on their primary purpose within the broader context of scientific management and work system redesign, citing specific benefits for improving human well-being and system performance.
 
 ## Q11. Essay (20 points)
 
-Frederick Winslow Taylor's Scientific Management revolutionized industrial production through a set of core principles. Discuss Taylor's four principles of scientific management, explaining the underlying managerial logic behind each principle and how they collectively aimed to enhance organizational efficiency.
+Elaborate on Frederick Winslow Taylor's four core principles of scientific management. For each principle, explain the underlying managerial logic and discuss how it was intended to improve efficiency and productivity in the workplace.

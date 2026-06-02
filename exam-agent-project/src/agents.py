@@ -52,6 +52,7 @@ class Question:
     topic: str
     prompt: str
     points: int
+    focus: str = ""
     answer: str = ""
     source_refs: list[str] = field(default_factory=list)
     difficulty: str = ""
@@ -150,6 +151,33 @@ def normalize_topic_key(topic: str) -> str:
 
     key = re.sub(r"[^a-z0-9]+", "_", topic.lower()).strip("_")
     return _TOPIC_KEY_ALIASES.get(key, key)
+
+
+def strip_mandatory_topic_marker(prompt: str) -> str:
+    return re.sub(
+        r"^\s*>>>\s*MANDATORY TOPIC for this question:\s*.*?<<<\s*",
+        "",
+        prompt,
+        flags=re.IGNORECASE | re.DOTALL,
+    ).strip()
+
+
+def normalize_rubric_points(rubric: list[Any], total_points: int) -> list[str]:
+    if not rubric:
+        return []
+    items = list(rubric[:4])
+    base = total_points // len(items)
+    remainder = total_points % len(items)
+    points = [base + (1 if idx < remainder else 0) for idx in range(len(items))]
+    normalized: list[str] = []
+    for item, pts in zip(items, points):
+        if isinstance(item, dict):
+            text = str(item.get("criterion") or item.get("description") or item)
+        else:
+            text = str(item)
+        text = re.sub(r"\s*\(?\d+(?:\.\d+)?\s*pts?\)?\.?\s*$", "", text, flags=re.IGNORECASE)
+        normalized.append(f"{text.strip()} ({pts} pts)")
+    return normalized
 
 
 def parse_json_block(raw: str) -> dict[str, Any]:
@@ -567,7 +595,7 @@ class _BaseQuestionWriter(BaseAgentWorker):
                 )
                 questions: list[Question] = []
                 for draft in drafts:
-                    p = str(draft.get("prompt", "")).strip()
+                    p = strip_mandatory_topic_marker(str(draft.get("prompt", "")).strip())
                     if not p or len(questions) >= count:
                         continue
                     slot = slots[len(questions)] if len(slots) > len(questions) else {}
@@ -577,15 +605,16 @@ class _BaseQuestionWriter(BaseAgentWorker):
                         topic=str(draft.get("topic", topics[0].key if topics else self.KIND)),
                         prompt=p,
                         points=per_topic_points,
-                        answer=str(draft.get("answer", "")).strip(),
+                        focus=str(slot.get("focus", draft.get("focus", ""))).strip(),
+                        answer="",
                         source_refs=list(draft.get("source_refs", [])),
                         difficulty=str(slot.get("target_difficulty") or draft.get("difficulty", "")),
-                        learning_objective=str(draft.get("learning_objective", "")),
-                        bloom_level=str(draft.get("bloom_level", "")),
-                        estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
-                        exam_intent=str(draft.get("exam_intent", "")),
-                        assessed_skill=str(draft.get("assessed_skill", "")),
-                        rubric=list(draft.get("rubric", [])),
+                        learning_objective="",
+                        bloom_level="",
+                        estimated_time_minutes=0,
+                        exam_intent="",
+                        assessed_skill="",
+                        rubric=[],
                         coverage_contribution={
                             str(k): int(v)
                             for k, v in (draft.get("coverage_contribution") or {}).items()
@@ -621,7 +650,7 @@ class _BaseQuestionWriter(BaseAgentWorker):
                     )
                 if draft is None:
                     continue
-                prompt = str(draft.get("prompt", "")).strip()
+                prompt = strip_mandatory_topic_marker(str(draft.get("prompt", "")).strip())
                 if not prompt:
                     continue
                 questions.append(
@@ -631,15 +660,16 @@ class _BaseQuestionWriter(BaseAgentWorker):
                         topic=str(draft.get("topic", topic.title)),
                         prompt=prompt,
                         points=per_topic_points,
-                        answer=str(draft.get("answer", "")).strip(),
+                        focus=str(slot.get("focus", draft.get("focus", ""))).strip(),
+                        answer="",
                         source_refs=list(draft.get("source_refs", [])),
                         difficulty=str(slot.get("target_difficulty") or draft.get("difficulty", "")),
-                        learning_objective=str(draft.get("learning_objective", "")),
-                        bloom_level=str(draft.get("bloom_level", "")),
-                        estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
-                        exam_intent=str(draft.get("exam_intent", "")),
-                        assessed_skill=str(draft.get("assessed_skill", "")),
-                        rubric=list(draft.get("rubric", [])),
+                        learning_objective="",
+                        bloom_level="",
+                        estimated_time_minutes=0,
+                        exam_intent="",
+                        assessed_skill="",
+                        rubric=[],
                         coverage_contribution={
                             str(k): int(v)
                             for k, v in (slot.get("coverage_contribution") or {}).items()
@@ -679,16 +709,16 @@ class _BaseQuestionWriter(BaseAgentWorker):
                             number=start_number + len(questions),
                             kind=self.KIND,
                             topic=draft["topic"],
-                            prompt=draft["prompt"],
+                            prompt=strip_mandatory_topic_marker(draft["prompt"]),
                             points=per_topic_points,
-                            answer=draft.get("answer", ""),
+                            answer="",
                             difficulty=draft.get("difficulty", ""),
-                            learning_objective=draft.get("learning_objective", ""),
-                            bloom_level=draft.get("bloom_level", ""),
-                            estimated_time_minutes=int(draft.get("estimated_time_minutes", 0) or 0),
-                            exam_intent=draft.get("exam_intent", ""),
-                            assessed_skill=draft.get("assessed_skill", ""),
-                            rubric=list(draft.get("rubric", [])),
+                            learning_objective="",
+                            bloom_level="",
+                            estimated_time_minutes=0,
+                            exam_intent="",
+                            assessed_skill="",
+                            rubric=[],
                         )
                     )
                     seen_prompts.add(draft["prompt"])
@@ -813,19 +843,20 @@ class AnswerWriterAgent(BaseAgentWorker):
     def run(self, payload: dict[str, Any]) -> list[Question]:
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
-        # Skip entirely when batch writer already filled both answer and source_refs.
-        if all(q.answer and q.source_refs for q in questions):
-            for q in questions:
-                q.source_refs = self._clean_refs(q.source_refs, notes)
-            return questions
+        force: bool = bool(payload.get("force", False))
         for q in questions:
-            if q.answer and q.source_refs:
+            if not force and q.answer and q.source_refs and q.rubric:
                 q.source_refs = self._clean_refs(q.source_refs, notes)
                 continue
-            result = self.provider.write_answer(q, notes)
-            if not q.answer:
-                q.answer = result.get("answer", "")
-            raw_refs = q.source_refs + (result.get("source_refs", []) or [])
+            if hasattr(self.provider, "write_answer_and_rubric"):
+                result = self.provider.write_answer_and_rubric(q, notes)
+                q.answer = result.get("answer", q.answer).strip()
+                if result.get("rubric"):
+                    q.rubric = normalize_rubric_points(list(result["rubric"]), q.points)
+            else:
+                result = self.provider.write_answer(q, notes)
+                q.answer = result.get("answer", q.answer).strip()
+            raw_refs = result.get("source_refs", []) or q.source_refs
             q.source_refs = self._clean_refs(raw_refs, notes)
         return questions
 
@@ -1300,6 +1331,25 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
                 ]
                 if not any(stem in prompt_lc for stem in higher_order_stems):
                     failed.append("weak_higher_order_demand")
+            if q.focus:
+                generic_focus_terms = {
+                    "work", "system", "systems", "question", "concept", "concepts",
+                    "lecture", "framework", "frameworks", "scientific", "management",
+                    "problem", "solving", "ideation", "within", "about", "through",
+                }
+                focus_terms = [
+                    term.lower()
+                    for term in re.findall(r"[A-Za-z][A-Za-z-]{4,}", q.focus)
+                    if term.lower() not in generic_focus_terms
+                ]
+                focus_hits = [
+                    term for term in dict.fromkeys(focus_terms)
+                    if term in prompt_lc or term in q.answer.lower()
+                ]
+                if focus_terms and not focus_hits:
+                    failed.append("mandatory_focus_drift")
+                evidence.append(f"mandatory_focus={q.focus}")
+                evidence.append("focus_hits=" + (", ".join(focus_hits[:5]) or "(none)"))
             topic_terms = self.TOPIC_SPECIFIC_TERMS.get(normalize_topic_key(q.topic), [])
             lecture_terms = list(dict.fromkeys(self.lecture_terms + topic_terms))
             if not any(term in prompt_lc or term in q.answer.lower() for term in lecture_terms):
@@ -1316,7 +1366,10 @@ class PedagogicalQualityJudgeAgent(BaseAgentWorker):
                         verdict="SOFT_FAIL",
                         failed_checks=failed,
                         evidence=evidence,
-                        revision_instruction="Clarify the learning objective and make the prompt test a lecture-specific concept with appropriate cognitive demand.",
+                        revision_instruction=(
+                            "Clarify the learning objective and make the prompt test the mandatory focus, "
+                            "a lecture-specific concept, and the appropriate cognitive demand."
+                        ),
                     )
                 )
             else:
@@ -1635,32 +1688,22 @@ class FactualGroundingJudgeAgent(BaseAgentWorker):
                     )
                     verdict_llm = result.get("verdict", "PASS")
                     errors = [str(e) for e in (result.get("errors") or []) if e]
-                    if verdict_llm in ("HARD_FAIL", "SOFT_FAIL"):
-                        # Always log factual issues as warnings for human review,
-                        # but never trigger automated regeneration.
-                        # Reason: regen_answer_and_rubric already grounds the answer
-                        # in lecture context via write_answer_and_rubric(). If the
-                        # judge still flags errors after that step, the likely cause
-                        # is that the 2500-char excerpt doesn't cover the relevant
-                        # passage — not that the answer is actually wrong. Blocking
-                        # on this check creates an infinite regen loop. The human
-                        # review checklist (human_review_checklist.md) surfaces all
-                        # warnings for final instructor inspection.
+                    if verdict_llm == "HARD_FAIL":
+                        failed.append("factual_error")
                         for err in errors[:3]:
-                            evidence.append(f"Warning ({verdict_llm}): {err}")
+                            evidence.append(f"Factual error: {err}")
+                    elif verdict_llm == "SOFT_FAIL":
+                        for err in errors[:3]:
+                            evidence.append(f"Factual warning: {err}")
                 except Exception as exc:
                     evidence.append(f"Factual check skipped: {exc}")
 
             if failed:
-                # Single error → SOFT_FAIL (may be minor paraphrase issue).
-                # Multiple distinct errors → HARD_FAIL (clearly wrong content).
-                distinct_errors = len(set(evidence) - {"sources_checked=" + str(len(q.source_refs))})
-                verdict = "HARD_FAIL" if distinct_errors >= 2 else "SOFT_FAIL"
                 findings.append(
                     AgenticJudgeFinding(
                         target_id=f"Q{q.number}",
                         judge=self.name,
-                        verdict=verdict,
+                        verdict="HARD_FAIL",
                         failed_checks=list(dict.fromkeys(failed)),
                         evidence=evidence,
                         revision_instruction=(

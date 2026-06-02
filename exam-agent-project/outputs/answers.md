@@ -2,22 +2,22 @@
 
 ## Q1. Short Answer
 
-An **action** is the smallest unit of work, a single step like 'clicking a button.' A **task** is a sequence of actions performed to achieve a specific outcome, for instance, 'logging into a computer.' A **process** is a collection of interrelated tasks that collectively achieve a larger goal, such as 'onboarding a new employee.' Finally, a **work-system** is a comprehensive system that performs a process, comprising participants, information, technology, and other elements, designed to produce products or services for customers within a specific environment.
+Scientific management views work hierarchically. The most granular level is the **action** or motion (e.g., reaching, clicking). A **task** comprises a sequence of actions (e.g., assembling a part). Multiple interrelated tasks form a **process**, transforming inputs into outputs. The most encompassing level is the **work system**, which includes the human and technical elements interacting to produce value within an organization.
 
-Learning objective: To differentiate between the fundamental levels of work organization: action, task, process, and work-system.
+Learning objective: Assess whether students can explain or use levels of work — distinguishing action, task, process, and work-system in a short answer task.
 
-Exam intent: Assess basic comprehension of foundational work concepts.
+Exam intent: This item tests levels of work — distinguishing action, task, process, and work-system beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Distinguishing concepts
+Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Correctly distinguishes and defines 'action'. (1 pts)
-- Correctly distinguishes and defines 'task'. (1 pts)
-- Correctly distinguishes and defines 'process'. (1 pts)
-- Correctly distinguishes and defines 'work-system'. (2 pts)
+- Identifies and defines 'action' as the most granular level (1 pt)
+- Identifies and defines 'task' as a sequence of actions (1 pt)
+- Identifies and defines 'process' as interrelated tasks transforming input to output (1 pt)
+- Identifies and defines 'work system' as the most encompassing level involving human and technical elements interacting to produce value (2 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -25,27 +25,20 @@ Sources: M1.1 What is Work_Revised 260312.txt
 
 ## Q2. Short Answer
 
-The DASSI engineering problem-solving process consists of five sequential steps:
-1.  **Define:** Clearly articulate the problem, including its scope, stakeholders, and measurable success criteria.
-2.  **Analyze:** Break down the defined problem, gather relevant data, identify root causes, and understand contributing factors and constraints.
-3.  **Search:** Generate a diverse range of potential solutions or approaches to address the analyzed problem, without immediate judgment.
-4.  **Select:** Evaluate the generated solutions against established criteria (e.g., feasibility, cost, impact, risk) to choose the most suitable option.
-5.  **Implement:** Put the chosen solution into practice, monitor its effectiveness, and make necessary adjustments or improvements.
+The DASSI problem-solving process involves five sequential steps. First, **Define** the problem to clearly understand its scope and objectives. Second, **Analyze** the problem by gathering relevant data and identifying root causes. Third, **Search** for potential solutions or alternatives. Fourth, **Select** the most viable alternative based on criteria and comparison. Finally, **Implement** the chosen solution and monitor its effectiveness.
 
-Learning objective: To recall and explain the stages of the DASSI engineering problem-solving process.
+Learning objective: Assess whether students can explain or use the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement) in a short answer task.
 
-Exam intent: Confirm knowledge of structured problem-solving methodologies.
+Exam intent: This item tests the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement) beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Recall and explanation
+Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Lists all five DASSI steps correctly. (1 pts)
-- Provides a correct explanation for the 'Define' step. (1 pts)
-- Provides correct explanations for the 'Analyze' and 'Search' steps. (1 pts)
-- Provides correct explanations for the 'Select' and 'Implement' steps. (2 pts)
+- Outlines the five DASSI steps (Define, Analyze, Search, Select, Implement) (3 pts)
+- Briefly explains the objective of each of the five steps (2 pts)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -53,73 +46,64 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q3. Short Answer
 
-Five component categories of work system anatomy are:
-1.  **Participants:** The individuals or groups actively involved in performing the work within the system.
-2.  **Processes:** The structured, coordinated sets of activities or steps undertaken to transform inputs into desired outputs.
-3.  **Information:** The data, facts, knowledge, and intelligence used, processed, and generated by the work system to guide operations.
-4.  **Technology:** The tools, equipment, software, and systems that facilitate and support the execution of work.
-5.  **Products:** The outputs, goods, or services that the work system creates and delivers to its customers.
+A work system is composed of several key categories. Participants are the individuals performing the work. Information is the data and knowledge used or generated. Technology encompasses the tools and systems employed. Processes describe the series of activities undertaken. Customers are the recipients of the work's output. The environment includes external factors influencing the system, and infrastructure refers to the supporting facilities and organizational structures. Strategy guides the overall direction.
 
-Learning objective: To identify and describe key components of work system anatomy.
+Learning objective: Assess whether students can explain or use work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) in a short answer task.
 
-Exam intent: Assess knowledge of the foundational elements that make up any work system.
+Exam intent: This item tests work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Identification and description
+Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Identifies five correct component categories. (1 pts)
-- Provides correct descriptions for at least two identified categories. (1 pts)
-- Provides correct descriptions for at least four identified categories. (1 pts)
-- Provides correct descriptions for all five identified categories. (2 pts)
+- Identifies and briefly describes at least five component categories (e.g., Participants, Information, Technology, Processes, Customers, Environment, Infrastructure, Strategy) (4 pts)
+- Provides accurate descriptions for each identified category (1 pt)
+
+Coverage contribution: work_and_work_systems: 5
+
+Sources: M1.3 What is a Work System.txt
+
+## Q4. Short Answer
+
+Work systems can be classified using structure-based and complexity-based dimensions. The structure-based taxonomy includes axes like volume-variety (e.g., Mass Production), automation/agency (e.g., Manual systems), and temporality (e.g., Continuous/Repetitive systems like manufacturing). The complexity-based taxonomy assesses interaction complexity (how elements connect) and work domain complexity (the intricacy of the environment). For example, a fast-food ordering system has high interaction and work domain complexity.
+
+Learning objective: Assess whether students can explain or use work system taxonomy — structure-based (volume-variety, automation, temporality) vs complexity-based (interaction, domain complexity) in a short answer task.
+
+Exam intent: This item tests work system taxonomy — structure-based (volume-variety, automation, temporality) vs complexity-based (interaction, domain complexity) beyond surface recall by requiring a response appropriate to the short answer format.
+
+Assessment metadata: Bloom=Analyze, difficulty=Easy, estimated_time=4 minutes
+
+Assessed skill: concept distinction and structural reasoning
+
+Rubric:
+
+- Distinguishes between structure-based and complexity-based dimensions (2 pts)
+- Provides at least one example for structure-based dimensions (e.g., Mass Production, Manual systems, Continuous/Repetitive systems) (1 pt)
+- Provides at least one example for complexity-based dimensions (e.g., interaction complexity, work domain complexity, or a practical example like a fast-food system) (2 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
 Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
 
-## Q4. Short Answer
-
-The Gilbreths, from a Scientific Management perspective, significantly contributed to work system redesign by extending time study into **motion study**. Two key contributions include: (1) **Micromotion analysis**, which involved detailed examination of small-scale movements to identify inefficiencies. (2) The introduction of **"Therbligs,"** a classification system for fundamental motions, enabling precise analysis and standardization of tasks. Their primary goal was to dramatically improve the efficiency of work processes, as exemplified by their bricklaying experiments.
-
-Learning objective: Understand the key elements of job design from a psychological perspective.
-
-Exam intent: Evaluate understanding of how work systems are categorized and analyzed.
-
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
-
-Assessed skill: Explanation and categorization
-
-Rubric:
-
-- Correctly identifies the Gilbreths' methodological extension to motion study (1 pt)
-- Briefly explains Micromotion analysis as one specific contribution (1 pt)
-- Briefly explains "Therbligs" as another specific contribution (1 pt)
-- Clearly states that the primary goal of their work was to improve efficiency (2 pts)
-
-Coverage contribution: work_and_work_systems: 5
-
-Sources: M1.4 Scientific Management as Work System Redesign.txt
-
 ## Q5. Short Answer
 
-The KJ Method, or Affinity Diagramming, is a qualitative tool designed to structure and make sense of large amounts of seemingly disparate data or ideas, particularly for 'messy' or ill-defined problems. Its primary purpose is to help teams collaboratively identify natural relationships between individual pieces of information and group them into meaningful categories. The core steps typically involve: (1) **Gathering Data:** Each idea or observation is written on a separate card. (2) **Affinity Grouping:** Team members silently group related cards based on intuitive similarities. (3) **Creating Affinity Headers:** A concise header card is written for each group, summarizing its theme. (4) **Structuring and Interpreting:** Groups are arranged logically, and overarching patterns, insights, and relationships are discussed.
+The primary purpose of the KJ Method (affinity diagramming) is to organize large amounts of qualitative data, such as facts, ideas, and opinions, into meaningful groupings based on their natural relationships. This process helps structure complex or 'messy' problems by revealing underlying patterns and connections. The general process involves generating many ideas or data points, writing each on a separate card, then manually grouping related cards together, creating header cards for each group, and finally arranging these groups to form a coherent overview of the problem space.
 
-Learning objective: To explain the KJ Method for structuring problems and its application.
+Learning objective: Assess whether students can explain or use the KJ Method / affinity diagramming for structuring messy problems in a short answer task.
 
-Exam intent: Test knowledge of a practical technique for problem structuring.
+Exam intent: This item tests the KJ Method / affinity diagramming for structuring messy problems beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=5 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
-Assessed skill: Explanation of methodology
+Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Correctly states the primary purpose of the KJ Method for structuring messy problems. (1 pts)
-- Describes the step of gathering individual ideas/data on separate cards. (1 pts)
-- Explains the process of silent grouping of related ideas by similarity. (1 pts)
-- Details the steps of creating header cards and interpreting the structured results. (2 pts)
+- Explains the primary purpose of the KJ Method for organizing qualitative data and structuring complex problems (2 pts)
+- Describes the general process of generating ideas/data, writing them on cards, grouping related cards, and creating header cards (2 pts)
+- Mentions arranging the groups to form an overview of the problem space (1 pt)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
@@ -127,65 +111,66 @@ Sources: M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt
 
 ## Q6. Short Answer
 
-Bodystorming is an ideation technique involving physically experiencing a situation to generate new ideas. Its purpose is to immerse participants directly into the problem context, setting up an experience with necessary artifacts and people to physically "test" it out. This allows for a deeper, more empathetic understanding of challenges. It differs from traditional brainstorming by moving beyond purely verbal or abstract idea generation. Instead of only discussing concepts, Bodystorming requires physical embodiment and direct interaction within a simulated environment, providing insights that might not emerge from a purely mental exercise.
+The Concept Fan technique systematically expands the solution space by moving from specific, lower-level solutions to higher-level purposes. It starts with a specific solution and asks "Why is this needed?" repeatedly, moving up to broader goals. Conversely, it asks "How can we achieve this?" from a purpose, moving down to more concrete solutions. This process explores a hierarchy of needs and means, revealing a wider array of possibilities and fostering innovation by uncovering novel approaches to achieve overarching objectives.
 
-Learning objective: Students will be able to differentiate Bodystorming from traditional brainstorming and explain its application as an ideation technique within the engineering problem-solving process.
+Learning objective: Assess whether students can explain or use the Concept Fan technique for expanding the solution space via higher-level purpose in a short answer task.
 
-Exam intent: Assess deeper understanding of an advanced ideation technique and its strategic value.
+Exam intent: This item tests the Concept Fan technique for expanding the solution space via higher-level purpose beyond surface recall by requiring a response appropriate to the short answer format.
 
-Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=7 minutes
+Assessment metadata: Bloom=Remember/Understand, difficulty=Hard, estimated_time=4 minutes
 
-Assessed skill: Analytical explanation
+Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Accurately defines Bodystorming as physically experiencing a situation to generate ideas. (2 pts)
-- Explains its purpose as gaining deeper or empathetic understanding through immersion. (1 pt)
-- Clearly differentiates Bodystorming from traditional brainstorming by emphasizing physical embodiment/interaction versus purely verbal/abstract ideation. (2 pts)
+- Describes the Concept Fan's systematic expansion of solution space (2 pts)
+- Explains movement from specific solutions to higher-level purposes and vice-versa (2 pts)
+- Mentions the 'Why?' and 'How?' questioning structure (1 pt)
 
 Coverage contribution: problem_solving_and_ideation: 5
 
-Sources: M2.1.3 Solution Generation (Brainstorming).txt
+Sources: M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt
 
 ## Q7. Concept Comparison
 
-Emergence in work systems describes how complex system behaviors and performance arise from the interactions between its individual components, rather than being a direct sum or attribute of any single part. For example, efficiency gains or bottlenecks might emerge from the way tasks, tools, and people interact, not just from optimizing each one separately. Analyzing components in isolation misses the critical interplay that generates the system's true performance characteristics, making it impossible to fully predict or understand the system's behavior without considering these interactions.
+Emergence in a work system means that overall performance arises not from isolated individual components (humans or machines), but from the structured interaction between them. The integrated definition of work highlights this: performance is a result of how participants, tasks, tools, information, and the organizational context are coupled. For instance, how technology affects task coordination and responsibility, or how clear feedback from the job itself enables goal-relevant behaviors, demonstrates how interactions contribute to emergent system performance rather than being solely a sum of individual capabilities.
 
-Learning objective: Understand the concept of emergence in the context of work systems and its implications for performance analysis.
+Learning objective: Assess whether students can explain or use emergence — why system performance arises from component interaction, not isolated parts in a concept comparison task.
 
-Exam intent: Assess understanding of systemic properties versus isolated component analysis.
+Exam intent: This item tests emergence — why system performance arises from component interaction, not isolated parts beyond surface recall by requiring a response appropriate to the concept comparison format.
 
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=6 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=8 minutes
 
-Assessed skill: Conceptual Explanation
+Assessed skill: concept distinction and structural reasoning
 
 Rubric:
 
-- Defines emergence as system properties arising from component interaction, not isolated parts.
-- Explains why analyzing components in isolation is insufficient due to missed interdependencies or interactions.
-- Provides a relevant example of emergent behavior in a work system (e.g., efficiency gains, bottlenecks).
+- Explains emergence as performance from interaction, not isolated parts (4 pts)
+- Discusses contribution of human/machine activities and resources to emergent performance (3 pts)
+- Mentions the role of social/organizational structures in emergent performance (3 pts)
 
 Coverage contribution: work_and_work_systems: 10
 
-Sources: M1.5 Anatomy and Taxonomy of Work Systems_031826.txt
+Sources: M1.3 What is a Work System.txt, M1.1 What is Work_Revised 260312.txt
 
 ## Q8. Concept Comparison
 
-Traditional brainstorming primarily involves a mental or verbal process of generating ideas, often relying on retrieving information from long-term memory. In contrast, bodystorming differentiates itself by requiring participants to physically experience a situation, complete with relevant artifacts and people, to generate new ideas. This involves actively 'testing' the situation through physical immersion. A unique benefit of bodystorming is its ability to uncover insights and challenges that might be overlooked in purely cognitive ideation, by directly experiencing user contexts and potential pain points. This physical engagement fosters deeper empathy and more practical, context-aware solutions.
+Brainstorming's effectiveness hinges on two core principles: deferred judgment and quantity over quality. Deferred judgment means suspending criticism during idea generation, allowing all thoughts, even seemingly wild ones, to surface without premature evaluation. Quantity over quality encourages generating a large volume of ideas, recognizing that novel solutions often emerge from a broad pool of possibilities. Adhering to these principles fosters an open environment where creativity can flourish and prevents good ideas from being dismissed too early. Violating them, by imposing judgment or focusing too narrowly, can stifle innovation and lead to conventional, uninspired solutions.
 
-Learning objective: Distinguish between different solution generation techniques by identifying their unique approaches and benefits as presented in the lecture.
+Learning objective: Assess whether students can explain or use brainstorming principles — deferred judgment and quantity over quality in a concept comparison task.
 
-Exam intent: Evaluate comprehension of key brainstorming guidelines.
+Exam intent: This item tests brainstorming principles — deferred judgment and quantity over quality beyond surface recall by requiring a response appropriate to the concept comparison format.
 
-Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=7 minutes
+Assessment metadata: Bloom=Analyze, difficulty=Medium, estimated_time=8 minutes
 
-Assessed skill: Conceptual Explanation
+Assessed skill: concept distinction and structural reasoning
 
 Rubric:
 
-- Explains that traditional brainstorming is a mental or verbal ideation process. (3 pts)
-- Explains that bodystorming involves physically experiencing a situation. (4 pts)
-- Identifies a unique benefit of bodystorming, such as uncovering insights through direct physical immersion or experiencing user contexts. (3 pts)
+- Explanation of deferred judgment and its role in suspending criticism (3 pts)
+- Explanation of quantity over quality and its role in generating a large volume of ideas (3 pts)
+- Discussion of why these principles are crucial for effective ideation and novel solutions (2 pts)
+- Explanation of how violating these principles hinders the creative process (2 pts)
 
 Coverage contribution: problem_solving_and_ideation: 10
 
@@ -193,22 +178,21 @@ Sources: M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q9. Application
 
-This innovation best exemplifies the **Alternate Means** systematic innovation framework. The traditional physical bag or dustbin, which served to collect and store debris, is entirely removed from the vacuum cleaner. However, the essential function of debris collection and containment is not eliminated. Instead, it is achieved through an entirely different method: an internal compression system that compacts dirt into a solid puck, which is then ejected into a small, sealed container. This fundamentally alters *how* the debris collection and containment function is performed, replacing the original component and process with an innovative alternative.
+The Subtraction framework, which involves reducing features or material, can create value by simplifying a product. For instance, removing the complex digital interface and smart connectivity from a coffee maker could result in a simpler, more reliable, and potentially cheaper manual espresso machine. This caters to users who find current appliances overly complex or who value durability and ease of use, carving out a niche for minimalist designs. It reduces cognitive load and potential points of failure.
 
-Learning objective: Students will be able to apply the systematic innovation framework of Subtraction to analyze a given product innovation.
+Learning objective: Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in a application task.
 
-Exam intent: Assess the ability to identify an 'essential' component and apply the Subtraction framework to create value.
+Exam intent: This item tests the Subtraction framework — removing an essential component to create value beyond surface recall by requiring a response appropriate to the application format.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=9 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=11 minutes
 
-Assessed skill: Framework Application, Problem Solving
+Assessed skill: framework application to a concrete work-system situation
 
 Rubric:
 
-- Correctly identifies "Alternate Means" as the best innovation framework. (5 pts)
-- Explains that the original component (physical bag or dustbin) is removed. (3 pts)
-- Articulates that the core function of debris collection/containment is maintained. (3 pts)
-- Details the new system (internal compression, solid puck, sealed container) as the alternative method for achieving this function. (4 pts)
+- Explains the Subtraction framework as reducing features/material to simplify products (4 pts)
+- Provides a specific example of removing components from a household appliance (e.g., coffee maker) (5 pts)
+- Identifies potential value creation (e.g., simpler, cheaper, reliable, niche market) (6 pts)
 
 Coverage contribution: innovation_frameworks: 15
 
@@ -216,45 +200,45 @@ Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 
 ## Q10. Application
 
-Therbligs are fundamental elements of human motion, representing basic units of work into which any manual operation can be broken down. Their fundamental purpose in motion study is to meticulously analyze and identify waste, inefficiencies, or unnecessary movements in a work process, thereby enabling standardization and improvement. In the mail sorting process, Therbligs like "Search" (finding the correct mail slot) and "Grasp" (picking up a stack of mail) would be observed. By analyzing the duration and frequency of "Search," inefficient sorting layouts could be identified. Similarly, observing "Grasp" can reveal awkward hand movements or container designs, leading to redesigned workstations for smoother, faster operations.
+Therbligs are the 17 fundamental, indivisible motions identified by Frank and Lillian Gilbreth to analyze work. Their primary purpose within scientific management and work system redesign is to break down complex tasks into these basic components, allowing for detailed study and optimization. By analyzing the frequency and nature of Therbligs, organizations can eliminate unnecessary motions, reduce fatigue, and improve efficiency, leading to enhanced human well-being and increased system performance.
 
-Learning objective: Understand the definition and purpose of Therbligs within micro-level motion study for process improvement.
+Learning objective: Assess whether students can explain or use the definition and purpose of Therbligs in motion study in a application task.
 
-Exam intent: Assess the understanding of Therbligs' definition, purpose, and application in a practical scenario.
+Exam intent: This item tests the definition and purpose of Therbligs in motion study beyond surface recall by requiring a response appropriate to the application format.
 
-Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=9 minutes
+Assessment metadata: Bloom=Apply/Analyze, difficulty=Medium, estimated_time=12 minutes
 
-Assessed skill: Definitional Understanding, Analytical Application
+Assessed skill: framework application to a concrete work-system situation
 
 Rubric:
 
-- Provides a clear and accurate definition of Therbligs as fundamental elements of human motion. (5 pts)
-- Explains the fundamental purpose of Therbligs in motion study (e.g., identifying waste/inefficiencies for standardization and improvement). (5 pts)
-- Provides two specific examples of Therblig application in the mail sorting process, identifying relevant Therblig(s) and their observational purpose. (5 pts)
+- Definition of Therbligs as fundamental motions (5 pts)
+- Primary purpose of Therbligs in motion study (5 pts)
+- Benefits for human well-being and system performance (5 pts)
 
 Coverage contribution: motion_study_and_therbligs: 15
 
-Sources: M1.4 Scientific Management as Work System Redesign.txt
+Sources: M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.4 Scientific Management as Work System Redesign.txt
 
 ## Q11. Essay
 
-Taylor's Scientific Management is founded on four core principles. First, 'develop a science for each element of a man's work', replacing rule-of-thumb with systematic study (e.g., time-and-motion studies) to identify the 'one best way' for efficiency. Second, 'scientifically select and then train, teach, and develop the workman', ensuring workers are matched to tasks and adequately trained to perform the scientifically derived methods. Third, 'heartily cooperate with the men so as to insure all of the work being done in accordance with the principles of the science which has been developed', fostering collaboration between management and labor for consistent application. Finally, 'there is an almost equal division of the work and the responsibility between the management and the workmen', where management plans and workers execute, specializing tasks for maximum productivity. Collectively, these principles aimed to reduce variability, standardize methods, and clarify roles, fundamentally redesigning work systems for optimized output.
+Frederick Winslow Taylor's scientific management comprises four core principles. First, "develop a science for each element of work" by using methods like time study and standardization to optimize tools and processes, replacing rule-of-thumb with scientifically determined best practices. Second, "scientifically select and train workers" to match their skills to job requirements, ensuring optimal performance. Third, "promote cooperation" between management and workers by aligning their goals and ensuring scientific methods are followed. Finally, "divide work and responsibility" equally between management and workers, with management applying scientific analysis and workers executing tasks accordingly. This framework aimed to eliminate inefficiency by standardizing methods, optimizing task execution, and fostering a collaborative, scientifically-guided work environment.
 
-Learning objective: Articulate Taylor's four principles of scientific management and their underlying managerial logic.
+Learning objective: Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in a essay task.
 
-Exam intent: Assess comprehensive understanding of foundational management theories and their practical implications.
+Exam intent: This item tests Taylor's four principles of scientific management and their managerial logic beyond surface recall by requiring a response appropriate to the essay format.
 
-Assessment metadata: Bloom=Analyze, difficulty=Hard, estimated_time=12 minutes
+Assessment metadata: Bloom=Evaluate/Create, difficulty=Hard, estimated_time=12 minutes
 
-Assessed skill: Analytical thinking, recall of theoretical frameworks, ability to synthesize concepts.
+Assessed skill: synthesis, justification, and critical evaluation
 
 Rubric:
 
-- Accurate identification and explanation of the first principle ('develop a science for each element of a man's work') and its managerial logic. (5 pts)
-- Accurate identification and explanation of the second principle ('scientifically select and then train, teach, and develop the workman') and its managerial logic. (5 pts)
-- Accurate identification and explanation of the third principle ('heartily cooperate with the men so as to insure all of the work being done...') and its managerial logic. (5 pts)
-- Accurate identification and explanation of the fourth principle ('there is an almost equal division of the work and the responsibility...') and its managerial logic. (5 pts)
+- Explanation of the 'develop a science for each element of work' principle and its logic (5 pts)
+- Explanation of the 'scientifically select and train workers' principle and its logic (5 pts)
+- Explanation of the 'promote cooperation' principle and its logic (5 pts)
+- Explanation of the 'divide work and responsibility' principle and its logic (5 pts)
 
 Coverage contribution: scientific_management: 20
 
-Sources: M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt
+Sources: M1.4 Scientific Management as Work System Redesign.txt

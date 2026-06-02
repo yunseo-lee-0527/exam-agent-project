@@ -25,7 +25,9 @@ from agents import (
     ShortAnswerWriterAgent,
     Topic,
     fan_out_question_writers,
+    normalize_rubric_points,
     normalize_topic_key,
+    strip_mandatory_topic_marker,
 )
 from costing import estimate_tokens
 from providers import load_model_policy, make_provider
@@ -81,8 +83,9 @@ def questions_from_blueprint(blueprint: dict[str, Any], notes: dict[str, str]) -
                 number=int(item.get("number", idx)),
                 kind=str(item["kind"]),
                 topic=str(item["topic"]),
-                prompt=str(item["prompt"]).strip(),
+                prompt=strip_mandatory_topic_marker(str(item["prompt"]).strip()),
                 points=int(item["points"]),
+                focus=str(item.get("focus", "")),
                 answer=str(item.get("answer", "")).strip(),
                 source_refs=_resolve_source_refs(list(item.get("source_refs", [])), notes),
                 difficulty=str(item.get("difficulty", "")),
@@ -626,10 +629,12 @@ def enrich_assessment_metadata(questions: list[Question]) -> list[Question]:
         if not q.estimated_time_minutes:
             q.estimated_time_minutes = _infer_estimated_time(q)
         if not q.learning_objective:
-            q.learning_objective = f"Assess whether students can use {q.topic} concepts in a {q.kind.lower()} task."
+            focus = q.focus or f"{q.topic} concepts"
+            q.learning_objective = f"Assess whether students can explain or use {focus} in a {q.kind.lower()} task."
         if not q.exam_intent:
+            focus = q.focus or q.topic
             q.exam_intent = (
-                f"This item tests {q.topic} beyond surface recall by requiring a response appropriate "
+                f"This item tests {focus} beyond surface recall by requiring a response appropriate "
                 f"to the {q.kind.lower()} format."
             )
         if not q.assessed_skill:
@@ -1192,8 +1197,9 @@ def run_pipeline(
                 number=int(q["number"]),
                 kind=str(q["kind"]),
                 topic=str(q["topic"]),
-                prompt=str(q["prompt"]),
+                prompt=strip_mandatory_topic_marker(str(q["prompt"])),
                 points=int(q["points"]),
+                focus=str(q.get("focus", "")),
                 answer=str(q.get("answer", "")),
                 source_refs=list(q.get("source_refs", [])),
                 difficulty=str(q.get("difficulty", "")),
@@ -1323,7 +1329,7 @@ def run_pipeline(
     # --- Task 3: Answers (ReAct + retrieval) — skipped when resuming ---
     answer_writer = AnswerWriterAgent(provider)
     if not resume_from_judge:
-        questions = answer_writer.run({"questions": questions, "notes": notes})
+        questions = answer_writer.run({"questions": questions, "notes": notes, "force": True})
         state["run_trace"].append({"task": answer_writer.task_id, "agent": answer_writer.name, "status": "completed"})
     else:
         state["run_trace"].append({"task": "Task 3", "agent": "Skipped (resume-from-judge)", "status": "skipped"})
@@ -1361,25 +1367,26 @@ def run_pipeline(
                 keywords=q.topic.split(),
                 source_files=[],
             )
+        focus_hint = f"\nMandatory focus to preserve: {q.focus}" if q.focus else ""
         regenerated = provider.write_questions(
             q.kind,
             topic,
             1,
             notes_,
-            revision_instruction=suggestion,
+            revision_instruction=(suggestion + focus_hint).strip(),
         )
         if regenerated:
-            q.prompt = regenerated[0].get("prompt", q.prompt)
-            q.answer = regenerated[0].get("answer", q.answer)
-            # Also update rubric so it stays consistent with the new prompt.
-            # Without this, a new prompt is generated but the old rubric remains,
-            # causing AnswerConsistencyJudgeAgent to HARD_FAIL every iteration.
-            new_rubric = regenerated[0].get("rubric")
-            if new_rubric:
-                q.rubric = list(new_rubric)
-            new_lo = regenerated[0].get("learning_objective", "")
-            if new_lo:
-                q.learning_objective = new_lo
+            q.prompt = strip_mandatory_topic_marker(regenerated[0].get("prompt", q.prompt))
+            q.focus = str(regenerated[0].get("focus", q.focus)).strip()
+            # Question regeneration invalidates downstream fields. Leave them
+            # blank so AnswerWriter rebuilds answer + rubric from the new prompt.
+            q.answer = ""
+            q.rubric = []
+            q.learning_objective = ""
+            q.bloom_level = ""
+            q.estimated_time_minutes = 0
+            q.exam_intent = ""
+            q.assessed_skill = ""
             q.source_refs = list(
                 dict.fromkeys(regenerated[0].get("source_refs", []) or q.source_refs)
             )
@@ -1404,7 +1411,7 @@ def run_pipeline(
                 if result.get("answer"):
                     q.answer = result["answer"].strip()
                 if result.get("rubric"):
-                    q.rubric = list(result["rubric"])
+                    q.rubric = normalize_rubric_points(list(result["rubric"]), q.points)
                 if result.get("source_refs"):
                     q.source_refs = list(dict.fromkeys(result["source_refs"]))
                 return q
@@ -1427,7 +1434,7 @@ def run_pipeline(
                 print(f"[regen-questions] Q{q_num} out of range, skipping.")
                 continue
             questions[idx] = regen_question(questions[idx], "", notes)
-            questions[idx] = regen_answer(questions[idx], "", notes)
+            questions[idx] = regen_answer_and_rubric(questions[idx], "", notes)
             print(f"[regen-questions] Q{q_num} regenerated.")
         questions = answer_writer.run({"questions": questions, "notes": notes})
         state["run_trace"].append({
@@ -1441,7 +1448,7 @@ def run_pipeline(
         question_judge=question_judge,
         answer_judge=answer_judge,
         regenerate_question=regen_question,
-        regenerate_answer=regen_answer,
+        regenerate_answer=regen_answer_and_rubric,
         max_iterations=max_refine_iterations,
     )
     refined = coordinator.run({"questions": questions, "notes": notes})
@@ -1517,7 +1524,7 @@ def run_pipeline(
                 regen_qs = fan_out_question_writers(regen_writers, regen_payloads, max_workers=1 if _batch_capable else 4)
                 if regen_qs:
                     questions = regen_qs
-                    questions = answer_writer.run({"questions": questions, "notes": notes})
+                    questions = answer_writer.run({"questions": questions, "notes": notes, "force": True})
                     questions = enrich_assessment_metadata(questions)
                     revised_any = True
                     exam_coverage_rewritten = True
@@ -1555,6 +1562,7 @@ def run_pipeline(
             break
         if not exam_coverage_rewritten:  # coverage retry already ran answer_writer internally
             questions = answer_writer.run({"questions": questions, "notes": notes})
+        questions = enrich_assessment_metadata(questions)
 
     state["agentic_judge_history"] = agentic_judge_history
     state["agentic_judge_report"] = agentic_judge_report
@@ -1569,6 +1577,27 @@ def run_pipeline(
             + agentic_judge_report["summary"].get("fail", 0),
         }
     )
+
+    if agentic_judge_report.get("final_verdict") != "PASS":
+        state["status"] = "NEEDS_REVISION"
+        outputs_dir.mkdir(parents=True, exist_ok=True)
+        (outputs_dir / "agentic_judge_report.json").write_text(
+            json.dumps(agentic_judge_report, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        (outputs_dir / "run_trace.json").write_text(
+            json.dumps(state["run_trace"], indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        remaining = sorted(
+            target
+            for target, decision in agentic_judge_report.get("target_decisions", {}).items()
+            if decision.get("final_verdict") != "PASS"
+        )
+        raise RuntimeError(
+            "Agentic judge did not pass; final exam/answer outputs were not overwritten. "
+            f"Remaining targets: {remaining}"
+        )
 
     questions = enrich_assessment_metadata(questions)
     questions = fit_estimated_time_budget(
@@ -1599,14 +1628,16 @@ def run_pipeline(
     state["residual_risk_report"] = residual_risk_report
 
     # --- Task 6: Formatter ---
+    final_q_verdicts = question_judge.run({"questions": questions, "notes": notes})
+    final_a_verdicts = answer_judge.run({"questions": questions, "notes": notes})
     formatter = FormatterAgent()
     rendered = formatter.run(
         {
             "requirements": requirements,
             "questions": questions,
             "coverage_notes": coverage_notes,
-            "verdicts_q": refined["verdicts_q"],
-            "verdicts_a": refined["verdicts_a"],
+            "verdicts_q": final_q_verdicts,
+            "verdicts_a": final_a_verdicts,
             "history": refined["history"],
         }
     )

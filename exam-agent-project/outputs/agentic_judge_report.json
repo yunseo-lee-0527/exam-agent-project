@@ -1,10 +1,10 @@
 {
-  "final_verdict": "REVISE",
+  "final_verdict": "FAIL",
   "summary": {
     "targets": 12,
-    "pass": 10,
-    "revise": 2,
-    "fail": 0
+    "pass": 9,
+    "revise": 0,
+    "fail": 3
   },
   "target_decisions": {
     "EXAM": {
@@ -20,10 +20,14 @@
       "earliest_failing_stage": 3
     },
     "Q10": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": [],
-      "earliest_failing_stage": 3
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "revision_instructions": [
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
+      ],
+      "earliest_failing_stage": 2
     },
     "Q11": {
       "final_verdict": "PASS",
@@ -32,10 +36,16 @@
       "earliest_failing_stage": 3
     },
     "Q2": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": [],
-      "earliest_failing_stage": 3
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "factual_error",
+        "question_overlap"
+      ],
+      "revision_instructions": [
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+        "Q2 conceptually overlaps with Q8. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q8: \"Explain how the principles of 'deferred judgment' and 'quantity over quality' in brainstorming, as discussed in the lect\""
+      ],
+      "earliest_failing_stage": 1
     },
     "Q3": {
       "final_verdict": "PASS",
@@ -44,13 +54,9 @@
       "earliest_failing_stage": 3
     },
     "Q4": {
-      "final_verdict": "REVISE",
-      "failed_checks": [
-        "answer_rubric_mismatch"
-      ],
-      "revision_instructions": [
-        "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both."
-      ],
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": [],
       "earliest_failing_stage": 3
     },
     "Q5": {
@@ -60,14 +66,10 @@
       "earliest_failing_stage": 3
     },
     "Q6": {
-      "final_verdict": "REVISE",
-      "failed_checks": [
-        "question_overlap"
-      ],
-      "revision_instructions": [
-        "Q6 conceptually overlaps with Q8. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q8: \"Explain the primary difference in approach between traditional Brainstorming and Bodystorming, as discussed in the lectu\""
-      ],
-      "earliest_failing_stage": 1
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q7": {
       "final_verdict": "PASS",
@@ -82,10 +84,14 @@
       "earliest_failing_stage": 3
     },
     "Q9": {
-      "final_verdict": "PASS",
-      "failed_checks": [],
-      "revision_instructions": [],
-      "earliest_failing_stage": 3
+      "final_verdict": "FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
+      "revision_instructions": [
+        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
+      ],
+      "earliest_failing_stage": 2
     }
   },
   "findings": [
@@ -121,8 +127,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=levels of work — distinguishing action, task, process, and work-system",
+        "focus_hits=levels, action, process",
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=To differentiate between the fundamental levels of work organization: action, task, process, and work-system."
+        "learning_objective=Assess whether students can explain or use levels of work — distinguishing action, task, process, and work-system in a short answer task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -133,8 +141,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement)",
+        "focus_hits=dassi, engineering, problem-solving, search",
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=To recall and explain the stages of the DASSI engineering problem-solving process."
+        "learning_objective=Assess whether students can explain or use the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement) in a short answer task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -145,8 +155,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy)",
+        "focus_hits=anatomy, component, categories, participants, processes",
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=To identify and describe key components of work system anatomy."
+        "learning_objective=Assess whether students can explain or use work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) in a short answer task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -157,8 +169,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=work system taxonomy — structure-based (volume-variety, automation, temporality) vs complexity-based (interaction, domain complexity)",
+        "focus_hits=taxonomy, structure-based, volume-variety, automation, temporality",
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Understand the key elements of job design from a psychological perspective."
+        "learning_objective=Assess whether students can explain or use work system taxonomy — structure-based (volume-variety, automation, temporality) vs complexity-based (interaction, domain complexity) in a short answer task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -169,8 +183,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=the KJ Method / affinity diagramming for structuring messy problems",
+        "focus_hits=method, affinity, diagramming, messy, problems",
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=To explain the KJ Method for structuring problems and its application."
+        "learning_objective=Assess whether students can explain or use the KJ Method / affinity diagramming for structuring messy problems in a short answer task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -181,8 +197,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=the Concept Fan technique for expanding the solution space via higher-level purpose",
+        "focus_hits=technique, solution, space, higher-level, purpose",
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Students will be able to differentiate Bodystorming from traditional brainstorming and explain its application as an ideation technique within the engineering problem-solving process."
+        "learning_objective=Assess whether students can explain or use the Concept Fan technique for expanding the solution space via higher-level purpose in a short answer task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -193,8 +211,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=emergence — why system performance arises from component interaction, not isolated parts",
+        "focus_hits=emergence, performance, arises, component, interaction",
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Understand the concept of emergence in the context of work systems and its implications for performance analysis."
+        "learning_objective=Assess whether students can explain or use emergence — why system performance arises from component interaction, not isolated parts in a concept comparison task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -205,8 +225,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=brainstorming principles — deferred judgment and quantity over quality",
+        "focus_hits=brainstorming, principles, deferred, judgment, quantity",
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Distinguish between different solution generation techniques by identifying their unique approaches and benefits as presented in the lecture."
+        "learning_objective=Assess whether students can explain or use brainstorming principles — deferred judgment and quantity over quality in a concept comparison task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -217,8 +239,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=the Subtraction framework — removing an essential component to create value",
+        "focus_hits=subtraction, removing, essential, component",
         "kind=Application; difficulty=Medium",
-        "learning_objective=Students will be able to apply the systematic innovation framework of Subtraction to analyze a given product innovation."
+        "learning_objective=Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in a application task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -229,8 +253,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=the definition and purpose of Therbligs in motion study",
+        "focus_hits=purpose, therbligs, motion, study",
         "kind=Application; difficulty=Medium",
-        "learning_objective=Understand the definition and purpose of Therbligs within micro-level motion study for process improvement."
+        "learning_objective=Assess whether students can explain or use the definition and purpose of Therbligs in motion study in a application task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -241,80 +267,16 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
+        "mandatory_focus=Taylor's four principles of scientific management and their managerial logic",
+        "focus_hits=taylor, principles, managerial, logic",
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Articulate Taylor's four principles of scientific management and their underlying managerial logic."
+        "learning_objective=Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in a essay task."
       ],
       "revision_instruction": "",
       "stage": 1
     },
     {
       "target_id": "Q1",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=17"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q2",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=15"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q3",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=18"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q4",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=25"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=18"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=21"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q7",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
@@ -325,12 +287,78 @@
       "stage": 1
     },
     {
+      "target_id": "Q2",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=30"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=22"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=21"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=26"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=27"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=40"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
       "target_id": "Q8",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=24"
+        "prompt_words=48"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -341,7 +369,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=79"
+        "prompt_words=44"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -352,7 +380,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=62"
+        "prompt_words=44"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -363,7 +391,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=38"
+        "prompt_words=53"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -380,10 +408,14 @@
     {
       "target_id": "Q2",
       "judge": "Overlap Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [],
-      "revision_instruction": "",
+      "verdict": "SOFT_FAIL",
+      "failed_checks": [
+        "question_overlap"
+      ],
+      "evidence": [
+        "Overlaps with Q8 (Concept Comparison, 10pts): Q2 asks about the activities and minimum number of alternatives in the 'Search for Alternatives' step of DASSI. Q8 explicitly asks how brainstorming principles (deferred judgment, quantity over quality) contribute to the 'Search for Alternatives' step of DASSI and to provide examples. Both questions directly address the same step within the DASSI process and require knowledge about generating alternatives."
+      ],
+      "revision_instruction": "Q2 conceptually overlaps with Q8. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q8: \"Explain how the principles of 'deferred judgment' and 'quantity over quality' in brainstorming, as discussed in the lect\"",
       "stage": 1
     },
     {
@@ -416,14 +448,10 @@
     {
       "target_id": "Q6",
       "judge": "Overlap Judge",
-      "verdict": "SOFT_FAIL",
-      "failed_checks": [
-        "question_overlap"
-      ],
-      "evidence": [
-        "Overlaps with Q8 (Concept Comparison, 10pts): Both Q6 and Q8 ask to explain Bodystorming and how it differs from traditional brainstorming. Q8 also asks for a unique benefit, which is closely related to the explanation in Q6."
-      ],
-      "revision_instruction": "Q6 conceptually overlaps with Q8. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q8: \"Explain the primary difference in approach between traditional Brainstorming and Bodystorming, as discussed in the lectu\"",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
       "stage": 1
     },
     {
@@ -478,7 +506,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, between, action, task, process, within"
+        "matched_terms=work, context, between, action, task, process"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -490,7 +518,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=dassi, five, engineering, problem-solving, process, define"
+        "matched_terms=dassi, engineering, problem-solving, process, involved, search"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -501,8 +529,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, component, anatomy, participants, groups"
+        "valid_refs=M1.3 What is a Work System.txt",
+        "matched_terms=work, system, component, materials, participants, people"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -513,8 +541,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=work, scientific, management, system, psychological, design"
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, distinguish, between, structure-based, taxonomy, complexity-based"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -526,7 +554,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
-        "matched_terms=method, affinity, diagramming, structuring, problems, tool"
+        "matched_terms=method, affinity, diagramming, problems, organize, large"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -537,8 +565,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, bodystorming, ideation, technique, discussed, physically"
+        "valid_refs=M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+        "matched_terms=concept, facilitate, solution, space"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -550,7 +578,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, performance, understood, components, systems"
+        "matched_terms=work, system, performance, between, components, these"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -561,8 +589,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, difference, approach, between, bodystorming, discussed"
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, dassi, principles, judgment, quantity, over"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -574,32 +602,32 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=common, includes, innovative, model, need, physical",
-        "lecture_innovation_frameworks_in_answer=alternate"
+        "matched_terms=subtraction, innovation, consider, traditional, includes, applying",
+        "lecture_innovation_frameworks_in_answer=subtraction"
       ],
       "revision_instruction": "",
       "stage": 2
     },
     {
       "target_id": "Q10",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=gilbreth, therbligs, motion, lillian, analyze, motions"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q11",
       "judge": "Source Grounding Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=motion, therbligs, university, time, sorting, study"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q11",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=taylor, scientific, management, frederick, industrial, production"
+        "matched_terms=taylor, scientific, management, frederick, four, core"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -618,12 +646,15 @@
     {
       "target_id": "Q2",
       "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1"
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "factual_error"
       ],
-      "revision_instruction": "",
+      "evidence": [
+        "sources_checked=1",
+        "Factual error: The lecture excerpts describe the 'Search for Alternatives' as a step in the DASSI process but do not specify the key activities involved in this step, nor do they mention a recommended minimum number of alternatives to explore."
+      ],
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
       "stage": 2
     },
     {
@@ -632,8 +663,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (SOFT_FAIL): The model answer lists 'Products' as a component category, but the lecture excerpt lists 'Outputs' which is described as \"outputs (products, services, decisions, knowledge, experiences)\". While related, 'Products' is a narrower term than what the lecture specifies as a component of the work system anatomy."
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -644,8 +674,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer discusses the Gilbreths and their contributions (micromotion analysis, Therbligs) from a Scientific Management perspective. However, the provided lecture excerpts focus exclusively on Frederick W. Taylor and his contributions to Scientific Management, making no mention of the Gilbreths or their work."
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -667,8 +696,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (HARD_FAIL): The lecture excerpts do not mention Bodystorming as an ideation technique or provide details about its purpose, how it differs from traditional brainstorming, or its use of physical embodiment and direct interaction within a simulated environment."
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -690,8 +718,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (SOFT_FAIL): The model answer claims that traditional brainstorming primarily involves a mental or verbal process of generating ideas, relying on retrieving information from long-term memory. The provided excerpts for Brainstorming do not mention retrieving information from long-term memory as a primary aspect of the technique."
+        "sources_checked=2"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -699,35 +726,39 @@
     {
       "target_id": "Q9",
       "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "factual_error"
+      ],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The lecture notes define the Addition framework as modifying an existing product by adding a feature, and the Alternate Means framework as replacing a component or process with an entirely different one while retaining the original function. The model answer correctly identifies that the vacuum cleaner innovation replaces the bag/dustbin (component) with a compression system (new process) to perform the function of debris collection and containment. However, the model answer mischaracterizes the *reason* for this replacement as 'fundamentally alters how the debris collection and containment function is performed, replacing the original component and process with an innovative alternative'. This phrasing leans towards Alternate Means, but the core of the innovation described is the *removal* of a component (bag/dustbin) and its replacement with a new *method* (compression system). The lecture notes define the 'Alternate Means' framework as 'replacing a component or process with an entirely different one' and 'doing something in a different way'. The innovation described, which replaces a physical collection method with a compression and ejection method, fits the Alternate Means framework well because the core function of collecting and containing debris is still performed, but via a completely different mechanism. The answer's justification is mostly aligned with this, but the phrasing 'fundamentally alters *how* the debris collection and containment function is performed' is somewhat redundant with the core definition and doesn't fully capture the essence of *replacing* the original means."
+        "Factual error: The model answer states that removing the lamp could lead to \"reduced product cost.\" The provided lecture excerpts do not mention cost as a potential benefit of the subtraction framework, nor do they provide information to support this claim in the context of removing a lamp from a desk."
       ],
-      "revision_instruction": "",
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
       "stage": 2
     },
     {
       "target_id": "Q10",
       "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1",
-        "Warning (HARD_FAIL): The lecture excerpts do not mention \"Therbligs\" or their specific definition, purpose, or application in motion study. The model answer defines Therbligs and explains their purpose and application, which is not supported by the provided text."
+      "verdict": "HARD_FAIL",
+      "failed_checks": [
+        "factual_error"
       ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q11",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer states that the third principle of Scientific Management is to \"heartily cooperate with the men so as to insure all of the work being done in accordance with the principles of the science which has been developed\", fostering collaboration between management and labor. The lecture excerpt cites this principle as \"Promote cooperation through aligned incentives\", which is a different emphasis than general cooperation."
+        "Factual error: The model answer states that Frank and Lillian Gilbreth developed 'Therbligs'. However, the provided lecture excerpts do not mention Frank and Lillian Gilbreth or Therbligs at all. The excerpts focus on Frederick W. Taylor and the broader concepts of Scientific Management.",
+        "Factual error: The definition of Therbligs as 'fundamental, elemental motions utilized in performing a task' and their purpose to 'systematically analyze work to identify and eliminate wasted effort and unnecessary movements' cannot be verified from the provided lecture excerpts."
+      ],
+      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "stage": 2
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -738,7 +769,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=84",
+        "answer_words=68",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -750,8 +781,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=99",
-        "rubric_items=4"
+        "answer_words=27",
+        "rubric_items=2"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -762,7 +793,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=92",
+        "answer_words=46",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -774,8 +805,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=73",
-        "rubric_items=4"
+        "answer_words=51",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -786,8 +817,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=116",
-        "rubric_items=4"
+        "answer_words=75",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -798,8 +829,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=90",
-        "rubric_items=3"
+        "answer_words=64",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -810,7 +841,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=84",
+        "answer_words=63",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -822,7 +853,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=93",
+        "answer_words=76",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -834,7 +865,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=93",
+        "answer_words=75",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -846,7 +877,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=104",
+        "answer_words=50",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -858,7 +889,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=148",
+        "answer_words=85",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -870,7 +901,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[1.0, 1.0, 1.0, 2.0]"
+        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -881,7 +912,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[1.0, 1.0, 1.0, 2.0]"
+        "rubric_items=2; rubric_pts_parsed=[3.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -892,7 +923,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[1.0, 1.0, 1.0, 2.0]"
+        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -900,17 +931,12 @@
     {
       "target_id": "Q4",
       "judge": "Answer Consistency Judge",
-      "verdict": "SOFT_FAIL",
-      "failed_checks": [
-        "answer_rubric_mismatch"
-      ],
+      "verdict": "PASS",
+      "failed_checks": [],
       "evidence": [
-        "The question asks about psychological perspectives on meaningful job design, but the model answer discusses Scientific Management and the Gilbreths' work on motion study.",
-        "The rubric is aligned with the Scientific Management topic, not the psychological topic of the question.",
-        "The model answer does not address any elements contributing to meaningful job design from a psychological perspective.",
-        "rubric_items=4; rubric_pts_parsed=[1.0, 1.0, 1.0, 2.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
-      "revision_instruction": "Rewrite the model answer so it explicitly addresses every rubric criterion. Ensure all rubric point values are integers that sum to the question's total points. If the answer discusses different concepts from the rubric, realign both.",
+      "revision_instruction": "",
       "stage": 3
     },
     {
@@ -919,7 +945,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[1.0, 1.0, 1.0, 2.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -930,7 +956,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 1.0, 2.0]"
+        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -941,7 +967,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[4.0, 3.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -952,7 +978,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[3.0, 4.0, 3.0]"
+        "rubric_items=3; rubric_pts_parsed=[4.0, 3.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -963,7 +989,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[5.0, 3.0, 3.0, 4.0]"
+        "rubric_items=4; rubric_pts_parsed=[4.0, 4.0, 4.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -1039,7 +1065,7 @@
       "task": "Task 4m",
       "agent": "Factual Grounding Judge",
       "findings": 11,
-      "non_pass": 0
+      "non_pass": 3
     },
     {
       "stage": 3,
@@ -1053,12 +1079,12 @@
       "task": "Task 4k",
       "agent": "Answer Consistency Judge",
       "findings": 11,
-      "non_pass": 1
+      "non_pass": 0
     },
     {
       "task": "Task 4j",
       "agent": "Judge Aggregator",
-      "final_verdict": "REVISE"
+      "final_verdict": "FAIL"
     }
   ]
 }

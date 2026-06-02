@@ -26,23 +26,23 @@ Use this before submitting the final generated exam.
 
 ## Provider and Cost
 
-- [ ] Provider mode is correct for final generation. Estimated cost: $0.042434.
+- [ ] Provider mode is correct for final generation. Estimated cost: $0.014235.
 - [ ] If using Gemini/OpenAI/Anthropic, confirm strict provider mode for the final run.
 - [ ] Confirm no private API keys or credentials are committed.
 
 ## Generated Questions
 
-- [ ] Q1: Short Answer / Foundations of Work and Work Systems / 5 points
-- [ ] Q2: Short Answer / Problem Solving and Ideation Techniques / 5 points
-- [ ] Q3: Short Answer / Foundations of Work and Work Systems / 5 points
-- [ ] Q4: Short Answer / Foundations of Work and Work Systems / 5 points
-- [ ] Q5: Short Answer / Problem Solving and Ideation Techniques / 5 points
-- [ ] Q6: Short Answer / Problem Solving and Ideation Techniques / 5 points
-- [ ] Q7: Concept Comparison / Foundations of Work and Work Systems / 10 points
-- [ ] Q8: Concept Comparison / Problem Solving and Ideation Techniques / 10 points
-- [ ] Q9: Application / Systematic Innovation Frameworks / 15 points
-- [ ] Q10: Application / Micro-level Motion Study and Therbligs / 15 points
-- [ ] Q11: Essay / Principles of Scientific Management / 20 points
+- [ ] Q1: Short Answer / Work and Work Systems / 5 points
+- [ ] Q2: Short Answer / Problem Solving and Ideation / 5 points
+- [ ] Q3: Short Answer / Work and Work Systems / 5 points
+- [ ] Q4: Short Answer / Work and Work Systems / 5 points
+- [ ] Q5: Short Answer / Problem Solving and Ideation / 5 points
+- [ ] Q6: Short Answer / Problem Solving and Ideation / 5 points
+- [ ] Q7: Concept Comparison / Work and Work Systems / 10 points
+- [ ] Q8: Concept Comparison / Problem Solving and Ideation / 10 points
+- [ ] Q9: Application / Innovation Frameworks / 15 points
+- [ ] Q10: Application / Motion Study and Therbligs / 15 points
+- [ ] Q11: Essay / Scientific Management / 20 points
 
 ## Coverage Audit Notes
 

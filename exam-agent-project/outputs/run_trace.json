@@ -36,13 +36,8 @@
     "task": "Task 5b",
     "agent": "Agentic Judge System",
     "status": "completed",
-    "final_verdict": "REVISE",
-    "iterations": 3,
-    "non_pass_targets": 2
-  },
-  {
-    "task": "Task 6",
-    "agent": "Formatter",
-    "status": "completed"
+    "final_verdict": "FAIL",
+    "iterations": 6,
+    "non_pass_targets": 3
   }
 ]

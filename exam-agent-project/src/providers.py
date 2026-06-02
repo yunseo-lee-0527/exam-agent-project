@@ -193,6 +193,10 @@ class GeminiProvider:
                 "not found",
                 "not supported",
                 "permission_denied",
+                "503",
+                "unavailable",
+                "overloaded",
+                "high demand",
             ]
         )
 
@@ -287,6 +291,45 @@ class GeminiProvider:
                         sources.append(src)
         return "\n\n".join(snippets), sources
 
+    @staticmethod
+    def _question_context(question: Question, notes: dict[str, str], limit: int = 4) -> tuple[str, list[str]]:
+        terms = [
+            token.lower()
+            for token in re.findall(
+                r"[A-Za-z][A-Za-z-]{3,}",
+                " ".join([question.focus, question.prompt, question.topic]),
+            )
+        ]
+        refs = [ref for ref in question.source_refs if ref in notes]
+        snippets: list[str] = []
+        sources: list[str] = []
+
+        for ref in refs:
+            body = notes[ref]
+            paragraphs = [p.strip().replace("\n", " ") for p in body.split("\n\n") if p.strip()]
+            matched = [
+                p for p in paragraphs
+                if any(term in p.lower() for term in terms)
+            ]
+            for paragraph in matched[:2] or paragraphs[:1]:
+                snippet = paragraph[:700] + ("..." if len(paragraph) > 700 else "")
+                snippets.append(f"[{ref}] {snippet}")
+                if ref not in sources:
+                    sources.append(ref)
+                if len(snippets) >= limit:
+                    return "\n\n".join(snippets), sources
+
+        if len(snippets) < limit:
+            ctx, extra_sources = GeminiProvider._retrieval_context(
+                notes, terms[:8] or question.topic.split(), limit=limit - len(snippets)
+            )
+            if ctx:
+                snippets.extend(ctx.split("\n\n"))
+            for src in extra_sources:
+                if src not in sources:
+                    sources.append(src)
+        return "\n\n".join(snippets), sources
+
     # ------------------------------------------------------------------
     # Provider interface (matches DeterministicProvider)
     # ------------------------------------------------------------------
@@ -328,34 +371,22 @@ class GeminiProvider:
     ) -> list[dict[str, str]]:
         system = (
             f"You are the {kind} writer for a university midterm. "
-            "Return JSON only: a list of objects with keys topic, prompt, answer, "
-            "learning_objective, bloom_level, difficulty, estimated_time_minutes, "
-            "exam_intent, assessed_skill, rubric. "
+            "Return JSON only: a list of objects with keys topic, prompt, source_refs. "
+            "Do NOT write model answers, grading rubrics, learning objectives, or other metadata; "
+            "a separate answer writer will ground those fields after the prompt is accepted. "
             "Anchor every question in the lecture notes; do not invent historical facts. "
             "For innovation-framework questions, use only the lecture frameworks: "
             "Addition, Subtraction, Alternate, Combination, and Transposition. "
             "Do not substitute external frameworks such as Lean Startup or Design Thinking. "
-            # Rubric-answer consistency constraint (root-cause fix for mismatch):
-            "CRITICAL — rubric consistency rule: write the 'prompt' and 'answer' fields "
-            "first, then derive the 'rubric' criteria DIRECTLY from the concepts covered "
-            "in your 'answer'. Every rubric criterion must be achievable by a student who "
-            "reads and understands your model answer. Never write rubric criteria that "
-            "require content absent from your model answer. Point values in each rubric "
-            "item must be integers (no fractions) and must sum exactly to the question's "
-            "total point value."
         )
-        ctx, _ = self._retrieval_context(notes, topic.keywords, limit=3)
+        ctx, sources = self._retrieval_context(notes, topic.keywords, limit=3)
         prompt = (
             f"Topic: {topic.title}\n"
             f"Lecture context:\n{ctx or '(no direct hits — stay conservative)'}\n\n"
             f"Write exactly {count} {kind} question(s) for this topic. "
-            "Each prompt must be a single clear ask. The answer field is a "
-            "concise model answer in <=120 words.\n"
-            "Rubric must be a list of 2-4 concrete scoring criteria. "
-            "Return: [{\"topic\":..., \"prompt\":..., \"answer\":..., "
-            "\"learning_objective\":..., \"bloom_level\":..., \"difficulty\":..., "
-            "\"estimated_time_minutes\":..., \"exam_intent\":..., "
-            "\"assessed_skill\":..., \"rubric\":[...]}, ...]"
+            "Each prompt must be a single clear ask. Return source_refs using only filenames "
+            "from the lecture context. Return: [{\"topic\":..., \"prompt\":..., "
+            "\"source_refs\":[...]}, ...]"
         )
         if revision_instruction:
             prompt += (
@@ -376,14 +407,15 @@ class GeminiProvider:
                     {
                         "topic": item.get("topic", topic.title),
                         "prompt": str(item.get("prompt", "")).strip(),
-                        "answer": str(item.get("answer", "")).strip(),
-                        "learning_objective": str(item.get("learning_objective", "")).strip(),
-                        "bloom_level": str(item.get("bloom_level", "")).strip(),
-                        "difficulty": str(item.get("difficulty", "")).strip(),
-                        "estimated_time_minutes": int(item.get("estimated_time_minutes", 0) or 0),
-                        "exam_intent": str(item.get("exam_intent", "")).strip(),
-                        "assessed_skill": str(item.get("assessed_skill", "")).strip(),
-                        "rubric": list(item.get("rubric", [])),
+                        "answer": "",
+                        "source_refs": list(item.get("source_refs") or sources),
+                        "learning_objective": "",
+                        "bloom_level": "",
+                        "difficulty": "",
+                        "estimated_time_minutes": 0,
+                        "exam_intent": "",
+                        "assessed_skill": "",
+                        "rubric": [],
                     }
                 )
             results = [r for r in results if r["prompt"]]
@@ -435,26 +467,17 @@ class GeminiProvider:
         system = (
             f"You are the {kind} specialist writer for a university midterm on Scientific Management. "
             "Return a JSON ARRAY. Each element must have exactly these keys: "
-            "slot_id (string — copy it exactly from the requested slot), "
-            "topic (string — copy the slot's exact topic_key), "
-            "prompt (string), answer (string ≤120 words), "
-            "source_refs (list of lecture filenames that support this question), "
-            "learning_objective, bloom_level, difficulty (Easy|Medium|Hard), "
-            "estimated_time_minutes (int), exam_intent, assessed_skill, "
-            "rubric (list of 2-4 grading criteria). "
+            "slot_id (string, copy it exactly from the requested slot), "
+            "topic (string, copy the slot's exact topic_key), prompt (string), "
+            "source_refs (list of lecture filenames that support this question). "
+            "Do NOT write model answers, grading rubrics, learning objectives, or other metadata; "
+            "a separate answer writer will ground those fields against the selected source_refs. "
             "Write one question for each requested slot. Use the slot's target_difficulty. "
             "Do not invent or merge slots. For innovation-framework slots, use only the "
             "lecture frameworks: Addition, Subtraction, Alternate, Combination, and "
             "Transposition. Do not substitute external frameworks such as Lean Startup "
             "or Design Thinking. "
-            # Root-cause fix: rubric must be derived from the answer, not written independently.
-            "CRITICAL — rubric consistency rule: for each question, write 'prompt' and "
-            "'answer' first, then derive every 'rubric' criterion DIRECTLY from concepts "
-            "present in your 'answer'. Every criterion must be satisfiable by a student "
-            "who understands your model answer. Never introduce rubric criteria requiring "
-            "content absent from your answer. Rubric point values must be integers "
-            "(no fractions) summing exactly to the question's total points. "
-            "CRITICAL — diversity rule: each slot begins with a line "
+            "CRITICAL diversity rule: each slot begins with a line "
             "'>>> MANDATORY TOPIC for this question: ... <<<'. The 'prompt' you write "
             "for that slot MUST be specifically and exclusively about that exact "
             "sub-topic. Do NOT drift to a neighbouring concept, even if it appears in "
@@ -525,17 +548,18 @@ class GeminiProvider:
                     "slot_id": requested_slot_id,
                     "topic": topic_title,
                     "prompt": p,
-                    "answer": str(item.get("answer", "")).strip(),
+                    "focus": str(slot.get("focus", "")).strip(),
+                    "answer": "",
                     "source_refs": list(item.get("source_refs", [])),
-                    "learning_objective": str(item.get("learning_objective", "")).strip(),
-                    "bloom_level": str(item.get("bloom_level", "")).strip(),
+                    "learning_objective": "",
+                    "bloom_level": "",
                     "difficulty": str(
                         slot.get("target_difficulty") or item.get("difficulty", "")
                     ).strip(),
-                    "estimated_time_minutes": int(item.get("estimated_time_minutes", 0) or 0),
-                    "exam_intent": str(item.get("exam_intent", "")).strip(),
-                    "assessed_skill": str(item.get("assessed_skill", "")).strip(),
-                    "rubric": list(item.get("rubric", [])),
+                    "estimated_time_minutes": 0,
+                    "exam_intent": "",
+                    "assessed_skill": "",
+                    "rubric": [],
                     "coverage_contribution": {
                         normalize_topic_key(str(k)): int(v)
                         for k, v in (slot.get("coverage_contribution") or {}).items()
@@ -612,12 +636,13 @@ class GeminiProvider:
         )
         items = []
         for q in questions:
-            ctx, _ = self._retrieval_context(notes, q.topic.split(), limit=1)
+            ctx, _ = self._question_context(q, notes, limit=2)
             items.append(
                 f"Q{q.number} | {q.kind} | {q.topic}\n"
+                f"  focus: {q.focus or '(none)'}\n"
                 f"  prompt: {q.prompt}\n"
                 f"  answer: {q.answer[:200]}\n"
-                f"  context: {(ctx or '(none)')[:250]}"
+                f"  context: {(ctx or '(none)')[:500]}"
             )
         prompt = "Score these questions and return a JSON array:\n\n" + "\n\n".join(items)
         try:
@@ -647,13 +672,14 @@ class GeminiProvider:
         )
         items = []
         for q in questions:
-            ctx, _ = self._retrieval_context(notes, q.topic.split(), limit=1)
+            ctx, _ = self._question_context(q, notes, limit=2)
             items.append(
                 f"A{q.number} | {q.topic}\n"
+                f"  focus: {q.focus or '(none)'}\n"
                 f"  question: {q.prompt[:150]}\n"
                 f"  answer: {q.answer[:300]}\n"
                 f"  source_refs: {q.source_refs}\n"
-                f"  context: {(ctx or '(none)')[:200]}"
+                f"  context: {(ctx or '(none)')[:500]}"
             )
         prompt = "Score these answers and return a JSON array:\n\n" + "\n\n".join(items)
         try:
@@ -679,11 +705,12 @@ class GeminiProvider:
             "{target_id, rubric:{...}, total, verdict (GOOD|ACCEPTABLE|POOR), suggestion}. "
             "GOOD if total>=17, ACCEPTABLE if total>=13, else POOR."
         )
-        ctx, _ = self._retrieval_context(notes, question.topic.split(), limit=2)
+        ctx, _ = self._question_context(question, notes, limit=3)
         prompt = (
             f"target_id: Q{question.number}\n"
             f"kind: {question.kind}\n"
             f"topic: {question.topic}\n"
+            f"focus: {question.focus or '(none)'}\n"
             f"prompt: {question.prompt}\n"
             f"answer: {question.answer}\n\n"
             f"Lecture context:\n{ctx or '(no direct hits)'}"
@@ -703,9 +730,10 @@ class GeminiProvider:
             "Return JSON only: {target_id, rubric:{...}, total, verdict, suggestion}. "
             "GOOD if total>=17, ACCEPTABLE if total>=13, else POOR."
         )
-        ctx, _ = self._retrieval_context(notes, question.topic.split(), limit=2)
+        ctx, _ = self._question_context(question, notes, limit=3)
         prompt = (
             f"target_id: A{question.number}\n"
+            f"focus: {question.focus or '(none)'}\n"
             f"question: {question.prompt}\n"
             f"answer: {question.answer}\n"
             f"source_refs: {question.source_refs}\n\n"
@@ -731,9 +759,7 @@ class GeminiProvider:
         together guarantees consistency: rubric criteria are derived from the
         newly written answer, so they can never mismatch.
         """
-        keywords = [w for w in question.topic.split() if len(w) > 3]
-        keywords += [w for w in question.prompt.split()[:6] if len(w) > 3]
-        ctx, sources = self._retrieval_context(notes, keywords, limit=4)
+        ctx, sources = self._question_context(question, notes, limit=4)
         hint = f"\nRevision note: {revision_instruction}" if revision_instruction else ""
         system = (
             "You are a university exam answer writer. "
@@ -743,13 +769,17 @@ class GeminiProvider:
             "Rules: every rubric criterion must be satisfiable from your answer; "
             "point values must be integers summing exactly to the question's total points; "
             "source_refs must be filenames from the lecture context header lines. "
+            "Do not add named examples, sub-categories, numbers, or attributions unless "
+            "they appear explicitly in the lecture context. When the context is general, "
+            "keep the answer general instead of inventing a concrete example. "
             "Return JSON only: "
             "{\"answer\": \"...\", \"rubric\": [\"criterion (N pts)\", ...], "
             "\"source_refs\": [\"filename.txt\", ...]}"
         )
         prompt = (
             f"Question ({question.kind}, {question.points} pts total):\n"
-            f"{question.prompt}{hint}\n\n"
+            f"{question.prompt}\n"
+            f"Mandatory focus: {question.focus or '(none)'}{hint}\n\n"
             f"Lecture context:\n{ctx or '(no direct hits — answer conservatively)'}"
         )
         try:
@@ -826,13 +856,8 @@ class GeminiProvider:
         content.  This catches errors that lexical keyword matching misses,
         such as wrong attributions (e.g., crediting Taylor for Therbligs).
         """
-        # Build lecture context from source_refs only (keeps prompt focused).
-        context_blocks: list[str] = []
-        for ref in question.source_refs:
-            if ref in notes:
-                excerpt = notes[ref][:chars_per_source].replace("\n", " ")
-                context_blocks.append(f"[{ref}]\n{excerpt}")
-        if not context_blocks:
+        lecture_ctx, _sources = self._question_context(question, notes, limit=4)
+        if not lecture_ctx:
             return {"factually_accurate": True, "errors": [], "verdict": "PASS"}
 
         system = (
@@ -852,7 +877,6 @@ class GeminiProvider:
             "Do NOT flag correct paraphrasing, reasonable simplification, or "
             "claims you personally doubt but cannot disprove from the excerpts."
         )
-        lecture_ctx = "\n\n".join(context_blocks)
         prompt = (
             f"Question ({question.kind}, Q{question.number}):\n{question.prompt}\n\n"
             f"Model Answer:\n{question.answer}\n\n"
@@ -901,7 +925,9 @@ class GeminiProvider:
             pair_blocks.append(
                 f"Pair {i} — Q{q1.number} ({q1.kind}, {q1.points}pts) vs "
                 f"Q{q2.number} ({q2.kind}, {q2.points}pts):\n"
+                f"  Q{q1.number} focus: {getattr(q1, 'focus', '') or '(none)'}\n"
                 f"  Q{q1.number}: {q1.prompt}\n"
+                f"  Q{q2.number} focus: {getattr(q2, 'focus', '') or '(none)'}\n"
                 f"  Q{q2.number}: {q2.prompt}"
             )
         prompt = "\n\n".join(pair_blocks) + "\n\nReturn the JSON array."
