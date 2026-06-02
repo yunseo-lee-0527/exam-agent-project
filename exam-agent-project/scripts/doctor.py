@@ -59,7 +59,26 @@ def main() -> None:
         )
     )
 
-    gemini_api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    local_gemini_key_path = root / ".gemini_api_key"
+    local_gemini_key = (
+        local_gemini_key_path.read_text(encoding="utf-8").strip()
+        if local_gemini_key_path.exists()
+        else ""
+    )
+    gemini_api_key = (
+        local_gemini_key
+        or os.environ.get("GEMINI_API_KEY")
+        or os.environ.get("GOOGLE_API_KEY")
+    )
+    gemini_key_source = (
+        ".gemini_api_key"
+        if local_gemini_key
+        else "GEMINI_API_KEY"
+        if os.environ.get("GEMINI_API_KEY")
+        else "GOOGLE_API_KEY"
+        if os.environ.get("GOOGLE_API_KEY")
+        else ""
+    )
     project_id = (
         os.environ.get("GCP_PROJECT_ID")
         or os.environ.get("GOOGLE_CLOUD_PROJECT")
@@ -71,9 +90,9 @@ def main() -> None:
             "Gemini authentication",
             has_gemini_auth,
             (
-                f"GEMINI_API_KEY found (API-key mode)." if gemini_api_key
+                f"{gemini_key_source} found (API-key mode)." if gemini_api_key
                 else f"GCP project ID found (Vertex AI mode): {project_id}" if project_id
-                else "Set GEMINI_API_KEY for AI Studio mode, or GCP_PROJECT_ID for Vertex AI mode."
+                else "Add .gemini_api_key for AI Studio mode, or set GCP_PROJECT_ID for Vertex AI mode."
             ),
         )
     )
@@ -84,7 +103,7 @@ def main() -> None:
             check(
                 "Google Cloud CLI (Vertex AI mode only)",
                 gcloud_path is not None,
-                gcloud_path or "Not required if using GEMINI_API_KEY. Otherwise install from https://cloud.google.com/sdk/docs/install",
+                gcloud_path or "Not required if using .gemini_api_key. Otherwise install from https://cloud.google.com/sdk/docs/install",
             )
         )
 
@@ -93,7 +112,7 @@ def main() -> None:
             check(
                 "Application Default Credentials (Vertex AI mode only)",
                 adc_path.exists(),
-                str(adc_path) if adc_path.exists() else "Not required if using GEMINI_API_KEY. Otherwise run: gcloud auth application-default login",
+                str(adc_path) if adc_path.exists() else "Not required if using .gemini_api_key. Otherwise run: gcloud auth application-default login",
             )
         )
 

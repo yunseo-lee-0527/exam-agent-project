@@ -1,10 +1,10 @@
 {
-  "final_verdict": "FAIL",
+  "final_verdict": "PASS",
   "summary": {
     "targets": 12,
-    "pass": 9,
+    "pass": 12,
     "revise": 0,
-    "fail": 3
+    "fail": 0
   },
   "target_decisions": {
     "EXAM": {
@@ -20,14 +20,10 @@
       "earliest_failing_stage": 3
     },
     "Q10": {
-      "final_verdict": "FAIL",
-      "failed_checks": [
-        "factual_error"
-      ],
-      "revision_instructions": [
-        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
-      ],
-      "earliest_failing_stage": 2
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q11": {
       "final_verdict": "PASS",
@@ -36,16 +32,10 @@
       "earliest_failing_stage": 3
     },
     "Q2": {
-      "final_verdict": "FAIL",
-      "failed_checks": [
-        "factual_error",
-        "question_overlap"
-      ],
-      "revision_instructions": [
-        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
-        "Q2 conceptually overlaps with Q8. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q8: \"Explain how the principles of 'deferred judgment' and 'quantity over quality' in brainstorming, as discussed in the lect\""
-      ],
-      "earliest_failing_stage": 1
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     },
     "Q3": {
       "final_verdict": "PASS",
@@ -84,14 +74,10 @@
       "earliest_failing_stage": 3
     },
     "Q9": {
-      "final_verdict": "FAIL",
-      "failed_checks": [
-        "factual_error"
-      ],
-      "revision_instructions": [
-        "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes."
-      ],
-      "earliest_failing_stage": 2
+      "final_verdict": "PASS",
+      "failed_checks": [],
+      "revision_instructions": [],
+      "earliest_failing_stage": 3
     }
   },
   "findings": [
@@ -142,7 +128,7 @@
       "failed_checks": [],
       "evidence": [
         "mandatory_focus=the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement)",
-        "focus_hits=dassi, engineering, problem-solving, search",
+        "focus_hits=dassi, engineering, problem-solving, steps, define",
         "kind=Short Answer; difficulty=Easy",
         "learning_objective=Assess whether students can explain or use the DASSI engineering problem-solving steps (Define, Analyze, Search, Select, Implement) in a short answer task."
       ],
@@ -155,10 +141,10 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "mandatory_focus=work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy)",
-        "focus_hits=anatomy, component, categories, participants, processes",
+        "mandatory_focus=open-system view of work systems — boundary and exchange with the environment",
+        "focus_hits=boundary, exchange, environment",
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Assess whether students can explain or use work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) in a short answer task."
+        "learning_objective=Assess whether students can explain the open-system view of work systems, including boundary and environmental exchange."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -240,9 +226,9 @@
       "failed_checks": [],
       "evidence": [
         "mandatory_focus=the Subtraction framework — removing an essential component to create value",
-        "focus_hits=subtraction, removing, essential, component",
+        "focus_hits=subtraction, removing, component, create, value",
         "kind=Application; difficulty=Medium",
-        "learning_objective=Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in a application task."
+        "learning_objective=Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in an application task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -254,9 +240,9 @@
       "failed_checks": [],
       "evidence": [
         "mandatory_focus=the definition and purpose of Therbligs in motion study",
-        "focus_hits=purpose, therbligs, motion, study",
+        "focus_hits=therbligs, motion",
         "kind=Application; difficulty=Medium",
-        "learning_objective=Assess whether students can explain or use the definition and purpose of Therbligs in motion study in a application task."
+        "learning_objective=Assess whether students can explain or use the definition and purpose of Therbligs in motion study in an application task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -270,7 +256,7 @@
         "mandatory_focus=Taylor's four principles of scientific management and their managerial logic",
         "focus_hits=taylor, principles, managerial, logic",
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in a essay task."
+        "learning_objective=Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in an essay task."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -281,7 +267,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=26"
+        "prompt_words=20"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -292,7 +278,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=30"
+        "prompt_words=18"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -303,7 +289,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=22"
+        "prompt_words=27"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -314,7 +300,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=21"
+        "prompt_words=17"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -325,7 +311,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=26"
+        "prompt_words=31"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -336,7 +322,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=27"
+        "prompt_words=25"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -347,7 +333,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=40"
+        "prompt_words=58"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -358,7 +344,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=48"
+        "prompt_words=43"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -369,7 +355,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=44"
+        "prompt_words=26"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -380,7 +366,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=44"
+        "prompt_words=37"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -391,7 +377,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=53"
+        "prompt_words=33"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -408,14 +394,10 @@
     {
       "target_id": "Q2",
       "judge": "Overlap Judge",
-      "verdict": "SOFT_FAIL",
-      "failed_checks": [
-        "question_overlap"
-      ],
-      "evidence": [
-        "Overlaps with Q8 (Concept Comparison, 10pts): Q2 asks about the activities and minimum number of alternatives in the 'Search for Alternatives' step of DASSI. Q8 explicitly asks how brainstorming principles (deferred judgment, quantity over quality) contribute to the 'Search for Alternatives' step of DASSI and to provide examples. Both questions directly address the same step within the DASSI process and require knowledge about generating alternatives."
-      ],
-      "revision_instruction": "Q2 conceptually overlaps with Q8. Rewrite this question to test a COMPLETELY DIFFERENT aspect, concept, or perspective within the same topic area. For example, if the overlapping questions are about IS-perspective definitions, ask instead about emergence, taxonomy, history, or a concrete application of work-system concepts.\nDo NOT produce a question similar to:\n  Q8: \"Explain how the principles of 'deferred judgment' and 'quantity over quality' in brainstorming, as discussed in the lect\"",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [],
+      "revision_instruction": "",
       "stage": 1
     },
     {
@@ -506,7 +488,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, context, between, action, task, process"
+        "matched_terms=work, motion, describe, levels, used, level"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -518,7 +500,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=dassi, engineering, problem-solving, process, involved, search"
+        "matched_terms=dassi, five, engineering, problem-solving, process, objective"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -530,7 +512,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.3 What is a Work System.txt",
-        "matched_terms=work, system, component, materials, participants, people"
+        "matched_terms=work, system, open, boundary, environment, exchange"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -542,7 +524,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, distinguish, between, structure-based, taxonomy, complexity-based"
+        "matched_terms=work, distinguish, between, structure-based, complexity-based, dimensions"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -554,7 +536,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
-        "matched_terms=method, affinity, diagramming, problems, organize, large"
+        "matched_terms=method, affinity, diagramming, process, structure, complex"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -566,7 +548,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
-        "matched_terms=concept, facilitate, solution, space"
+        "matched_terms=concept, solution, space"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -577,8 +559,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, performance, between, components, these"
+        "valid_refs=M1.3 What is a Work System.txt, M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, system, integrated, definition, concept, emergence"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -589,8 +571,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=brainstorming, dassi, principles, judgment, quantity, over"
+        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, principles, judgment, quantity, over, quality"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -602,7 +584,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=subtraction, innovation, consider, traditional, includes, applying",
+        "matched_terms=subtraction, innovation, framework, removing, common, could",
         "lecture_innovation_frameworks_in_answer=subtraction"
       ],
       "revision_instruction": "",
@@ -614,8 +596,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=gilbreth, therbligs, motion, lillian, analyze, motions"
+        "valid_refs=M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=therbligs, motion, worker, assembling, time, part"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -646,15 +628,12 @@
     {
       "target_id": "Q2",
       "judge": "Factual Grounding Judge",
-      "verdict": "HARD_FAIL",
-      "failed_checks": [
-        "factual_error"
-      ],
+      "verdict": "PASS",
+      "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Factual error: The lecture excerpts describe the 'Search for Alternatives' as a step in the DASSI process but do not specify the key activities involved in this step, nor do they mention a recommended minimum number of alternatives to explore."
+        "sources_checked=1"
       ],
-      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "revision_instruction": "",
       "stage": 2
     },
     {
@@ -685,7 +664,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1"
+        "sources_checked=1",
+        "Factual warning: The general process description of the KJ Method (generating ideas on cards, manual grouping, creating header cards, arranging groups) is not explicitly detailed in the provided lecture excerpts."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -696,7 +676,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1"
+        "sources_checked=1",
+        "Factual warning: The model answer describes the Concept Fan technique as asking 'Why is this needed?' to move to broader goals and 'How can we achieve this?' to move to concrete solutions. While this is an accurate description of the Concept Fan technique in general, these specific 'Why/How' questions and the systematic, hierarchical expansion process are not explicitly outlined in the provided lecture excerpts, which only offer a business example without detailing the methodology."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -707,7 +688,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1"
+        "sources_checked=2"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -718,7 +699,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2"
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -726,30 +707,23 @@
     {
       "target_id": "Q9",
       "judge": "Factual Grounding Judge",
-      "verdict": "HARD_FAIL",
-      "failed_checks": [
-        "factual_error"
-      ],
+      "verdict": "PASS",
+      "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Factual error: The model answer states that removing the lamp could lead to \"reduced product cost.\" The provided lecture excerpts do not mention cost as a potential benefit of the subtraction framework, nor do they provide information to support this claim in the context of removing a lamp from a desk."
+        "sources_checked=1"
       ],
-      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "revision_instruction": "",
       "stage": 2
     },
     {
       "target_id": "Q10",
       "judge": "Factual Grounding Judge",
-      "verdict": "HARD_FAIL",
-      "failed_checks": [
-        "factual_error"
-      ],
+      "verdict": "PASS",
+      "failed_checks": [],
       "evidence": [
-        "sources_checked=2",
-        "Factual error: The model answer states that Frank and Lillian Gilbreth developed 'Therbligs'. However, the provided lecture excerpts do not mention Frank and Lillian Gilbreth or Therbligs at all. The excerpts focus on Frederick W. Taylor and the broader concepts of Scientific Management.",
-        "Factual error: The definition of Therbligs as 'fundamental, elemental motions utilized in performing a task' and their purpose to 'systematically analyze work to identify and eliminate wasted effort and unnecessary movements' cannot be verified from the provided lecture excerpts."
+        "sources_checked=1"
       ],
-      "revision_instruction": "The model answer contains factual claims that are not supported by or contradict the cited lecture notes. Rewrite the answer using only information explicitly present in the lecture materials. Do not invent dates, names, or experiments not mentioned in the notes.",
+      "revision_instruction": "",
       "stage": 2
     },
     {
@@ -769,7 +743,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=68",
+        "answer_words=54",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -781,7 +755,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=27",
+        "answer_words=58",
         "rubric_items=2"
       ],
       "revision_instruction": "",
@@ -793,8 +767,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=46",
-        "rubric_items=4"
+        "answer_words=44",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -805,8 +779,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=51",
-        "rubric_items=3"
+        "answer_words=99",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -817,7 +791,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=75",
+        "answer_words=87",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -829,8 +803,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=64",
-        "rubric_items=4"
+        "answer_words=79",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -841,7 +815,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=63",
+        "answer_words=85",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -853,8 +827,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=76",
-        "rubric_items=3"
+        "answer_words=84",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -865,8 +839,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=75",
-        "rubric_items=4"
+        "answer_words=76",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -877,8 +851,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=50",
-        "rubric_items=3"
+        "answer_words=70",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -889,7 +863,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=85",
+        "answer_words=71",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -901,7 +875,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=4; rubric_pts_parsed=[1.0, 1.0, 1.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -923,7 +897,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 1.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -934,7 +908,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
+        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -956,7 +930,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -978,7 +952,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[4.0, 3.0, 3.0]"
+        "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 2.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -989,7 +963,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[4.0, 4.0, 4.0, 3.0]"
+        "rubric_items=3; rubric_pts_parsed=[4.0, 5.0, 6.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -1000,7 +974,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=[5.0, 5.0, 5.0]"
+        "rubric_items=4; rubric_pts_parsed=[3.0, 6.0, 2.0, 4.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -1051,7 +1025,7 @@
       "task": "Task 4l",
       "agent": "Overlap Judge",
       "findings": 11,
-      "non_pass": 1
+      "non_pass": 0
     },
     {
       "stage": 2,
@@ -1065,7 +1039,7 @@
       "task": "Task 4m",
       "agent": "Factual Grounding Judge",
       "findings": 11,
-      "non_pass": 3
+      "non_pass": 0
     },
     {
       "stage": 3,
@@ -1084,7 +1058,7 @@
     {
       "task": "Task 4j",
       "agent": "Judge Aggregator",
-      "final_verdict": "FAIL"
+      "final_verdict": "PASS"
     }
   ]
 }

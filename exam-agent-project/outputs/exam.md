@@ -11,7 +11,7 @@ Duration: 75 minutes  |  Total: 100 points
 
 ## Q1. Short Answer (5 points)
 
-Describe the four hierarchical levels of work, from the most granular to the most encompassing, as presented in the context of scientific management.
+Describe the four hierarchical levels used in the lecture to describe work, from the most granular to the most encompassing.
 
 ## Q2. Short Answer (5 points)
 
@@ -19,7 +19,7 @@ Outline the five sequential steps of the DASSI engineering problem-solving proce
 
 ## Q3. Short Answer (5 points)
 
-Identify and briefly describe at least five of the key component categories that comprise a work system, as discussed in the provided materials.
+What makes a work system an open system? Explain how its boundary relates to the environment and list the three types of exchange identified in the lecture.
 
 ## Q4. Short Answer (5 points)
 
@@ -43,11 +43,11 @@ Explain the two core principles of brainstorming: deferred judgment and quantity
 
 ## Q9. Application (15 points)
 
-Using the Subtraction framework for innovation, describe how removing an essential component from a common household appliance could potentially create new value or a new market niche.
+Using the Subtraction framework for innovation, propose how removing a component from a common household appliance could potentially create new value or a new market niche.
 
 ## Q10. Application (15 points)
 
-Frank and Lillian Gilbreth introduced "Therbligs" as a fundamental component of their motion study. Explain the definition of Therbligs and elaborate on their primary purpose within the broader context of scientific management and work system redesign, citing specific benefits for improving human well-being and system performance.
+A worker assembling a kit spends time locating a part, choosing it from several alternatives, and aligning it before assembly. Define Therbligs, identify the three relevant motion elements, and propose one lecture-grounded redesign improvement for each element.
 
 ## Q11. Essay (20 points)
 

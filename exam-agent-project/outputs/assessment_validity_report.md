@@ -47,9 +47,9 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Remember/Understand
 - Difficulty: Easy
 - Estimated time: 4 minutes
-- Learning objective: Assess whether students can explain or use work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) in a short answer task.
+- Learning objective: Assess whether students can explain the open-system view of work systems, including boundary and environmental exchange.
 - Assessed skill: concept recall and explanation
-- Exam intent: This item tests work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) beyond surface recall by requiring a response appropriate to the short answer format.
+- Exam intent: This item tests whether students can distinguish an open work system from an isolated system using the lecture's boundary and exchange concepts.
 - Sources: M1.3 What is a Work System.txt
 
 ### Q4
@@ -113,7 +113,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Apply/Analyze
 - Difficulty: Medium
 - Estimated time: 11 minutes
-- Learning objective: Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in a application task.
+- Learning objective: Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in an application task.
 - Assessed skill: framework application to a concrete work-system situation
 - Exam intent: This item tests the Subtraction framework — removing an essential component to create value beyond surface recall by requiring a response appropriate to the application format.
 - Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
@@ -124,10 +124,10 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Apply/Analyze
 - Difficulty: Medium
 - Estimated time: 12 minutes
-- Learning objective: Assess whether students can explain or use the definition and purpose of Therbligs in motion study in a application task.
+- Learning objective: Assess whether students can explain or use the definition and purpose of Therbligs in motion study in an application task.
 - Assessed skill: framework application to a concrete work-system situation
 - Exam intent: This item tests the definition and purpose of Therbligs in motion study beyond surface recall by requiring a response appropriate to the application format.
-- Sources: M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.4 Scientific Management as Work System Redesign.txt
+- Sources: M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ### Q11
 
@@ -135,7 +135,7 @@ This report exists to defend generated exam quality, not merely pipeline complet
 - Bloom level: Evaluate/Create
 - Difficulty: Hard
 - Estimated time: 12 minutes
-- Learning objective: Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in a essay task.
+- Learning objective: Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in an essay task.
 - Assessed skill: synthesis, justification, and critical evaluation
 - Exam intent: This item tests Taylor's four principles of scientific management and their managerial logic beyond surface recall by requiring a response appropriate to the essay format.
 - Sources: M1.4 Scientific Management as Work System Redesign.txt

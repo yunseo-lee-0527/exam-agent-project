@@ -27,6 +27,7 @@ from agents import (
     fan_out_question_writers,
     normalize_rubric_points,
     normalize_topic_key,
+    strip_source_ref_locator,
     strip_mandatory_topic_marker,
 )
 from costing import estimate_tokens
@@ -54,8 +55,8 @@ def _resolve_source_refs(refs: list[str], notes: dict[str, str]) -> list[str]:
     resolved: list[str] = []
     filenames = list(notes)
     for ref in refs:
-        # Strip common LLM-generated page suffixes before matching.
-        clean = re.split(r"\s*---\s*[Pp]age\s*\d+", ref)[0].strip()
+        # Strip common LLM-generated page or line-span suffixes before matching.
+        clean = strip_source_ref_locator(ref)
         if clean in notes:
             match = clean
         elif ref in notes:
@@ -628,9 +629,15 @@ def enrich_assessment_metadata(questions: list[Question]) -> list[Question]:
         )
         if not q.estimated_time_minutes:
             q.estimated_time_minutes = _infer_estimated_time(q)
+        kind = q.kind.lower()
+        article = "an" if kind[:1] in "aeiou" else "a"
         if not q.learning_objective:
             focus = q.focus or f"{q.topic} concepts"
-            q.learning_objective = f"Assess whether students can explain or use {focus} in a {q.kind.lower()} task."
+            q.learning_objective = f"Assess whether students can explain or use {focus} in {article} {kind} task."
+        q.learning_objective = q.learning_objective.replace(
+            f"in a {kind} task.",
+            f"in {article} {kind} task.",
+        )
         if not q.exam_intent:
             focus = q.focus or q.topic
             q.exam_intent = (
@@ -961,8 +968,8 @@ def build_residual_risk_report(
             {
                 "risk": "chunk_grounding_is_not_entailment",
                 "severity": "low",
-                "evidence": "Chunk grounding verifies lexical support, not full semantic entailment.",
-                "mitigation": "Upgrade SourceGroundingJudgeAgent to compare answer claims against cited chunks with a live LLM judge.",
+                "evidence": "Chunk grounding verifies lexical support. The live batched factual-grounding judge adds semantic checks but is still limited by retrieved excerpts and LLM self-review.",
+                "mitigation": "Complete an independent human review against the cited excerpts, especially for application and essay items.",
             }
         )
     return {
@@ -1368,12 +1375,31 @@ def run_pipeline(
                 source_files=[],
             )
         focus_hint = f"\nMandatory focus to preserve: {q.focus}" if q.focus else ""
+        neighbor_items = [
+            other
+            for other in questions
+            if other.number != q.number
+            and normalize_topic_key(other.topic) == normalize_topic_key(q.topic)
+        ]
+        avoid_hint = ""
+        if neighbor_items:
+            avoid_lines = [
+                f"- Q{other.number} focus: {other.focus or '(none)'}; prompt: {other.prompt[:220]}"
+                for other in neighbor_items
+            ]
+            avoid_hint = (
+                "\nForbidden neighboring exam items: do not test the same concept, step, "
+                "example, or learning objective as any item below.\n"
+                + "\n".join(avoid_lines)
+                + "\nChoose an ask that remains faithful to the mandatory focus while "
+                "being conceptually distinct from every neighboring item."
+            )
         regenerated = provider.write_questions(
             q.kind,
             topic,
             1,
             notes_,
-            revision_instruction=(suggestion + focus_hint).strip(),
+            revision_instruction=(suggestion + focus_hint + avoid_hint).strip(),
         )
         if regenerated:
             q.prompt = strip_mandatory_topic_marker(regenerated[0].get("prompt", q.prompt))
@@ -1387,15 +1413,16 @@ def run_pipeline(
             q.estimated_time_minutes = 0
             q.exam_intent = ""
             q.assessed_skill = ""
-            q.source_refs = list(
-                dict.fromkeys(regenerated[0].get("source_refs", []) or q.source_refs)
+            q.source_refs = _resolve_source_refs(
+                list(dict.fromkeys(regenerated[0].get("source_refs", []) or q.source_refs)),
+                notes_,
             )
         return q
 
     def regen_answer(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
         result = provider.write_answer(q, notes_, revision_instruction=suggestion)
         q.answer = result["answer"].strip()
-        q.source_refs = result.get("source_refs", []) or q.source_refs
+        q.source_refs = _resolve_source_refs(result.get("source_refs", []) or q.source_refs, notes_)
         return q
 
     def regen_answer_and_rubric(q: Question, suggestion: str, notes_: dict[str, str]) -> Question:
@@ -1413,7 +1440,10 @@ def run_pipeline(
                 if result.get("rubric"):
                     q.rubric = normalize_rubric_points(list(result["rubric"]), q.points)
                 if result.get("source_refs"):
-                    q.source_refs = list(dict.fromkeys(result["source_refs"]))
+                    q.source_refs = _resolve_source_refs(
+                        list(dict.fromkeys(result["source_refs"])),
+                        notes_,
+                    )
                 return q
             except Exception:
                 pass
@@ -1589,6 +1619,10 @@ def run_pipeline(
             json.dumps(state["run_trace"], indent=2, ensure_ascii=False),
             encoding="utf-8",
         )
+        (outputs_dir / "failed_candidate_questions.json").write_text(
+            json.dumps([asdict(q) for q in questions], indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
         remaining = sorted(
             target
             for target, decision in agentic_judge_report.get("target_decisions", {}).items()
@@ -1647,6 +1681,7 @@ def run_pipeline(
     static_cost_inputs = estimate_static_cost_inputs(notes, questions)
 
     outputs_dir.mkdir(parents=True, exist_ok=True)
+    (outputs_dir / "failed_candidate_questions.json").unlink(missing_ok=True)
     (outputs_dir / "exam.md").write_text(rendered["exam_md"], encoding="utf-8")
     (outputs_dir / "answers.md").write_text(rendered["answers_md"], encoding="utf-8")
     (outputs_dir / "review.md").write_text(rendered["review_md"], encoding="utf-8")

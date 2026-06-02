@@ -2,7 +2,7 @@
 
 ## Q1. Short Answer
 
-Scientific management views work hierarchically. The most granular level is the **action** or motion (e.g., reaching, clicking). A **task** comprises a sequence of actions (e.g., assembling a part). Multiple interrelated tasks form a **process**, transforming inputs into outputs. The most encompassing level is the **work system**, which includes the human and technical elements interacting to produce value within an organization.
+The lecture describes work hierarchically. The most granular level is the **action** or motion (e.g., reaching, clicking). A **task** comprises a sequence of actions (e.g., assembling a part). Multiple interrelated tasks form a **process**, transforming inputs into outputs. The most encompassing level is the **work system**, an organized socio-technical system in which processes occur.
 
 Learning objective: Assess whether students can explain or use levels of work — distinguishing action, task, process, and work-system in a short answer task.
 
@@ -17,7 +17,7 @@ Rubric:
 - Identifies and defines 'action' as the most granular level (1 pt)
 - Identifies and defines 'task' as a sequence of actions (1 pt)
 - Identifies and defines 'process' as interrelated tasks transforming input to output (1 pt)
-- Identifies and defines 'work system' as the most encompassing level involving human and technical elements interacting to produce value (2 pts)
+- Identifies and defines 'work system' as the most encompassing organized socio-technical level in which processes occur (2 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -46,11 +46,11 @@ Sources: M2.1.1 Engineering Problem-Solving Process.txt
 
 ## Q3. Short Answer
 
-A work system is composed of several key categories. Participants are the individuals performing the work. Information is the data and knowledge used or generated. Technology encompasses the tools and systems employed. Processes describe the series of activities undertaken. Customers are the recipients of the work's output. The environment includes external factors influencing the system, and infrastructure refers to the supporting facilities and organizational structures. Strategy guides the overall direction.
+A work system is an open system because it is bounded but still interacts with its environment. The boundary distinguishes the system from the environment rather than isolating it completely. The lecture identifies three types of exchange with the environment: information, materials, and energy.
 
-Learning objective: Assess whether students can explain or use work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) in a short answer task.
+Learning objective: Assess whether students can explain the open-system view of work systems, including boundary and environmental exchange.
 
-Exam intent: This item tests work system anatomy — the component categories (participants, processes, information, technology, products, customers, environment, infrastructure, strategy) beyond surface recall by requiring a response appropriate to the short answer format.
+Exam intent: This item tests whether students can distinguish an open work system from an isolated system using the lecture's boundary and exchange concepts.
 
 Assessment metadata: Bloom=Remember/Understand, difficulty=Easy, estimated_time=4 minutes
 
@@ -58,8 +58,9 @@ Assessed skill: concept recall and explanation
 
 Rubric:
 
-- Identifies and briefly describes at least five component categories (e.g., Participants, Information, Technology, Processes, Customers, Environment, Infrastructure, Strategy) (4 pts)
-- Provides accurate descriptions for each identified category (1 pt)
+- Explains that an open work system is bounded but interacts with its environment (2 pts)
+- Explains that the boundary distinguishes the system from its environment (1 pts)
+- Lists information, materials, and energy as the three types of exchange (2 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -67,7 +68,9 @@ Sources: M1.3 What is a Work System.txt
 
 ## Q4. Short Answer
 
-Work systems can be classified using structure-based and complexity-based dimensions. The structure-based taxonomy includes axes like volume-variety (e.g., Mass Production), automation/agency (e.g., Manual systems), and temporality (e.g., Continuous/Repetitive systems like manufacturing). The complexity-based taxonomy assesses interaction complexity (how elements connect) and work domain complexity (the intricacy of the environment). For example, a fast-food ordering system has high interaction and work domain complexity.
+Structure-based dimensions classify work systems based on their structural organization, utilizing a three-axis framework. These include axes like `automation and agency` (e.g., Manual Systems versus Automated Systems), `volume-variety structure` (e.g., Mass Production versus Continuous Process Production), and `temporality`. This taxonomy focuses on how the system is structurally organized.
+
+In contrast, complexity-based dimensions employ a two-axis framework, classifying systems by their cognitive and operational complexity. Key axes are `interaction complexity` and `work domain complexity`, both ranging from low to high. This taxonomy focuses on how cognitively and operationally complex the system is. Each offers a distinct facet of work systems.
 
 Learning objective: Assess whether students can explain or use work system taxonomy — structure-based (volume-variety, automation, temporality) vs complexity-based (interaction, domain complexity) in a short answer task.
 
@@ -79,9 +82,10 @@ Assessed skill: concept distinction and structural reasoning
 
 Rubric:
 
-- Distinguishes between structure-based and complexity-based dimensions (2 pts)
-- Provides at least one example for structure-based dimensions (e.g., Mass Production, Manual systems, Continuous/Repetitive systems) (1 pt)
-- Provides at least one example for complexity-based dimensions (e.g., interaction complexity, work domain complexity, or a practical example like a fast-food system) (2 pts)
+- Distinguishes structure-based taxonomy, identifying its focus (structural organization) and multi-axis framework (2 pts)
+- Provides a correct example dimension or characteristic for structure-based taxonomy (1 pts)
+- Distinguishes complexity-based taxonomy, identifying its focus (cognitive and operational complexity) and multi-axis framework (1 pts)
+- Provides a correct example dimension or characteristic for complexity-based taxonomy (1 pts)
 
 Coverage contribution: work_and_work_systems: 5
 
@@ -155,7 +159,7 @@ Sources: M1.3 What is a Work System.txt, M1.1 What is Work_Revised 260312.txt
 
 ## Q8. Concept Comparison
 
-Brainstorming's effectiveness hinges on two core principles: deferred judgment and quantity over quality. Deferred judgment means suspending criticism during idea generation, allowing all thoughts, even seemingly wild ones, to surface without premature evaluation. Quantity over quality encourages generating a large volume of ideas, recognizing that novel solutions often emerge from a broad pool of possibilities. Adhering to these principles fosters an open environment where creativity can flourish and prevents good ideas from being dismissed too early. Violating them, by imposing judgment or focusing too narrowly, can stifle innovation and lead to conventional, uninspired solutions.
+The two principles are delayed judgment and a focus on quantity. Delayed judgment separates creative thinking from judgmental thinking because judgmental thinking inhibits creative thinking. It also reduces fear during idea generation. A focus on quantity encourages participants to generate many ideas before discarding weak ones. If criticism occurs too early, participants may fear evaluation and ideas may be evaluated prematurely. If participants insist on immediate quality and self-censor ideas, the group generates too few candidates and is less likely to reach novel solutions.
 
 Learning objective: Assess whether students can explain or use brainstorming principles — deferred judgment and quantity over quality in a concept comparison task.
 
@@ -178,9 +182,9 @@ Sources: M2.1.3 Solution Generation (Brainstorming).txt
 
 ## Q9. Application
 
-The Subtraction framework, which involves reducing features or material, can create value by simplifying a product. For instance, removing the complex digital interface and smart connectivity from a coffee maker could result in a simpler, more reliable, and potentially cheaper manual espresso machine. This caters to users who find current appliances overly complex or who value durability and ease of use, carving out a niche for minimalist designs. It reduces cognitive load and potential points of failure.
+The Subtraction framework can simplify a product by removing features, using fewer resources, or streamlining the user flow while preserving core benefits. One possible proposal is to remove the complex digital interface and smart-connectivity features from a coffee maker. The redesigned appliance could target users who value a simpler interaction and fewer steps. This is a proposed design outcome that should be evaluated for usefulness, feasibility, and value rather than treated as an established lecture example.
 
-Learning objective: Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in a application task.
+Learning objective: Assess whether students can explain or use the Subtraction framework — removing an essential component to create value in an application task.
 
 Exam intent: This item tests the Subtraction framework — removing an essential component to create value beyond surface recall by requiring a response appropriate to the application format.
 
@@ -200,9 +204,9 @@ Sources: M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt
 
 ## Q10. Application
 
-Therbligs are the 17 fundamental, indivisible motions identified by Frank and Lillian Gilbreth to analyze work. Their primary purpose within scientific management and work system redesign is to break down complex tasks into these basic components, allowing for detailed study and optimization. By analyzing the frequency and nature of Therbligs, organizations can eliminate unnecessary motions, reduce fatigue, and improve efficiency, leading to enhanced human well-being and increased system performance.
+Therbligs are 17 basic motion elements developed by Gilbreth and used to describe manual work. The three relevant elements are **S (Search)** for locating an object, **SL (Select)** for choosing one item from several alternatives, and **P (Position)** for placing or orienting an object correctly. A redesign could use color coding to reduce Search, standardization or separation by type to reduce Select, and guides or chamfers to make Position easier.
 
-Learning objective: Assess whether students can explain or use the definition and purpose of Therbligs in motion study in a application task.
+Learning objective: Assess whether students can explain or use the definition and purpose of Therbligs in motion study in an application task.
 
 Exam intent: This item tests the definition and purpose of Therbligs in motion study beyond surface recall by requiring a response appropriate to the application format.
 
@@ -212,19 +216,20 @@ Assessed skill: framework application to a concrete work-system situation
 
 Rubric:
 
-- Definition of Therbligs as fundamental motions (5 pts)
-- Primary purpose of Therbligs in motion study (5 pts)
-- Benefits for human well-being and system performance (5 pts)
+- Defines Therbligs as 17 basic motion elements used to describe manual work (3 pts)
+- Identifies S (Search), SL (Select), and P (Position) correctly (6 pts)
+- Proposes a lecture-grounded improvement for Search, such as color coding (2 pts)
+- Proposes lecture-grounded improvements for Select and Position, such as standardization or separation by type and adding guides or chamfers (4 pts)
 
 Coverage contribution: motion_study_and_therbligs: 15
 
-Sources: M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt, M1.4 Scientific Management as Work System Redesign.txt
+Sources: M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt
 
 ## Q11. Essay
 
-Frederick Winslow Taylor's scientific management comprises four core principles. First, "develop a science for each element of work" by using methods like time study and standardization to optimize tools and processes, replacing rule-of-thumb with scientifically determined best practices. Second, "scientifically select and train workers" to match their skills to job requirements, ensuring optimal performance. Third, "promote cooperation" between management and workers by aligning their goals and ensuring scientific methods are followed. Finally, "divide work and responsibility" equally between management and workers, with management applying scientific analysis and workers executing tasks accordingly. This framework aimed to eliminate inefficiency by standardizing methods, optimizing task execution, and fostering a collaborative, scientifically-guided work environment.
+Taylor's scientific management comprises four principles. First, develop a science for each element of work through time study, standardization, and tool optimization. Second, scientifically select and train workers. Third, promote cooperation through aligned incentives. Fourth, divide planning and execution responsibilities: management takes responsibility for scientific planning and work-system design, while workers execute the defined methods. Together, the principles replace rule-of-thumb work with systematic organizational redesign intended to improve efficiency and productivity.
 
-Learning objective: Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in a essay task.
+Learning objective: Assess whether students can explain or use Taylor's four principles of scientific management and their managerial logic in an essay task.
 
 Exam intent: This item tests Taylor's four principles of scientific management and their managerial logic beyond surface recall by requiring a response appropriate to the essay format.
 
@@ -237,7 +242,7 @@ Rubric:
 - Explanation of the 'develop a science for each element of work' principle and its logic (5 pts)
 - Explanation of the 'scientifically select and train workers' principle and its logic (5 pts)
 - Explanation of the 'promote cooperation' principle and its logic (5 pts)
-- Explanation of the 'divide work and responsibility' principle and its logic (5 pts)
+- Explanation of the 'divide planning and execution responsibilities' principle and its logic (5 pts)
 
 Coverage contribution: scientific_management: 20
 

@@ -122,6 +122,15 @@ def search_lecture_notes(notes: dict[str, str], keyword: str, limit: int = 3) ->
     return hits
 
 
+def strip_source_ref_locator(ref: str) -> str:
+    """Return the lecture filename portion of a source ref with an optional locator."""
+
+    clean = re.split(r"\s*---\s*[Pp]age\s*\d+", str(ref), maxsplit=1)[0].strip()
+    clean = re.split(r"#L\d+(?:-L?\d+)?", clean, maxsplit=1, flags=re.IGNORECASE)[0].strip()
+    clean = re.split(r"\s*[|;]\s*[Ll]ines?\s*=?\s*\d+", clean, maxsplit=1)[0].strip()
+    return clean
+
+
 def normalize_filename(name: str) -> str:
     # Preserve module prefix case (M1.1 etc.) so downstream matching works.
     # Only collapse internal whitespace.
@@ -822,8 +831,8 @@ class AnswerWriterAgent(BaseAgentWorker):
         filenames = list(notes)
         cleaned: list[str] = []
         for ref in refs:
-            # Remove page suffix added by some LLM providers.
-            base = re.split(r"\s*---\s*[Pp]age\s*\d+", ref)[0].strip()
+            # Remove page or line-span suffixes added by some LLM providers.
+            base = strip_source_ref_locator(ref)
             # Resolve to known note key.
             if base in notes:
                 key = base
@@ -1475,8 +1484,15 @@ class AnswerConsistencyJudgeAgent(BaseAgentWorker):
     def run(self, payload: dict[str, Any]) -> list[AgenticJudgeFinding]:
         questions: list[Question] = payload["questions"]
         findings: list[AgenticJudgeFinding] = []
+        batch_results: list[dict[str, Any]] | None = None
+        batch_error: Exception | None = None
+        if self.provider and hasattr(self.provider, "judge_answer_consistency_batch"):
+            try:
+                batch_results = self.provider.judge_answer_consistency_batch(questions)
+            except Exception as exc:
+                batch_error = exc
 
-        for q in questions:
+        for index, q in enumerate(questions):
             failed: list[str] = []
             evidence: list[str] = []
 
@@ -1497,7 +1513,17 @@ class AnswerConsistencyJudgeAgent(BaseAgentWorker):
                     )
 
             # --- LLM-backed check: semantic answer-rubric consistency ---
-            if self.provider and hasattr(self.provider, "judge_answer_consistency"):
+            if batch_error is not None:
+                failed.append("answer_consistency_check_unavailable")
+                evidence.append(f"LLM consistency batch check failed: {batch_error}")
+            elif batch_results is not None:
+                result = batch_results[index] if index < len(batch_results) else {}
+                if not result.get("consistent", True):
+                    for issue in (result.get("issues") or [])[:3]:
+                        if issue:
+                            failed.append("answer_rubric_mismatch")
+                            evidence.append(issue)
+            elif self.provider and hasattr(self.provider, "judge_answer_consistency"):
                 try:
                     result = self.provider.judge_answer_consistency(q)
                     if not result.get("consistent", True):
@@ -1676,12 +1702,35 @@ class FactualGroundingJudgeAgent(BaseAgentWorker):
         questions: list[Question] = payload["questions"]
         notes: dict[str, str] = payload["notes"]
         findings: list[AgenticJudgeFinding] = []
+        batch_results: list[dict[str, Any]] | None = None
+        batch_error: Exception | None = None
+        if self.provider and hasattr(self.provider, "judge_factual_grounding_batch"):
+            try:
+                batch_results = self.provider.judge_factual_grounding_batch(
+                    questions, notes, chars_per_source=self._CHARS_PER_SOURCE
+                )
+            except Exception as exc:
+                batch_error = exc
 
-        for q in questions:
+        for index, q in enumerate(questions):
             failed: list[str] = []
             evidence: list[str] = [f"sources_checked={len(q.source_refs)}"]
 
-            if self.provider and hasattr(self.provider, "judge_factual_grounding"):
+            if batch_error is not None:
+                failed.append("factual_check_unavailable")
+                evidence.append(f"Factual batch check failed: {batch_error}")
+            elif batch_results is not None:
+                result = batch_results[index] if index < len(batch_results) else {}
+                verdict_llm = result.get("verdict", "PASS")
+                errors = [str(e) for e in (result.get("errors") or []) if e]
+                if verdict_llm == "HARD_FAIL":
+                    failed.append("factual_error")
+                    for err in errors[:3]:
+                        evidence.append(f"Factual error: {err}")
+                elif verdict_llm == "SOFT_FAIL":
+                    for err in errors[:3]:
+                        evidence.append(f"Factual warning: {err}")
+            elif self.provider and hasattr(self.provider, "judge_factual_grounding"):
                 try:
                     result = self.provider.judge_factual_grounding(
                         q, notes, chars_per_source=self._CHARS_PER_SOURCE

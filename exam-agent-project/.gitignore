@@ -8,6 +8,7 @@ venv/
 .env
 .gemini_api_key
 .live_tmp_*/
+outputs_backup_*/
 
 # Generated outputs
 outputs/*.tmp

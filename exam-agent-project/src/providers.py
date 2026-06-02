@@ -7,7 +7,10 @@ Gemini authentication supports two modes:
 - Vertex AI / Agent Platform API, matching the lecture notebooks:
   set GCP_PROJECT_ID or GOOGLE_CLOUD_PROJECT and authenticate with
   `gcloud auth application-default login` outside Colab.
-- Google AI Studio API key: set GEMINI_API_KEY or GOOGLE_API_KEY.
+- Google AI Studio API key: place it in the ignored project-root
+  `.gemini_api_key` file, or set GEMINI_API_KEY / GOOGLE_API_KEY.
+  The project-local file takes precedence over environment variables so
+  changing the file cannot silently leave a stale shell key active.
 
 Vertex AI is preferred when a project ID is present or when the provider is
 selected as `vertex`. Set EXAM_AGENT_GEMINI_AUTH=api_key to force API-key mode.
@@ -29,6 +32,7 @@ from agents import (
     normalize_topic_key,
     parse_json_block,
     search_lecture_notes,
+    strip_source_ref_locator,
 )
 from costing import UsageTracker
 
@@ -79,7 +83,16 @@ def load_model_policy(
         "model_fallbacks": data.get("model_fallbacks", {}),
         "price_per_1m_tokens_usd": data.get("price_per_1m_tokens_usd", {}),
         "fallback_provider": data.get("fallback_provider", "deterministic"),
-    }
+}
+
+
+def _read_local_gemini_api_key(path: str | Path | None = None) -> str | None:
+    key_path = Path(path) if path else Path(__file__).resolve().parents[1] / ".gemini_api_key"
+    try:
+        key = key_path.read_text(encoding="utf-8").strip()
+    except OSError:
+        return None
+    return key or None
 
 
 class GeminiProvider:
@@ -275,59 +288,205 @@ class GeminiProvider:
     def get_usage_summary(self) -> dict[str, Any]:
         summary = self.usage.summary()
         summary["auth_mode"] = getattr(self, "auth_mode", "vertex_ai")
+        summary["auth_source"] = getattr(self, "auth_source", "environment_or_adc")
         summary["model_fallback_events"] = self.model_fallback_events
         return summary
 
     @staticmethod
+    def _retrieval_terms(text: str) -> list[str]:
+        stopwords = {
+            "about", "after", "against", "also", "answer", "briefly", "common",
+            "context", "could", "describe", "discuss", "each", "elaborate",
+            "explain", "from", "have", "into", "lecture", "notes", "primary",
+            "question", "specific", "their", "these", "this", "through", "using",
+            "what", "when", "where", "which", "with", "within", "would",
+        }
+        terms: list[str] = []
+        for token in re.findall(r"[A-Za-z][A-Za-z-]{3,}", text.lower()):
+            if token in stopwords or token in terms:
+                continue
+            terms.append(token)
+        expansions = {
+            "therbligs": ["gilbreth", "basic", "motion", "elements"],
+            "dassi": ["define", "analyze", "search", "alternatives", "select", "implement"],
+            "subtraction": ["remove", "removing", "features", "resources", "streamlining"],
+        }
+        for trigger, related_terms in expansions.items():
+            if trigger not in terms:
+                continue
+            for term in related_terms:
+                if term not in terms:
+                    terms.append(term)
+        return terms
+
+    @staticmethod
+    def _ranked_passages(
+        source: str,
+        body: str,
+        terms: list[str],
+    ) -> list[dict[str, Any]]:
+        """Rank lecture slide/page passages and retain line spans for traceability."""
+
+        lines = body.splitlines()
+        sections: list[tuple[int, int, list[str]]] = []
+        start_line = 1
+        current: list[str] = []
+        for line_number, line in enumerate(lines, start=1):
+            if re.match(r"^\s*---\s*[Pp]age\s+\d+\s*---\s*$", line):
+                if current:
+                    sections.append((start_line, line_number - 1, current))
+                start_line = line_number + 1
+                current = []
+                continue
+            current.append(line)
+        if current:
+            sections.append((start_line, len(lines), current))
+        if not sections and lines:
+            sections.append((1, len(lines), lines))
+
+        rendered_sections = [
+            (
+                start,
+                end,
+                " ".join(line.strip() for line in section_lines if line.strip()),
+            )
+            for start, end, section_lines in sections
+        ]
+        term_document_frequency = {
+            term: sum(term in text.lower() for _start, _end, text in rendered_sections)
+            for term in terms
+        }
+
+        ranked: list[dict[str, Any]] = []
+        for start, end, text in rendered_sections:
+            if not text:
+                continue
+            text_lc = text.lower()
+            matched = [term for term in terms if term in text_lc]
+            if not matched:
+                continue
+            ranked.append(
+                {
+                    "source": source,
+                    "start": start,
+                    "end": end,
+                    "text": text[:1200] + ("..." if len(text) > 1200 else ""),
+                    "term_weights": {
+                        term: 1.0 / term_document_frequency[term]
+                        for term in set(matched)
+                    },
+                    "score": sum(
+                        1.0 / term_document_frequency[term]
+                        for term in set(matched)
+                    ),
+                }
+            )
+        ranked.sort(key=lambda item: (-float(item["score"]), int(item["start"])))
+        return ranked
+
+    @staticmethod
+    def _select_passages(passages: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
+        """Prefer passages that add distinct support instead of repeated boilerplate."""
+
+        remaining = list(passages)
+        selected: list[dict[str, Any]] = []
+        covered_terms: set[str] = set()
+        while remaining and len(selected) < limit:
+            remaining.sort(
+                key=lambda item: (
+                    -sum(
+                        float(weight)
+                        for term, weight in item.get("term_weights", {}).items()
+                        if term not in covered_terms
+                    ),
+                    -float(item["score"]),
+                    str(item["source"]),
+                    int(item["start"]),
+                )
+            )
+            passage = remaining.pop(0)
+            selected.append(passage)
+            covered_terms.update(passage.get("term_weights", {}))
+        return selected
+
+    @staticmethod
+    def _render_passage(passage: dict[str, Any]) -> str:
+        return (
+            f"[{passage['source']}#L{passage['start']}-L{passage['end']}] "
+            f"{passage['text']}"
+        )
+
+    @staticmethod
     def _retrieval_context(notes: dict[str, str], keywords: list[str], limit: int = 3) -> tuple[str, list[str]]:
+        terms = GeminiProvider._retrieval_terms(" ".join(keywords))
+        passages: list[dict[str, Any]] = []
+        for source, body in notes.items():
+            passages.extend(GeminiProvider._ranked_passages(source, body, terms))
+        passages.sort(key=lambda item: (-float(item["score"]), str(item["source"]), int(item["start"])))
+
         snippets: list[str] = []
         sources: list[str] = []
-        for kw in keywords:
-            for hit in search_lecture_notes(notes, kw, limit=limit):
-                if hit not in snippets:
-                    snippets.append(hit)
-                    src = hit.split("]")[0][1:]
-                    if src not in sources:
-                        sources.append(src)
+        for passage in GeminiProvider._select_passages(passages, limit):
+            snippets.append(GeminiProvider._render_passage(passage))
+            src = str(passage["source"])
+            if src not in sources:
+                sources.append(src)
         return "\n\n".join(snippets), sources
 
     @staticmethod
     def _question_context(question: Question, notes: dict[str, str], limit: int = 4) -> tuple[str, list[str]]:
-        terms = [
-            token.lower()
-            for token in re.findall(
-                r"[A-Za-z][A-Za-z-]{3,}",
-                " ".join([question.focus, question.prompt, question.topic]),
+        claim_text = " ".join([question.answer, " ".join(question.rubric)]).strip()
+        terms = GeminiProvider._retrieval_terms(
+            " ".join(
+                [
+                    question.focus,
+                    question.topic,
+                    claim_text or question.prompt,
+                ]
             )
+        )
+        refs = [
+            clean
+            for ref in question.source_refs
+            if (clean := strip_source_ref_locator(ref)) in notes
         ]
-        refs = [ref for ref in question.source_refs if ref in notes]
         snippets: list[str] = []
         sources: list[str] = []
+        locators: set[tuple[str, int, int]] = set()
 
+        cited_passages: list[dict[str, Any]] = []
         for ref in refs:
-            body = notes[ref]
-            paragraphs = [p.strip().replace("\n", " ") for p in body.split("\n\n") if p.strip()]
-            matched = [
-                p for p in paragraphs
-                if any(term in p.lower() for term in terms)
-            ]
-            for paragraph in matched[:2] or paragraphs[:1]:
-                snippet = paragraph[:700] + ("..." if len(paragraph) > 700 else "")
-                snippets.append(f"[{ref}] {snippet}")
-                if ref not in sources:
-                    sources.append(ref)
-                if len(snippets) >= limit:
-                    return "\n\n".join(snippets), sources
+            cited_passages.extend(GeminiProvider._ranked_passages(ref, notes[ref], terms))
+        cited_passages.sort(
+            key=lambda item: (-float(item["score"]), refs.index(str(item["source"])), int(item["start"]))
+        )
+        for passage in GeminiProvider._select_passages(cited_passages, limit):
+            snippets.append(GeminiProvider._render_passage(passage))
+            source = str(passage["source"])
+            sources.append(source) if source not in sources else None
+            locators.add((source, int(passage["start"]), int(passage["end"])))
 
         if len(snippets) < limit:
-            ctx, extra_sources = GeminiProvider._retrieval_context(
-                notes, terms[:8] or question.topic.split(), limit=limit - len(snippets)
+            extra_passages: list[dict[str, Any]] = []
+            for source, body in notes.items():
+                extra_passages.extend(GeminiProvider._ranked_passages(source, body, terms))
+            extra_passages.sort(
+                key=lambda item: (-float(item["score"]), str(item["source"]), int(item["start"]))
             )
-            if ctx:
-                snippets.extend(ctx.split("\n\n"))
-            for src in extra_sources:
-                if src not in sources:
-                    sources.append(src)
+            for passage in GeminiProvider._select_passages(extra_passages, len(extra_passages)):
+                locator = (
+                    str(passage["source"]),
+                    int(passage["start"]),
+                    int(passage["end"]),
+                )
+                if locator in locators:
+                    continue
+                snippets.append(GeminiProvider._render_passage(passage))
+                source = str(passage["source"])
+                sources.append(source) if source not in sources else None
+                locators.add(locator)
+                if len(snippets) >= limit:
+                    break
         return "\n\n".join(snippets), sources
 
     # ------------------------------------------------------------------
@@ -378,6 +537,8 @@ class GeminiProvider:
             "For innovation-framework questions, use only the lecture frameworks: "
             "Addition, Subtraction, Alternate, Combination, and Transposition. "
             "Do not substitute external frameworks such as Lean Startup or Design Thinking. "
+            "For application questions, clearly ask for a proposed application or use a "
+            "lecture-provided example. Do not imply that an invented scenario is a lecture fact. "
         )
         ctx, sources = self._retrieval_context(notes, topic.keywords, limit=3)
         prompt = (
@@ -476,7 +637,9 @@ class GeminiProvider:
             "Do not invent or merge slots. For innovation-framework slots, use only the "
             "lecture frameworks: Addition, Subtraction, Alternate, Combination, and "
             "Transposition. Do not substitute external frameworks such as Lean Startup "
-            "or Design Thinking. "
+            "or Design Thinking. For application questions, clearly ask for a proposed "
+            "application or use a lecture-provided example. Do not imply that an invented "
+            "scenario is a lecture fact. "
             "CRITICAL diversity rule: each slot begins with a line "
             "'>>> MANDATORY TOPIC for this question: ... <<<'. The 'prompt' you write "
             "for that slot MUST be specifically and exclusively about that exact "
@@ -768,10 +931,13 @@ class GeminiProvider:
             "criteria DIRECTLY from your answer. "
             "Rules: every rubric criterion must be satisfiable from your answer; "
             "point values must be integers summing exactly to the question's total points; "
-            "source_refs must be filenames from the lecture context header lines. "
+            "source_refs must be filenames from the lecture context header lines, without "
+            "the optional #Lx-Ly line locator. "
             "Do not add named examples, sub-categories, numbers, or attributions unless "
             "they appear explicitly in the lecture context. When the context is general, "
-            "keep the answer general instead of inventing a concrete example. "
+            "keep the answer general instead of inventing a concrete example. For application "
+            "questions, label any scenario-specific consequence as a proposed design outcome "
+            "rather than presenting it as a fact from the lecture. "
             "Return JSON only: "
             "{\"answer\": \"...\", \"rubric\": [\"criterion (N pts)\", ...], "
             "\"source_refs\": [\"filename.txt\", ...]}"
@@ -875,7 +1041,11 @@ class GeminiProvider:
             "but may still be correct. "
             "PASS: all factual claims are consistent with the lecture content. "
             "Do NOT flag correct paraphrasing, reasonable simplification, or "
-            "claims you personally doubt but cannot disprove from the excerpts."
+            "claims you personally doubt but cannot disprove from the excerpts. "
+            "For application questions, distinguish lecture facts from scenario reasoning: "
+            "a hypothetical design proposal or plausible consequence is not a factual error "
+            "merely because that invented scenario is absent from the notes. Flag it only if "
+            "it contradicts the cited framework or is presented as an established lecture fact."
         )
         prompt = (
             f"Question ({question.kind}, Q{question.number}):\n{question.prompt}\n\n"
@@ -897,6 +1067,68 @@ class GeminiProvider:
                 exc,
                 "judge_factual_grounding",
                 lambda: {"factually_accurate": True, "errors": [], "verdict": "PASS"},
+            )
+
+    def judge_factual_grounding_batch(
+        self,
+        questions: list[Question],
+        notes: dict[str, str],
+        chars_per_source: int = 900,
+    ) -> list[dict[str, Any]]:
+        """Check all answers for factual grounding in one provider request."""
+
+        system = (
+            "You are a factual accuracy reviewer for a university exam. "
+            "Review every numbered item independently against only its cited lecture excerpts. "
+            "Return a JSON ARRAY with exactly one object per item in the original order: "
+            "[{\"target_id\":\"Q1\", \"factually_accurate\":true|false, "
+            "\"errors\":[\"concise error\"], \"verdict\":\"PASS\"|\"SOFT_FAIL\"|\"HARD_FAIL\"}]. "
+            "HARD_FAIL only for a clear factual error, contradiction, or wrong attribution. "
+            "SOFT_FAIL for an unverifiable claim that may still be correct. "
+            "PASS when factual claims are consistent with the excerpts. "
+            "Do not flag correct paraphrasing or reasonable simplification. "
+            "For application questions, distinguish lecture facts from scenario reasoning: "
+            "a hypothetical design proposal or plausible consequence is not a factual error "
+            "merely because the invented scenario is absent from the notes. Flag it only if "
+            "it contradicts the cited framework or is presented as an established lecture fact."
+        )
+        items: list[str] = []
+        for question in questions:
+            lecture_ctx, _sources = self._question_context(question, notes, limit=4)
+            items.append(
+                f"target_id: Q{question.number}\n"
+                f"kind: {question.kind}\n"
+                f"question: {question.prompt}\n"
+                f"model answer: {question.answer}\n"
+                f"cited lecture excerpts:\n{lecture_ctx or '(no cited excerpts)'}"
+            )
+        prompt = "\n\n========== NEXT ITEM ==========\n\n".join(items)
+        try:
+            raw = self._generate_for_role(
+                "judge", prompt, system, stage="factual_grounding_judge_batch"
+            )
+            parsed = parse_json_block(raw)
+            data: list[dict[str, Any]] = parsed if isinstance(parsed, list) else []
+            if len(data) != len(questions):
+                raise ValueError(f"Expected {len(questions)} factual verdicts, got {len(data)}")
+            results: list[dict[str, Any]] = []
+            for entry in data:
+                results.append(
+                    {
+                        "factually_accurate": bool(entry.get("factually_accurate", True)),
+                        "errors": [str(e) for e in (entry.get("errors") or []) if e],
+                        "verdict": str(entry.get("verdict", "PASS")),
+                    }
+                )
+            return results
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "judge_factual_grounding_batch",
+                lambda: [
+                    {"factually_accurate": True, "errors": [], "verdict": "PASS"}
+                    for _ in questions
+                ],
             )
 
     def judge_question_overlap_batch(
@@ -998,6 +1230,58 @@ class GeminiProvider:
                 lambda: {"consistent": True, "issues": [], "verdict": "PASS"},
             )
 
+    def judge_answer_consistency_batch(
+        self,
+        questions: list[Question],
+    ) -> list[dict[str, Any]]:
+        """Check answer-rubric consistency for all questions in one request."""
+
+        system = (
+            "You are an exam quality auditor checking internal consistency. "
+            "Review every numbered item independently. Return a JSON ARRAY with exactly "
+            "one object per item in the original order: "
+            "[{\"target_id\":\"Q1\", \"consistent\":true|false, "
+            "\"issues\":[\"short mismatch\"], \"verdict\":\"PASS\"|\"SOFT_FAIL\"|\"HARD_FAIL\"}]. "
+            "A mismatch exists when the answer addresses a different topic than the question "
+            "or rubric asks, or when a rubric criterion cannot be awarded from the answer. "
+            "PASS if the question, answer, and rubric align."
+        )
+        items: list[str] = []
+        for question in questions:
+            rubric_text = "\n".join(f"- {r}" for r in question.rubric) or "(no rubric)"
+            items.append(
+                f"target_id: Q{question.number}\n"
+                f"question ({question.kind}, {question.points} pts): {question.prompt}\n"
+                f"model answer: {question.answer}\n"
+                f"rubric:\n{rubric_text}"
+            )
+        prompt = "\n\n========== NEXT ITEM ==========\n\n".join(items)
+        try:
+            raw = self._generate_for_role(
+                "judge", prompt, system, stage="consistency_judge_batch"
+            )
+            parsed = parse_json_block(raw)
+            data: list[dict[str, Any]] = parsed if isinstance(parsed, list) else []
+            if len(data) != len(questions):
+                raise ValueError(f"Expected {len(questions)} consistency verdicts, got {len(data)}")
+            return [
+                {
+                    "consistent": bool(entry.get("consistent", True)),
+                    "issues": [str(issue) for issue in (entry.get("issues") or []) if issue],
+                    "verdict": str(entry.get("verdict", "PASS")),
+                }
+                for entry in data
+            ]
+        except Exception as exc:
+            return self._fallback_or_raise(
+                exc,
+                "judge_answer_consistency_batch",
+                lambda: [
+                    {"consistent": True, "issues": [], "verdict": "PASS"}
+                    for _ in questions
+                ],
+            )
+
     @staticmethod
     def _normalize_verdict(data: dict[str, Any], prefix: str, number: int) -> None:
         data.setdefault("target_id", f"{prefix}{number}")
@@ -1028,8 +1312,8 @@ class GeminiProvider:
 class GeminiApiKeyProvider(GeminiProvider):
     """Google AI Studio API-key variant of the Gemini provider.
 
-    This avoids the GCP project ID / gcloud setup path. Set either
-    GEMINI_API_KEY or GOOGLE_API_KEY before selecting --provider gemini.
+    This avoids the GCP project ID / gcloud setup path. The ignored project-root
+    `.gemini_api_key` file takes precedence over GEMINI_API_KEY / GOOGLE_API_KEY.
     """
 
     def __init__(
@@ -1046,9 +1330,13 @@ class GeminiApiKeyProvider(GeminiProvider):
                 "google-genai SDK not installed. Run: pip install google-genai"
             ) from exc
 
-        key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        local_key = _read_local_gemini_api_key()
+        key = api_key or local_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
         if not key:
-            raise RuntimeError("GEMINI_API_KEY or GOOGLE_API_KEY is required for Gemini API-key mode.")
+            raise RuntimeError(
+                ".gemini_api_key, GEMINI_API_KEY, or GOOGLE_API_KEY is required "
+                "for Gemini API-key mode."
+            )
 
         self._genai = genai
         from google.genai import types as genai_types  # type: ignore
@@ -1062,6 +1350,15 @@ class GeminiApiKeyProvider(GeminiProvider):
             ),
         )
         self.auth_mode = "api_key"
+        self.auth_source = (
+            "argument"
+            if api_key
+            else ".gemini_api_key"
+            if local_key
+            else "GEMINI_API_KEY"
+            if os.environ.get("GEMINI_API_KEY")
+            else "GOOGLE_API_KEY"
+        )
         self.fallback = fallback or DeterministicProvider()
         self.model_policy = model_policy or load_model_policy(None)
         self.strict = strict
@@ -1179,13 +1476,18 @@ def make_provider(
     """Factory honoring CLI flag + env var.
 
     name precedence: explicit > EXAM_AGENT_PROVIDER env > auto-detect from credentials > 'deterministic'.
-    Auto-detection: GEMINI_API_KEY / GOOGLE_API_KEY → gemini, GCP_PROJECT_ID → vertex,
-    OPENAI_API_KEY → openai, ANTHROPIC_API_KEY → anthropic, else deterministic.
+    Auto-detection: .gemini_api_key / GEMINI_API_KEY / GOOGLE_API_KEY → gemini,
+    GCP_PROJECT_ID → vertex, OPENAI_API_KEY → openai,
+    ANTHROPIC_API_KEY → anthropic, else deterministic.
     """
 
     explicit = name or os.environ.get("EXAM_AGENT_PROVIDER")
     if not explicit:
-        has_gemini_key = bool(os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"))
+        has_gemini_key = bool(
+            _read_local_gemini_api_key()
+            or os.environ.get("GEMINI_API_KEY")
+            or os.environ.get("GOOGLE_API_KEY")
+        )
         has_project = bool(
             os.environ.get("GCP_PROJECT_ID")
             or os.environ.get("GOOGLE_CLOUD_PROJECT")
@@ -1202,7 +1504,8 @@ def make_provider(
                 raise RuntimeError(
                     "--strict-provider requires live provider credentials or an explicit "
                     "--provider. No supported API credentials were detected in this process. "
-                    "Set GEMINI_API_KEY, GCP_PROJECT_ID, OPENAI_API_KEY, or ANTHROPIC_API_KEY; "
+                    "Add .gemini_api_key or set GEMINI_API_KEY, GCP_PROJECT_ID, "
+                    "OPENAI_API_KEY, or ANTHROPIC_API_KEY; "
                     "or pass --provider deterministic intentionally."
                 )
             explicit = "deterministic"
@@ -1216,7 +1519,11 @@ def make_provider(
                 or os.environ.get("GOOGLE_CLOUD_PROJECT")
                 or os.environ.get("PROJECT_ID")
             )
-            has_api_key = bool(os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"))
+            has_api_key = bool(
+                _read_local_gemini_api_key()
+                or os.environ.get("GEMINI_API_KEY")
+                or os.environ.get("GOOGLE_API_KEY")
+            )
 
             if chosen in {"vertex", "vertexai", "gemini-vertex"} or auth_mode in {"vertex", "vertex_ai"}:
                 return GeminiProvider(model_policy=model_policy, strict=strict)

@@ -19,8 +19,8 @@ This file summarizes the main limitations that remain after the current implemen
 ### chunk_grounding_is_not_entailment
 
 - Severity: low
-- Evidence: Chunk grounding verifies lexical support, not full semantic entailment.
-- Mitigation: Upgrade SourceGroundingJudgeAgent to compare answer claims against cited chunks with a live LLM judge.
+- Evidence: Chunk grounding verifies lexical support. The live batched factual-grounding judge adds semantic checks but is still limited by retrieved excerpts and LLM self-review.
+- Mitigation: Complete an independent human review against the cited excerpts, especially for application and essay items.
 
 ## Discussion
 
