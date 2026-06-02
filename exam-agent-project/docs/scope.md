@@ -1,8 +1,10 @@
 # Scientific Management Midterm Scope
 
 This scope is inferred from the lecture materials currently placed in
-`lecture_notes/raw/`. It should be checked against any official professor
-announcement before final exam generation.
+`lecture_notes/raw/`. Run `python scripts/extract_pdf_text.py` after changing
+those materials: the exam pipeline reads `lecture_notes/processed/*.txt`, not
+the raw files directly. This inferred scope should still be checked against any
+official professor announcement before final exam generation.
 
 ## Source Materials
 
@@ -292,18 +294,19 @@ Likely exam formats:
 - Propose improvements using motion economy principles
 - Explain why Therblig analysis can reduce fatigue and improve efficiency
 
-## Recommended Generated Exam Mix
+## Configured Generated Exam Mix
 
-For a balanced midterm, the system should produce multiple question types:
+`requirements.json` currently fixes the generated exam at 11 questions and
+100 points:
 
 | Type | Count | Purpose |
 | --- | ---: | --- |
-| Short answer | 5-7 | Test definitions and key concepts |
-| Concept comparison | 2-3 | Test relationships among frameworks |
-| Application / case analysis | 2-3 | Test ability to apply methods to work systems |
-| Essay | 1-2 | Test synthesis and critical reasoning |
+| Short answer | 6 | Test definitions and key concepts |
+| Concept comparison | 2 | Test relationships among frameworks |
+| Application / case analysis | 2 | Test ability to apply methods to work systems |
+| Essay | 1 | Test synthesis and critical reasoning |
 
-Recommended coverage weights:
+Configured coverage weights:
 
 | Topic Cluster | Weight |
 | --- | ---: |

@@ -103,8 +103,8 @@ flowchart TD
     T2D --> COMBINE
 
     COMBINE --> T3["🟩 Task 3 — Answer+Rubric Writer"]
-    T3 --> T4C["🟧 Task 4c — Coverage Audit"]
-    T3 --> T5["🟪 Task 5 — Refinement Coordinator"]
+    T3 --> T4C["🟧 Task 4c — Coverage Audit (deterministic)"]
+    T4C --> T5["🟪 Task 5 — Refinement Coordinator"]
 
     T5 --> T4A["🟪 Task 4a — Question Judge (LLM)"]
     T5 --> T4B["🟪 Task 4b — Answer Judge (LLM)"]
@@ -114,9 +114,9 @@ flowchart TD
     REGEN --> T5
     LOOP -- "아니오" --> T5B["🟪 Task 5b — Agentic Judge System"]
 
-    T5B --> S1["Stage 1: 문항 품질\nCoverage/Difficulty/Pedagogy\nRedTeam/Overlap"]
-    T5B --> S2["Stage 2: 답안 품질\nSourceGrounding/FactualGrounding"]
-    T5B --> S3["Stage 3: 루브릭 품질\nAnswerRubric/AnswerConsistency"]
+    T5B --> S1["Stage 1: 문항 품질<br>Coverage/Difficulty/Pedagogy<br>RedTeam/Overlap"]
+    T5B --> S2["Stage 2: 답안 품질<br>SourceGrounding/FactualGrounding"]
+    T5B --> S3["Stage 3: 루브릭 품질<br>AnswerRubric/AnswerConsistency"]
 
     S1 -- "FAIL → regen question+answer+rubric" --> REGEN2["🟩 재생성"]
     S2 -- "FAIL → regen answer+rubric" --> REGEN2
