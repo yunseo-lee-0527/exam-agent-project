@@ -524,22 +524,40 @@ def enrich_assessment_metadata(questions: list[Question]) -> list[Question]:
         else:
             normalized_bloom = q.bloom_level.strip()
             known = {
+                # Standard and gerund/noun forms LLMs commonly return
                 "remember": "Remember/Understand",
+                "remembering": "Remember/Understand",
+                "recall": "Remember/Understand",
                 "understand": "Remember/Understand",
+                "understanding": "Remember/Understand",
                 "knowledge": "Remember/Understand",
                 "comprehension": "Remember/Understand",
                 "remember/understand": "Remember/Understand",
                 "analyze": "Analyze",
+                "analysing": "Analyze",
+                "analyzing": "Analyze",
                 "analysis": "Analyze",
                 "apply": "Apply/Analyze",
+                "applying": "Apply/Analyze",
                 "application": "Apply/Analyze",
                 "apply/analyze": "Apply/Analyze",
                 "evaluate": "Evaluate/Create",
+                "evaluating": "Evaluate/Create",
+                "evaluation": "Evaluate/Create",
                 "create": "Evaluate/Create",
+                "creating": "Evaluate/Create",
                 "synthesis": "Evaluate/Create",
                 "evaluate/create": "Evaluate/Create",
             }
             q.bloom_level = known.get(normalized_bloom.lower(), normalized_bloom)
+            # Secondary inference: if a Medium/Hard question normalized to
+            # Remember/Understand, the LLM may have mislabelled it — infer
+            # from question kind and prompt instead.
+            if (q.difficulty in {"Medium", "Hard"}
+                    and q.bloom_level == "Remember/Understand"):
+                inferred = _infer_bloom_level(q)
+                if inferred != "Remember/Understand":
+                    q.bloom_level = inferred
         normalized_difficulty = q.difficulty.strip().title()
         q.difficulty = (
             normalized_difficulty

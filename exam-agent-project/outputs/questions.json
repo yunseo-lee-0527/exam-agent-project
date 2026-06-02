@@ -2,23 +2,33 @@
   {
     "number": 1,
     "kind": "Short Answer",
-    "topic": "Work and Work Systems",
-    "prompt": "Define work, task, process, and work system. Explain how the four levels differ from one another.",
+    "topic": "Work And Work Systems",
+    "prompt": "What is the fundamental importance of understanding work and work systems?",
     "points": 5,
-    "answer": "Work is purposeful human activity. A task is a bounded unit of work assigned to a person or role. A process is a sequence of interrelated tasks that transforms inputs into outputs. A work system is the broader socio-technical arrangement of participants, processes, information, technologies, customers, products, environment, infrastructure, and strategy. The levels differ by scope: task-level analysis is local, while work-system analysis explains system-level performance.",
+    "answer": "Understanding work and work systems is fundamental because it underpins human activity and productivity across all sectors. It enables systematic analysis, design, and improvement of processes to enhance efficiency, effectiveness, and overall performance. By studying work, we can optimize resource allocation, reduce waste, improve safety, and ultimately achieve organizational goals, leading to better outcomes for both individuals and society. It's the basis for creating more productive and satisfying work environments.",
     "source_refs": [
-      "M1.1 What is Work_Revised 260312.txt",
-      "M1.3 What is a Work System.txt"
+      "M1.2 Why Work Matters_260312.txt",
+      "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
     ],
     "difficulty": "Easy",
-    "learning_objective": "Check whether students can distinguish nested levels of work analysis.",
+    "learning_objective": "Students should be able to articulate the fundamental importance of understanding work and work systems.",
     "bloom_level": "Remember/Understand",
-    "estimated_time_minutes": 4,
-    "exam_intent": "This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "concept recall and explanation",
+    "estimated_time_minutes": 5,
+    "exam_intent": "Assess basic comprehension of why work systems are studied.",
+    "assessed_skill": "Explaining foundational concepts.",
     "rubric": [
-      "1 point for each correct definition of work, task, process, and work system.",
-      "1 point for explaining the difference in analytical scope."
+      {
+        "criterion": "Identifies that understanding work is fundamental for human activity and productivity.",
+        "points": 2
+      },
+      {
+        "criterion": "Mentions specific benefits such as systematic analysis, design, and improvement of processes for efficiency and effectiveness.",
+        "points": 2
+      },
+      {
+        "criterion": "Connects understanding work to achieving organizational goals or creating better work environments.",
+        "points": 1
+      }
     ],
     "coverage_contribution": {
       "work_and_work_systems": 5
@@ -27,174 +37,241 @@
   {
     "number": 2,
     "kind": "Short Answer",
-    "topic": "Scientific Management",
-    "prompt": "List Taylor's four principles of scientific management and state the managerial logic behind them in one sentence.",
+    "topic": "Problem Solving And Ideation",
+    "prompt": "Briefly describe the initial step in the engineering problem-solving process.",
     "points": 5,
-    "answer": "Taylor's principles are: develop a science for each element of work; scientifically select, train, and develop workers; cooperate with workers so the scientific method is followed; and divide work and responsibility between management and workers. The managerial logic is that productivity should come from systematic design, measurement, standards, training, and coordination rather than informal rule-of-thumb methods.",
+    "answer": "The initial step in the engineering problem-solving process is to define and understand the problem thoroughly. This involves clearly identifying the core issue, gathering all relevant information and data, articulating specific objectives, and pinpointing any constraints or boundaries. A precise problem definition is critical as it ensures that all subsequent efforts, from ideation to implementation, are focused on solving the actual underlying problem rather than merely addressing its symptoms, thereby setting a solid foundation for successful resolution.",
     "source_refs": [
-      "M1.4 Scientific Management as Work System Redesign.txt"
+      "M2.1.1 Engineering Problem-Solving Process.txt",
+      "M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
+      "M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+      "M2.1.3 Solution Generation (Brainstorming).txt"
     ],
     "difficulty": "Easy",
-    "learning_objective": "Check recall of Taylor's canonical scientific management principles.",
+    "learning_objective": "Students should be able to identify and describe the first stage of the engineering problem-solving process.",
     "bloom_level": "Remember/Understand",
-    "estimated_time_minutes": 4,
-    "exam_intent": "This item tests Scientific Management beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "concept recall and explanation",
+    "estimated_time_minutes": 5,
+    "exam_intent": "Check knowledge of the problem-solving cycle's initial stage.",
+    "assessed_skill": "Recalling and explaining process steps.",
     "rubric": [
-      "4 points for the four principles.",
-      "1 point for connecting the principles to systematic managerial design."
-    ],
-    "coverage_contribution": {
-      "scientific_management": 5
-    }
-  },
-  {
-    "number": 3,
-    "kind": "Short Answer",
-    "topic": "Problem Solving and Ideation",
-    "prompt": "What are the five steps of the DASSI engineering problem-solving process? Give one phrase describing the purpose of each step.",
-    "points": 5,
-    "answer": "DASSI means Define, Analyze, Search, Select, and Implement. Define clarifies the problem and goal. Analyze uses data to understand causes and constraints. Search generates feasible alternatives. Select compares alternatives against criteria such as effectiveness, cost, feasibility, and risk. Implement puts the chosen solution into practice and monitors whether the problem is actually improved.",
-    "source_refs": [
-      "M2.1.1 Engineering Problem-Solving Process.txt"
-    ],
-    "difficulty": "Easy",
-    "learning_objective": "Check recall and sequencing of the DASSI process.",
-    "bloom_level": "Remember/Understand",
-    "estimated_time_minutes": 4,
-    "exam_intent": "This item tests Problem Solving and Ideation beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "concept recall and explanation",
-    "rubric": [
-      "3 points for naming the five steps in order.",
-      "2 points for correctly describing the purpose of the steps."
+      {
+        "criterion": "Identifies the initial step as defining and understanding the problem.",
+        "points": 2
+      },
+      {
+        "criterion": "Mentions specific actions involved, such as identifying the core issue, gathering information, or clarifying objectives/constraints.",
+        "points": 2
+      },
+      {
+        "criterion": "Explains why this step is crucial (e.g., ensures focus on actual problem, prevents solving symptoms).",
+        "points": 1
+      }
     ],
     "coverage_contribution": {
       "problem_solving_and_ideation": 5
     }
   },
   {
-    "number": 4,
+    "number": 3,
     "kind": "Short Answer",
-    "topic": "Five Innovation Frameworks",
-    "prompt": "Name the five innovation frameworks from the lecture and give a one-line meaning for any two of them.",
+    "topic": "Work And Work Systems",
+    "prompt": "What constitutes a 'work system' in the context of scientific management?",
     "points": 5,
-    "answer": "The five frameworks are addition, subtraction, alternate means, combination, and transposition. Addition creates value by adding a feature, component, or function. Subtraction creates value by removing a component that adds complexity or cost. Alternate means replaces the way a function is achieved. Combination joins existing elements. Transposition moves a solution pattern from one domain to another.",
+    "answer": "In the context of scientific management, a 'work system' refers to an integrated set of components where inputs (like materials, information, and human effort) are systematically transformed into desired outputs (products or services). This transformation occurs through a series of defined processes, utilizing specific technologies, tools, and organizational structures. Scientific management primarily sought to optimize these systems by standardizing methods, clarifying roles, and minimizing variability to maximize efficiency and productivity.",
     "source_refs": [
-      "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
-    ],
-    "difficulty": "Easy",
-    "learning_objective": "Check whether students can identify the systematic innovation methods from lecture.",
-    "bloom_level": "Remember/Understand",
-    "estimated_time_minutes": 4,
-    "exam_intent": "This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "concept recall and explanation",
-    "rubric": [
-      "3 points for naming all five frameworks.",
-      "2 points for accurate meanings of two frameworks."
-    ],
-    "coverage_contribution": {
-      "innovation_frameworks": 5
-    }
-  },
-  {
-    "number": 5,
-    "kind": "Short Answer",
-    "topic": "Motion Study and Therbligs",
-    "prompt": "What are Therbligs? Give three examples of Therblig motions and explain why this vocabulary is useful for motion study.",
-    "points": 5,
-    "answer": "Therbligs are basic motion elements used by Frank and Lillian Gilbreth to analyze manual work. Examples include search, find, select, grasp, reach, move, position, assemble, use, inspect, and rest. The vocabulary is useful because it decomposes a task into observable motions, making waste, fatigue, awkward layout, and avoidable searching visible enough to redesign.",
-    "source_refs": [
-      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
-    ],
-    "difficulty": "Easy",
-    "learning_objective": "Check whether students understand micro-level motion analysis.",
-    "bloom_level": "Remember/Understand",
-    "estimated_time_minutes": 4,
-    "exam_intent": "This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "concept recall and explanation",
-    "rubric": [
-      "2 points for defining Therbligs as basic motion elements.",
-      "2 points for three correct examples.",
-      "1 point for explaining their redesign value."
-    ],
-    "coverage_contribution": {
-      "motion_study_and_therbligs": 5
-    }
-  },
-  {
-    "number": 6,
-    "kind": "Short Answer",
-    "topic": "Work and Work Systems",
-    "prompt": "Why is performance described as an emergent property of a work system? Answer using at least three work-system components.",
-    "points": 5,
-    "answer": "Performance is emergent because it arises from interactions among components rather than from one component alone. Participants, processes, technologies, information, customers, environment, infrastructure, and strategy jointly shape outputs. For example, faster technology may not improve service if information is missing, roles are unclear, or customer arrivals exceed process capacity. The system configuration matters more than any isolated improvement.",
-    "source_refs": [
-      "M1.3 What is a Work System.txt",
+      "M1.2 Why Work Matters_260312.txt",
       "M1.5 Anatomy and Taxonomy of Work Systems_031826.txt"
     ],
-    "difficulty": "Hard",
-    "learning_objective": "Check system-level reasoning rather than isolated task reasoning.",
+    "difficulty": "Easy",
+    "learning_objective": "Students should be able to define a work system within the context of scientific management.",
     "bloom_level": "Remember/Understand",
-    "estimated_time_minutes": 4,
-    "exam_intent": "This item tests Work and Work Systems beyond surface recall by requiring a response appropriate to the short answer format.",
-    "assessed_skill": "concept recall and explanation",
+    "estimated_time_minutes": 5,
+    "exam_intent": "Assess foundational understanding of a core term in scientific management.",
+    "assessed_skill": "Defining concepts.",
     "rubric": [
-      "2 points for defining emergence.",
-      "2 points for using at least three work-system components.",
-      "1 point for explaining why isolated optimization can fail."
+      {
+        "criterion": "Defines a work system as inputs transformed into outputs through processes, technology, and structure.",
+        "points": 3
+      },
+      {
+        "criterion": "Connects this definition to the goals of scientific management (e.g., standardization, clarifying roles, minimizing variability, maximizing efficiency/productivity).",
+        "points": 2
+      }
     ],
     "coverage_contribution": {
       "work_and_work_systems": 5
     }
   },
   {
-    "number": 7,
-    "kind": "Concept Comparison",
-    "topic": "Scientific Management",
-    "prompt": "Compare natural soldiering and systematic soldiering in Taylor's theory. Why does the distinction matter for scientific management?",
-    "points": 10,
-    "answer": "Natural soldiering is the human tendency to conserve effort. Systematic soldiering is deliberate output restriction shaped by group norms, mistrust, fear that higher output will lower piece rates, lack of reliable standards, and weak management systems. The distinction matters because Taylor's solution is not simply to demand harder work. Scientific management redesigns measurement, standards, training, incentives, and planning so that productivity becomes a system property rather than a moral judgment about workers.",
+    "number": 4,
+    "kind": "Short Answer",
+    "topic": "Work And Work Systems",
+    "prompt": "According to Taylor's scientific management principles, what were two primary goals for redesigning work systems?",
+    "points": 5,
+    "answer": "Frederick Taylor's scientific management aimed to redesign work systems with two primary goals to boost industrial efficiency. First, he sought to *reduce variability* in how tasks were performed, ensuring consistent and predictable outputs. Second, he aimed to *standardize methods*, identifying and implementing the 'one best way' for each job through meticulous time and motion studies. These goals collectively served to clarify worker roles, establish clear separation between planning and execution, and ultimately maximize productivity.",
     "source_refs": [
+      "M1.3 What is a Work System.txt",
       "M1.4 Scientific Management as Work System Redesign.txt"
     ],
-    "difficulty": "Medium",
-    "learning_objective": "Check whether students can explain Taylor's diagnosis of inefficiency.",
-    "bloom_level": "Analyze",
-    "estimated_time_minutes": 8,
-    "exam_intent": "This item tests Scientific Management beyond surface recall by requiring a response appropriate to the concept comparison format.",
-    "assessed_skill": "concept distinction and structural reasoning",
+    "difficulty": "Easy",
+    "learning_objective": "Students should be able to recall and state key objectives of Taylor's scientific management in work system redesign.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 5,
+    "exam_intent": "Assess recall of core tenets of scientific management.",
+    "assessed_skill": "Recalling specific principles.",
     "rubric": [
-      "3 points for natural soldiering.",
-      "3 points for systematic soldiering.",
-      "4 points for explaining why the distinction supports system redesign."
+      {
+        "criterion": "Identifies 'reduce variability' as a primary goal for redesigning work systems.",
+        "points": 2
+      },
+      {
+        "criterion": "Identifies 'standardize methods' (or 'one best way') as a primary goal for redesigning work systems.",
+        "points": 2
+      },
+      {
+        "criterion": "Briefly explains the implication of these goals (e.g., consistent outputs, maximized productivity).",
+        "points": 1
+      }
     ],
     "coverage_contribution": {
-      "scientific_management": 10
+      "work_and_work_systems": 5
+    }
+  },
+  {
+    "number": 5,
+    "kind": "Short Answer",
+    "topic": "Problem Solving And Ideation",
+    "prompt": "List two fundamental rules that guide an effective brainstorming session for solution generation.",
+    "points": 5,
+    "answer": "Two fundamental rules for guiding an effective brainstorming session are: 1) **Defer Judgment/Criticism:** All ideas, no matter how unconventional, should be welcomed without immediate evaluation or critique. This promotes a psychologically safe environment, encouraging participants to share freely without fear of being judged, thus maximizing the quantity of ideas. 2) **Quantity over Quality:** The primary goal is to generate as many ideas as possible within a set time. A larger pool of diverse ideas increases the likelihood of stumbling upon truly innovative or viable solutions, even if many initial suggestions are impractical.",
+    "source_refs": [
+      "M2.1.1 Engineering Problem-Solving Process.txt",
+      "M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
+      "M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+      "M2.1.3 Solution Generation (Brainstorming).txt"
+    ],
+    "difficulty": "Easy",
+    "learning_objective": "Students should be able to identify and explain key rules for effective brainstorming.",
+    "bloom_level": "Remember/Understand",
+    "estimated_time_minutes": 5,
+    "exam_intent": "Check knowledge of practical ideation techniques.",
+    "assessed_skill": "Listing and explaining guidelines.",
+    "rubric": [
+      {
+        "criterion": "Clearly states 'Defer Judgment/Criticism' as a rule for brainstorming.",
+        "points": 2
+      },
+      {
+        "criterion": "Clearly states 'Quantity over Quality' (or equivalent) as a rule for brainstorming.",
+        "points": 2
+      },
+      {
+        "criterion": "Provides a brief explanation or rationale for at least one of the rules mentioned.",
+        "points": 1
+      }
+    ],
+    "coverage_contribution": {
+      "problem_solving_and_ideation": 5
+    }
+  },
+  {
+    "number": 6,
+    "kind": "Short Answer",
+    "topic": "Problem Solving And Ideation",
+    "prompt": "Explain how the 'Subtraction' innovation framework can be applied to generate new product ideas, providing a brief example.",
+    "points": 5,
+    "answer": "The 'Subtraction' innovation framework involves identifying an essential or core component of a product or service and intentionally removing it, then finding new ways to achieve the original function or derive new benefits without that component. This method forces innovators to challenge existing assumptions and often leads to simpler, more elegant, or unexpected solutions. For example, applying Subtraction to a traditional corded power drill by removing the electrical cord resulted in the cordless drill. This innovation offers increased portability and flexibility, creating new applications and market segments previously limited by power outlet access.",
+    "source_refs": [
+      "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
+    ],
+    "difficulty": "Hard",
+    "learning_objective": "Students should be able to explain and exemplify the Subtraction innovation framework.",
+    "bloom_level": "Apply/Analyze",
+    "estimated_time_minutes": 7,
+    "exam_intent": "Assess ability to explain and apply an innovation framework.",
+    "assessed_skill": "Explaining conceptual application and providing examples.",
+    "rubric": [
+      {
+        "criterion": "Defines the 'Subtraction' framework as removing an essential or core component.",
+        "points": 2
+      },
+      {
+        "criterion": "Explains the goal or outcome of this removal (e.g., finding new ways to function, challenging assumptions, simpler solutions).",
+        "points": 1
+      },
+      {
+        "criterion": "Provides a clear and relevant example of the Subtraction framework in action (e.g., cordless drill).",
+        "points": 2
+      }
+    ],
+    "coverage_contribution": {
+      "problem_solving_and_ideation": 5
+    }
+  },
+  {
+    "number": 7,
+    "kind": "Concept Comparison",
+    "topic": "Work And Work Systems",
+    "prompt": "Compare and contrast the general concept of 'work' with a 'work system', highlighting their relationship and distinct characteristics within an organizational context.",
+    "points": 10,
+    "answer": "\"Work\" broadly refers to human effort applied to achieve a purpose or produce something of value, emphasizing the individual activity itself. A \"work system,\" on the other hand, is a more encompassing concept that describes the structured environment where work occurs. It involves an organized collection of participants, tools, methods, and information interacting to achieve specific outputs or services. While work is the fundamental action, a work system provides the framework—how, where, and with what resources—that enables work to be performed efficiently and effectively, often with a focus on optimization and consistency. Understanding work is crucial for designing effective work systems.",
+    "source_refs": [
+      "M1.2 Why Work Matters_260312.txt"
+    ],
+    "difficulty": "Medium",
+    "learning_objective": "Students should be able to differentiate between the concepts of \"work\" and a \"work system\" and understand their interrelationship in an organizational context.",
+    "bloom_level": "Analyze",
+    "estimated_time_minutes": 6,
+    "exam_intent": "Assess foundational understanding of key terminology in work management.",
+    "assessed_skill": "Conceptual differentiation and explanation.",
+    "rubric": [
+      {
+        "criterion": "Provides a clear definition of 'work'.",
+        "points": 3
+      },
+      {
+        "criterion": "Provides a clear definition of a 'work system'.",
+        "points": 3
+      },
+      {
+        "criterion": "Explains the relationship or distinction between 'work' and a 'work system', including how one enables the other.",
+        "points": 4
+      }
+    ],
+    "coverage_contribution": {
+      "work_and_work_systems": 10
     }
   },
   {
     "number": 8,
     "kind": "Concept Comparison",
-    "topic": "Problem Solving and Ideation",
-    "prompt": "Compare DASSI, the KJ Method, and brainstorming. Where does each fit in a disciplined engineering problem-solving process?",
+    "topic": "Problem Solving And Ideation",
+    "prompt": "Compare and contrast Brainstorming and the KJ Method as ideation techniques, focusing on their primary goals and how they achieve them within the problem-solving process.",
     "points": 10,
-    "answer": "DASSI is the overall process: define, analyze, search, select, and implement. The KJ Method is strongest in define and analyze because it organizes facts, observations, and opinions into meaningful clusters when the problem is messy. Brainstorming is strongest in the search step because delayed judgment and quantity-focused idea generation expand the set of alternatives. Used together, KJ clarifies the problem, brainstorming expands solutions, and DASSI disciplines selection and implementation.",
+    "answer": "Brainstorming and the KJ Method are distinct ideation techniques with different primary goals. Brainstorming primarily aims to generate a large quantity of diverse solutions or ideas without immediate judgment, fostering creativity and divergent thinking during the solution generation phase. Its strength lies in sheer volume and spontaneous idea flow. In contrast, the KJ Method (Affinity Diagram) focuses on structuring and synthesizing qualitative data, often unstructured ideas or observations, to identify underlying patterns and define core problems or opportunities. It moves from individual thoughts to grouped themes, aiming for convergent thinking to gain a deeper understanding of a problem before solutions are sought.",
     "source_refs": [
-      "M2.1.1 Engineering Problem-Solving Process.txt",
       "M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
       "M2.1.3 Solution Generation (Brainstorming).txt"
     ],
     "difficulty": "Medium",
-    "learning_objective": "Check whether students can place ideation tools inside a structured problem-solving process.",
+    "learning_objective": "Students should be able to differentiate between various ideation techniques and understand their appropriate application within the problem-solving process.",
     "bloom_level": "Analyze",
-    "estimated_time_minutes": 8,
-    "exam_intent": "This item tests Problem Solving and Ideation beyond surface recall by requiring a response appropriate to the concept comparison format.",
-    "assessed_skill": "concept distinction and structural reasoning",
+    "estimated_time_minutes": 7,
+    "exam_intent": "Evaluate the student's ability to distinguish between problem-solving tools based on their purpose and method.",
+    "assessed_skill": "Tool selection and application based on problem type.",
     "rubric": [
-      "3 points for DASSI as the overall process.",
-      "3 points for KJ Method in problem structuring.",
-      "3 points for brainstorming in solution generation.",
-      "1 point for explaining how they complement each other."
+      {
+        "criterion": "Clearly defines Brainstorming and its primary goal.",
+        "points": 3
+      },
+      {
+        "criterion": "Clearly defines the KJ Method and its primary goal.",
+        "points": 3
+      },
+      {
+        "criterion": "Explains how their approaches or phases in the problem-solving process differ.",
+        "points": 4
+      }
     ],
     "coverage_contribution": {
       "problem_solving_and_ideation": 10
@@ -203,89 +280,113 @@
   {
     "number": 9,
     "kind": "Application",
-    "topic": "Five Innovation Frameworks",
-    "prompt": "A university library wants to reduce student waiting time for study rooms without building more rooms. Use DASSI briefly to frame the problem, then propose two redesign ideas using two different innovation frameworks.",
+    "topic": "Systematic Innovation Frameworks",
+    "prompt": "Imagine you are tasked with innovating a common smartphone using the 'Subtraction' systematic innovation framework. Describe the Subtraction framework and propose a new, innovative smartphone concept by applying this framework. Explain what essential component you would subtract and the resulting benefits or unique selling propositions of your new concept.",
     "points": 15,
-    "answer": "Define the problem as excessive waiting for scarce rooms during peak demand. Analyze booking logs, no-show rates, room sizes, and user types. One subtraction idea is to remove unlimited reservations by shortening default booking blocks or cancelling no-shows automatically. One combination idea is to combine room booking with occupancy sensing and real-time queue information so unused rooms return to the pool quickly. Selection should compare waiting-time impact, fairness, privacy, cost, and ease of implementation.",
+    "answer": "The Subtraction framework involves removing an essential component from a product or service. Applying this to a smartphone, one could subtract the screen. This seemingly counter-intuitive move could lead to innovative designs like a \"screen-less\" smartphone primarily controlled by voice, haptic feedback, or projection. Benefits could include increased durability, enhanced privacy (no visible screen), significantly longer battery life, and a smaller, lighter form factor. The unique selling proposition would be its extreme minimalism, ruggedness, and focus on auditory/haptic interaction, appealing to users who prioritize privacy, durability, or digital detox.",
     "source_refs": [
-      "M2.1.1 Engineering Problem-Solving Process.txt",
       "M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt"
     ],
     "difficulty": "Medium",
-    "learning_objective": "Check whether students can use innovation frameworks as a problem-solving tool, not only recite them.",
+    "learning_objective": "Apply systematic innovation frameworks to generate new product/service concepts.",
     "bloom_level": "Apply/Analyze",
-    "estimated_time_minutes": 11,
-    "exam_intent": "This item tests Five Innovation Frameworks beyond surface recall by requiring a response appropriate to the application format.",
-    "assessed_skill": "framework application to a concrete work-system situation",
+    "estimated_time_minutes": 9,
+    "exam_intent": "Assess the student's ability to apply theoretical innovation frameworks to practical scenarios.",
+    "assessed_skill": "Problem-solving, creative thinking, application of theoretical knowledge.",
     "rubric": [
-      "3 points for framing the problem with DASSI.",
-      "4 points for a valid first innovation framework and idea.",
-      "4 points for a valid second framework and idea.",
-      "4 points for evaluation criteria and practical feasibility."
+      {
+        "criterion": "Correctly defines the Subtraction framework.",
+        "points": 3
+      },
+      {
+        "criterion": "Identifies an essential smartphone component for subtraction.",
+        "points": 3
+      },
+      {
+        "criterion": "Proposes a clear, innovative smartphone concept resulting from the subtraction.",
+        "points": 5
+      },
+      {
+        "criterion": "Explains the resulting benefits and unique selling points of the proposed concept.",
+        "points": 4
+      }
     ],
     "coverage_contribution": {
-      "innovation_frameworks": 10,
-      "problem_solving_and_ideation": 5
+      "innovation_frameworks": 15
     }
   },
   {
     "number": 10,
     "kind": "Application",
-    "topic": "Motion Study and Therbligs",
-    "prompt": "A worker assembling small kits repeatedly searches for parts, reaches across the bench, positions items by hand, inspects the kit, and repacks defective kits. Identify likely Therbligs and propose a redesign that improves both motion efficiency and the surrounding work system.",
+    "topic": "Motion Study And Therbligs",
+    "prompt": "Consider the task of assembling a basic pen (e.g., body, ink cartridge, cap). Identify at least three distinct Therbligs involved in this process. For each identified Therblig, suggest a specific modification or elimination that would improve the efficiency of the pen assembly, explaining the rationale behind each proposed change.",
     "points": 15,
-    "answer": "Likely Therbligs include search, find, select, reach, grasp, move, position, assemble, inspect, and rework-related motions. Motion improvements include fixed part locations, labels or color coding, point-of-use storage, jigs for positioning, and shorter reach distances. Work-system redesign should also change information and process flow: use a visual checklist, upstream quality signal, replenishment rule, and feedback loop so defects and missing parts are prevented rather than repeatedly discovered by the assembler.",
+    "answer": "Assembling a basic pen involves several Therbligs.\n1.  **Search** (for components like the ink cartridge): A worker might search for the cartridge in a bin.\n2.  **Grasp** (the pen body): Picking up the body from a tray.\n3.  **Assemble** (cartridge into body): Inserting the ink cartridge.\nTo improve efficiency:\n1.  **Eliminate Search**: Implement a gravity feed dispenser for cartridges, presenting them in a fixed, known location. This removes the 'Search' Therblig entirely, saving time.\n2.  **Combine Grasp**: Design the workstation so pen bodies are oriented for easy simultaneous grasping of multiple bodies, or use a specialized tool that grasps and positions the body in one motion, reducing individual 'Grasp' instances.\n3.  **Simplify Assemble**: Utilize jigs or fixtures that guide the cartridge precisely into the pen body, reducing the effort and time spent aligning, thus simplifying the 'Assemble' Therblig.",
     "source_refs": [
-      "M1.1 What is Work_Revised 260312.txt",
+      "M1.4 Scientific Management as Work System Redesign.txt",
       "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
     ],
     "difficulty": "Medium",
-    "learning_objective": "Check whether students can move from motion diagnosis to work-system redesign.",
+    "learning_objective": "Analyze work processes using Therbligs to identify and propose efficiency improvements.",
     "bloom_level": "Apply/Analyze",
-    "estimated_time_minutes": 12,
-    "exam_intent": "This item tests Motion Study and Therbligs beyond surface recall by requiring a response appropriate to the application format.",
-    "assessed_skill": "framework application to a concrete work-system situation",
+    "estimated_time_minutes": 9,
+    "exam_intent": "Assess the student's ability to apply motion study principles and Therblig analysis to optimize a practical task.",
+    "assessed_skill": "Analytical thinking, problem-solving, application of scientific management tools.",
     "rubric": [
-      "4 points for identifying plausible Therbligs.",
-      "4 points for concrete motion-economy improvements.",
-      "4 points for connecting micro-level motion to process, information, or layout.",
-      "3 points for explaining how the redesign reduces rework or fatigue."
+      {
+        "criterion": "Accurately identifies at least three distinct Therbligs relevant to pen assembly.",
+        "points": 6
+      },
+      {
+        "criterion": "Proposes a specific and logical improvement (modification/elimination) for each identified Therblig.",
+        "points": 6
+      },
+      {
+        "criterion": "Clearly explains the rationale and efficiency benefit for each proposed improvement.",
+        "points": 3
+      }
     ],
     "coverage_contribution": {
-      "motion_study_and_therbligs": 10,
-      "work_and_work_systems": 5
+      "motion_study_and_therbligs": 15
     }
   },
   {
     "number": 11,
     "kind": "Essay",
-    "topic": "Scientific Management",
-    "prompt": "Discuss scientific management as an early form of work-system redesign. Your answer must cover Taylor, the Gilbreths, benefits, limitations, and how a modern manager should adapt the approach using work-system thinking and DASSI.",
+    "topic": "Scientific Management Principles and Redesign",
+    "prompt": "Scientific management is often reinterpreted as an early attempt at work system redesign. Analyze how Frederick Taylor's core principles, such as the separation of planning from execution and the standardization of methods, fundamentally sought to redesign work systems. Discuss the intended benefits of this redesign approach and how it addressed variability within industrial operations.",
     "points": 20,
-    "answer": "Scientific management treated productivity as a design problem. Taylor attacked rule-of-thumb work through measurement, standards, scientific selection and training, cooperation, incentives, and a clearer split between planning and execution. The Gilbreths extended the logic to motion study and Therbligs, showing that fatigue and waste could be reduced by redesigning motions, tools, and layout. Benefits include explicit standards, teachable methods, and productivity improvement. Limitations include narrow views of motivation, worker control, and over-optimization of isolated tasks. A modern manager should adapt the approach as work-system redesign: define and analyze the problem with DASSI, consider participants, processes, information, technology, customers, and environment, search for alternatives, and select interventions that improve both efficiency and human sustainability.",
+    "answer": "Scientific management, as an early work system redesign attempt, fundamentally aimed to optimize efficiency and predictability. Taylor's core principles directly translated into redesign actions: the separation of planning from execution clarified roles, assigning intellectual work to managers and manual tasks to workers. This specialization allowed for detailed method development. Standardization of methods, derived from time and motion studies, reduced variability by establishing one 'best way' to perform tasks. The intended benefits included increased productivity, reduced waste, and enhanced control over processes. By minimizing discretionary action and formalizing procedures, scientific management systematically addressed variability, leading to more consistent outputs and predictable operational outcomes within industrial settings.",
     "source_refs": [
       "M1.3 What is a Work System.txt",
-      "M1.4 Scientific Management as Work System Redesign.txt",
-      "M2.1.1 Engineering Problem-Solving Process.txt",
-      "M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt"
+      "M1.4 Scientific Management as Work System Redesign.txt"
     ],
     "difficulty": "Hard",
-    "learning_objective": "Check synthesis across scientific management, work systems, and disciplined problem solving.",
-    "bloom_level": "Evaluate/Create",
+    "learning_objective": "Analyze how Scientific Management principles functioned as an early approach to work system redesign to improve efficiency and reduce variability.",
+    "bloom_level": "Analyze",
     "estimated_time_minutes": 12,
-    "exam_intent": "This integrative item requires students to synthesize Taylor, Gilbreth, Bloom Evaluate/Create level reasoning, and DASSI into a coherent argument — the highest cognitive demand on this exam.",
-    "assessed_skill": "synthesis, justification, and critical evaluation",
+    "exam_intent": "To assess the student's ability to critically analyze the foundational principles of Scientific Management as a deliberate strategy for work system redesign and their intended impact on operational efficiency and variability.",
+    "assessed_skill": "Analytical reasoning, conceptual understanding, synthesis of historical management theory with systems thinking.",
     "rubric": [
-      "4 points for Taylor's principles and cases.",
-      "3 points for Gilbreth, motion study, and Therbligs.",
-      "4 points for benefits.",
-      "4 points for limitations and human concerns.",
-      "5 points for modern adaptation using work-system thinking and DASSI."
+      {
+        "criterion": "Explains scientific management as a work system redesign approach and its general aim of efficiency and predictability.",
+        "points": 4
+      },
+      {
+        "criterion": "Analyzes how the 'separation of planning from execution' principle led to clarified roles and specialized method development.",
+        "points": 5
+      },
+      {
+        "criterion": "Analyzes how 'standardization of methods' (through time/motion studies) directly reduced variability by establishing optimal procedures.",
+        "points": 6
+      },
+      {
+        "criterion": "Clearly articulates the intended benefits of this redesign approach, such as increased productivity, reduced waste, and enhanced control.",
+        "points": 5
+      }
     ],
     "coverage_contribution": {
-      "work_and_work_systems": 10,
-      "scientific_management": 5,
-      "problem_solving_and_ideation": 5
+      "scientific_management": 20
     }
   }
 ]

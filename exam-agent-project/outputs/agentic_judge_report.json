@@ -88,7 +88,7 @@
       "failed_checks": [],
       "evidence": [
         "target_coverage={'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}",
-        "actual_coverage={'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}",
+        "actual_coverage={'work_and_work_systems': 25, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15, 'scientific_management': 20}",
         "total_points=100",
         "hard_fail_threshold=±20pt, soft_fail_threshold=±10pt"
       ],
@@ -114,7 +114,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Check whether students can distinguish nested levels of work analysis."
+        "learning_objective=Students should be able to articulate the fundamental importance of understanding work and work systems."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -126,7 +126,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Check recall of Taylor's canonical scientific management principles."
+        "learning_objective=Students should be able to identify and describe the first stage of the engineering problem-solving process."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -138,7 +138,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Check recall and sequencing of the DASSI process."
+        "learning_objective=Students should be able to define a work system within the context of scientific management."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -150,7 +150,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Check whether students can identify the systematic innovation methods from lecture."
+        "learning_objective=Students should be able to recall and state key objectives of Taylor's scientific management in work system redesign."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -162,7 +162,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Check whether students understand micro-level motion analysis."
+        "learning_objective=Students should be able to identify and explain key rules for effective brainstorming."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -174,7 +174,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Check system-level reasoning rather than isolated task reasoning."
+        "learning_objective=Students should be able to explain and exemplify the Subtraction innovation framework."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -186,7 +186,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Check whether students can explain Taylor's diagnosis of inefficiency."
+        "learning_objective=Students should be able to differentiate between the concepts of \"work\" and a \"work system\" and understand their interrelationship in an organizational context."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -198,7 +198,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Check whether students can place ideation tools inside a structured problem-solving process."
+        "learning_objective=Students should be able to differentiate between various ideation techniques and understand their appropriate application within the problem-solving process."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -210,7 +210,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Check whether students can use innovation frameworks as a problem-solving tool, not only recite them."
+        "learning_objective=Apply systematic innovation frameworks to generate new product/service concepts."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -222,7 +222,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Check whether students can move from motion diagnosis to work-system redesign."
+        "learning_objective=Analyze work processes using Therbligs to identify and propose efficiency improvements."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -234,7 +234,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Check synthesis across scientific management, work systems, and disciplined problem solving."
+        "learning_objective=Analyze how Scientific Management principles functioned as an early approach to work system redesign to improve efficiency and reduce variability."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -245,7 +245,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=16"
+        "prompt_words=11"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -256,7 +256,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=10"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -267,13 +267,35 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=20"
+        "prompt_words=11"
       ],
       "revision_instruction": "",
       "stage": 1
     },
     {
       "target_id": "Q4",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=15"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Red-Team Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "prompt_words=13"
+      ],
+      "revision_instruction": "",
+      "stage": 1
+    },
+    {
+      "target_id": "Q6",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
@@ -284,34 +306,12 @@
       "stage": 1
     },
     {
-      "target_id": "Q5",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=19"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Red-Team Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "prompt_words=19"
-      ],
-      "revision_instruction": "",
-      "stage": 1
-    },
-    {
       "target_id": "Q7",
       "judge": "Red-Team Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=22"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -322,7 +322,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=25"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -333,7 +333,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=33"
+        "prompt_words=49"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -344,7 +344,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=41"
+        "prompt_words=49"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -355,7 +355,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=33"
+        "prompt_words=54"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -465,8 +465,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt",
-        "matched_terms=work, system, define, task, process, levels"
+        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, understanding, systems, because, human, productivity"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -477,8 +477,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=taylor, scientific, management, work, method, four"
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=initial, step, engineering, problem-solving, process, define"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -489,45 +489,44 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=dassi, five, engineering, problem-solving, process, step"
+        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
+        "matched_terms=work, system, management, components, materials, information"
       ],
       "revision_instruction": "",
       "stage": 2
     },
     {
       "target_id": "Q4",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=taylor, scientific, management, work, redesign, according"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, fundamental, rules, effective, session, solution"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q6",
       "judge": "Source Grounding Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=innovation, frameworks, subtraction, combination, five, addition",
-        "lecture_innovation_frameworks_in_answer=addition, alternate, combination, subtraction, transposition"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, therblig, motion, gilbreth, work, examples"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, performance, emergent, property, three"
+        "matched_terms=subtraction, innovation, framework, applied, generate, product"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -538,8 +537,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=soldiering, taylor, scientific, management, natural, systematic"
+        "valid_refs=M1.2 Why Work Matters_260312.txt",
+        "matched_terms=work, system, characteristics, human"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -550,8 +549,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=dassi, method, brainstorming, compare, disciplined, engineering"
+        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, method, ideation, their, goals, process"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -562,9 +561,9 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=dassi, redesign, innovation, reduce, student, time",
-        "lecture_innovation_frameworks_in_answer=combination, subtraction"
+        "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
+        "matched_terms=subtraction, innovation, imagine, common, smartphone, systematic",
+        "lecture_innovation_frameworks_in_answer=subtraction"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -575,8 +574,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, worker, assembling, small, parts, across"
+        "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
+        "matched_terms=therbligs, therblig, task, assembling, basic, body"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -587,8 +586,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt, M2.1.1 Engineering Problem-Solving Process.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=scientific, management, redesign, taylor, dassi, early"
+        "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=scientific, management, work, system, redesign, taylor"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -606,105 +605,6 @@
     },
     {
       "target_id": "Q2",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q3",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q4",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=2"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q7",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=1"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q8",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=3"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q9",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=2"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q10",
-      "judge": "Factual Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "sources_checked=2"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q11",
       "judge": "Factual Grounding Judge",
       "verdict": "PASS",
       "failed_checks": [],
@@ -715,13 +615,118 @@
       "stage": 2
     },
     {
+      "target_id": "Q3",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2",
+        "Warning (HARD_FAIL): The model answer claims scientific management primarily sought to optimize work systems by standardizing methods, clarifying roles, and minimizing variability. The lecture notes discuss standardization, role coordination, information flow, and feedback systems in the context of productivity and well-designed work systems generally, but do not specifically attribute these optimization goals to 'scientific management'."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2",
+        "Warning (HARD_FAIL): The model answer claims that a primary goal of Taylor's scientific management was to 'reduce variability' in how tasks were performed. The lecture notes mention 'quantification of variation' as a scientific principle established during the Scientific Revolution that Taylor applied, and the SEIPS model emphasizes 'interaction and variability'. However, the lecture notes do not explicitly state that reducing variability was a primary goal of Taylor's scientific management redesign. Instead, M1.4 highlights that Taylor observed 'no standardized methods' and 'tacit worker knowledge' leading to 'systematic soldiering' due to 'lack of objective standards', and his principles aimed to develop a 'science for each element of work' which involved 'time study, standardization, tool optimization'."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=4",
+        "Warning (SOFT_FAIL): The model answer claims that \"Defer Judgment/Criticism\" promotes a \"psychologically safe environment\" and \"encourages participants to share freely without fear of being judged\". While the lecture notes state that \"Delaying judgment is for generating as many ideas as possible\" and \"Delaying judgment eliminates fear (a mental barrier to creativity)\", and \"No criticism: think first-judge later\", and \"Support each other (never criticize)\", it does not explicitly link these principles to creating a \"psychologically safe environment\" or explicitly mention \"fear of being judged\"."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1",
+        "Warning (HARD_FAIL): The model answer states that the 'Subtraction' innovation framework involves removing a core component and finding new ways to achieve the original function or derive new benefits. However, the provided lecture excerpts do not define or explain the 'Subtraction' framework at all. The excerpts only list it as one of five innovation frameworks."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=1",
+        "Warning (HARD_FAIL): The provided lecture excerpts only list the 'Subtraction framework' as one of five systematic innovation methods but do not describe its specific principles or how it should be applied. The model answer's description of the Subtraction framework and its application to a smartphone is therefore not supported by the provided text."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q10",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2",
+        "Warning (SOFT_FAIL): The model answer suggests 'Combine Grasp' by orienting pen bodies for simultaneous grasping of multiple bodies or using a specialized tool. The lecture notes on Therbligs mention ideas for improving 'Grasp' such as 'Contact grasp (without lifting)', 'Use of vacuum, magnets, conveyors', 'Modify surface material', and 'Utilize pre-positioning'. While the model's suggestions align with the goal of efficiency, they are not directly supported by the provided text for the specific Therblig 'Grasp'."
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q11",
+      "judge": "Factual Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "sources_checked=2"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
       "target_id": "Q1",
       "judge": "Answer Rubric Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=66",
-        "rubric_items=2"
+        "answer_words=70",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -732,8 +737,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=56",
-        "rubric_items=2"
+        "answer_words=77",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -744,7 +749,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=53",
+        "answer_words=70",
         "rubric_items=2"
       ],
       "revision_instruction": "",
@@ -752,71 +757,71 @@
     },
     {
       "target_id": "Q4",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=56",
-        "rubric_items=2"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=53",
-        "rubric_items=3"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q6",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=58",
-        "rubric_items=3"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q7",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=72",
-        "rubric_items=3"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q8",
-      "judge": "Answer Rubric Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "answer_words=69",
-        "rubric_items=4"
-      ],
-      "revision_instruction": "",
-      "stage": 3
-    },
-    {
-      "target_id": "Q9",
       "judge": "Answer Rubric Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
         "answer_words=74",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=92",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=93",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q7",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=101",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q8",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=102",
+        "rubric_items=3"
+      ],
+      "revision_instruction": "",
+      "stage": 3
+    },
+    {
+      "target_id": "Q9",
+      "judge": "Answer Rubric Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "answer_words=89",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -828,8 +833,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=69",
-        "rubric_items=4"
+        "answer_words=138",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -840,8 +845,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=113",
-        "rubric_items=5"
+        "answer_words=105",
+        "rubric_items=4"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -852,7 +857,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=2; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -863,7 +868,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=2; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -874,7 +879,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=2; rubric_pts_parsed=(none parsed)"
+        "rubric_items=2; rubric_pts_parsed=[3.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -885,7 +890,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=2; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -896,7 +901,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -907,7 +912,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 1.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -918,7 +923,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=3; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[3.0, 3.0, 4.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -929,7 +934,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[3.0, 3.0, 4.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -940,7 +945,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=(none parsed)"
+        "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 5.0, 4.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -951,7 +956,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=(none parsed)"
+        "rubric_items=3; rubric_pts_parsed=[6.0, 6.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -962,7 +967,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=5; rubric_pts_parsed=(none parsed)"
+        "rubric_items=4; rubric_pts_parsed=[4.0, 5.0, 6.0, 5.0]"
       ],
       "revision_instruction": "",
       "stage": 3

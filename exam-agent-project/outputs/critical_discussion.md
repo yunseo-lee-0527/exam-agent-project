@@ -10,24 +10,6 @@ This file summarizes the main limitations that remain after the current implemen
 
 ## Residual Risks
 
-### deterministic_provider
-
-- Severity: high
-- Evidence: Current run used the local deterministic fallback, not a live LLM provider.
-- Mitigation: Run the final pipeline with --provider vertex --quality final_low_cost --strict-provider using the lecture Agent Platform setup, or --provider gemini with GEMINI_API_KEY as a backup path. Add --blueprint nonexistent_path when evidence from the specialist writer path is required.
-
-### blueprint_dependency
-
-- Severity: medium
-- Evidence: exam_blueprint.json controls the current exam draft.
-- Mitigation: Frame it as a team-authored, requirement-aligned blueprint or run with --blueprint nonexistent_path and a live provider in strict mode before final submission.
-
-### provider_fallback_hidden
-
-- Severity: medium
-- Evidence: Strict provider mode is off, so live provider failures can fall back during development.
-- Mitigation: Use --strict-provider for final generation.
-
 ### self_evaluation_bias
 
 - Severity: medium

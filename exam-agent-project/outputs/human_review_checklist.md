@@ -26,27 +26,27 @@ Use this before submitting the final generated exam.
 
 ## Provider and Cost
 
-- [ ] Provider mode is correct for final generation. Estimated cost: $0.000000.
+- [ ] Provider mode is correct for final generation. Estimated cost: $0.004583.
 - [ ] If using Gemini/OpenAI/Anthropic, confirm strict provider mode for the final run.
 - [ ] Confirm no private API keys or credentials are committed.
 
 ## Generated Questions
 
-- [ ] Q1: Short Answer / Work and Work Systems / 5 points
-- [ ] Q2: Short Answer / Scientific Management / 5 points
-- [ ] Q3: Short Answer / Problem Solving and Ideation / 5 points
-- [ ] Q4: Short Answer / Five Innovation Frameworks / 5 points
-- [ ] Q5: Short Answer / Motion Study and Therbligs / 5 points
-- [ ] Q6: Short Answer / Work and Work Systems / 5 points
-- [ ] Q7: Concept Comparison / Scientific Management / 10 points
-- [ ] Q8: Concept Comparison / Problem Solving and Ideation / 10 points
-- [ ] Q9: Application / Five Innovation Frameworks / 15 points
-- [ ] Q10: Application / Motion Study and Therbligs / 15 points
-- [ ] Q11: Essay / Scientific Management / 20 points
+- [ ] Q1: Short Answer / Work And Work Systems / 5 points
+- [ ] Q2: Short Answer / Problem Solving And Ideation / 5 points
+- [ ] Q3: Short Answer / Work And Work Systems / 5 points
+- [ ] Q4: Short Answer / Work And Work Systems / 5 points
+- [ ] Q5: Short Answer / Problem Solving And Ideation / 5 points
+- [ ] Q6: Short Answer / Problem Solving And Ideation / 5 points
+- [ ] Q7: Concept Comparison / Work And Work Systems / 10 points
+- [ ] Q8: Concept Comparison / Problem Solving And Ideation / 10 points
+- [ ] Q9: Application / Systematic Innovation Frameworks / 15 points
+- [ ] Q10: Application / Motion Study And Therbligs / 15 points
+- [ ] Q11: Essay / Scientific Management Principles and Redesign / 20 points
 
 ## Coverage Audit Notes
 
-- Coverage contribution by topic key: {'work_and_work_systems': 25, 'scientific_management': 20, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15}.
+- Coverage contribution by topic key: {'work_and_work_systems': 25, 'problem_solving_and_ideation': 25, 'innovation_frameworks': 15, 'motion_study_and_therbligs': 15, 'scientific_management': 20}.
 - Question type mix: {'Short Answer': 6, 'Concept Comparison': 2, 'Application': 2, 'Essay': 1}.
 
 ## Requirements Snapshot
