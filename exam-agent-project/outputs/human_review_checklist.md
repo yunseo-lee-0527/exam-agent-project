@@ -26,23 +26,23 @@ Use this before submitting the final generated exam.
 
 ## Provider and Cost
 
-- [ ] Provider mode is correct for final generation. Estimated cost: $0.007954.
+- [ ] Provider mode is correct for final generation. Estimated cost: $0.008299.
 - [ ] If using Gemini/OpenAI/Anthropic, confirm strict provider mode for the final run.
 - [ ] Confirm no private API keys or credentials are committed.
 
 ## Generated Questions
 
-- [ ] Q1: Short Answer / Work And Work Systems / 5 points
-- [ ] Q2: Short Answer / Problem Solving And Ideation / 5 points
-- [ ] Q3: Short Answer / Work And Work Systems / 5 points
-- [ ] Q4: Short Answer / Work And Work Systems / 5 points
-- [ ] Q5: Short Answer / Problem Solving And Ideation / 5 points
-- [ ] Q6: Short Answer / Problem Solving And Ideation / 5 points
-- [ ] Q7: Concept Comparison / Work And Work Systems / 10 points
-- [ ] Q8: Concept Comparison / Problem Solving And Ideation / 10 points
-- [ ] Q9: Application / Innovation Frameworks / 15 points
-- [ ] Q10: Application / Motion Study And Therbligs / 15 points
-- [ ] Q11: Essay / Scientific Management / 20 points
+- [ ] Q1: Short Answer / Introduction to Work and Work Systems / 5 points
+- [ ] Q2: Short Answer / Engineering Problem-Solving and Ideation Techniques / 5 points
+- [ ] Q3: Short Answer / Introduction to Work and Work Systems / 5 points
+- [ ] Q4: Short Answer / Introduction to Work and Work Systems / 5 points
+- [ ] Q5: Short Answer / Engineering Problem-Solving and Ideation Techniques / 5 points
+- [ ] Q6: Short Answer / Engineering Problem-Solving and Ideation Techniques / 5 points
+- [ ] Q7: Concept Comparison / Introduction to Work and Work Systems / 10 points
+- [ ] Q8: Concept Comparison / Engineering Problem-Solving and Ideation Techniques / 10 points
+- [ ] Q9: Application / Systematic Innovation Methods / 15 points
+- [ ] Q10: Application / Micro-level Work Analysis: Motion Study and Therbligs / 15 points
+- [ ] Q11: Essay / Foundations of Scientific Management / 20 points
 
 ## Coverage Audit Notes
 

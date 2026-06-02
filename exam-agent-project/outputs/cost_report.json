@@ -12,352 +12,352 @@
   "strict_provider": true,
   "usage": {
     "calls": 47,
-    "estimated_input_tokens": 52379,
-    "estimated_output_tokens": 6402,
-    "estimated_cost_usd": 0.007954,
+    "estimated_input_tokens": 47937,
+    "estimated_output_tokens": 6095,
+    "estimated_cost_usd": 0.008299,
     "by_model": {
       "gemini-2.5-flash-lite": {
         "calls": 46,
-        "input_tokens": 51141,
-        "output_tokens": 5935,
-        "estimated_cost_usd": 0.007488100000000002
+        "input_tokens": 46737,
+        "output_tokens": 5701,
+        "estimated_cost_usd": 0.0069541
       },
       "gemini-2.5-flash": {
         "calls": 1,
-        "input_tokens": 1238,
-        "output_tokens": 467,
-        "estimated_cost_usd": 0.0004659
+        "input_tokens": 1200,
+        "output_tokens": 394,
+        "estimated_cost_usd": 0.001345
       }
     },
     "records": [
       {
         "stage": "batch_question_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 2268,
-        "output_tokens": 919,
-        "estimated_cost_usd": 0.0005944000000000001
+        "input_tokens": 2192,
+        "output_tokens": 826,
+        "estimated_cost_usd": 0.0005496
       },
       {
         "stage": "batch_answer_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 2333,
-        "output_tokens": 1121,
-        "estimated_cost_usd": 0.0006817
+        "input_tokens": 2330,
+        "output_tokens": 1425,
+        "estimated_cost_usd": 0.000803
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1012,
-        "output_tokens": 75,
-        "estimated_cost_usd": 0.0001312
+        "input_tokens": 1073,
+        "output_tokens": 232,
+        "estimated_cost_usd": 0.0002001
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1727,
-        "output_tokens": 74,
-        "estimated_cost_usd": 0.0002023
+        "input_tokens": 993,
+        "output_tokens": 177,
+        "estimated_cost_usd": 0.00017010000000000001
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1072,
-        "output_tokens": 304,
-        "estimated_cost_usd": 0.0002288
-      },
-      {
-        "stage": "factual_grounding_judge",
-        "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1636,
+        "input_tokens": 1653,
         "output_tokens": 17,
-        "estimated_cost_usd": 0.00017040000000000002
+        "estimated_cost_usd": 0.00017210000000000004
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1667,
-        "output_tokens": 15,
-        "estimated_cost_usd": 0.00017270000000000002
+        "input_tokens": 1634,
+        "output_tokens": 325,
+        "estimated_cost_usd": 0.0002934
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1048,
-        "output_tokens": 77,
-        "estimated_cost_usd": 0.00013560000000000002
+        "input_tokens": 1001,
+        "output_tokens": 17,
+        "estimated_cost_usd": 0.00010690000000000001
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1810,
-        "output_tokens": 503,
-        "estimated_cost_usd": 0.0003822
+        "input_tokens": 1431,
+        "output_tokens": 17,
+        "estimated_cost_usd": 0.0001499
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 2552,
-        "output_tokens": 196,
-        "estimated_cost_usd": 0.00033360000000000003
+        "input_tokens": 1747,
+        "output_tokens": 175,
+        "estimated_cost_usd": 0.00024470000000000004
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1222,
-        "output_tokens": 113,
-        "estimated_cost_usd": 0.0001674
+        "input_tokens": 1279,
+        "output_tokens": 130,
+        "estimated_cost_usd": 0.0001799
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1859,
-        "output_tokens": 344,
-        "estimated_cost_usd": 0.0003235
+        "input_tokens": 1137,
+        "output_tokens": 104,
+        "estimated_cost_usd": 0.0001553
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1779,
-        "output_tokens": 193,
-        "estimated_cost_usd": 0.0002551
+        "input_tokens": 1856,
+        "output_tokens": 120,
+        "estimated_cost_usd": 0.0002336
+      },
+      {
+        "stage": "factual_grounding_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 1766,
+        "output_tokens": 297,
+        "estimated_cost_usd": 0.0002954
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 412,
+        "input_tokens": 487,
         "output_tokens": 15,
-        "estimated_cost_usd": 4.72e-05
+        "estimated_cost_usd": 5.47e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 520,
+        "input_tokens": 393,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.8e-05
+        "estimated_cost_usd": 4.53e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 512,
+        "input_tokens": 443,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.72e-05
+        "estimated_cost_usd": 5.03e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 399,
+        "input_tokens": 403,
         "output_tokens": 15,
-        "estimated_cost_usd": 4.5900000000000004e-05
+        "estimated_cost_usd": 4.630000000000001e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 471,
+        "input_tokens": 398,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.31e-05
+        "estimated_cost_usd": 4.58e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 454,
+        "input_tokens": 500,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.14e-05
+        "estimated_cost_usd": 5.6e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 598,
-        "output_tokens": 173,
-        "estimated_cost_usd": 0.000129
+        "input_tokens": 516,
+        "output_tokens": 271,
+        "estimated_cost_usd": 0.00016
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 512,
+        "input_tokens": 552,
+        "output_tokens": 13,
+        "estimated_cost_usd": 6.0400000000000004e-05
+      },
+      {
+        "stage": "consistency_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 558,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.72e-05
+        "estimated_cost_usd": 6.18e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 646,
+        "input_tokens": 650,
         "output_tokens": 15,
-        "estimated_cost_usd": 7.060000000000001e-05
+        "estimated_cost_usd": 7.1e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 671,
+        "input_tokens": 593,
         "output_tokens": 15,
-        "estimated_cost_usd": 7.310000000000002e-05
-      },
-      {
-        "stage": "consistency_judge",
-        "model": "gemini-2.5-flash-lite",
-        "input_tokens": 632,
-        "output_tokens": 15,
-        "estimated_cost_usd": 6.92e-05
+        "estimated_cost_usd": 6.530000000000002e-05
       },
       {
         "stage": "answer_and_rubric_writer",
         "model": "gemini-2.5-flash",
-        "input_tokens": 1238,
-        "output_tokens": 467,
-        "estimated_cost_usd": 0.0004659
+        "input_tokens": 1200,
+        "output_tokens": 394,
+        "estimated_cost_usd": 0.001345
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1012,
-        "output_tokens": 68,
-        "estimated_cost_usd": 0.0001284
+        "input_tokens": 1073,
+        "output_tokens": 90,
+        "estimated_cost_usd": 0.00014330000000000001
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1727,
+        "input_tokens": 993,
         "output_tokens": 80,
-        "estimated_cost_usd": 0.00020470000000000002
+        "estimated_cost_usd": 0.00013130000000000002
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1072,
-        "output_tokens": 147,
-        "estimated_cost_usd": 0.000166
-      },
-      {
-        "stage": "factual_grounding_judge",
-        "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1636,
+        "input_tokens": 1653,
         "output_tokens": 17,
-        "estimated_cost_usd": 0.00017040000000000002
+        "estimated_cost_usd": 0.00017210000000000004
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1667,
+        "input_tokens": 1634,
+        "output_tokens": 246,
+        "estimated_cost_usd": 0.0002618
+      },
+      {
+        "stage": "factual_grounding_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 1001,
+        "output_tokens": 15,
+        "estimated_cost_usd": 0.0001061
+      },
+      {
+        "stage": "factual_grounding_judge",
+        "model": "gemini-2.5-flash-lite",
+        "input_tokens": 1431,
         "output_tokens": 17,
-        "estimated_cost_usd": 0.00017350000000000002
+        "estimated_cost_usd": 0.0001499
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1048,
-        "output_tokens": 62,
-        "estimated_cost_usd": 0.00012960000000000003
+        "input_tokens": 1745,
+        "output_tokens": 215,
+        "estimated_cost_usd": 0.0002605
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1839,
-        "output_tokens": 328,
-        "estimated_cost_usd": 0.0003151
+        "input_tokens": 1279,
+        "output_tokens": 250,
+        "estimated_cost_usd": 0.0002279
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 2552,
-        "output_tokens": 275,
-        "estimated_cost_usd": 0.00036520000000000004
+        "input_tokens": 1137,
+        "output_tokens": 65,
+        "estimated_cost_usd": 0.00013969999999999998
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1222,
-        "output_tokens": 100,
-        "estimated_cost_usd": 0.00016219999999999999
+        "input_tokens": 1856,
+        "output_tokens": 149,
+        "estimated_cost_usd": 0.0002452
       },
       {
         "stage": "factual_grounding_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1859,
-        "output_tokens": 192,
-        "estimated_cost_usd": 0.00026270000000000004
-      },
-      {
-        "stage": "factual_grounding_judge",
-        "model": "gemini-2.5-flash-lite",
-        "input_tokens": 1779,
-        "output_tokens": 210,
-        "estimated_cost_usd": 0.00026189999999999997
+        "input_tokens": 1766,
+        "output_tokens": 111,
+        "estimated_cost_usd": 0.00022100000000000003
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 412,
+        "input_tokens": 487,
         "output_tokens": 15,
-        "estimated_cost_usd": 4.72e-05
+        "estimated_cost_usd": 5.47e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 520,
+        "input_tokens": 393,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.8e-05
+        "estimated_cost_usd": 4.53e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 512,
+        "input_tokens": 443,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.72e-05
+        "estimated_cost_usd": 5.03e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 399,
+        "input_tokens": 403,
         "output_tokens": 15,
-        "estimated_cost_usd": 4.5900000000000004e-05
+        "estimated_cost_usd": 4.630000000000001e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 471,
+        "input_tokens": 398,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.31e-05
+        "estimated_cost_usd": 4.58e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 454,
+        "input_tokens": 500,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.14e-05
+        "estimated_cost_usd": 5.6e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 687,
+        "input_tokens": 607,
         "output_tokens": 15,
-        "estimated_cost_usd": 7.47e-05
+        "estimated_cost_usd": 6.670000000000001e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 512,
+        "input_tokens": 552,
         "output_tokens": 15,
-        "estimated_cost_usd": 5.72e-05
+        "estimated_cost_usd": 6.12e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 646,
+        "input_tokens": 558,
         "output_tokens": 15,
-        "estimated_cost_usd": 7.060000000000001e-05
+        "estimated_cost_usd": 6.18e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 671,
+        "input_tokens": 650,
         "output_tokens": 15,
-        "estimated_cost_usd": 7.310000000000002e-05
+        "estimated_cost_usd": 7.1e-05
       },
       {
         "stage": "consistency_judge",
         "model": "gemini-2.5-flash-lite",
-        "input_tokens": 632,
+        "input_tokens": 593,
         "output_tokens": 15,
-        "estimated_cost_usd": 6.92e-05
+        "estimated_cost_usd": 6.530000000000002e-05
       }
     ],
     "auth_mode": "api_key",
@@ -365,8 +365,8 @@
   },
   "static_estimates": {
     "lecture_note_tokens": 34123,
-    "question_prompt_tokens": 693,
-    "answer_tokens": 1982,
+    "question_prompt_tokens": 567,
+    "answer_tokens": 1800,
     "note": "Static estimates use len(text)//4 and complement provider usage records."
   },
   "chunk_index": {

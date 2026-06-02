@@ -114,7 +114,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Understand the Information Systems perspective on work and the definition and components of a work system."
+        "learning_objective=Understand the concept of unnecessary variability and its implications for work system design from a Human Factors / Ergonomics perspective."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -126,7 +126,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Understand the importance of comprehensive solution generation and be able to recall and describe a specific technique for it within the engineering problem-solving framework."
+        "learning_objective=Recall the major steps in the engineering problem-solving process."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -138,7 +138,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Students will be able to differentiate between various disciplinary perspectives on work."
+        "learning_objective=Explain the significance of defining work in scientific management."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -150,7 +150,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Differentiate between 'work' and a 'work system.'"
+        "learning_objective=Identify and describe the main components of a work system."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -162,7 +162,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Easy",
-        "learning_objective=Understand the differences between traditional physical work and knowledge work, and the applicability of historical management principles to modern contexts."
+        "learning_objective=Explain the purpose and key principles of brainstorming."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -174,7 +174,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Short Answer; difficulty=Hard",
-        "learning_objective=Understand the structured approach to problem-solving and the key considerations during solution generation."
+        "learning_objective=Analyze the importance of problem definition and its potential consequences."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -186,7 +186,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Compare and contrast different taxonomic frameworks for analyzing work systems."
+        "learning_objective=Understand the fundamental concepts of 'Work' and 'Work Systems' and their distinction."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -198,7 +198,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Concept Comparison; difficulty=Medium",
-        "learning_objective=Students should be able to explain the distinct phases of problem understanding/structuring and solution generation within the engineering problem-solving process."
+        "learning_objective=Differentiate between the KJ Method and Concept Fan, recognizing their distinct applications in problem-solving."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -210,7 +210,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Apply systematic innovation frameworks to generate new product concepts."
+        "learning_objective=Apply systematic innovation frameworks to generate creative solutions for business problems."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -222,7 +222,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Application; difficulty=Medium",
-        "learning_objective=Apply the concept of Therbligs to analyze and improve work motions in a given scenario."
+        "learning_objective=Analyze micro-level work processes using Therbligs and motion study principles to identify inefficiencies."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -234,7 +234,7 @@
       "failed_checks": [],
       "evidence": [
         "kind=Essay; difficulty=Hard",
-        "learning_objective=Students will be able to differentiate the core contributions of Taylor and the Gilbreths to Scientific Management and evaluate its enduring legacy in work system design."
+        "learning_objective=Analyze the foundational principles and impact of Scientific Management on industrial work systems."
       ],
       "revision_instruction": "",
       "stage": 1
@@ -245,7 +245,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=14"
+        "prompt_words=23"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -256,7 +256,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=28"
+        "prompt_words=10"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -267,7 +267,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=17"
+        "prompt_words=11"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -278,7 +278,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=11"
+        "prompt_words=10"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -289,7 +289,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=21"
+        "prompt_words=15"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -300,7 +300,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=25"
+        "prompt_words=24"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -322,7 +322,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=24"
+        "prompt_words=17"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -333,7 +333,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=85"
+        "prompt_words=53"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -344,7 +344,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=73"
+        "prompt_words=82"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -355,7 +355,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "prompt_words=45"
+        "prompt_words=40"
       ],
       "revision_instruction": "",
       "stage": 1
@@ -466,67 +466,67 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, system, information, systems, perspective, define"
+        "matched_terms=work, system, human, factors, ergonomics, perspective"
       ],
       "revision_instruction": "",
       "stage": 2
     },
     {
       "target_id": "Q2",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=engineering, problem-solving, process, generate, multiple, alternatives"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q3",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt",
-        "matched_terms=work, system, describe, distinct, perspectives, focus"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q4",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.5 Anatomy and Taxonomy of Work Systems_031826.txt",
-        "matched_terms=work, system, distinction, between, task, activity"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q5",
-      "judge": "Source Grounding Judge",
-      "verdict": "PASS",
-      "failed_checks": [],
-      "evidence": [
-        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=scientific, management, taylor, work, principles, shovel"
-      ],
-      "revision_instruction": "",
-      "stage": 2
-    },
-    {
-      "target_id": "Q6",
       "judge": "Source Grounding Judge",
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt",
-        "matched_terms=method, engineering, problem-solving, process, search, alternatives"
+        "matched_terms=typical, engineering, problem-solving, process, involves, these"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q3",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.2 Why Work Matters_260312.txt, M1.4 Scientific Management as Work System Redesign.txt",
+        "matched_terms=work, scientific, management, understanding, matter, context"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q4",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt, M1.3 What is a Work System.txt",
+        "matched_terms=work, system, core, components, purposeful, people"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q5",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.3 Solution Generation (Brainstorming).txt",
+        "matched_terms=brainstorming, goal, technique, ideation, phase, generate"
+      ],
+      "revision_instruction": "",
+      "stage": 2
+    },
+    {
+      "target_id": "Q6",
+      "judge": "Source Grounding Judge",
+      "verdict": "PASS",
+      "failed_checks": [],
+      "evidence": [
+        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt",
+        "matched_terms=problem, definition, most, step, engineering, problem-solving"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -537,8 +537,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M1.1 What is Work_Revised 260312.txt, M1.3 What is a Work System.txt",
-        "matched_terms=frameworks, work, multiple, systems, dimensions, uses"
+        "valid_refs=M1.5 Anatomy and Taxonomy of Work Systems_031826.txt, M1.1 What is Work_Revised 260312.txt",
+        "matched_terms=work, three, complementary, taxonomies, systems, structure-based"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -549,8 +549,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "valid_refs=M2.1.1 Engineering Problem-Solving Process.txt, M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt, M2.1.3 Solution Generation (Brainstorming).txt",
-        "matched_terms=compare, methods, understanding, structuring, problems, solution"
+        "valid_refs=M2.1.2 Understanding and Structuring Problems 1 (KJ Method).txt, M2.1.2 Understanding and Structuring Problems 2 (Concept Fan).txt",
+        "matched_terms=method, concept, understanding, structuring, problems, affinity"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -562,7 +562,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M2.1.5 Systematic Innovation Methods 1 (Five Frameworks).txt",
-        "matched_terms=innovation, frameworks, company, currently, product, line",
+        "matched_terms=subtraction, innovation, shop, looking, customer, experience",
         "lecture_innovation_frameworks_in_answer=subtraction"
       ],
       "revision_instruction": "",
@@ -575,7 +575,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.4 Scientific Management as Work System Redesign.txt, M3.1.1 Micro-level Motion Study (Therbligs)_041626.txt",
-        "matched_terms=therbligs, worker, assembling, small, device, process"
+        "matched_terms=therbligs, therblig, worker, desk, identify, involved"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -587,7 +587,7 @@
       "failed_checks": [],
       "evidence": [
         "valid_refs=M1.3 What is a Work System.txt, M1.4 Scientific Management as Work System Redesign.txt",
-        "matched_terms=scientific, management, taylor, gilbreth, analyze, core"
+        "matched_terms=taylor, scientific, management, work, system, redesign"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -599,7 +599,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer lists 'People, Processes, Information, Technology, and Customers' as key components of a work system. The provided lecture excerpts do not list these specific components."
+        "Warning (HARD_FAIL): The lecture excerpt (M1.1 Page 22) is not provided, so the definition of 'unnecessary variability' as variations that do not contribute to essential functions like expertise, creativity, or flexibility cannot be verified. The excerpt referenced for this definition is missing."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -610,8 +610,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer incorrectly identifies 'Bodystorming' as a solution generation technique discussed in the lectures. The provided excerpts mention 'Brainstorming' and its variations but do not include any information about 'Bodystorming'."
+        "sources_checked=1",
+        "Warning (HARD_FAIL): The model answer lists six stages (defining, gathering/analyzing, generating, evaluating/selecting, implementing, testing/refining) whereas the lecture material provides a five-step process (Define, Analyze, Search, Select, Implement)."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -622,8 +622,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer describes the \"Information Systems Perspective\" and its focus on \"work systems\" and IT project failure due to non-IT component redesign. However, the provided lecture excerpts do not mention or describe an \"Information Systems Perspective\" on work. The excerpts do describe an \"Economic Perspective\" and a \"Sociological Perspective,\" and briefly mention \"work system\" as a level of describing work, but not as a disciplinary perspective with the characteristics described in the answer."
+        "sources_checked=2"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -634,7 +633,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2"
+        "sources_checked=2",
+        "Warning (HARD_FAIL): The model answer states that core components of a work system include inputs, processes, outputs, and feedback mechanisms. The lecture notes describe a system as transforming inputs into outputs through structured interaction, and mention feedback as a characteristic related to state and feedback (internal conditions evolve over time). However, 'inputs' are not explicitly listed as a core component in the 'Anatomy of Work Systems' section, which lists purpose, outputs, customers, processes, participants, technology, information, and environment. Alter's Work System Framework also lists customers, products/services, processes, participants, information, technologies, environment, infrastructure, and strategy as core elements. The model answer's simplified list of 'inputs, processes, outputs, and feedback mechanisms' doesn't fully align with the detailed components provided in the excerpts."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -645,7 +645,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=2"
+        "sources_checked=1"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -656,8 +656,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=1",
-        "Warning (SOFT_FAIL): The model answer states that 'at least three alternatives should be explored whenever possible,' but the lecture excerpts do not specify a minimum number of alternatives to explore."
+        "sources_checked=2"
       ],
       "revision_instruction": "",
       "stage": 2
@@ -669,9 +668,8 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer claims the structure-based taxonomy characterizes work systems by their 'common components, such as people, processes, information, technology, and context'. The provided lecture excerpts do not list these specific components as defining the structure-based taxonomy. M1.3, page 6, lists components for Alter's Work System Framework, which it refers to as a 'Managerial Lens', but doesn't explicitly label this as the 'structure-based taxonomy'. M1.1 does not define a structure-based taxonomy.",
-        "Warning (HARD_FAIL): The model answer states that the complexity-based taxonomy uses dimensions like 'variability, uncertainty, and interdependencies'. While M1.1, page 22, mentions 'task complexity varies' and M1.3, page 7, mentions 'interaction and variability' in relation to the SEIPS model, the provided excerpts do not explicitly define a 'complexity-based taxonomy' with these specific dimensions.",
-        "Warning (HARD_FAIL): The model answer suggests the structure-based taxonomy provides insight into 'holistic problem diagnosis', explaining failures like IT projects where non-technical elements are neglected. This specific application and insight is not explicitly stated in the provided lecture excerpts for a 'structure-based taxonomy'."
+        "Warning (HARD_FAIL): The model answer states that the complexity-based taxonomy has two unstated axes, but the lecture notes (M1.5, page 6) mention a 'two-axis complexity-based taxonomy' without specifying the axes, implying they are not necessarily 'unstated' but simply not detailed in the provided excerpts. The primary error is stating the axes are 'unstated' as a definitive characteristic.",
+        "Warning (HARD_FAIL): The model answer claims the complexity-based taxonomy offers insight into 'potential operational challenges', which is not explicitly stated in the provided lecture excerpts. While plausible, the excerpts focus more broadly on 'how systems differ structurally', 'coordination structure', 'information flow', 'variability patterns', and 'performance metrics' as insights gained from taxonomies."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -682,10 +680,9 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "sources_checked=4",
-        "Warning (HARD_FAIL): The answer states that the KJ Method helps organize disparate ideas into thematic groups, but the lecture excerpt only describes the KJ Method as an 'Affinity Diagram' which organizes language data into groupings based on natural relationships.",
-        "Warning (HARD_FAIL): The answer claims the Concept Fan broadens or narrows problem definitions to explore different perspectives, but the provided lecture excerpt on Concept Fan does not explicitly state that it broadens or narrows problem definitions or explores different perspectives. It focuses on the co-evolution of problem and solution and using analysis to refine ideas.",
-        "Warning (HARD_FAIL): The answer states that solution generation focuses on brainstorming a wide array of potential answers or interventions without immediate evaluation. The lecture excerpt on brainstorming (M2.1.3) mentions a 'Phase III: Idea Evaluation & Solution Recommendation Phase' which occurs at the final stage of a brainstorming session, indicating that evaluation does occur, albeit after initial generation."
+        "sources_checked=2",
+        "Warning (SOFT_FAIL): The model answer states that the KJ Method is used to identify root causes and solutions. While the lecture notes mention that the KJ method can help understand a causal structure of a problem and identify root causes and solutions, it also emphasizes its primary role in defining/understanding problems and organizing data into natural relationships. The answer's emphasis on solutions for KJ may be slightly misplaced compared to the lecture's focus on understanding and organizing data.",
+        "Warning (SOFT_FAIL): The model answer characterizes the Concept Fan as a 'divergent ideation tool that broadens the search for solutions'. While it does lead to solutions, the lecture notes describe it as exploring the 'co-evolution of the problem and solution' and moving between different levels of abstraction to analyze the problem and its potential solutions, rather than solely being a divergent ideation tool for broadening solutions."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -697,7 +694,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=1",
-        "Warning (HARD_FAIL): The model answer claims that the Subtraction framework involves removing the \"rigid plastic bottle body.\" However, the provided lecture excerpts only define the Subtraction framework as one of five innovation methods and do not provide specific examples of what components might be subtracted from a product like a water bottle."
+        "Warning (HARD_FAIL): The model answer claims the Subtraction framework involves removing an essential component, but the provided lecture notes do not define the Subtraction framework or explain its principles."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -709,8 +706,8 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (HARD_FAIL): The model answer identifies \"Search (SH)\" as a Therblig. However, the provided lecture excerpts (M3.1.1) do not define or mention a Therblig called \"Search (SH)\". The closest Therblig discussed is \"Reach (RE)\", which is described as a motion performed with an empty hand. The description of \"identifying the correct screw head\" is not directly mapped to any of the listed Therbligs (Reach, Grasp, Move, Release).",
-        "Warning (HARD_FAIL): The model answer suggests standardizing screw heads, using color-coding, or implementing a jig to reduce \"Search\". While these are valid process improvement ideas, they are not explicitly linked to a defined Therblig called \"Search\" within the provided lecture excerpts."
+        "Warning (HARD_FAIL): The lecture notes describe 'Reach' as a motion performed with an empty hand, and 'Move' as moving an object while holding it. The answer incorrectly describes 'Reach' as extending the hand towards the staple gun after it has been located, which implies the hand is already moving to grasp it.",
+        "Warning (HARD_FAIL): The answer identifies 'Use' as a Therblig for stapling documents. However, the provided lecture excerpts do not define or mention 'Use' as a Therblig; they focus on Therbligs like Reach, Grasp, Move, and Release."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -722,8 +719,7 @@
       "failed_checks": [],
       "evidence": [
         "sources_checked=2",
-        "Warning (HARD_FAIL): The answer claims that Taylor's primary aim was to find the 'one best way' for each task. While the concept of optimization is present in Taylor's work (as seen in the cutting tool experiments), the lecture excerpts do not explicitly state 'one best way' as Taylor's primary aim. The closest is the idea of systematically analyzing and redesigning work.",
-        "Warning (HARD_FAIL): The answer states that Taylor's Scientific Management focused on optimizing individual tasks through time studies, standardizing methods, reducing variability, and clearly separating planning from execution. While time studies, standardization, and separation of planning/execution are mentioned, the lecture excerpts do not explicitly state that Taylor's focus was on reducing variability of individual tasks."
+        "Warning (SOFT_FAIL): The model answer claims Taylor's aims included 'reduce variability, standardize methods, clarify roles, and separate planning from execution'. While 'standardize methods' and 'separate planning from execution' are supported by the lecture excerpts (Page 9), 'reduce variability' and 'clarify roles' are not explicitly mentioned as core aims in the provided text."
       ],
       "revision_instruction": "",
       "stage": 2
@@ -734,7 +730,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=74",
+        "answer_words=91",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -746,8 +742,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=92",
-        "rubric_items=4"
+        "answer_words=54",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -758,8 +754,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=95",
-        "rubric_items=4"
+        "answer_words=75",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -770,7 +766,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=72",
+        "answer_words=66",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -782,7 +778,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=71",
+        "answer_words=68",
         "rubric_items=3"
       ],
       "revision_instruction": "",
@@ -794,8 +790,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=79",
-        "rubric_items=4"
+        "answer_words=86",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -806,8 +802,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=127",
-        "rubric_items=4"
+        "answer_words=87",
+        "rubric_items=5"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -818,8 +814,8 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=104",
-        "rubric_items=4"
+        "answer_words=126",
+        "rubric_items=3"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -830,7 +826,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=114",
+        "answer_words=107",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -842,7 +838,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=132",
+        "answer_words=141",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -854,7 +850,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "answer_words=105",
+        "answer_words=98",
         "rubric_items=4"
       ],
       "revision_instruction": "",
@@ -877,7 +873,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[1.0, 2.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -888,7 +884,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[1.0, 2.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -921,7 +917,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 1.0, 1.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[2.0, 2.0, 1.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -932,7 +928,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 2.0, 2.0]"
+        "rubric_items=5; rubric_pts_parsed=[2.0, 2.0, 2.0, 2.0, 2.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -943,7 +939,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[3.0, 3.0, 3.0, 1.0]"
+        "rubric_items=3; rubric_pts_parsed=[3.0, 3.0, 4.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -954,7 +950,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[4.0, 4.0, 4.0, 3.0]"
+        "rubric_items=4; rubric_pts_parsed=[5.0, 5.0, 2.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3
@@ -965,7 +961,7 @@
       "verdict": "PASS",
       "failed_checks": [],
       "evidence": [
-        "rubric_items=4; rubric_pts_parsed=[2.0, 5.0, 2.0, 6.0]"
+        "rubric_items=4; rubric_pts_parsed=[6.0, 3.0, 3.0, 3.0]"
       ],
       "revision_instruction": "",
       "stage": 3

@@ -8,9 +8,12 @@
     "Essay": 1
   },
   "bloom_distribution": {
-    "Remember/Understand": 5,
-    "Apply/Analyze": 3,
-    "Analyze": 3
+    "Remembering": 3,
+    "Understanding": 2,
+    "Analyzing": 1,
+    "Analyze": 2,
+    "Apply/Analyze": 2,
+    "Evaluation": 1
   },
   "difficulty_distribution": {
     "Easy": 5,
@@ -20,8 +23,8 @@
   "estimated_total_time_minutes": 75,
   "target_duration_minutes": 75,
   "time_within_target": true,
-  "higher_order_question_count": 6,
-  "higher_order_question_share": 0.545,
+  "higher_order_question_count": 4,
+  "higher_order_question_share": 0.364,
   "coverage_passed": true,
   "source_grounding_passed": true,
   "chunk_grounding_passed": true,
