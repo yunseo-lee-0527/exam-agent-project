@@ -462,6 +462,7 @@ python src/main.py [옵션]
   --regen-questions Q_NUMS  특정 문항만 재생성 (예: "2,6")
   --max-refine      1차 judge 루프 최대 반복 횟수 (기본: 2)
   --max-agentic-judge-refine  2차 judge 루프 최대 반복 횟수 (기본: 2)
+  --batch-judge     QuestionJudge/AnswerJudge를 11문항 일괄 호출 1회로 처리 (자동 활성화)
   --model-preset    모델 사전 설정 (lecture_flash|cheap|balanced|pro|gpt|claude_opus 등)
 ```
 
